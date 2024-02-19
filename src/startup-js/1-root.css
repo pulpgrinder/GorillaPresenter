@@ -1,0 +1,67 @@
+body {
+  -webkit-overflow-scrolling: touch;
+  font-family:sans-serif;
+  font-size:20px;
+  line-height:1.33em;
+  background: #bbb;
+  display:block;
+  padding:0;
+  margin:0;
+  height: auto !important;
+  overflow:hidden;
+  z-index:0;
+}
+
+h1,h2, h3, h4, h5, h6 {
+  font-family:serif;
+  font-weight: bold;
+  font-size:24px;
+}
+
+textarea::-moz-selection {
+  color: white;
+  background-color: rebeccapurple;
+}
+
+textarea::-webkit-selection {
+  color: white;
+  background-color: rebeccapurple;
+}
+textarea::selection {
+  color: white;
+  background-color: rebeccapurple;
+}
+
+
+#ZipPresenter_upload_download{
+  display:none;
+  z-index:1000;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.smallfont{
+  font-size:50%;
+}
+
+.ZipPresenter-file-uploader{
+  display:hidden;
+  z-index:0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #bbb;
+  padding:0.25em;
+}
+

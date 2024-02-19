@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<!-- Zip Presenter. Copyright 2024 by Anthony W. Hursh. -->
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-store,must-revalidate,max-age=-1">
+    <meta http-equiv="Pragma" content="no-store">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" id="favicon-png" type="image/png" href="data:image/jpeg;base64,iVBORw0KGgo=">
+    <title>Zip Presenter</title>
+  
+  </head>
+
+  <body>
+    <noscript id="noscript">
+      Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
+    </noscript>
+    <div id="zip-presenter-slideroot"> </div>
+  </body>
+  <script type="text/javascript" id="zip_presenter_file_system">
+$$$FILESYSTEM$$$
+  </script>
+  <script type="text/javascript" id="zip_presenter_system_boot">
+  function cleanSystem(keepFileSystem){
+    let styles = document.getElementsByTagName('style');
+    let stylearr = Array.prototype.slice.call(styles)
+    for(let i = 0; i < stylearr.length; i++){
+      stylearr[i].remove();
+    }
+    if(keepFileSystem !== true){
+      ZipPresenter_fs = null;
+    }
+    cleanScripts();
+  }
+  function cleanScripts(){
+    let scripts = document.getElementsByTagName('script');
+    let scriptarr = Array.prototype.slice.call(scripts)
+    for(let i = 0; i < scriptarr.length; i++){
+      let script = scriptarr[i];
+      script.remove();
+      }
+    }
+  let urlParams = new URLSearchParams(window.location.search);
+
+    /*!
+   * natural-sort.js
+   * ===============
+   * Sorting with support for numbers, dates, unicode and more.
+   *
+   * http://github.com/studio-b12/natural-sort
+   * MIT License, © Studio B12 GmbH 2014
+   *
+   *//*
+   *
+   * Idea by Dave Koelle
+   * Original implementation by Jim Palmer
+   * Modified by Tomek Wiszniewski
+   *
+   */
+
+  let naturalSort = function naturalSort (options) { 'use strict';
+    if (!options) options = {};
+
+    return function(a, b) {
+      const EQUAL = 0;
+      const GREATER = (options.direction == 'desc' ?
+        -1 :
+        1
+      );
+      const SMALLER = -GREATER;
+
+      const re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi;
+      const sre = /(^[ ]*|[ ]*$)/g;
+      const dre = /(^([\w ]+,?[\w ]+)?[\w ]+,?[\w ]+\d+:\d+(:\d+)?[\w ]?|^\d{1,4}[\/\-]\d{1,4}[\/\-]\d{1,4}|^\w+, \w+ \d+, \d{4})/;
+      const hre = /^0x[0-9a-f]+$/i;
+      const ore = /^0/;
+
+      const normalize = function normalize (value) {
+        const string = '' + value;
+        return (options.caseSensitive ?
+          string :
+          string.toLowerCase()
+        );
+      };
+
+      // Normalize values to strings
+      const x = normalize(a).replace(sre, '') || '';
+      const y = normalize(b).replace(sre, '') || '';
+
+      // chunk/tokenize
+      const xN = x.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0');
+      const yN = y.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0');
+
+      // Return immediately if at least one of the values is empty.
+      if (!x && !y) return EQUAL;
+      if (!x &&  y) return GREATER;
+      if ( x && !y) return SMALLER;
+
+      // numeric, hex or date detection
+      const xD = parseInt(x.match(hre)) || (xN.length != 1 && x.match(dre) && Date.parse(x));
+      const yD = parseInt(y.match(hre)) || xD && y.match(dre) && Date.parse(y) || null;
+      let oFxNcL;
+      let oFyNcL;
+
+      // first try and sort Hex codes or Dates
+      if (yD) {
+        if ( xD < yD ) return SMALLER;
+        else if ( xD > yD ) return GREATER;
+      }
+
+      // natural sorting through split numeric strings and default strings
+      for (let cLoc=0, numS=Math.max(xN.length, yN.length); cLoc < numS; cLoc++) {
+
+        // find floats not starting with '0', string or 0 if not defined (Clint Priest)
+        oFxNcL = !(xN[cLoc] || '').match(ore) && parseFloat(xN[cLoc]) || xN[cLoc] || 0;
+        oFyNcL = !(yN[cLoc] || '').match(ore) && parseFloat(yN[cLoc]) || yN[cLoc] || 0;
+
+        // handle numeric vs string comparison - number < string - (Kyle Adams)
+        if (isNaN(oFxNcL) !== isNaN(oFyNcL)) return (isNaN(oFxNcL)) ? GREATER : SMALLER;
+
+        // rely on string comparison if different types - i.e. '02' < 2 != '02' < '2'
+        else if (typeof oFxNcL !== typeof oFyNcL) {
+          oFxNcL += '';
+          oFyNcL += '';
+        }
+
+        if (oFxNcL < oFyNcL) return SMALLER;
+        if (oFxNcL > oFyNcL) return GREATER;
+      }
+
+      return EQUAL;
+    };
+  };
+
+  (function (root, factory) {
+    if (typeof exports === 'object') {
+      module.exports = factory();
+    } else {
+      root.naturalSort = factory();
+    }
+  }(this, function () {
+
+    return naturalSort;
+
+  }));
+
+let ZipPresenter;
+function initSystem(){
+  ZipPresenter = {};
+  ZipPresenter.version = "___VERSION___";
+  ZipPresenter.build = "___BUILD___";
+  ZipPresenter.CumulativeErrors = [];
+  ZipPresenter.bytes_to_base_64 = function(buffer){
+    let arr = new Uint8Array(buffer)
+    let raw = '';
+    for (let i = 0, l = arr.length; i < l; i++) {
+      raw += String.fromCharCode(arr[i]);
+    }
+    return btoa(raw);
+  }
+  // ZipPresenter launcher statistics.
+  ZipPresenter.cssLoaded = [];
+  ZipPresenter.cssErrors = [];
+  ZipPresenter.jsLoaded = [];
+  ZipPresenter.jsErrors = [];
+  ZipPresenter.currentSourceFile = null;
+  ZipPresenter.logLaunchStatistics = function(){
+    console.log("CSS files loaded:\n" + ZipPresenter.cssLoaded.join(", ") + "\n")
+    console.log("CSS files with errors:\n" + ZipPresenter.cssErrors.join(", ") + "\n")
+    console.log("JS files loaded:\n" + ZipPresenter.jsLoaded.join(", ") + "\n")
+    console.log("JS files with errors:\n" + ZipPresenter.jsErrors.join(", ") + "\n")
+  }
+  // Launch debugger state variables.
+  ZipPresenter.loadError = false;
+
+    // Append a style element containing CSS code from the internal
+    // file system to the document head.
+  ZipPresenter.addCSS = function(filename,id){
+    ZipPresenter.currentSourceFile = filename;
+    try {
+      let code = ZipPresenter_fs[filename]["data"];
+      let style = document.createElement('style');
+      style.type = 'text/css';
+      if(id !== undefined){
+        style.id = id;
+      }
+      style.appendChild(document.createTextNode(ZipPresenter.decodeText(code)));
+      document.head.appendChild(style);
+    }
+    catch(e){
+      ZipPresenter.handleLoadError(filename,e);
+    }
+    ZipPresenter.currentSourceFile = null;
+  }
+
+window.onerror = function (msg, url, lineNo, columnNo, error){
+  let errmsg = "";
+  if(ZipPresenter.currentSourceFile !== null){
+    errmsg = "Error in source file:" + ZipPresenter.currentSourceFile + " ->  ";
+  }
+  errmsg = errmsg + msg + "\n" + error.stack;
+  console.error(errmsg);
+  return false;
+}
+ZipPresenter.handleLoadError = function(filename,error){
+    console.error("Error in source file: " + filename + " -> " + error.toString())
+}
+  // Append a script element containing JavaScript code from the internal
+  // file system to the document body.
+  ZipPresenter.addJS = function(filename){
+   ZipPresenter.currentSourceFile = filename;
+   try {
+    let code = ZipPresenter_fs[filename]["data"];
+    let script = document.createElement('script');
+    script.type = 'text/javascript';
+    let jsCode = ZipPresenter.decodeText(code);
+    script.appendChild(document.createTextNode(jsCode));
+    document.body.appendChild(script);
+    script.remove()
+    }
+    catch(e){
+      ZipPresenter.handleLoadError(filename,e);
+    }
+    ZipPresenter.currentSourceFile = null;
+  }
+
+  ZipPresenter.decodeText = function(code){
+    let byteCharacters = atob(code);
+    let array = new Uint8Array(byteCharacters.length);
+    for(let i = 0; i < byteCharacters.length; i++ ) { 
+      array[i] = byteCharacters.charCodeAt(i);
+    }
+    return new TextDecoder("utf-8").decode(array);
+  }
+
+
+  
+
+  ZipPresenter.launchSystem = function(x){
+    ZipPresenter.loadError = false;
+    let jsQueue = [];
+    let cssQueue = [];
+    let filenames = Object.keys(ZipPresenter_fs).sort(naturalSort());
+    for(let i = 0; i < filenames.length; i++){
+        let filename = filenames[i];
+
+      if(filename.match(/startup_js\/.*\.css$/) !== null){
+          cssQueue.push(filename)
+      }
+      if(filename.match(/\.js$/) !== null){
+        jsQueue.push(filename)
+      }
+    }
+    for(let i = 0; i < cssQueue.length; i++){
+      ZipPresenter.addCSS(cssQueue[i])
+      if(ZipPresenter.loadError === true){
+        return;
+      }
+    }
+    for(let i = 0; i < jsQueue.length; i++){
+      ZipPresenter.addJS(jsQueue[i]);
+      if(ZipPresenter.loadError === true){
+        return;
+      }
+    }
+
+   
+    setTimeout(function(){
+      if(ZipPresenter.CumulativeErrors.length !== 0){
+        let msg = ZipPresenter.CumulativeErrors.join("\n");
+        console.error(msg);
+        ZipPresenter.CumulativeErrors = [];
+      }
+    },100);
+  }
+}
+
+initSystem();
+ZipPresenter.launchSystem();
+
+ </script>
+ <script type="text/javascript">
+ setTimeout(function(){
+   cleanScripts()
+ },25);
+</script>
+</body>
+</html>

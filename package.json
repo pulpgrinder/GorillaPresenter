@@ -1,0 +1,22 @@
+{
+  "name": "ZipPresenter",
+  "version": "1.0.0",
+  "description": "Self-contained presentation system",
+  "keywords": [
+    "ZipPresenter",
+    "Presentation"
+  ],
+  "author": "Anthony W. Hursh",
+  "license": "MIT",
+  "dependencies": {
+    "atob": "2.1.2",
+    "btoa": "1.2.1",
+    "fs-extra": "9.0.1",
+    "jsmin": "1.0.1",
+    "mime": "2.4.4",
+    "readline-sync": "1.4.10",
+    "rollup": "^2.63.0",
+    "sha3": "^2.1.1",
+    "ws": ">=7.4.6"
+  }
+}
