@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Zip Presenter. Copyright 2024 by Anthony W. Hursh. -->
+<!-- Pocket Presenter. Copyright 2024 by Anthony W. Hursh. -->
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-store">
     <meta http-equiv="Expires" content="0">
     <link rel="shortcut icon" id="favicon-png" type="image/png" href="data:image/jpeg;base64,iVBORw0KGgo=">
-    <title>Zip Presenter</title>
+    <title>PocketPresenter</title>
   
   </head>
 
@@ -16,33 +16,13 @@
     <noscript id="noscript">
       Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
     </noscript>
-    <div id="zip-presenter-slideroot"> </div>
+    <div id="pocket-presenter-slideroot"> </div>
   </body>
-  <script type="text/javascript" id="zip_presenter_file_system">
+  <script type="text/javascript" id="pocket_presenter_file_system">
 $$$FILESYSTEM$$$
   </script>
-  <script type="text/javascript" id="zip_presenter_system_boot">
-  function cleanSystem(keepFileSystem){
-    let styles = document.getElementsByTagName('style');
-    let stylearr = Array.prototype.slice.call(styles)
-    for(let i = 0; i < stylearr.length; i++){
-      stylearr[i].remove();
-    }
-    if(keepFileSystem !== true){
-      ZipPresenter_fs = null;
-    }
-    cleanScripts();
-  }
-  function cleanScripts(){
-    let scripts = document.getElementsByTagName('script');
-    let scriptarr = Array.prototype.slice.call(scripts)
-    for(let i = 0; i < scriptarr.length; i++){
-      let script = scriptarr[i];
-      script.remove();
-      }
-    }
-  let urlParams = new URLSearchParams(window.location.search);
-
+  <script type="text/javascript" id="pocket_presenter_system_boot">
+ 
     /*!
    * natural-sort.js
    * ===============
@@ -59,6 +39,7 @@ $$$FILESYSTEM$$$
    *
    */
 
+   
   let naturalSort = function naturalSort (options) { 'use strict';
     if (!options) options = {};
 
@@ -145,106 +126,121 @@ $$$FILESYSTEM$$$
 
   }));
 
-let ZipPresenter;
-function initSystem(){
-  ZipPresenter = {};
-  ZipPresenter.version = "___VERSION___";
-  ZipPresenter.build = "___BUILD___";
-  ZipPresenter.CumulativeErrors = [];
-  ZipPresenter.bytes_to_base_64 = function(buffer){
-    let arr = new Uint8Array(buffer)
-    let raw = '';
-    for (let i = 0, l = arr.length; i < l; i++) {
-      raw += String.fromCharCode(arr[i]);
-    }
-    return btoa(raw);
-  }
-  // ZipPresenter launcher statistics.
-  ZipPresenter.cssLoaded = [];
-  ZipPresenter.cssErrors = [];
-  ZipPresenter.jsLoaded = [];
-  ZipPresenter.jsErrors = [];
-  ZipPresenter.currentSourceFile = null;
-  ZipPresenter.logLaunchStatistics = function(){
-    console.log("CSS files loaded:\n" + ZipPresenter.cssLoaded.join(", ") + "\n")
-    console.log("CSS files with errors:\n" + ZipPresenter.cssErrors.join(", ") + "\n")
-    console.log("JS files loaded:\n" + ZipPresenter.jsLoaded.join(", ") + "\n")
-    console.log("JS files with errors:\n" + ZipPresenter.jsErrors.join(", ") + "\n")
-  }
-  // Launch debugger state variables.
-  ZipPresenter.loadError = false;
-
-    // Append a style element containing CSS code from the internal
-    // file system to the document head.
-  ZipPresenter.addCSS = function(filename,id){
-    ZipPresenter.currentSourceFile = filename;
-    try {
-      let code = ZipPresenter_fs[filename]["data"];
-      let style = document.createElement('style');
-      style.type = 'text/css';
-      if(id !== undefined){
-        style.id = id;
+let PocketPresenter = {
+    slideRoot: "pocket-presenter-slideroot",
+    slideClass: ".pocket-presenter-slide",
+    slideIdFragment: "pocket-presenter-slide-",
+    sicTransit:new SicTransit("#" + this.slideRoot,this.slideClass),
+    initSystem: function(){
+      console.log("initSystem: PocketPresenter version: " + "___VERSION___" + " build: " + "___BUILD___");
+      this.version = "___VERSION___";
+      this.build = "___BUILD___";
+      this.CumulativeErrors = [];
+      // PocketPresenter launcher statistics.
+      this.cssLoaded = [];
+      this.cssErrors = [];
+      this.jsLoaded = [];
+      this.jsErrors = [];
+      self:this;
+      this.loadError = false;
+      this.currentSourceFile = null;
+      window.onerror = function (msg, url, lineNo, columnNo, error){
+      let errmsg = "";
+      if(this.currentSourceFile !== null){
+        errmsg = "Error in source file:" + this.currentSourceFile + " ->  ";
       }
-      style.appendChild(document.createTextNode(ZipPresenter.decodeText(code)));
-      document.head.appendChild(style);
+      errmsg = errmsg + msg + "\n" + error.stack;
+      console.error(errmsg);
+      return false;
     }
-    catch(e){
-      ZipPresenter.handleLoadError(filename,e);
-    }
-    ZipPresenter.currentSourceFile = null;
-  }
+  },
 
-window.onerror = function (msg, url, lineNo, columnNo, error){
-  let errmsg = "";
-  if(ZipPresenter.currentSourceFile !== null){
-    errmsg = "Error in source file:" + ZipPresenter.currentSourceFile + " ->  ";
-  }
-  errmsg = errmsg + msg + "\n" + error.stack;
-  console.error(errmsg);
-  return false;
-}
-ZipPresenter.handleLoadError = function(filename,error){
+    addSlide: function(template){
+      let slideElement = document.getElementById(this.slideRoot);
+      let id = this.slideIdFragment + Math.random();
+      let newSlide = document.createElement("div");
+      slideElement.appendChild(newSlide);
+      newSlide.setAttribute("class", this.slideClass);
+      newSlide.setAttribute("id", id);
+      let html = this.processTemplate(template)
+      newSlide.innerHTML = html;
+      sicTransit.showSlide("#" + id);
+    },
+
+    processTemplate: function(template){
+      return "<b>Hooha</b>";
+    },
+    
+    bytes_to_base_64:function(buffer){
+      let arr = new Uint8Array(buffer)
+      let raw = '';
+      for (let i = 0, l = arr.length; i < l; i++) {
+        raw += String.fromCharCode(arr[i]);
+      }
+      return btoa(raw);
+    },
+    logLaunchStatistics: function(){
+        console.log("CSS files loaded:\n" + this.cssLoaded.join(", ") + "\n");
+        console.log("CSS files with errors:\n" + this.cssErrors.join(", ") + "\n");
+        console.log("JS files loaded:\n" + this.jsLoaded.join(", ") + "\n");
+        console.log("JS files with errors:\n" + this.jsErrors.join(", ") + "\n");
+    },
+
+    addCSS: function(filename,id){
+        this.currentSourceFile = filename;
+      try {
+        let code = PocketPresenter_fs[filename]["data"];
+        let style = document.createElement('style');
+        style.type = 'text/css';
+        if(id !== undefined){
+        style.id = id;
+        }
+        style.appendChild(document.createTextNode(this.decodeText(code)));
+        document.head.appendChild(style);
+      }
+      catch(e){
+        this.handleLoadError(filename,e);
+      }
+      this.currentSourceFile = null;
+    },
+
+  handleLoadError:function(filename,error){
     console.error("Error in source file: " + filename + " -> " + error.toString())
-}
+  },
   // Append a script element containing JavaScript code from the internal
   // file system to the document body.
-  ZipPresenter.addJS = function(filename){
-   ZipPresenter.currentSourceFile = filename;
-   try {
-    let code = ZipPresenter_fs[filename]["data"];
-    let script = document.createElement('script');
-    script.type = 'text/javascript';
-    let jsCode = ZipPresenter.decodeText(code);
-    script.appendChild(document.createTextNode(jsCode));
-    document.body.appendChild(script);
-    script.remove()
-    }
-    catch(e){
-      ZipPresenter.handleLoadError(filename,e);
-    }
-    ZipPresenter.currentSourceFile = null;
-  }
+  addJS: function(filename){
+    this.currentSourceFile = filename;
+    try {
+      let code = PocketPresenter_fs[filename]["data"];
+      let script = document.createElement('script');
+      script.type = 'text/javascript';
+      let jsCode = this.decodeText(code);
+      script.appendChild(document.createTextNode(jsCode));
+      document.body.appendChild(script);
+      script.remove()
+      }
+      catch(e){
+      this.handleLoadError(filename,e);
+      }
+      this.currentSourceFile = null;
+  },
 
-  ZipPresenter.decodeText = function(code){
+  decodeText: function(code){
     let byteCharacters = atob(code);
     let array = new Uint8Array(byteCharacters.length);
     for(let i = 0; i < byteCharacters.length; i++ ) { 
       array[i] = byteCharacters.charCodeAt(i);
     }
     return new TextDecoder("utf-8").decode(array);
-  }
-
-
-  
-
-  ZipPresenter.launchSystem = function(x){
-    ZipPresenter.loadError = false;
+  },
+  launchSystem:function(x){
+    this.loadError = false;
     let jsQueue = [];
     let cssQueue = [];
-    let filenames = Object.keys(ZipPresenter_fs).sort(naturalSort());
+    let filenames = Object.keys(PocketPresenter_fs).sort(naturalSort());
     for(let i = 0; i < filenames.length; i++){
         let filename = filenames[i];
-
       if(filename.match(/startup_js\/.*\.css$/) !== null){
           cssQueue.push(filename)
       }
@@ -253,37 +249,57 @@ ZipPresenter.handleLoadError = function(filename,error){
       }
     }
     for(let i = 0; i < cssQueue.length; i++){
-      ZipPresenter.addCSS(cssQueue[i])
-      if(ZipPresenter.loadError === true){
+      this.addCSS(cssQueue[i])
+      if(this.loadError === true){
         return;
       }
     }
     for(let i = 0; i < jsQueue.length; i++){
-      ZipPresenter.addJS(jsQueue[i]);
-      if(ZipPresenter.loadError === true){
+      this.addJS(jsQueue[i]);
+      if(this.loadError === true){
         return;
       }
     }
-
-   
     setTimeout(function(){
-      if(ZipPresenter.CumulativeErrors.length !== 0){
-        let msg = ZipPresenter.CumulativeErrors.join("\n");
+      if(PocketPresenter.CumulativeErrors.length !== 0){
+        let msg = PocketPresenter.CumulativeErrors.join("\n");
         console.error(msg);
-        ZipPresenter.CumulativeErrors = [];
+        PocketPresenter.CumulativeErrors = [];
       }
     },100);
-  }
+  },
+  cleanSystem: function(keepFileSystem){
+    let styles = document.getElementsByTagName('style');
+    let stylearr = Array.prototype.slice.call(styles)
+    for(let i = 0; i < stylearr.length; i++){
+      stylearr[i].remove();
+    }
+    if(keepFileSystem !== true){
+      PocketPresenter_fs = null;
+    }
+    cleanScripts();
+  },
+  cleanScripts: function(){
+    let scripts = document.getElementsByTagName('script');
+    let scriptarr = Array.prototype.slice.call(scripts)
+    for(let i = 0; i < scriptarr.length; i++){
+      let script = scriptarr[i];
+      script.remove();
+      }
+  },
+  urlParams: new URLSearchParams(window.location.search)
+
 }
 
-initSystem();
-ZipPresenter.launchSystem();
+
+PocketPresenter.initSystem();
+PocketPresenter.launchSystem();
 
  </script>
  <script type="text/javascript">
- setTimeout(function(){
-   cleanScripts()
- },25);
+ /*setTimeout(function(){
+   PocketPresenter.cleanScripts()
+ },25); */
 </script>
 </body>
 </html>

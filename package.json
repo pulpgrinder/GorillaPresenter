@@ -1,9 +1,9 @@
 {
-  "name": "ZipPresenter",
+  "name": "PocketPresenter",
   "version": "1.0.0",
   "description": "Self-contained presentation system",
   "keywords": [
-    "ZipPresenter",
+    "PocketPresenter",
     "Presentation"
   ],
   "author": "Anthony W. Hursh",

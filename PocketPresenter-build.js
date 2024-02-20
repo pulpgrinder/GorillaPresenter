@@ -6,7 +6,7 @@ const btoa  = require('btoa');
 const jsmin = require('jsmin').jsmin;
 let version_info
 let build_info;
-let ZipPresenter_fs = {}
+let PocketPresenter_fs = {}
 let css_bundle = ""
 let source_folder =  __dirname + "/src/"
 console.log("Source folder is " + source_folder);
@@ -25,29 +25,8 @@ function bump_version(){
   build_info = build_info + 1;
   fs.writeFileSync(__dirname + "/src/build/build","" + build_info,"utf8");
 }
-function process_pwa(err,results){
-    console.log("Processing pwa files...")
-    if(err !== null){
-      console.error("Build Monster error: " + err);
-      return;
-    }
-    for(var i = 0; i < results.length; i++){
-      process_pwa_file(results[i]);
-    }
-}
 
-function process_pwa_file(file_name){
-  // Don't need extraneous MacOS metadata files.
-  if(file_name.match(/\.DS_Store$/) !== null){
-    return;
-  }
-  let outfile_name = file_name.replace(/\/pwa\//,"/dist/")
-  console.log("Processing: " + outfile_name)
-  let file_data = fs.readFileSync(file_name,"binary");
-  file_data = file_data.replace(/___VERSION___/g, version_info);
-  file_data = file_data.replace(/___BUILD___/g, build_info);
-  fs.writeFileSync(outfile_name,file_data,"binary");
-}
+
 
 function process_files(err,results){
   console.log("Building internal filesystem...")
@@ -58,20 +37,15 @@ function process_files(err,results){
   for(var i = 0; i < results.length; i++){
     process_file(results[i]);
   }
-//  process_packages();
-  
-//  write_filesystem();
-// add js,scm, and css to HTML template
-  //write_css();
   write_html();
 }
 
 function write_filesystem(){
-    let filesystem = JSON.stringify(ZipPresenter_fs)
+    let filesystem = JSON.stringify(PocketPresenter_fs)
     if (!fs.existsSync(__dirname + "/filesystem")){
       fs.mkdirSync(__dirname + "/filesystem");
     }
-    fs.writeFileSync(__dirname +  "/filesystem/ZipPresenter_fs.json",filesystem,"utf8");
+    fs.writeFileSync(__dirname +  "/filesystem/PocketPresenter_fs.json",filesystem,"utf8");
 }
 
 function create_directories(){
@@ -80,15 +54,6 @@ function create_directories(){
   }
 }
 
-function write_css(){
-  fs.writeFileSync(__dirname +  "/dist/css/bundle.css",css_bundle,"utf8");
-}
-function write_image_file(filename,data){
-  fs.writeFileSync(__dirname +  "/dist/images/" + path.basename(filename),data,"binary");
-}
-function write_font_file(filename,data){
-  fs.writeFileSync(__dirname +  "/dist/css/" + path.basename(filename),data,"binary");
-}
 function write_html(){
   let template = fs.readFileSync(__dirname + "/src/startup-js/index_template.html","utf8");
   template = template.replace(/___VERSION___/g, version_info);
@@ -102,7 +67,7 @@ function write_html(){
     }
     else{
       switch(template_line.trim()){
-        case "$$$FILESYSTEM$$$":   template_out = template_out + "ZipPresenter_fs=" + JSON.stringify(ZipPresenter_fs)
+        case "$$$FILESYSTEM$$$":   template_out = template_out + "PocketPresenter_fs=" + JSON.stringify(PocketPresenter_fs)
               break;
         default: template_out = template_out + template_line + "\n"
               break;
@@ -124,25 +89,10 @@ function process_file(file_name){
     console.log("Skipping: " + outfile_name);
     return;
   }
-  console.log("Processing: " + outfile_name)
-  
-/*  if(outfile_name.match(/\.css$/)){
-    file_data = fs.readFileSync(file_name,"utf8");
-    css_bundle = css_bundle + "\n" + file_data;
-    return;
-  } */
-/*  if(outfile_name.match(/\.jpg$/i) || outfile_name.match(/\.jpeg$/i) || outfile_name.match(/\.png$/i) || outfile_name.match(/\.gif$/i) || outfile_name.match(/\.svg$/i)){
-    let file_data = fs.readFileSync(file_name,"binary");
-    write_image_file(outfile_name,file_data);
-    return;
- } */
- /*if(outfile_name.match(/\.ttf$/i) || outfile_name.match(/\.otf$/i)){
-   file_data = fs.readFileSync(file_name,"binary");
-   write_font_file(outfile_name,file_data);
-   return;
-} */
+  console.log("Processing: " + outfile_name);
+
   file_data = fs.readFileSync(file_name,"binary");
-  ZipPresenter_fs[outfile_name] = {"timestamp": Date.now(),"data":btoa(file_data)};
+  PocketPresenter_fs[outfile_name] = {"timestamp": Date.now(),"data":btoa(file_data)};
 }
 
 /**

@@ -33,7 +33,7 @@ textarea::selection {
 }
 
 
-#ZipPresenter_upload_download{
+#PocketPresenter_upload_download{
   display:none;
   z-index:1000;
 }
@@ -51,7 +51,7 @@ textarea::selection {
   font-size:50%;
 }
 
-.ZipPresenter-file-uploader{
+.PocketPresenter-file-uploader{
   display:hidden;
   z-index:0;
 }
