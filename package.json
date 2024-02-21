@@ -18,5 +18,8 @@
     "rollup": "^2.63.0",
     "sha3": "^2.1.1",
     "ws": ">=7.4.6"
-  }
+  },
+    "commands": {
+        "build-package": "node GuerrillaPresenter-build.js"
+    }
 }
