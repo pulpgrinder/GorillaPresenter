@@ -1,4 +1,4 @@
-`html2canvas` is distributed under the terms of the following licenses:
+html2canvas is distributed under the terms of the following licenses:
 
 Copyright (c) 2012 Niklas von Hertzen
 

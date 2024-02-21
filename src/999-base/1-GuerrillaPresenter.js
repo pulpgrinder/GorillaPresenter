@@ -1,5 +1,5 @@
 
-let PocketPresenter = {
+let GuerrillaPresenter = {
     slideRoot: "guerrilla-presenter-slideroot",
     slideClass: ".guerrilla-presenter-slide",
     slideIdFragment: "guerrilla-presenter-slide-",

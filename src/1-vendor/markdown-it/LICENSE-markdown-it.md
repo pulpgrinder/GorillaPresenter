@@ -1,5 +1,5 @@
-```markdown-it.min.js ```, ```markdown-it-sup.min.js ```, and
-```markdown-it-sup.min.js``` are Copyright (c) 2014-2015 Vitaly Puzrin,
+markdown-it.min.js, markdown-it-sup.min.js, and
+markdown-it-sub.min.js are Copyright (c) 2014-2015 Vitaly Puzrin,
 Alex Kocharin, and are distributed under the terms of the following license:
 
 Permission is hereby granted, free of charge, to any person
@@ -23,7 +23,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-```markdownItAnchor.umd.js```  by Valerian Galliat is distributed
+markdownItAnchor.umd.js  by Valerian Galliat is distributed
 under the terms of the following license:
 
 This is free and unencumbered software released into the public domain.

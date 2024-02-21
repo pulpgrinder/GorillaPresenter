@@ -33,7 +33,7 @@ textarea::selection {
 }
 
 
-#PocketPresenter_upload_download{
+#GuerrillaPresenter_upload_download{
   display:none;
   z-index:1000;
 }
@@ -51,7 +51,7 @@ textarea::selection {
   font-size:50%;
 }
 
-.PocketPresenter-file-uploader{
+.GuerrillaPresenter-file-uploader{
   display:hidden;
   z-index:0;
 }

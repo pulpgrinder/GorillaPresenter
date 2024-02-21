@@ -1,1 +1,1 @@
-# Pocket Presenter
+# Guerrilla Presenter

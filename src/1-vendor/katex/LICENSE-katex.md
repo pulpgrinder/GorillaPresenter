@@ -1,3 +1,5 @@
+KaTeX is distributed under the terms of the following license:
+
 The MIT License (MIT)
 
 Copyright (c) 2013-2020 Khan Academy and other contributors
