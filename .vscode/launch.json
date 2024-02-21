@@ -5,17 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Chrome for file",
-            "port": 9222,
-            "request": "attach",
-            "type": "chrome",
-            "webRoot": "${workspaceFolder}/dist"
-        },
-        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome for file",
-            "url": "file:///Users/tonyhursh/gits/GuerrillaPresenter/dist/index.html",
+            "url": "file://${workspaceFolder}/dist/index.html",
             "webRoot": "${workspaceFolder}/dist",
         }
     ]
