@@ -1,5 +1,5 @@
 {
-  "name": "GuerrillaPresenter",
+  "name": "guerrilla-presenter",
   "version": "1.0.0",
   "description": "Self-contained presentation system",
   "keywords": [
@@ -19,7 +19,7 @@
     "sha3": "^2.1.1",
     "ws": ">=7.4.6"
   },
-    "commands": {
-        "build-package": "node GuerrillaPresenter-build.js"
-    }
+  "commands": {
+    "build-package": "node GuerrillaPresenter-build.js"
+  }
 }

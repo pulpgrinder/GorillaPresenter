@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 <!-- Guerrilla Presenter. Copyright 2024 by Anthony W. Hursh. -->
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,24 +22,7 @@
 $$$FILESYSTEM$$$
   </script>
   <script type="text/javascript" id="Guerrilla_presenter_system_boot">
- 
-    /*!
-   * natural-sort.js
-   * ===============
-   * Sorting with support for numbers, dates, unicode and more.
-   *
-   * http://github.com/studio-b12/natural-sort
-   * MIT License, © Studio B12 GmbH 2014
-   *
-   *//*
-   *
-   * Idea by Dave Koelle
-   * Original implementation by Jim Palmer
-   * Modified by Tomek Wiszniewski
-   *
-   */
-
-   let launcher = {
+ let launcher = {
     initSystem: function(){
       console.log("initSystem: GuerrillaPresenter version: " + "___VERSION___" + " build: " + "___BUILD___");
       this.version = "___VERSION___";
@@ -140,7 +123,7 @@ $$$FILESYSTEM$$$
   },
 
   decodeText: function(code){
-    let byteCharacters = atob(code);
+    let byteCharacters = window.atob(code);
     let array = new Uint8Array(byteCharacters.length);
     for(let i = 0; i < byteCharacters.length; i++ ) { 
       array[i] = byteCharacters.charCodeAt(i);
@@ -177,7 +160,24 @@ $$$FILESYSTEM$$$
 
    }
    
-  let naturalSort = function naturalSort (options) { 'use strict';
+
+    /*!
+   * natural-sort.js
+   * ===============
+   * Sorting with support for numbers, dates, unicode and more.
+   *
+   * http://github.com/studio-b12/natural-sort
+   * MIT License, © Studio B12 GmbH 2014
+   *
+   *//*
+   *
+   * Idea by Dave Koelle
+   * Original implementation by Jim Palmer
+   * Modified by Tomek Wiszniewski
+   *
+   */
+
+   let naturalSort = function naturalSort (options) { 'use strict';
     if (!options) options = {};
 
     return function(a, b) {
@@ -267,7 +267,7 @@ $$$FILESYSTEM$$$
  <script type="text/javascript">
   launcher.initSystem();
   launcher.launchSystem();
-
+  GuerrillaPresenter.startup();
  /*setTimeout(function(){
    launcher.cleanScripts()
  },25); */

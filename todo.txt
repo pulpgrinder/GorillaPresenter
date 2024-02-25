@@ -1,0 +1,2 @@
+Make esc key exit editor.
+Set up support for "theming" (a very simple theming... one that the average user can actually use)
