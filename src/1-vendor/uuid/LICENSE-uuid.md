@@ -1,5 +1,3 @@
-The file:
-
 ```
 uuid.js
 ```

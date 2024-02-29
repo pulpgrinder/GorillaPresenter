@@ -1,9 +1,11 @@
 // filesystem-extensions.js
-// Copyright 2019, 2020 by Anthony W. Hursh
+// Copyright 2019-2024 by Anthony W. Hursh
 // MIT License.
 
+let BrowserFileSystem = {
+}
 
-GuerrillaPresenter.file_extension = function(filename){
+BrowserFileSystem.file_extension = function(filename){
   let end = filename.lastIndexOf('.');
   if(end < 0){
     return "";
@@ -11,16 +13,16 @@ GuerrillaPresenter.file_extension = function(filename){
   return filename.substring  (end + 1);
 }
 
-GuerrillaPresenter.file_basename = function(filename){
+BrowserFileSystem.file_basename = function(filename){
   return filename.substring(filename.lastIndexOf('/') + 1);
 }
 
-GuerrillaPresenter.file_path = function(filename){
+BrowserFileSystem.file_path = function(filename){
   let end = filename.lastIndexOf("/")
   return filename.substring(0,end);
 }
 
-GuerrillaPresenter.file_basename_no_extension = function(filename){
+BrowserFileSystem.file_basename_no_extension = function(filename){
   let start = filename.lastIndexOf('/');
   if(start < 0){
     start = 0;
@@ -36,7 +38,7 @@ GuerrillaPresenter.file_basename_no_extension = function(filename){
 }
 
 
-GuerrillaPresenter.file_path_no_extension = function(filename){
+BrowserFileSystem.file_path_no_extension = function(filename){
   let end = filename.lastIndexOf('.');
   if(end < 0){
     end = filename.length;
@@ -45,20 +47,20 @@ GuerrillaPresenter.file_path_no_extension = function(filename){
 }
 
 
-GuerrillaPresenter.collectLicenses = function(){
-  let filenames = Object.keys(GuerrillaPresenter_fs);
-  let license_text = GuerrillaPresenter.readInternalTextFile("1-root/LICENSE-GuerrillaPresenter.fmk") + "\n\n"
+BrowserFileSystem.collectLicenses = function(){
+  let filenames = Object.keys(BrowserFileSystem_fs);
+  let license_text = BrowserFileSystem.readInternalTextFile("1-root/LICENSE-GuerrillaPresenter.md") + "\n\n"
   for(var i = 0; i < filenames.length; i++){
-    if((filenames[i].match(/LICENSE/) !== null) && (filenames[i] !== "1-root/LICENSE-GuerrillaPresenter.fmk")){
+    if((filenames[i].match(/LICENSE/) !== null) && (filenames[i] !== "1-root/LICENSE-GuerrillaPresenter.md")){
       let packagename = filenames[i].substring(0,filenames[i].indexOf["/"])
-      license_text = license_text + "[h2 " + packagename + " h2]\n\n" + GuerrillaPresenter.readInternalTextFile(filenames[i]) + "\n\n"
+      license_text = license_text + "<h2>" + packagename + " </h2>\n\n" + BrowserFileSystem.readInternalTextFile(filenames[i]) + "\n\n"
     }
   }
   return license_text;
 
 }
 
-GuerrillaPresenter.base_64_to_bytes = function(string_buffer){
+BrowserFileSystem.base_64_to_bytes = function(string_buffer){
   //let datastart = string_buffer.substring(string_buffer.indexOf(",") + 1);
   //let contentType = string_buffer.substring(11,string_buffer.indexOf(";"))
 //  contentType = contentType || '';
@@ -70,9 +72,9 @@ GuerrillaPresenter.base_64_to_bytes = function(string_buffer){
   return array;
 }
 
-GuerrillaPresenter.getInternalDir = function(basedir){
+BrowserFileSystem.getInternalDir = function(basedir){
   let dirfiles = [];
-  let filelist = Object.keys(GuerrillaPresenter_fs).sort();
+  let filelist = Object.keys(BrowserFileSystem_fs).sort();
   for(var i = 0; i < filelist.length; i++){
     let key = filelist[i];
     if((basedir === "") || (key.match(RegExp("^" + GuerrillaPresenter.makeGlob(basedir))) !== null)){
@@ -82,60 +84,64 @@ GuerrillaPresenter.getInternalDir = function(basedir){
   return dirfiles;
 }
 
-GuerrillaPresenter.internalFileToBlob = function(filename) {
-  let filetype = GuerrillaPresenter.file_extension(filename);
-  let mimetype = Stretchr.Filetypes.mimeFor(filetype);
-  if(GuerrillaPresenter_fs[filename] !== undefined){
-    let bytes = GuerrillaPresenter.base_64_to_bytes(GuerrillaPresenter_fs[filename]["data"]);
+BrowserFileSystem.internalFileToBlob = function(filename) {
+  let filetype = BrowserFileSystem.file_extension(filename);
+  if(GuerrillaPresenter.mimeTypes[filetype] === undefined){
+    filetype = "application/octet-stream";
+  }
+  if(BrowserFileSystem_fs[filename] !== undefined){
+    let bytes = BrowserFileSystem.base_64_to_bytes(BrowserFileSystem_fs[filename]["data"]);
     var blob = new Blob([bytes], {type: mimetype});
   return blob;
   }
-  console.error("GuerrillaPresenter.internalFileToBlob: " + filename + " is not in internal filesystem");
+  console.error("BrowserFileSystem.internalFileToBlob: " + filename + " is not in internal filesystem");
   return false;
 }
 
-GuerrillaPresenter.readInternalFileDataURL = function(filename){
-  let filetype = GuerrillaPresenter.file_extension(filename);
-  let mimetype = Stretchr.Filetypes.mimeFor(filetype)
-  if(GuerrillaPresenter_fs[filename] !== undefined){
-    return 'data:' + mimetype + ';base64,' + GuerrillaPresenter_fs[filename]["data"];
+BrowserFileSystem.readInternalFileDataURL = function(filename){
+  let filetype = BrowserFileSystem.file_extension(filename);
+  if(GuerrillaPresenter.mimeTypes[filetype] === undefined){
+    filetype = "application/octet-stream";
   }
-  console.error("GuerrillaPresenter.readInternalFileDataURL: " + filename + " is not in internal filesystem");
+  if(BrowserFileSystem_fs[filename] !== undefined){
+    return 'data:' + mimetype + ';base64,' + BrowserFileSystem_fs[filename]["data"];
+  }
+  console.error("BrowserFileSystem.readInternalFileDataURL: " + filename + " is not in internal filesystem");
   return null;
 }
 
-GuerrillaPresenter.getFileSystemJSON = function(){
-  return JSON.stringify(GuerrillaPresenter_fs);
+BrowserFileSystem.getFileSystemJSON = function(){
+  return JSON.stringify(BrowserFileSystem_fs);
 }
-GuerrillaPresenter.getPackageJSON = function(package_prefix){
-  let keys = Object.keys(GuerrillaPresenter_fs);
+BrowserFileSystem.getPackageJSON = function(package_prefix){
+  let keys = Object.keys(BrowserFileSystem_fs);
   let package = {}
   for(var i = 0; i < keys.length; i++){
     if(keys[i].indexOf(package_prefix) === 0){
-      package[keys[i]] = GuerrillaPresenter_fs[keys[i]]
+      package[keys[i]] = BrowserFileSystem_fs[keys[i]]
     }
   }
   package["version"] = GuerrillaPresenter.packageVersion;
   return JSON.stringify(package) + "\n";
 }
 
-GuerrillaPresenter.deleteInternalFile = function(filename){
-  if(GuerrillaPresenter_fs[filename] !== undefined){
-      delete GuerrillaPresenter_fs[filename];
+BrowserFileSystem.deleteInternalFile = function(filename){
+  if(BrowserFileSystem_fs[filename] !== undefined){
+      delete BrowserFileSystem_fs[filename];
       return true;
   }
   else {
-    console.error("GuerrillaPresenter.deleteInternalFile: " + filename + " is not in internal filesystem");
+    console.error("BrowserFileSystem.deleteInternalFile: " + filename + " is not in internal filesystem");
     return false;
   }
 }
 
-GuerrillaPresenter.dir = function(dirspec){
+BrowserFileSystem.dir = function(dirspec){
   let direntries = [];
   dirspec = dirspec.replace(/\./g,"\\.")
   dirspec = dirspec.replace(/\*/g,".*")
   let re = new RegExp(dirspec);
-  let keys = Object.keys(GuerrillaPresenter_fs);
+  let keys = Object.keys(BrowserFileSystem_fs);
   for(var i = 0; i < keys.length; i++){
     let key = keys[i];
     if(key.match(re) !== null){
@@ -145,9 +151,9 @@ GuerrillaPresenter.dir = function(dirspec){
   return direntries.sort();
 }
 
-GuerrillaPresenter.collectTrash = function(){
+BrowserFileSystem.collectTrash = function(){
     let trashed_files = [];
-    let keys = Object.keys(GuerrillaPresenter_fs);
+    let keys = Object.keys(BrowserFileSystem_fs);
     for(var i = 0; i < keys.length; i++){
       if(keys[i].indexOf("trash/") === 0){
         trashed_files.push(keys[i].replace(/^trash\//,""))
@@ -155,50 +161,50 @@ GuerrillaPresenter.collectTrash = function(){
     }
     return trashed_files;
 }
-GuerrillaPresenter.emptyTrash = function(){
-  let trashed_files = GuerrillaPresenter.collectTrash();
+BrowserFileSystem.emptyTrash = function(){
+  let trashed_files = BrowserFileSystem.collectTrash();
   for(var i = 0; i < trashed_files.length; i++){
-    GuerrillaPresenter.deleteInternalFile("trash/" + trashed_files[i])
+    BrowserFileSystem.deleteInternalFile("trash/" + trashed_files[i])
   }
 }
-GuerrillaPresenter.trashInternalFile = function(filename){
-  if(GuerrillaPresenter_fs[filename] !== undefined){
-      GuerrillaPresenter_fs["trash/" + filename] = GuerrillaPresenter_fs[filename]
-      delete GuerrillaPresenter_fs[filename];
+BrowserFileSystem.trashInternalFile = function(filename){
+  if(BrowserFileSystem_fs[filename] !== undefined){
+      BrowserFileSystem_fs["trash/" + filename] = BrowserFileSystem_fs[filename]
+      delete BrowserFileSystem_fs[filename];
       return true;
   }
   else {
-    console.error("GuerrillaPresenter.trashInternalFile: " + filename + " is not in internal filesystem");
+    console.error("BrowserFileSystem.trashInternalFile: " + filename + " is not in internal filesystem");
     return false;
   }
 }
 
-GuerrillaPresenter.unTrashInternalFile = function(filename){
+BrowserFileSystem.unTrashInternalFile = function(filename){
   let trashname = "trash/" + filename;
-  if(GuerrillaPresenter_fs[trashname] !== undefined){
-      GuerrillaPresenter_fs[filename] = GuerrillaPresenter_fs[trashname]
-      delete GuerrillaPresenter_fs[trashname];
+  if(BrowserFileSystem_fs[trashname] !== undefined){
+      BrowserFileSystem_fs[filename] = BrowserFileSystem_fs[trashname]
+      delete BrowserFileSystem_fs[trashname];
       return true;
   }
   else {
-    console.error("GuerrillaPresenter.unTrashInternalFile: " + filename + " is not in the trash");
+    console.error("BrowserFileSystem.unTrashInternalFile: " + filename + " is not in the trash");
     return false;
   }
 }
-GuerrillaPresenter.readInternalFile = function(filename){
-  if(GuerrillaPresenter_fs[filename] !== undefined){
-      return GuerrillaPresenter.base_64_to_bytes(GuerrillaPresenter_fs[filename]["data"]);
+BrowserFileSystem.readInternalFile = function(filename){
+  if(BrowserFileSystem_fs[filename] !== undefined){
+      return BrowserFileSystem.base_64_to_bytes(BrowserFileSystem_fs[filename]["data"]);
   }
-  console.error("GuerrillaPresenter.readInternalFile: " + filename + " is not in internal filesystem");
+  console.error("BrowserFileSystem.readInternalFile: " + filename + " is not in internal filesystem");
   return null;
 }
 
-GuerrillaPresenter.dataToDataURL = function(data,mimetype){
+BrowserFileSystem.dataToDataURL = function(data,mimetype){
   let base64data = GuerrillaPresenter.bytes_to_base_64(new TextEncoder("utf-8").encode(data))
   return 'data:' + mimetype + ';base64,' + base64data;
 }
 
-GuerrillaPresenter.dataURLToData = function(dataURI){
+BrowserFileSystem.dataURLToData = function(dataURI){
   let base64Index = dataURI.indexOf(';base64,') + 8;
   let base64 = dataURI.substring(base64Index);
   let raw = window.atob(base64);
@@ -210,49 +216,49 @@ GuerrillaPresenter.dataURLToData = function(dataURI){
   }
   return array;
 }
-GuerrillaPresenter.writeDataURLToInternalFile = function(filename,data){
+BrowserFileSystem.writeDataURLToInternalFile = function(filename,data){
   let base64offset = data.indexOf("base64,");
   data = data.substring(base64offset + 7);
-  GuerrillaPresenter_fs[filename] = {}
-  GuerrillaPresenter_fs[filename]["data"] = data;
-  GuerrillaPresenter_fs[filename]["timestamp"] = Date.now();
+  BrowserFileSystem_fs[filename] = {}
+  BrowserFileSystem_fs[filename]["data"] = data;
+  BrowserFileSystem_fs[filename]["timestamp"] = Date.now();
   return true;
 }
-GuerrillaPresenter.getFileTimeStamp = function(filename){
-  if(GuerrillaPresenter_fs[filename] === undefined){
+BrowserFileSystem.getFileTimeStamp = function(filename){
+  if(BrowserFileSystem_fs[filename] === undefined){
     return false;
   }
-  return parseInt(GuerrillaPresenter_fs[filename]["timestamp"])
+  return parseInt(BrowserFileSystem_fs[filename]["timestamp"])
 }
-GuerrillaPresenter.writeInternalFile = function(filename,data){
-  GuerrillaPresenter.writeRawInternalFile(filename,  GuerrillaPresenter.bytes_to_base_64(data));
+BrowserFileSystem.writeInternalFile = function(filename,data){
+  BrowserFileSystem.writeRawInternalFile(filename,  GuerrillaPresenter.bytes_to_base_64(data));
 }
-GuerrillaPresenter.writeRawInternalFile = function(filename,data){
-  let filetype = GuerrillaPresenter.file_extension(filename);
-  if(GuerrillaPresenter_fs[filename] === undefined){
-    GuerrillaPresenter_fs[filename] = {}
+BrowserFileSystem.writeRawInternalFile = function(filename,data){
+  let filetype = BrowserFileSystem.file_extension(filename);
+  if(BrowserFileSystem_fs[filename] === undefined){
+    BrowserFileSystem_fs[filename] = {}
   }
-  GuerrillaPresenter_fs[filename]["data"] = data;
-  GuerrillaPresenter_fs[filename]["timestamp"] = Date.now();
+  BrowserFileSystem_fs[filename]["data"] = data;
+  BrowserFileSystem_fs[filename]["timestamp"] = Date.now();
   return true;
 }
 
-GuerrillaPresenter.readInternalTextFile = function(filename){
-    return new TextDecoder("utf-8").decode(GuerrillaPresenter.readInternalFile(filename));
+BrowserFileSystem.readInternalTextFile = function(filename){
+    return new TextDecoder("utf-8").decode(BrowserFileSystem.readInternalFile(filename));
 }
-GuerrillaPresenter.writeInternalTextFile = function(filename,data){
+BrowserFileSystem.writeInternalTextFile = function(filename,data){
     let bindata = new TextEncoder("utf-8").encode(data)
-    GuerrillaPresenter.writeInternalFile(filename,bindata);
+    BrowserFileSystem.writeInternalFile(filename,bindata);
     return true;
 }
 
-GuerrillaPresenter.getSortedFileNames = function(){
-  return GuerrillaPresenter.getUnsortedFileNames.sort();
+BrowserFileSystem.getSortedFileNames = function(){
+  return BrowserFileSystem.getUnsortedFileNames.sort();
 }
 
-GuerrillaPresenter.getUnsortedFileNames = function(){
+BrowserFileSystem.getUnsortedFileNames = function(){
   let filetree = [];
-  let filenames = Object.keys(GuerrillaPresenter_fs);
+  let filenames = Object.keys(BrowserFileSystem_fs);
   for(var i = 0; i < filenames.length; i++){
       let key = filenames[i];
       if(key.match(/.*\$\$.+\$\$$/) === null){
@@ -262,42 +268,42 @@ GuerrillaPresenter.getUnsortedFileNames = function(){
     return filetree;
 }
 
-GuerrillaPresenter.fileExists = function(filename){
-  if(GuerrillaPresenter_fs[filename] !== undefined){
+BrowserFileSystem.fileExists = function(filename){
+  if(BrowserFileSystem_fs[filename] !== undefined){
     return true;
   }
   return false;
 }
 
-GuerrillaPresenter.file_rename = function (oldname,newname){
-  if(GuerrillaPresenter_fs[newname] !== undefined){
+BrowserFileSystem.file_rename = function (oldname,newname){
+  if(BrowserFileSystem_fs[newname] !== undefined){
     console.error("Can't rename " + oldname + " to " + newname +  ". " + newname + " exists.")
     return false;
   }
-  if(GuerrillaPresenter_fs[oldname] === undefined){
+  if(BrowserFileSystem_fs[oldname] === undefined){
     console.error("Can't rename " + oldname + " to " + newname + ". " + oldname + " does not exist.")
     return false;
   }
-  GuerrillaPresenter_fs[newname] = GuerrillaPresenter_fs[oldname];
-  delete GuerrillaPresenter_fs[oldname];
+  BrowserFileSystem_fs[newname] = BrowserFileSystem_fs[oldname];
+  delete BrowserFileSystem_fs[oldname];
   return true;
 }
 
-GuerrillaPresenter.folder_rename = function (oldfolder,newfolder){
-  let filenames = Object.keys(GuerrillaPresenter_fs);
+BrowserFileSystem.folder_rename = function (oldfolder,newfolder){
+  let filenames = Object.keys(BrowserFileSystem_fs);
   for(var i = 0; i < filenames.length; i++){
     let current_name = filenames[i];
     if(current_name.match(new RegExp('^' + GuerrillaPresenter.escapeRegExp(oldfolder + '/'))) !== null){
       let newname = current_name.replace(oldfolder,newfolder);
-      GuerrillaPresenter_fs[newname] = GuerrillaPresenter_fs[current_name];
-      delete GuerrillaPresenter_fs[current_name]
+      BrowserFileSystem_fs[newname] = BrowserFileSystem_fs[current_name];
+      delete BrowserFileSystem_fs[current_name]
     }
   }
 }
 
-GuerrillaPresenter.packageVector = function(){
+BrowserFileSystem.packageVector = function(){
   let packageHash = {}
-  let files = Object.keys(GuerrillaPresenter_fs)
+  let files = Object.keys(BrowserFileSystem_fs)
   for(var i = 0; i < files.length; i++){
     let packageIndex = files[i].indexOf("/");
     if(packageIndex > 0){
@@ -307,11 +313,11 @@ GuerrillaPresenter.packageVector = function(){
   return Object.keys(packageHash).sort(naturalSort({"direction":false,"caseSensitive":false}));
 }
 
-GuerrillaPresenter.deletePackage = function(packagename){
-  let files = Object.keys(GuerrillaPresenter_fs)
+BrowserFileSystem.deletePackage = function(packagename){
+  let files = Object.keys(BrowserFileSystem_fs)
   for(var i = 0; i < files.length; i++){
     if(files[i].indexOf(packagename) === 0){
-      delete GuerrillaPresenter_fs[files[i]];
+      delete BrowserFileSystem_fs[files[i]];
     }
   }
 }

@@ -1,79 +1,140 @@
+// Copyright 2024 by Anthony W. Hursh. MIT License.
 
 let GuerrillaPresenter = {
     slideRoot: "guerrilla-presenter-slideroot",
     slideClass: ".guerrilla-presenter-slide",
     slideIdFragment: "guerrilla-presenter-slide-",
-    addSlide:function(templatename){
-        let slideBase = document.getElementById(this.slideRoot);
-        let id = GuerrillaPresenter.slideIdFragment + uuid();
-        let newSlide = document.createElement("div");
-        newSlide.setAttribute("class", this.slideClass);
-        newSlide.setAttribute("id", id);
-        newSlide.setAttribute("template", templatename);
-        let html = this.processTemplates(templatename);
-        newSlide.innerHTML = html;
-        slideBase.appendChild(newSlide);
-        this.renderElements();
-        this.sicTransit.showPanel("#" + id);
+    slidePosition:-1,
+    speakerNotes:"",
+    slideIDs: [],
+    themes : {},
+    showUIScreen:function(id){
+      let screens = document.querySelectorAll(".guerrilla-presenter-screen");
+      for(let i=0;i<screens.length;i++){
+        screens[i].style.display = "none";
+      }
+      let screen = document.getElementById(id);
+      screen.style.display = "block";
     },
+    showSlideEditor:function(){
+      this.showUIScreen("guerrilla-presenter-slide-editor-container");
+      let editor = document.getElementById("guerrilla-presenter-slide-editor");
+      editor.value = GuerrillaPresenter.slideData;
+      editor.focus();
+    },
+    showThemeEditor:function(){
+      GuerrillaPresenter.showUIScreen("guerrilla-presenter-theme-editor-container");
+      let editor = document.getElementById("guerrilla-presenter-theme-editor");
+      editor.value = GuerrillaPresenter.themeData;
+      editor.focus();
+    },
+    showSlideDisplay:function(){
+      GuerrillaPresenter.renderSlides(GuerrillaPresenter.slideRoot);
+      GuerrillaPresenter.showUIScreen("guerrilla-presenter-slideroot");
+    },
+    saveSlides:function(){
+      BrowserFileSystem.writeInternalTextFile("userdata/slides",GuerrillaPresenter.slideData);
+      BrowserFileSystem.writeInternalTextFile("userdata/slideposition",GuerrillaPresenter.slidePosition.toString());
+      BrowserFileSystem.writeInternalTextFile("userdata/themes",GuerrillaPresenter.themeData);
+    },
+    
     startup:function(){
-      GuerrillaPresenter.addSlide("basicslide");
-      if(GuerrillaPresenter.fileExists("themename") == false){
-            GuerrillaPresenter.writeInternalTextFile("themename","default");
+     
+      if(BrowserFileSystem.fileExists("userdata/slides.md") === false){
+        console.log("No slides found.");
+        GuerrillaPresenter.slideData ="";
       }
-      let themename = GuerrillaPresenter.readInternalTextFile("themename");
-      GuerrillaPresenter.setTheme(themename)
+      else {
+        GuerrillaPresenter.slideData = BrowserFileSystem.readInternalTextFile("userdata/slides.md");
+      }
+      document.getElementById("guerrilla-presenter-slide-editor").value = GuerrillaPresenter.slideData;
+     if(BrowserFileSystem.fileExists("userdata/slideposition") === false){
+        GuerrillaPresenter.slidePosition = -1;
+      }
+      else {
+        GuerrillaPresenter.slidePosition = parseInt(BrowserFileSystem.readInternalTextFile("userdata/slideposition"));
+      }
+      if(BrowserFileSystem.fileExists("userdata/themes.csx") === false){
+        GuerrillaPresenter.themeData = "";
+      }
+      else {
+        GuerrillaPresenter.themeData = BrowserFileSystem.readInternalTextFile("userdata/themes.csx");
+      }
+      document.getElementById("guerrilla-presenter-theme-editor").value = GuerrillaPresenter.themeData;
+      GuerrillaPresenter.renderThemes();
+      if(BrowserFileSystem.fileExists("userdata/themename") === false){
+        BrowserFileSystem.writeInternalTextFile("userdata/themename","Default");
+      }
+      let themename = BrowserFileSystem.readInternalTextFile("userdata/themename");
+      GuerrillaPresenter.setTheme(themename);
+      GuerrillaPresenter.renderSlides(GuerrillaPresenter.slideRoot);
+      GuerrillaPresenter.showSlideDisplay();
+      GuerrillaPresenter.displaySlide();
     },
-    processTemplates: function(templatename){
-      let result = "";
-      let template = GuerrillaPresenterTemplates[templatename];
-      console.log(templatename);
-      if(template === undefined){
-        this.warn("Template " + templatename + " not found. Using basicslide instead.");
-        template = GuerrillaPresenterTemplates["basicslide"];
-      }
-      for(let i = 0; i < template.length; i++){
-        let component = template[i];
-        console.log("component: " + component);
-        let componentFunction = GuerrillaPresenterComponents[component];
-        result += componentFunction("",true);
-      }
-      return "<div class='guerrilla-presenter-" + templatename + "'>" + result + "</div>";
-    },
+   
 
-    renderElements: function(){
-      const editors = document.querySelectorAll('textarea.guerrilla-presenter-editor');
-      for (let i = 0; i < editors.length; i++) {
-          let element = editors[i];
-          element.offsetHeight = element.parentElement.querySelector('.guerrilla-presenter-editable').offsetHeight;
-          console.log("offsetHeight: " + element.offsetHeight);
-          this.updateSlide(element);
-      }
-    },
-    updateSlide:function(element){
-      console.log("updating slide");
-      let text = element.value;
-      textlines = text.split("\n");
-      let commentStrippedLines = [];
-      for(let i = 0; i < textlines.length; i++){
-        if(textlines[i][0] === ";"){
-          // Need to put something in here to add to speaker notes.
+    renderSlides:function(element){
+      GuerrillaPresenter.speakerNotes = "";
+      GuerrillaPresenter.slideIDs = [];
+      let text; 
+      let slidelines = GuerrillaPresenter.slideData.split("\n");
+      let decommentedlines = [];
+      for(let i=0;i < slidelines.length;i++){
+         text = slidelines[i];
+        if(text.indexOf(";") === 0){
+          GuerrillaPresenter.speakerNotes += text.substring(1) + "\n";
           continue;
         }
-        commentStrippedLines.push(textlines[i]);
+        decommentedlines.push(text);
       }
-      text = commentStrippedLines.join("\n");
-      let markdownText = GuerrillaPresenter.markdown.render(text);
-      console.log("markdownText is: " + markdownText);
-      let displayElement = element.parentElement.querySelector('.guerrilla-presenter-editable');
-      displayElement.innerHTML = markdownText // GuerrillaPresenter.replaceParagraphsWithDivs(markdownText); // markdownText;
-      
-      //GuerrillaPresenter.replaceParagraphsWithBreaks(markdownText);
-      renderMathInElement(displayElement);
-      GuerrillaPresenter.patchEventListeners();
+      text = decommentedlines.join("\n");
+      let slidetexts = text.split(/^# /gm);
+      slidetexts.shift();
+      for(let j=0; j < slidetexts.length;j++){
+        let slidetext = "# " + slidetexts[j];
+        let newSlide = document.createElement("div");
+        let id = GuerrillaPresenter.slideIdFragment + uuid();
+        newSlide.setAttribute("class", this.slideClass);
+        newSlide.setAttribute("id", id);
+        newSlide.innerHTML =  `<div class="guerrilla-presenter-editable"><div class="guerrilla-presenter-slide-container">` + GuerrillaPresenter.markdown.render(slidetext) + "</div></div>";
+        document.getElementById(GuerrillaPresenter.slideRoot).appendChild(newSlide);
+        renderMathInElement(newSlide);
+        GuerrillaPresenter.slideIDs.push(id);
+      }
+    },
+    slideForward:function(){
+      GuerrillaPresenter.slidePosition++;
+      GuerrillaPresenter.displaySlide();
+    },
+
+    slideBack:function(){
+      GuerrillaPresenter.slidePosition--;
+      GuerrillaPresenter.displaySlide();
+    },
+
+
+    displaySlide:function(){
+      if(GuerrillaPresenter.slideIDs.length === 0){
+        GuerrillaPresenter.warn("No slides. You'll have to make some first.");
+        return;
+      }
+      if(GuerrillaPresenter.slidePosition < 0){
+        GuerrillaPresenter.slidePosition = 0;
+        GuerrillaPresenter.warn("At first slide.");
+      }
+      if(GuerrillaPresenter.slidePosition >= GuerrillaPresenter.slideIDs.length){
+        GuerrillaPresenter.slidePosition = GuerrillaPresenter.slideIDs.length -1 ;
+        GuerrillaPresenter.warn("At last slide.");
+      }
+      let slideId = GuerrillaPresenter.slideIDs[GuerrillaPresenter.slidePosition];
+      if(slideId === undefined){
+        GuerrillaPresenter. warn("Slide ID" + slideId + " is undefined. Position is " + slidePosition);
+        return;
+      }
+      this.sicTransit.showPanel("#" + slideId);
     },
     warn:function(message){
-      alert("GuerrillaPresenter warning: " + message);
+      alert("GuerrillaPresenter: " + message);
     },
     bytes_to_base_64:function(buffer){
       let arr = new Uint8Array(buffer)
@@ -83,35 +144,7 @@ let GuerrillaPresenter = {
       }
       return window.btoa(raw);
     },
-    patchEventListeners:function(){
-      const editableElements = document.querySelectorAll('div.guerrilla-presenter-editable');
-      console.log("there are " + editableElements.length + " editable elements");
-      for (let i = 0; i < editableElements.length; i++) {
-          let element = editableElements[i];
-          if (!element.hasAttribute('click-added')) {
-            editableElements[i].addEventListener('click',GuerrillaPresenter.handleSlideTextClick);
-            element.setAttribute('click-added', 'true');
-          }
-      }
-      const textEditors = document.querySelectorAll('textarea.guerrilla-presenter-editor');
-      console.log("there are " + textEditors.length + " textEditors");
-      for (let i = 0; i < textEditors.length; i++) {
-          let textEditor = textEditors[i];
-          if (!textEditor.hasAttribute('blur-added')) {
-              textEditor.addEventListener('blur',GuerrillaPresenter.handleEditorBlur);
-            textEditor.setAttribute('blur-added', 'true');
-          }
-          if (!textEditor.hasAttribute('paste-added')) {
-            textEditor.addEventListener('onpaste',GuerrillaPresenter.handleEditorPaste);
-            textEditor.setAttribute('paste-added', 'true');
-          }
-          if (!textEditor.hasAttribute('keydown-added')) {
-            textEditor.addEventListener('keydown',GuerrillaPresenter.handleEditorKeydown);
-            textEditor.setAttribute('keydown-added', 'true');
-          }
-      }
-  },
-
+   
   insertTextAtCaret: function(text) {
     var sel, range;
     if (window.getSelection) {
@@ -125,33 +158,12 @@ let GuerrillaPresenter = {
         document.selection.createRange().text = text;
     }
   },
-  hideEditor: function(textEditor) {
-    const displayElement = textEditor.parentElement.querySelector('div.guerrilla-presenter-editable');
-    if (displayElement !== null) {
-      displayElement.style.display = 'block';
-      textEditor.style.display = 'none';
-      GuerrillaPresenter.updateSlide(textEditor);
-    }
-    else{
-      console.error('No display element found for this editor.');
-    }
-  },
-
-   handleEditorBlur: function(event) {
-    console.log('blur event detected.')
-    let textarea = event.target;
-    if(textarea.classList.contains('guerrilla-presenter-editor')){
-      GuerrillaPresenter.hideEditor(textarea);
-      event.preventDefault();
-    }
-  },
-
+ 
   handleEditorKeydown:function(event) {
     if(event.key === "Escape" || event.key === "Esc") {
-        console.log('Escape key was pressed.');
         let textarea = event.target;
         if(textarea.classList.contains('guerrilla-presenter-editor')){
-          GuerrillaPresenter.hideEditor(textarea);
+          GuerrillaPresenter.showSlideDisplay();
         event.preventDefault();
     }
   }
@@ -167,24 +179,22 @@ let GuerrillaPresenter = {
     }
   },
 
-    handleSlideTextClick: function(event) {
-      console.log('click event detected.');
-      let element = event.target;
-      const editableElement = element.closest('.guerrilla-presenter-editable');
-    if (editableElement) {
-        console.log('A parent with the class "guerrilla-presenter-editable" was found');
-        console.log('clicked on an editable element');
-        const style = window.getComputedStyle(editableElement);
-        const height = editableElement.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom);
-        editableElement.style.display = 'none';
-        const texteditor = editableElement.parentElement.querySelector('textarea.guerrilla-presenter-editor');
-          texteditor.style.height = `${height}px`;
-          texteditor.style.display = 'block';
-          texteditor.focus();
-        }
-        else {
-          console.log('No parent with the class "guerrilla-presenter-editable"  was found.');
-        }
+    handleSlideTextDblClick: function(event) {
+        GuerrillaPresenter.showSlideEditor();
+    
+    },
+    
+    enterFullScreen:function(){
+      console.log("enterFullScreen called");
+      let element = document.getElementById(GuerrillaPresenter.slideRoot);
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitrequestFullscreen) { /* Safari */
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) { /* IE11 */
+        element.msRequestFullscreen();
+      }
+      element.focus();
     },
     
 }

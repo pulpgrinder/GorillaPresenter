@@ -16,7 +16,16 @@
     <noscript id="noscript">
       Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
     </noscript>
-    <div id="guerrilla-presenter-slideroot"> </div>
+    <div id="guerrilla-presenter-slideroot" class= "guerrilla-presenter-screen"> </div>
+    <div id="guerrilla-presenter-slide-editor-container" class = "guerrilla-presenter-screen">
+      <textarea id="guerrilla-presenter-slide-editor" title="Slide Editor" id="guerrilla-presenter-slide-text-editor"></textarea>
+    </div>
+    <div id="guerrilla-presenter-theme-editor-container"  class = "guerrilla-presenter-screen"> 
+      <textarea id="guerrilla-presenter-theme-editor" class='guerrilla-presenter-text-editor' title="Theme Editor"> </textarea>
+    </div>
+    <div id="guerrilla-presenter-warning-message">
+      This is a warning, y'all.
+    </div>
   </body>
   <script type="text/javascript" id="Guerrilla_presenter_file_system">
 $$$FILESYSTEM$$$
@@ -50,7 +59,7 @@ $$$FILESYSTEM$$$
     this.loadError = false;
     let jsQueue = [];
     let cssQueue = [];
-    let filenames = Object.keys(GuerrillaPresenter_fs).sort(naturalSort());
+    let filenames = Object.keys(BrowserFileSystem_fs).sort(naturalSort());
     for(let i = 0; i < filenames.length; i++){
         let filename = filenames[i];
       if(filename.match(/\.css$/) !== null){
@@ -84,7 +93,7 @@ $$$FILESYSTEM$$$
         this.currentSourceFile = filename;
         console.log("adding CSS: " + filename);
       try {
-        let code = GuerrillaPresenter_fs[filename]["data"];
+        let code = BrowserFileSystem_fs[filename]["data"];
         let style = document.createElement('style');
         style.type = 'text/css';
         if(id !== undefined){
@@ -108,7 +117,7 @@ $$$FILESYSTEM$$$
     this.currentSourceFile = filename;
     console.log("adding JS: " + filename);
     try {
-      let code = GuerrillaPresenter_fs[filename]["data"];
+      let code = BrowserFileSystem_fs[filename]["data"];
       let script = document.createElement('script');
       script.type = 'text/javascript';
       let jsCode = this.decodeText(code);
@@ -138,7 +147,7 @@ $$$FILESYSTEM$$$
       stylearr[i].remove();
     }
     if(keepFileSystem !== true){
-      GuerrillaPresenter_fs = null;
+      BrowserFileSystem_fs = null;
     }
     cleanScripts();
   },
@@ -268,6 +277,43 @@ $$$FILESYSTEM$$$
   launcher.initSystem();
   launcher.launchSystem();
   GuerrillaPresenter.startup();
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function(fn) {
+        var timer = 16.66; // 60 fps
+        setTimeout(fn,timer);
+    }
+  }
+  function fadeOut(element) {
+    let opacity = 1;
+    function decrease() {
+        opacity -= 0.01;
+        if (opacity <= 0){
+            // complete
+            element.style.opacity = 0;
+            element.style.display = "none";
+            return true;
+        }
+        element.style.opacity = opacity;
+        requestAnimationFrame(decrease);
+    }
+    decrease();
+}
+function fadeIn(element) {
+    let opacity = 0;
+    element.style.opacity =  0;
+    element.style.display = "block";
+    function increase() {
+        opacity += 0.01;
+        if (opacity >= 1){
+            // complete
+            element.style.opacity = 1;
+            return true;
+        }
+        element.style.opacity = opacity;
+        requestAnimationFrame(increase);
+    }
+    increase();
+}
  /*setTimeout(function(){
    launcher.cleanScripts()
  },25); */
