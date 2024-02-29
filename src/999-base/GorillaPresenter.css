@@ -11,7 +11,7 @@ body {
   z-index:0;
 }
 
-#GuerrillaPresenter_upload_download{
+#GorillaPresenter_upload_download{
   display:none;
   z-index:1000;
 }
@@ -26,7 +26,7 @@ body {
 }
 
 
-.GuerrillaPresenter-file-uploader{
+.GorillaPresenter-file-uploader{
   display:hidden;
   z-index:0;
 }
@@ -40,7 +40,7 @@ table, th, td {
   padding:0.25em;
 }
 
-.guerrilla-presenter-slide {
+.gorilla-presenter-slide {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -49,7 +49,7 @@ table, th, td {
   overflow: auto;
 }
 
-#guerrilla-presenter-slide-editor-container {
+#gorilla-presenter-slide-editor-container {
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
@@ -59,7 +59,7 @@ table, th, td {
   display: none;
 }
 
-#guerrilla-presenter-theme-editor-container{
+#gorilla-presenter-theme-editor-container{
   box-sizing: border-box;
   width:100vw;
   height: 66.7vw;
@@ -69,7 +69,7 @@ table, th, td {
   display:none;
 }
 
-#guerrilla-presenter-slideroot {
+#gorilla-presenter-slideroot {
   width:100vw;
   height: 66.7vw;
   max-height:100vh;
@@ -79,33 +79,12 @@ table, th, td {
   padding: 0;
 }
 
-/*
-#guerrilla-presenter-warning-message {
-  display: none;
-  height: auto;
-  position: fixed;
-  top: calc(33vh - 2.5em);
-  left: 2em;
-  right: 2em;
-  bottom: calc(33vh + 2.5em);
-  background-color: rgba(0,0,0,0.5);
-  z-index: 1000;
-  color: white;
-  font-size: 3em;
-  line-height: 1.2;
-  padding: 0.5em;
-  border-radius: 20px;
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-} */
 
-#guerrilla-presenter-warning-message {
+
+#gorilla-presenter-warning-message {
+  display:none;
   position: absolute;
   height: max-content;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
   background-color: rgba(0,0,0,0.5);
   z-index: 1000;
   color: white;
@@ -114,17 +93,17 @@ table, th, td {
   font-size: 2em;
 }
 
-.guerrilla-presenter-editable{
+
+.gorilla-presenter-editable{
   box-sizing: border-box;
   overflow: auto;
   font-family: sans-serif
 }
 
-.guerrilla-presenter-text-editor{
+.gorilla-presenter-text-editor{
   box-sizing: border-box;
-  display:none;
-  width:100%;
-  height:100%;
+  width:100vw;
+  height:20vh;
   max-height:100%;
   font-size:20px;
   font-family:monospace;
@@ -133,7 +112,7 @@ table, th, td {
 }
 
 
-.guerrilla-presenter-editable {
+.gorilla-presenter-editable {
   font-weight: normal;
   font-style: normal;
   font-family: sans-serif;
@@ -141,7 +120,7 @@ table, th, td {
 
 
 
-.guerrilla-presenter-editable h1 {
+.gorilla-presenter-editable h1 {
   font-weight: bold;
   box-sizing: border-box;
   font-style: normal;
@@ -154,7 +133,7 @@ table, th, td {
   padding-top: .75em;
 }
 
-.guerrilla-presenter-editable p {
+.gorilla-presenter-editable p {
   box-sizing: border-box;
   font-family: sans-serif;
   line-height: 1.1;
@@ -164,23 +143,23 @@ table, th, td {
   margin: 0;
 }
 
-.guerrilla-presenter-editable blockquote {
+.gorilla-presenter-editable blockquote {
   line-height: 1.1em;
   margin-left: 1em;
   border:1px solid black;
 }
 
-.guerrilla-presenter-slide code {
+.gorilla-presenter-slide code {
   line-height: 1.5;
   font-size: 0.75em;
 }
 
 
-.guerrilla-presenter-slide pre {
+.gorilla-presenter-slide pre {
   font-family:monospace;
 }
 
-.guerrilla-presenter-editable li {
+.gorilla-presenter-editable li {
   line-height: 1.1em;
   margin-left: 1em;
 }

@@ -1,4 +1,4 @@
-GuerrillaPresenter.mimetypes = {
+GorillaPresenter.mimetypes = {
     "jpeg": {
       description: "JPEG Image",
       mimetype: "image/jpeg"

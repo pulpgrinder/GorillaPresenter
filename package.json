@@ -1,9 +1,9 @@
 {
-  "name": "guerrilla-presenter",
+  "name": "gorilla-presenter",
   "version": "1.0.0",
   "description": "Self-contained presentation system",
   "keywords": [
-    "GuerrillaPresenter",
+    "GorillaPresenter",
     "Presentation"
   ],
   "author": "Anthony W. Hursh",
@@ -20,6 +20,6 @@
     "ws": ">=7.4.6"
   },
   "commands": {
-    "build-package": "node GuerrillaPresenter-build.js"
+    "build-package": "node GorillaPresenter-build.js"
   }
 }

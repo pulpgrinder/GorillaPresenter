@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<!-- Guerrilla Presenter. Copyright 2024 by Anthony W. Hursh. -->
+<!-- Gorilla Presenter. Copyright 2024 by Anthony W. Hursh. -->
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-store">
     <meta http-equiv="Expires" content="0">
     <link rel="shortcut icon" id="favicon-png" type="image/png" href="data:image/jpeg;base64,iVBORw0KGgo=">
-    <title>GuerrillaPresenter</title>
+    <title>GorillaPresenter</title>
   
   </head>
 
@@ -16,24 +16,29 @@
     <noscript id="noscript">
       Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
     </noscript>
-    <div id="guerrilla-presenter-slideroot" class= "guerrilla-presenter-screen"> </div>
-    <div id="guerrilla-presenter-slide-editor-container" class = "guerrilla-presenter-screen">
-      <textarea id="guerrilla-presenter-slide-editor" title="Slide Editor" id="guerrilla-presenter-slide-text-editor"></textarea>
+
+    <div id="gorilla-presenter-slideroot" class= "gorilla-presenter-screen" ondblclick="GorillaPresenter.showEditor()"> </div>
+
+    <div id="gorilla-presenter-editor-container" class="gorilla-presenter-screen">
+          <div id="gorilla-presenter-editor-toolbar"><button type="button" id="doneButton" onClick = "GorillaPresenter.updateData()">Done</button></div>
+          <div>Slide editor</div>
+          <textarea  title="Slide Text Editor" id="gorilla-presenter-slide-text-editor" class = "gorilla-presenter-text-editor"></textarea>
+          <div>Image Editor</div>
+          <div> Image stuff goes here </div>
+          <div>Theme Editor</div>
+          <textarea id="gorilla-presenter-theme-text-editor" class='gorilla-presenter-text-editor' title="Theme Text Editor"> </textarea>
     </div>
-    <div id="guerrilla-presenter-theme-editor-container"  class = "guerrilla-presenter-screen"> 
-      <textarea id="guerrilla-presenter-theme-editor" class='guerrilla-presenter-text-editor' title="Theme Editor"> </textarea>
-    </div>
-    <div id="guerrilla-presenter-warning-message">
+    <div id="gorilla-presenter-warning-message">
       This is a warning, y'all.
     </div>
   </body>
-  <script type="text/javascript" id="Guerrilla_presenter_file_system">
+  <script type="text/javascript" id="Gorilla_presenter_file_system">
 $$$FILESYSTEM$$$
   </script>
-  <script type="text/javascript" id="Guerrilla_presenter_system_boot">
+  <script type="text/javascript" id="Gorilla_presenter_system_boot">
  let launcher = {
     initSystem: function(){
-      console.log("initSystem: GuerrillaPresenter version: " + "___VERSION___" + " build: " + "___BUILD___");
+      console.log("initSystem: GorillaPresenter version: " + "___VERSION___" + " build: " + "___BUILD___");
       this.version = "___VERSION___";
       this.build = "___BUILD___";
       this.CumulativeErrors = [];
@@ -276,7 +281,7 @@ $$$FILESYSTEM$$$
  <script type="text/javascript">
   launcher.initSystem();
   launcher.launchSystem();
-  GuerrillaPresenter.startup();
+  GorillaPresenter.startup();
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = function(fn) {
         var timer = 16.66; // 60 fps
@@ -286,7 +291,7 @@ $$$FILESYSTEM$$$
   function fadeOut(element) {
     let opacity = 1;
     function decrease() {
-        opacity -= 0.01;
+        opacity -= 0.02;
         if (opacity <= 0){
             // complete
             element.style.opacity = 0;
@@ -303,7 +308,7 @@ function fadeIn(element) {
     element.style.opacity =  0;
     element.style.display = "block";
     function increase() {
-        opacity += 0.01;
+        opacity += 0.02;
         if (opacity >= 1){
             // complete
             element.style.opacity = 1;

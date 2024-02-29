@@ -1,1 +1,1 @@
-# Guerrilla Presenter
+# Gorilla Presenter

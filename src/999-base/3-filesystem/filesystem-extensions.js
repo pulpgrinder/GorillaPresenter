@@ -49,9 +49,9 @@ BrowserFileSystem.file_path_no_extension = function(filename){
 
 BrowserFileSystem.collectLicenses = function(){
   let filenames = Object.keys(BrowserFileSystem_fs);
-  let license_text = BrowserFileSystem.readInternalTextFile("1-root/LICENSE-GuerrillaPresenter.md") + "\n\n"
+  let license_text = BrowserFileSystem.readInternalTextFile("1-root/LICENSE-GorillaPresenter.md") + "\n\n"
   for(var i = 0; i < filenames.length; i++){
-    if((filenames[i].match(/LICENSE/) !== null) && (filenames[i] !== "1-root/LICENSE-GuerrillaPresenter.md")){
+    if((filenames[i].match(/LICENSE/) !== null) && (filenames[i] !== "1-root/LICENSE-GorillaPresenter.md")){
       let packagename = filenames[i].substring(0,filenames[i].indexOf["/"])
       license_text = license_text + "<h2>" + packagename + " </h2>\n\n" + BrowserFileSystem.readInternalTextFile(filenames[i]) + "\n\n"
     }
@@ -77,7 +77,7 @@ BrowserFileSystem.getInternalDir = function(basedir){
   let filelist = Object.keys(BrowserFileSystem_fs).sort();
   for(var i = 0; i < filelist.length; i++){
     let key = filelist[i];
-    if((basedir === "") || (key.match(RegExp("^" + GuerrillaPresenter.makeGlob(basedir))) !== null)){
+    if((basedir === "") || (key.match(RegExp("^" + GorillaPresenter.makeGlob(basedir))) !== null)){
         dirfiles.push(key);
     }
   }
@@ -86,7 +86,7 @@ BrowserFileSystem.getInternalDir = function(basedir){
 
 BrowserFileSystem.internalFileToBlob = function(filename) {
   let filetype = BrowserFileSystem.file_extension(filename);
-  if(GuerrillaPresenter.mimeTypes[filetype] === undefined){
+  if(GorillaPresenter.mimeTypes[filetype] === undefined){
     filetype = "application/octet-stream";
   }
   if(BrowserFileSystem_fs[filename] !== undefined){
@@ -100,7 +100,7 @@ BrowserFileSystem.internalFileToBlob = function(filename) {
 
 BrowserFileSystem.readInternalFileDataURL = function(filename){
   let filetype = BrowserFileSystem.file_extension(filename);
-  if(GuerrillaPresenter.mimeTypes[filetype] === undefined){
+  if(GorillaPresenter.mimeTypes[filetype] === undefined){
     filetype = "application/octet-stream";
   }
   if(BrowserFileSystem_fs[filename] !== undefined){
@@ -121,7 +121,7 @@ BrowserFileSystem.getPackageJSON = function(package_prefix){
       package[keys[i]] = BrowserFileSystem_fs[keys[i]]
     }
   }
-  package["version"] = GuerrillaPresenter.packageVersion;
+  package["version"] = GorillaPresenter.packageVersion;
   return JSON.stringify(package) + "\n";
 }
 
@@ -200,7 +200,7 @@ BrowserFileSystem.readInternalFile = function(filename){
 }
 
 BrowserFileSystem.dataToDataURL = function(data,mimetype){
-  let base64data = GuerrillaPresenter.bytes_to_base_64(new TextEncoder("utf-8").encode(data))
+  let base64data = GorillaPresenter.bytes_to_base_64(new TextEncoder("utf-8").encode(data))
   return 'data:' + mimetype + ';base64,' + base64data;
 }
 
@@ -231,7 +231,7 @@ BrowserFileSystem.getFileTimeStamp = function(filename){
   return parseInt(BrowserFileSystem_fs[filename]["timestamp"])
 }
 BrowserFileSystem.writeInternalFile = function(filename,data){
-  BrowserFileSystem.writeRawInternalFile(filename,  GuerrillaPresenter.bytes_to_base_64(data));
+  BrowserFileSystem.writeRawInternalFile(filename,  GorillaPresenter.bytes_to_base_64(data));
 }
 BrowserFileSystem.writeRawInternalFile = function(filename,data){
   let filetype = BrowserFileSystem.file_extension(filename);
@@ -293,7 +293,7 @@ BrowserFileSystem.folder_rename = function (oldfolder,newfolder){
   let filenames = Object.keys(BrowserFileSystem_fs);
   for(var i = 0; i < filenames.length; i++){
     let current_name = filenames[i];
-    if(current_name.match(new RegExp('^' + GuerrillaPresenter.escapeRegExp(oldfolder + '/'))) !== null){
+    if(current_name.match(new RegExp('^' + GorillaPresenter.escapeRegExp(oldfolder + '/'))) !== null){
       let newname = current_name.replace(oldfolder,newfolder);
       BrowserFileSystem_fs[newname] = BrowserFileSystem_fs[current_name];
       delete BrowserFileSystem_fs[current_name]
