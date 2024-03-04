@@ -40,26 +40,7 @@ table, th, td {
   padding:0.25em;
 }
 
-.gorilla-presenter-toolbar-button {
-  width: 3em;
-  height: 3em;
-  padding: 0.1em;
-}
-#gorilla-presenter-editors-container {
-  display: none;
-  grid-template-rows: 3.2em 1fr;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 1000;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  box-sizing: border-box;
-}
+
 
 .gorilla-presenter-slide {
   box-sizing: border-box;
@@ -90,9 +71,24 @@ table, th, td {
   margin: 2vw;
   padding: 0;
 }
+.gorilla-presenter-main-menu-item{
+  text-decoration:underline;
+  cursor:pointer;
+}
 
-
-
+#gorilla-presenter-main-menu {
+  display: none;
+  position: absolute;
+  height: max-content;
+  width: max-content;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 500;
+  color: white;
+  border-radius: 20px;
+  padding: 1.5em;
+  font-size: 2em;
+  line-height: 1.2em;
+}
 #gorilla-presenter-warning-message {
   display:none;
   position: absolute;
@@ -124,11 +120,6 @@ table, th, td {
   overflow: auto;
 }
 
-.gorilla-presenter-editor-toolbar{
-  padding-left:1em;
-  padding-right:1em;
-  padding-top:0.25em;
-}
 
 .gorilla-presenter-editable {
   font-weight: normal;

@@ -144,7 +144,7 @@
     color: #8B4513; /* Saddle Brown */
     background-color: #FFF5EE; /* Seashell */
 }
-%%% Scientific Data
+%%% Clinical Data
 
 .gorilla-presenter-editable h1 {
     color: #0000FF; /* Blue */
@@ -261,7 +261,9 @@
 .gorilla-presenter-editable h1 {
     color: #C0C0C0; /* Silver */
     background-color: #000000; /* Black */
-    border-bottom: 1px solid #FF4500; /* Orange Red */
+    border: 1px solid #FF4500; /* Orange Red */
+    border-top-right-radius:5vw;
+    border-top-left-radius:5vw;
 }
 .gorilla-presenter-slide {
     color: #FFFFFF; /* White */
@@ -428,6 +430,119 @@
     background: linear-gradient(to right, #FFD54F, #FF6F00); /* Yellow to Orange */
 }
 
+%%% Fancy Invitation
+
+.gorilla-presenter-editable h1 {
+    color: #D4AF37; /* Gold */
+    background: linear-gradient(to right, #8C7853, #EDEAE0); /* Antique Bronze to Ivory */
+    border-bottom: 1px solid #C0C0C0; /* Silver */
+    font-family: cursive;
+}
+.gorilla-presenter-slide {
+    color: #763C28; /* Dark Sienna */
+    background: linear-gradient(to bottom, #FFF0F5, #FAEBD7); /* Lavender Blush to Antique White */
+}
+
+%%% Mechanical Marvel
+
+.gorilla-presenter-editable h1 {
+    color: #C0C0C0; /* Silver */
+    background: linear-gradient(to right, #505050, #A9A9A9); /* Dark Gray to Dark Gray (Light) */
+    border-bottom: 1px solid #303030; /* Jet */
+}
+.gorilla-presenter-slide {
+    color: #E0E0E0; /* Platinum */
+    background: linear-gradient(to bottom, #696969, #808080); /* Dim Gray to Gray */
+}
+%%% Punk Rock
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700; /* Gold */
+    background: linear-gradient(to right, #FF0000, #000000); /* Red to Black */
+    border-bottom: 1px solid #FFFFFF; /* White */
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF; /* White */
+    background: linear-gradient(to bottom, #000000, #8B0000); /* Black to Dark Red */
+}
+%%% Basketball Coach
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700; /* Gold */
+    background: linear-gradient(to right, #D2691E, #FF7F50); /* Chocolate to Coral */
+    border-bottom: 1px solid #8B4513; /* Saddle Brown */
+}
+.gorilla-presenter-slide {
+    color: #F5F5DC; /* Beige */
+    background: linear-gradient(to bottom, #F0E68C, #FFD700); /* Khaki to Gold */
+}
+%%% Naval Briefing
+
+.gorilla-presenter-editable h1 {
+    color: #F0F8FF; /* Alice Blue */
+    background: linear-gradient(to right, #000080, #5F9EA0); /* Navy to Cadet Blue */
+    border-bottom: 1px solid #4682B4; /* Steel Blue */
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF; /* White */
+    background: linear-gradient(to bottom, #B0C4DE, #1E90FF); /* Light Steel Blue to Dodger Blue */
+}
+
+%%% Steampunk
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700; /* Gold */
+    background: linear-gradient(to right, #996515, #3E2723); /* Bronze to Deep Coffee */
+    border-bottom: 1px solid #5D4037; /* Dark Brown */
+}
+.gorilla-presenter-slide {
+    color: #FAFAD2; /* Light Goldenrod Yellow */
+    background: linear-gradient(to bottom, #8B4513, #A0522D); /* Saddle Brown to Sienna */
+}
+%%% Surreal
+
+.gorilla-presenter-editable h1 {
+    color: #7FFFD4; /* Aquamarine */
+    background: linear-gradient(to right, #0000FF, #8A2BE2); /* Blue to Blue Violet */
+    border-bottom: 1px solid #9400D3; /* Dark Violet */
+}
+.gorilla-presenter-slide {
+    color: #E6E6FA; /* Lavender */
+    background: linear-gradient(to bottom, #7B68EE, #4B0082); /* Medium Slate Blue to Indigo */
+}
+%%% Art Nouveau
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFF0; /* Ivory */
+    background: linear-gradient(to right, #DAA520, #F4A460); /* Goldenrod to Sandy Brown */
+    border-bottom: 1px solid #DEB887; /* Burlywood */
+}
+.gorilla-presenter-slide {
+    color: #FFE4C4; /* Bisque */
+    background: linear-gradient(to bottom, #3CB371, #2E8B57); /* Medium Sea Green to Sea Green */
+}
+%%% Aliens
+
+.gorilla-presenter-editable h1 {
+    color: #00FF00; /* Lime */
+    background: linear-gradient(to right, #000000, #008080); /* Black to Teal */
+    border-bottom: 1px solid #20B2AA; /* Light Sea Green */
+}
+.gorilla-presenter-slide {
+    color: #ADFF2F; /* Green Yellow */
+    background: linear-gradient(to bottom, #006400, #556B2F); /* Dark Green to Dark Olive Green */
+}
+%%% Patchwork Quilt
+
+.gorilla-presenter-editable h1 {
+    color: #FFB6C1; /* Light Pink */
+    background: linear-gradient(to right, #FFDAB9, #E6E6FA); /* Peach Puff to Lavender */
+    border-bottom: 1px solid #FFA07A; /* Light Salmon */
+}
+.gorilla-presenter-slide {
+    color: #FFFACD; /* Lemon Chiffon */
+    background: linear-gradient(to bottom, #FFEFD5, #FFF0F5); /* Papaya Whip to Lavender Blush */
+}
 /* 
 To create a new theme, begin a new line with %%%, a space, and the name of your theme. Begin your CSS rules for the theme on the next line.
 

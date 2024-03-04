@@ -17,6 +17,8 @@ GorillaPresenter.setTheme = function(themename){
 }
 
 GorillaPresenter.renderThemes = function(){
+    let themeSelector = document.getElementById("gorilla-presenter-theme-selector");
+    let themeChoices = ""
     let unnamedCounter = 1;
     let themeBlocks = GorillaPresenter.themeData.split(/^%%%/gm);
     themeBlocks.shift();
@@ -30,6 +32,12 @@ GorillaPresenter.renderThemes = function(){
       }
       themeLines.shift();
       GorillaPresenter.themes[themeName] = themeLines.join("\n");
+      themeChoices += "<option value='" + themeName + "'>" + themeName + "</option>";
     }
+    themeSelector.innerHTML = themeChoices;
+  }
+  GorillaPresenter.themeSelected = function(theme){
+    console.log("Theme Selector: " + theme);
+    GorillaPresenter.setTheme(theme);
   }
 

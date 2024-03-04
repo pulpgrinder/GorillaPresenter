@@ -16,16 +16,14 @@
       Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
     </noscript>
 
+  <div id="gorilla-presenter-theme-selector-container">
+    <select title="Theme Selector" id="gorilla-presenter-theme-selector" onchange="GorillaPresenter.themeSelected(this.value)"></select>
+    </select>
+  </div>
+
   <div id="gorilla-presenter-slideroot" class= "gorilla-presenter-screen" ondblclick="GorillaPresenter.showSlideEditor()">
   </div>
  
-  <div id = "gorilla-presenter-editors-container">
-      <div id="gorilla-presenter-editor-toolbar">
-        <div class="gorilla-presenter-editor-toolbar">
-        </div>
-
-
-  </div>
   <div id="gorilla-presenter-slide-editor-container" class= "gorilla-presenter-screen gorilla-presenter-editor-container">
       <textarea title="Slide Text Editor" id="gorilla-presenter-slide-text-editor" class = "gorilla-presenter-text-editor"></textarea>
   </div>
@@ -41,7 +39,9 @@
   </div>
 </div>
 
+  <div id="gorilla-presenter-main-menu">
 
+  </div>
     <div id="gorilla-presenter-warning-message">
       This is a warning, y'all.
     </div>

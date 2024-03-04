@@ -64,39 +64,14 @@ let GorillaPresenter = {
       BrowserFileSystem.writeInternalTextFile("userdata/slideposition",GorillaPresenter.slidePosition.toString());
       BrowserFileSystem.writeInternalTextFile("userdata/themes",GorillaPresenter.themeData);
     },
-    buildToolbar:function(){
-      let toolbar = document.getElementById("gorilla-presenter-editor-toolbar");
-      toolbar.innerHTML  = "";
-      GorillaPresenter.addToolbarButton(toolbar,"Slide Show",GorillaPresenter.showHomeScreen);
-      GorillaPresenter.addToolbarButton(toolbar,"Download",GorillaPresenter.showDownloadShow);
-      GorillaPresenter.addToolbarButton(toolbar,"Slide Editor",GorillaPresenter.showSlideEditor);
-      GorillaPresenter.addToolbarButton(toolbar,"Theme Editor",GorillaPresenter.showThemeEditor);
-      GorillaPresenter.addToolbarButton(toolbar,"Image Editor",GorillaPresenter.showImageEditor);
-      GorillaPresenter.addToolbarButton(toolbar,"Help",GorillaPresenter.showHelp);
-      GorillaPresenter.addToolbarButton(toolbar,"Documentation",GorillaPresenter.showDocumentation);
-    //  GorillaPresenter.addToolbarButton(toolbar,"About",GorillaPresenter.showAbout);
-    },
 
-    addToolbarButton:function(toolbar, label, action){
-      let toolbarIconFileName = label.toLowerCase().replace(" ","-");
-      if(GorillaPresenter.editor_mode === "dark"){
-        toolbarIconFileName += "-dark";
-      }
-      toolbarIconFileName += ".webp";
-      let img = document.createElement("img");
-      img.src = BrowserFileSystem.readInternalFileDataURL("toolbar/" + toolbarIconFileName);
-      img.alt = label;
-      img.title = label;
-      img.onclick = action;
-      img.className = "gorilla-presenter-toolbar-button";
-      toolbar.appendChild(img);
-    },
+    
 
     startup:function(){
       setHeadLink("icon",BrowserFileSystem.readInternalFileDataURL("icons/favicon.ico"),"image/x-icon");
      setHeadLink("icon",BrowserFileSystem.readInternalFileDataURL("icons/favicon-192x192.png"),"image/png");
       setHeadLink("apple-touch-icon",BrowserFileSystem.readInternalFileDataURL("icons/apple-touch-icon-180x180.png"),"image/png");
-      GorillaPresenter.buildToolbar();
+      GorillaPresenter.renderMainMenu();
       if(BrowserFileSystem.fileExists("userdata/slides.md") === false){
         console.log("No slides found.");
         GorillaPresenter.slideData ="";
@@ -211,6 +186,41 @@ let GorillaPresenter = {
       setTimeout(function(){
         fadeOut(warningElement);
       },1000);
+    },
+    renderMainMenu:function(){
+      let mainMenu = document.getElementById("gorilla-presenter-main-menu");
+      mainMenu.innerHTML = "";
+      let menuItems = ["Slide Show","Download","Slide Editor","Theme Editor","Image Editor","Help","Documentation","About"];
+      for(let i=0;i<menuItems.length;i++){
+        let menuItem = document.createElement("div");
+        menuItem.innerHTML = menuItems[i];
+        menuItem.className = "gorilla-presenter-main-menu-item";
+        menuItem.onclick = GorillaPresenter.processMainMenuClick;
+        mainMenu.appendChild(menuItem);
+      }
+    },
+    showMainMenu:function(){
+      let slideElement = document.getElementById(GorillaPresenter.slideRoot);
+      const slideStyles = window.getComputedStyle(slideElement);
+      let mainMenu = document.getElementById("gorilla-presenter-main-menu");
+      mainMenu.style.opacity = 1;
+      mainMenu.style.display = "block";
+      let mainMenuStyle = window.getComputedStyle(mainMenu);
+      let slideWidth = parseInt(slideStyles.width);
+      let slideHeight = parseInt(slideStyles.height);
+      let menuWidth = parseInt(mainMenuStyle.width);
+      let menuHeight = parseInt(mainMenuStyle.height);
+      let left = (slideWidth - menuWidth) / 2;
+      let top = (slideHeight - menuHeight) / 2;
+      mainMenu.style.left = left + "px";
+      mainMenu.style.top = top + "px"; 
+    },
+    processMainMenuClick:function(event){
+      let target = event.target;
+      let label = target.innerHTML;
+      alert("You clicked " + label);
+      let mainMenu = document.getElementById("gorilla-presenter-main-menu");
+      mainMenu.style.display = "none";
     },
     bytes_to_base_64:function(buffer){
       let arr = new Uint8Array(buffer)
