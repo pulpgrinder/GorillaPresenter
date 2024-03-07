@@ -6,3 +6,6 @@ Images
 
 Export to full-page print and 6-up handouts.
 
+Put cursor at top of editor on initial showing. Focus editors on display.
+
+Put slide display on side. Nah.

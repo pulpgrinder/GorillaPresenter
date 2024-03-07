@@ -1,6 +1,4 @@
-```tipograph-extensions.js``` is &copy; 2020-2021 by Anthony W. Hursh, and is distributed under the same terms as GorillaPresenter as a whole.
-
-```1-tipograph.js``` is &copy; 2020 by Petr Nevyhoštěný and is distributed under the terms of the following license:
+```1-tipograph.js``` is &copy; 2020 by Petr Nevyhoštěný
 
 The MIT License (MIT)
 

@@ -59,6 +59,7 @@ function write_html(){
   let template = fs.readFileSync(__dirname + "/src/999-base/index_template.html","utf8");
   template = template.replace(/___VERSION___/g, version_info);
   template = template.replace(/___BUILD___/g, build_info);
+  template = template.replace(/___BUILD_DATE___/g, Date.now()); 
   let template_out = "";
   let template_lines = template.split("\n");
   for(var i = 0; i < template_lines.length; i++){

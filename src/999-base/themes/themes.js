@@ -32,8 +32,23 @@ GorillaPresenter.renderThemes = function(){
       }
       themeLines.shift();
       GorillaPresenter.themes[themeName] = themeLines.join("\n");
+     // themeChoices += "<option value='" + themeName + "'>" + themeName + "</option>";
+    }
+    let themeNames = Object.keys(GorillaPresenter.themes);
+    themeNames.sort();
+    if(GorillaPresenter.themes["Default"] !== undefined){
+        themeChoices += "<option value='" + "Default" + "'>" + "Default" + "</option>";
+    }
+    for(let i=0;i<themeNames.length;i++){
+      let themeName = themeNames[i];
+      if(themeName === "Default"){
+        continue;
+      }
+      let themeLines = GorillaPresenter.themes[themeName];
       themeChoices += "<option value='" + themeName + "'>" + themeName + "</option>";
     }
+
+
     themeSelector.innerHTML = themeChoices;
   }
   GorillaPresenter.themeSelected = function(theme){

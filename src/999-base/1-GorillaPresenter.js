@@ -9,43 +9,71 @@ let GorillaPresenter = {
     editor_mode: "light",
     slideIDs: [],
     themes : {},
+    currentLanguage:"en",
+    slideEditorPosition:0,
+    themeEditorPosition:0,
     showUIScreen:function(id){
       let screens = document.querySelectorAll(".gorilla-presenter-screen");
       for(let i=0;i<screens.length;i++){
         screens[i].style.display = "none";
       }
       let screen = document.getElementById(id);
-      screen.style.display = "grid";
+      screen.style.display = "block";
+    },
+    processMainMenuClick:function(event){
+      let target = event.target;
+      let label = target.innerHTML;
+      switch(label){
+        case "Slide Show":GorillaPresenter.showHomeScreen();break;
+        case "Slide Editor":GorillaPresenter.showSlideEditor();break;
+        case "Image Editor":GorillaPresenter.showImageEditor();break;
+        case "Download":GorillaPresenter.downloadSlides();break;
+        case "Theme Editor":GorillaPresenter.showThemeEditor();break;
+        case "Documentation":GorillaPresenter.showDocumentation();break;
+        case "About":GorillaPresenter.showAbout();break;
+        case "Done":GorillaPresenter.hideMainMenu();break;
+      }
+      GorillaPresenter.hideMainMenu();
+     // setTimeout(function(){GorillaPresenter.hideMainMenu();alert("hiding main menu")},100);
+    },
+    saveEditorCursors:function(){
+      let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
+      GorillaPresenter.slideEditorPosition = slideEditor.selectionStart;
+      let themeEditor = document.getElementById("gorilla-presenter-theme-text-editor");
+      GorillaPresenter.themeEditorPosition = themeEditor.selectionStart;
     },
     showSlideEditor:function(){
+      GorillaPresenter.saveEditorCursors();
       GorillaPresenter.showUIScreen("gorilla-presenter-slide-editor-container");
-      document.getElementById("gorilla-presenter-editors-container").style.display = "grid";
+      let themeEditor = document.getElementById("gorilla-presenter-theme-text-editor");
+      GorillaPresenter.themeData = themeEditor.value;
       let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
       slideEditor.value = GorillaPresenter.slideData;
-      let themeEditor = document.getElementById("gorilla-presenter-theme-text-editor");
-      themeEditor.value = GorillaPresenter.themeData;
       slideEditor.focus();
+      slideEditor.setSelectionRange(GorillaPresenter.slideEditorPosition, GorillaPresenter.slideEditorPosition);
     },
     showThemeEditor:function(){
+      GorillaPresenter.saveEditorCursors();
       GorillaPresenter.showUIScreen("gorilla-presenter-theme-editor-container");
-      document.getElementById("gorilla-presenter-editors-container").style.display = "grid";
       let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
       GorillaPresenter.slideData = slideEditor.value;
       let themeEditor = document.getElementById("gorilla-presenter-theme-text-editor");
       themeEditor.value = GorillaPresenter.themeData;
       themeEditor.focus();
+      themeEditor.setSelectionRange(GorillaPresenter.themeEditorPosition, GorillaPresenter.themeEditorPosition);
     },
     showImageEditor:function(){
-      document.getElementById("gorilla-presenter-editors-container").style.display = "grid";
       GorillaPresenter.showUIScreen("gorilla-presenter-image-editor-container");
       let imageEditor = document.getElementById("gorilla-presenter-image-editor");
       imageEditor.focus();
     },
     showHomeScreen:function(){
       GorillaPresenter.showUIScreen("gorilla-presenter-slideroot");
-      document.getElementById("gorilla-presenter-editors-container").style.display = "none";
       GorillaPresenter.updateData();
       GorillaPresenter.displaySlide();
+    },
+    showAbout:function(){
+      GorillaPresenter.showUIScreen("gorilla-presenter-about-container");
     },
     updateData:function(){
       console.log("updateData called"); 
@@ -100,8 +128,13 @@ let GorillaPresenter = {
       let themename = BrowserFileSystem.readInternalTextFile("userdata/themename");
       GorillaPresenter.setTheme(themename);
       GorillaPresenter.renderSlides(GorillaPresenter.slideRoot);
+      let aboutElement = document.getElementById("gorilla-presenter-about");
+      aboutElement.innerHTML = aboutElement.innerHTML + GorillaPresenter.markdown.render( BrowserFileSystem.collectLicenses());
       GorillaPresenter.showSlideDisplay();
       GorillaPresenter.displaySlide();
+      document.addEventListener('click', function(event) {
+        GorillaPresenter.showMainMenu(event);
+      });
     },
    
 
@@ -189,17 +222,22 @@ let GorillaPresenter = {
     },
     renderMainMenu:function(){
       let mainMenu = document.getElementById("gorilla-presenter-main-menu");
-      mainMenu.innerHTML = "";
-      let menuItems = ["Slide Show","Download","Slide Editor","Theme Editor","Image Editor","Help","Documentation","About"];
+       mainMenu.innerHTML = "<div class='gorilla-presenter-main-menu-item'><span>Select Theme: </span> <select title='Theme Selector' id='gorilla-presenter-theme-selector' onchange='GorillaPresenter.themeSelected(this.value)'></select><button id='gorilla-presenter-theme-ok-button' onclick='GorillaPresenter.hideMainMenu()'>&#x2713;</button></div>";
+      let menuItems = ["Slide Show","Slide Editor","Image Editor","Download","Theme Editor","Documentation","About","Done"];
       for(let i=0;i<menuItems.length;i++){
         let menuItem = document.createElement("div");
         menuItem.innerHTML = menuItems[i];
-        menuItem.className = "gorilla-presenter-main-menu-item";
+        menuItem.className = "gorilla-presenter-main-menu-item link";
         menuItem.onclick = GorillaPresenter.processMainMenuClick;
         mainMenu.appendChild(menuItem);
       }
     },
-    showMainMenu:function(){
+   
+    showMainMenu:function(event){
+      if(!event.altKey && !event.metaKey){
+        return;
+      }
+      GorillaPresenter.saveEditorCursors();
       let slideElement = document.getElementById(GorillaPresenter.slideRoot);
       const slideStyles = window.getComputedStyle(slideElement);
       let mainMenu = document.getElementById("gorilla-presenter-main-menu");
@@ -215,13 +253,11 @@ let GorillaPresenter = {
       mainMenu.style.left = left + "px";
       mainMenu.style.top = top + "px"; 
     },
-    processMainMenuClick:function(event){
-      let target = event.target;
-      let label = target.innerHTML;
-      alert("You clicked " + label);
+    hideMainMenu:function(){
       let mainMenu = document.getElementById("gorilla-presenter-main-menu");
       mainMenu.style.display = "none";
     },
+    
     bytes_to_base_64:function(buffer){
       let arr = new Uint8Array(buffer)
       let raw = '';

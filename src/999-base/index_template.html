@@ -15,13 +15,8 @@
     <noscript id="noscript">
       Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
     </noscript>
-
-  <div id="gorilla-presenter-theme-selector-container">
-    <select title="Theme Selector" id="gorilla-presenter-theme-selector" onchange="GorillaPresenter.themeSelected(this.value)"></select>
-    </select>
-  </div>
-
-  <div id="gorilla-presenter-slideroot" class= "gorilla-presenter-screen" ondblclick="GorillaPresenter.showSlideEditor()">
+    
+  <div id="gorilla-presenter-slideroot" class= "gorilla-presenter-screen">
   </div>
  
   <div id="gorilla-presenter-slide-editor-container" class= "gorilla-presenter-screen gorilla-presenter-editor-container">
@@ -37,10 +32,21 @@
   <div id="gorilla-presenter-theme-editor-container" class="gorilla-presenter-screen gorilla-presenter-editor-container">
       <textarea id="gorilla-presenter-theme-text-editor" class='gorilla-presenter-text-editor' title="Theme Text Editor"> </textarea>
   </div>
-</div>
+  <div id="gorilla-presenter-about-container" class="gorilla-presenter-screen gorilla-presenter-editor-container">
+    <div id="gorilla-presenter-about">
+      <h1>Summary</h1>
+      <p><b>Gorilla Presenter depends on you. Please support it!</b></p>
+      <p>Version: ___VERSION___</p>
+      <p>Build: ___BUILD___</p>
+      <p>Compiled: ___BUILD_DATE___</p>
+      <p>Author: Anthony W. Hursh</p>
+      <p>License: MIT</p>
+      <p>Source code: <a href="https://github.com/pulpgrinder/GorillaPresenter" target="_blank" rel="noopener">available on GitHub</a></p>
+    </div>
+  </div>
 
   <div id="gorilla-presenter-main-menu">
-
+  
   </div>
     <div id="gorilla-presenter-warning-message">
       This is a warning, y'all.
@@ -54,9 +60,10 @@
   <script type="text/javascript" id="Gorilla_presenter_system_boot">
  let launcher = {
     initSystem: function(){
-      console.log("initSystem: GorillaPresenter version: " + "___VERSION___" + " build: " + "___BUILD___");
+      console.log("initSystem: GorillaPresenter version: " + "___VERSION___" + " build: " + "___BUILD___" + " compiled: " + "___BUILD_DATE___");
       this.version = "___VERSION___";
       this.build = "___BUILD___";
+      this.compileDate = "___BUILD_DATE___";
       this.CumulativeErrors = [];
       //Launch statistics.
       this.cssLoaded = [];
