@@ -47,9 +47,11 @@ BrowserFileSystem.file_path_no_extension = function(filename){
 
 BrowserFileSystem.collectLicenses = function(){
   let filenames = Object.keys(BrowserFileSystem.fs);
-  let license_text = BrowserFileSystem.readInternalTextFile("999-base/License-GorillaPresenter.md") + "\n\n"
+  let license_text = BrowserFileSystem.readInternalTextFile( 
+    "base/LICENSE-GorillaPresenter.md") + "\n\n"
   for(var i = 0; i < filenames.length; i++){
-    if((filenames[i].match(/LICENSE/) !== null) && (filenames[i] !== "999-base/License-GorillaPresenter.md")){
+    if((filenames[i].match(/LICENSE/) !== null) && (filenames[i] !==  
+      "base/LICENSE-GorillaPresenter.md")){
       let packagename = filenames[i].substring(0,filenames[i].indexOf["/"])
       license_text = license_text + "<h2>" + packagename + " </h2>\n\n" + BrowserFileSystem.readInternalTextFile(filenames[i]) + "\n\n"
     }
@@ -327,6 +329,8 @@ BrowserFileSystem.deletePackage = function(packagename){
     }
   }
 }
+BrowserFileSystem.uploadElementId = "browser-file-system-uploader";
+
 BrowserFileSystem.setUploadElementId = function(elementId){
   BrowserFileSystem["uploadElementId"] = elementId;
 }
@@ -343,10 +347,10 @@ BrowserFileSystem.uploadFile = function(type,multiple,format,callback){
   if(multiple === true){
     uploader.setAttribute('multiple','');
   }
-  uploader.val('');
+  uploader.value = '';
   document.body.appendChild(uploader);
   uploader.onchange = function(){
-    let curFiles = uploader[0].files;
+    let curFiles = uploader.files;
     for (let index = 0; index < curFiles.length; index++) {
       let reader = new FileReader();
       reader.onloadend = (function(filename) {
@@ -357,18 +361,21 @@ BrowserFileSystem.uploadFile = function(type,multiple,format,callback){
           };
         };
      
-      })(curFiles[i].name);
+      })(curFiles[index].name);
       if(format === "data"){
-        reader.readAsDataURL(curFiles[i]);
+        reader.readAsDataURL(curFiles[index]);
       }
       else if (format === "text"){
-        reader.readAsText(curFiles[i]);
+        reader.readAsText(curFiles[index]);
       }
       else {
         console.error("BrowserFileSystem.uploadFile: unrecognized format requested: " + format);
       }
     }
   }
+  setTimeout(function(){
+    uploader.click();
+  },10)
 }
 
 

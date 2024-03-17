@@ -56,7 +56,7 @@ function create_directories(){
 }
 
 function write_html(){
-  let template = fs.readFileSync(__dirname + "/src/999-base/index_template.html","utf8");
+  let template = fs.readFileSync(__dirname + "/src/base/index_template.html","utf8");
   template = template.replace(/___VERSION___/g, version_info);
   template = template.replace(/___BUILD___/g, build_info);
   template = template.replace(/___BUILD_DATE___/g, Date.now()); 

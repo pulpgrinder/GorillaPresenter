@@ -812,11 +812,13 @@ resetPanel(panelSelector,self=this){
 
 /* Performs the callback function for the given transition, if one is specified. */
     performCallback(args){
+        console.log("SicTransit: in performCallback()");
         const self = args.self;
         // Release the animation lock.
         self.animationLock = false;
         let dispatchEntry = self.dispatchTable[args["transitionName"]];
         if(dispatchEntry.callback === null){
+            console.log("SicTransit: no callback specified for " + args["transitionName"]);
             return;
         }
         args.endTime = new Date().getTime();

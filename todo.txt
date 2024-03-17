@@ -8,4 +8,13 @@ Export to full-page print and 6-up handouts.
 
 Put cursor at top of editor on initial showing. Focus editors on display.
 
-Put slide display on side. Nah.
+Clicking too fast skips transitions. Need to queue them up somehow. This is still happening somehow. Unrecognized race condition? Continue to investigate.
+
+
+Gets confused if full screen is exited via escape, from right-click menu, or from top menu bar rather than internal menu. Error is VM1281:581 Uncaught (in promise) TypeError: Failed to execute 'exitFullscreen' on 'Document': Document not active
+    at Object.exitFullScreen (<anonymous>:581:18)
+    at HTMLDivElement.processMainMenuClick (<anonymous>:52:31)
+exitFullScreen @ VM1281:581
+processMainMenuClick @ VM1281:52
+
+Probably need to change the toggle if fullscreen is exited/entered via alternate method.

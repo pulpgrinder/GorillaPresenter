@@ -1,10 +1,100 @@
+GorillaPresenter.currentLanguage = "en";
+
+GorillaPresenter.translateUI = function(){
+  let language = GorillaPresenter.currentLanguage;
+  let translations = GorillaPresenter.translations;
+  let elements = document.getElementsByClassName("translatable");
+  for(let i=0;i<elements.length;i++){
+    let element = elements[i];
+    let text = element.innerHTML;
+    let translation = translations[text];
+    if(translation !== undefined){
+      let translatedText = translation[language];
+      if(translatedText !== undefined){
+        element.innerHTML = "<bdi>" + translatedText + "</bdi>";
+      }
+    }
+  }
+}
+
 GorillaPresenter.translate = function(phrase,language) {
   if (GorillaPresenter.translations[phrase]) {
     if(GorillaPresenter.translations[phrase][language]) {
       return GorillaPresenter.translations[phrase][language];
     }
   }
-  return phrase;
+    return phrase;
+}
+
+GorillaPresenter.loadLanguage = function(){
+  if(BrowserFileSystem.fileExists("userdata/language") === false){
+    GorillaPresenter.currentLanguage = "en";
+  }
+  else {
+    GorillaPresenter.currentLanguage = BrowserFileSystem.readInternalTextFile("userdata/language").trim();
+  }
+}
+
+GorillaPresenter.setLanguage = function(language){
+  GorillaPresenter.currentLanguage = language;
+  if(language !== "en"){
+    GorillaPresenter.warn(GorillaPresenter.translate("Support for languages other than English is experimental. Please report any issues at",language) + " https://github.com/pulpgrinder/GorillaPresenter",3000);
+  }
+  GorillaPresenter.saveLanguage();
+}
+
+
+GorillaPresenter.selectLanguage = function(event){
+  console.log("in selectLanguage");
+  GorillaPresenter.setLanguage(event.target.value);
+  GorillaPresenter.renderMainMenu();
+  GorillaPresenter.showMainMenu();
+}
+
+GorillaPresenter.saveLanguage = function(){
+  BrowserFileSystem.writeInternalTextFile("userdata/language",GorillaPresenter.currentLanguage);
+}
+
+GorillaPresenter.renderLanguages = function(){
+  GorillaPresenter.loadLanguage();
+  let mainMenu = document.getElementById("gorilla-presenter-main-menu");
+    let languageDiv = document.createElement("div")
+    languageDiv.className = "gorilla-presenter-main-menu-item link";
+    let langHTML = "<span class='translatable'>Language</span>: <select title='Language Selector' id='gorilla-presenter-language-selector' onchange='GorillaPresenter.selectLanguage(this.value)'>"
+      let languageList = Object.keys(GorillaPresenter.translations["Support for languages other than English is experimental. Please report any issues at"]);
+      let selected = "";
+      for(let i=0;i<languageList.length;i++){
+        let language = languageList[i];
+        if(language === GorillaPresenter.currentLanguage){
+          selected = " selected";
+        }
+        else {
+          selected = "";
+        }
+        langHTML += "<option value='" + language + "'" + selected + ">" + language + "</option>";
+      }
+      langHTML += "</select>";
+      languageDiv.innerHTML = langHTML;
+      mainMenu.appendChild(languageDiv);
+      document.getElementById("gorilla-presenter-language-selector").onchange = GorillaPresenter.selectLanguage;
+      GorillaPresenter.translateUI();
+}
+
+
+GorillaPresenter.rtl = {
+  "ar": true,
+  "fa": true,
+  "he": true,
+  "ur": true,
+  "dv": true,
+  "ps": true,
+  "sd": true,
+  "ku": true,
+  "ug": true,
+  "azb": true,
+  "ydd": true,
+  "yih": true,
+  "yud": true,
 }
 
 GorillaPresenter.translations = {
@@ -17,6 +107,7 @@ GorillaPresenter.translations = {
     fa: "پشتیبانی از زبان‌های غیر انگلیسی آزمایشی است. لطفاً هر گونه مشکل را گزارش دهید",
     fr: "Le support pour les langues autres que l'anglais est expérimental. Veuillez signaler tout problème à",
     gu: "અંગ્રેજી બહારની ભાષાઓ માટે આધારાત્મક છે. કૃપા કરીને કોઈ પણ સમસ્યાને આપની આપણી રિપોર્ટ કરો",
+    he: "תמיכה בשפות שונות מאנגלית היא ניסיונית. אנא דווח על כל בעיה ב",
     hi: "अंग्रेजी के बाहर की भाषाओं का समर्थन प्रायोगिक है। कृपया किसी भी समस्या की रिपोर्ट करें",
     id: "Dukungan untuk bahasa selain Inggris bersifat eksperimental. Harap laporkan masalah apa pun di",
     ja: "英語以外の言語のサポートは実験的です。問題があれば報告してください",
@@ -53,6 +144,7 @@ GorillaPresenter.translations = {
     fa: "هیچ اسلایدی وجود ندارد. شما باید ابتدا برخی از آنها را بسازید.",
     fr: "Pas de diapositives. Vous devrez en créer d'abord.",
     gu: "કોઈ સ્લાઇડ નથી. પ્રથમ તેમને બનાવવું પડશે.",
+    he: "אין שקופיות. תצטרך ליצור כמה תחילה.",
     hi: "कोई स्लाइड नहीं है। पहले आपको कुछ बनाना होगा।",
     id: "Tidak ada slide. Anda harus membuat beberapa terlebih dahulu.",
     ja: "スライドがありません。最初に作成する必要があります。",
@@ -86,6 +178,7 @@ GorillaPresenter.translations = {
     fa: "در اسلاید اول.",
     fr: "Sur la première diapositive.",
     gu: "પ્રથમ સ્લાઇડ પર.",
+    he: "בשקופית הראשונה.",
     hi: "पहले स्लाइड पर।",
     id: "Pada slide pertama.",
     ja: "最初のスライドで。",
@@ -120,6 +213,7 @@ GorillaPresenter.translations = {
     fa: "در اسلاید آخر.",
     fr: "Sur la dernière diapositive.",
     gu: "અંતિમ સ્લાઇડ પર.",
+    he: "בשקופית האחרונה.",
     hi: "अंतिम स्लाइड पर।",
     id: "Pada slide terakhir.",
     ja: "最後のスライドで。",
@@ -145,41 +239,40 @@ GorillaPresenter.translations = {
     "zh-tw": "在最後一張投影片。",
   },
 
-
-
-  "Select Theme": {
-    en: "Select Theme",
-    ar: "اختر الثيم",
-    bn: "থিম নির্বাচন করুন",
-    de: "Thema auswählen",
-    es: "Seleccionar tema",
-    fa: "انتخاب تم",
-    fr: "Sélectionner le thème",
-    gu: "થીમ પસંદ કરો",
-    hi: "थीम चुनें",
-    id: "Pilih Tema",
-    ja: "テーマを選択",
-    jv: "Pilih Tema",
-    kn: "ಥೀಮ್ ಆಯ್ಕೆಮಾಡಿ",
-    ko: "테마 선택",
-    ml: "തീം തിരഞ്ഞെടുക്കുക",
-    mn: "Сэдвийг сонгоно уу",
-    mr: "थीम निवडा",
-    mrj: "Теманы саклаш",
-    my: "အဖွဲ့အစည်းရွေးပါ",
-    or: "ଥିମ୍ ବାଛନ୍ତୁ",
-    pt: "Selecionar tema",
-    ru: "Выбрать тему",
-    so: "Dooro Mawduuca",
-    su: "Pilih Téma",
-    ta: "தீம் தெரிவுசெய்",
-    te: "థీమ్‌ను ఎంచుకోండి",
-    tr: "Tema Seç",
-    uk: "Вибрати тему",
-    vi: "Chọn chủ đề",
-    "zh-cn": "选择主题",
-    "zh-tw": "選擇主題",
-  },
+"Theme" : {
+  en: "Theme",
+  ar: "السمة",
+  bn: "থিম",
+  de: "Thema",
+  es: "Tema",
+  fa: "قالب",
+  fr: "Thème",
+  gu: "થીમ",
+  he: "ערכת נושא",
+  hi: "थीम",
+  id: "Tema",
+  ja: "テーマ",
+  jv: "Tema",
+  kn: "ಥೀಮ್",
+  ko: "테마",
+  ml: "തീമ",
+  mn: "Загвар",
+  mr: "थीम",
+  mrj: "Тема",
+  my: "အမှတ်အသား",
+  or: "ଥିମ",
+  pt: "Tema",
+  ru: "Тема",
+  so: "Theme",
+  su: "Tema",
+  ta: "தீம்",
+  te: "థీమ్",
+  tr: "Tema",
+  uk: "Тема",
+  vi: "Chủ đề",
+  "zh-cn": "主题",
+  "zh-tw": "主題",
+},
   "Slide Show": {
     en: "Slide Show",
     ar: "عرض الشرائح",
@@ -189,6 +282,7 @@ GorillaPresenter.translations = {
     fa: "نمایش اسلاید",
     fr: "Diaporama",
     gu: "સ્લાઇડ શો",
+    he: "מצגת שקופיות",
     hi: "स्लाइड शो",
     id: "Tayangan Slide",
     ja: "スライドショー",
@@ -223,6 +317,7 @@ GorillaPresenter.translations = {
       fa: "ورود/خروج از تمام صفحه",
       fr: "Entrer/Sortir du mode plein écran",
       gu: "પૂર્ણ સ્ક્રીન પ્રવેશ/બહાર",
+      he: "כניסה/יציאה ממסך מלא",
       hi: "पूर्ण स्क्रीन में प्रवेश/निकास",
       id: "Masuk/Keluar Layar Penuh",
       ja: "フルスクリーンに入る/出る",
@@ -256,6 +351,7 @@ GorillaPresenter.translations = {
       fa: "ویرایشگر اسلاید",
       fr: "Éditeur de diapositives",
       gu: "સ્લાઇડ સંપાદક",
+      he: "עורך שקופיות",
       hi: "स्लाइड संपादक",
       id: "Editor Slide",
       ja: "スライドエディタ",
@@ -280,6 +376,74 @@ GorillaPresenter.translations = {
       "zh-cn": "幻灯片编辑器",
       "zh-tw": "幻燈片編輯器",
     },
+    "Media Editor" : {
+      en: "Media Editor",
+      ar: "محرر الوسائط",
+      bn: "মিডিয়া সম্পাদক",
+      de: "Medien-Editor",
+      es: "Editor de medios",
+      fa: "ویرایشگر رسانه",
+      fr: "Éditeur multimédia",
+      gu: "મીડિયા સંપાદક",
+      he: "עורך מדיה",
+      hi: "मीडिया संपादक",
+      id: "Editor Media",
+      ja: "メディアエディタ",
+      jv: "Editor Media",
+      kn: "ಮೀಡಿಯಾ ಸಂಪಾದಕ",
+      ko: "미디어 편집기",
+      ml: "മീഡിയ എഡിറ്റർ",
+      mn: "Медиа засварлагч",
+      mr: "मीडिया संपादक",
+      mrj: "Медиа тӧрлӓш",
+      my: "မီဒီယာ ပြင်ရန်",
+      or: "ମିଡିଆ ସମ୍ପାଦକ",
+      pt: "Editor de mídia",
+      ru: "Редактор медиа",
+      so: "Editaar Media",
+      su: "Éditor Média",
+      ta: "மீடியா திருத்தி",
+      te: "మీడియా సవరకు",
+      tr: "Medya Düzenleyici",
+      uk: "Редактор медіа",
+      vi: "Trình soạn thảo Phương tiện",
+      "zh-cn": "媒体编辑器",
+      "zh-tw": "媒體編輯器",
+    },
+    "Media Library" : {
+      en: "Media Library",
+      ar: "مكتبة الوسائط",
+      bn: "মিডিয়া লাইব্রেরি",
+      de: "Mediathek",
+      es: "Biblioteca de medios",
+      fa: "کتابخانه رسانه",
+      fr: "Bibliothèque multimédia",
+      gu: "મીડિયા લાઇબ્રેરી",
+      he: "ספריית מדיה",
+      hi: "मीडिया लाइब्रेरी",
+      id: "Pustaka Media",
+      ja: "メディアライブラリ",
+      jv: "Perpustakaan Media",
+      kn: "ಮೀಡಿಯಾ ಲೈಬ್ರರಿ",
+      ko: "미디어 라이브러리",
+      ml: "മീഡിയ ലൈബ്രറി",
+      mn: "Медиа сан",
+      mr: "मीडिया लायब्ररी",
+      mrj: "Медиа тӧрлӓш",
+      my: "မီဒီယာ စာရင်း",
+      or: "ମିଡିଆ ଲାଇବ୍ରାରୀ",
+      pt: "Biblioteca de mídia",
+      ru: "Медиатека",
+      so: "Maktabadda Media",
+      su: "Pustaka Média",
+      ta: "மீடியா நூலகம்",
+      te: "మీడియా లైబ్రరీ",
+      tr: "Medya Kütüphanesi",
+      uk: "Медіатека",
+      vi: "Thư viện Phương tiện",
+      "zh-cn": "媒体库",
+      "zh-tw": "媒體庫",
+    },
     "Image Editor" : {
       en: "Image Editor",
       ar: "محرر الصور",
@@ -289,6 +453,7 @@ GorillaPresenter.translations = {
       fa: "ویرایشگر تصاویر",
       fr: "Éditeur d'images",
       gu: "ચિત્ર સંપાદક",
+      he: "עורך תמונות",
       hi: "इमेज संपादक",
       id: "Editor Gambar",
       ja: "画像エディタ",
@@ -322,6 +487,7 @@ GorillaPresenter.translations = {
       fa: "ذخیره ارائه",
       fr: "Enregistrer la présentation",
       gu: "પ્રસ્તુતિ સાચવો",
+      he: "שמירת המצגת",
       hi: "प्रस्तुतीकरण सहेजें",
       id: "Simpan Presentasi",
       ja: "プレゼンテーションを保存",
@@ -355,6 +521,7 @@ GorillaPresenter.translations = {
       fa: "ویرایشگر تم",
       fr: "Éditeur de thèmes",
       gu: "થીમ સંપાદક",
+      he: "עורך ערכות נושא",
       hi: "थीम संपादक",
       id: "Editor Tema",
       ja: "テーマエディタ",
@@ -389,6 +556,7 @@ GorillaPresenter.translations = {
       fa: "انجام شد",
       fr: "Terminé",
       gu: "પૂર્ણ",
+      he: "בוצע",
       hi: "समाप्त",
       id: "Selesai",
       ja: "完了",
@@ -424,6 +592,7 @@ GorillaPresenter.translations = {
       fa: "مستندات",
       fr: "Documentation",
       gu: "દસ્તાવેજીકરણ",
+      he: "תיעוד",
       hi: "दस्तावेज़ीकरण",
       id: "Dokumentasi",
       ja: "ドキュメンテーション",
@@ -458,6 +627,7 @@ GorillaPresenter.translations = {
       fa: "درباره",
       fr: "À propos",
       gu: "વિશે",
+      he: "אודות",
       hi: "के बारे में",
       id: "Tentang",
       ja: "約",
@@ -482,37 +652,144 @@ GorillaPresenter.translations = {
       "zh-cn": "关于",
       "zh-tw": "關於",
     },
-    "Select Language": {
-      en: "Select Language",
-      ar: "اختر اللغة",
-      bn: "ভাষা নির্বাচন করুন",
-      de: "Sprache auswählen",
-      es: "Seleccionar idioma",
-      fa: "انتخاب زبان",
-      fr: "Sélectionner la langue",
-      gu: "ભાષા પસંદ કરો",
-      hi: "भाषा चुनें",
-      id: "Pilih Bahasa",
-      ja: "言語を選択",
-      jv: "Pilih Basa",
-      kn: "ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
-      ko: "언어 선택",
-      ml: "ഭാഷ തിരഞ്ഞെടുക്കുക",
-      mn: "Хэл сонгох",
-      mr: "भाषा निवडा",
-      mrj: "Тылы саклаш",
-      my: "ဘာသာစကား ရွေးပါ",
-      or: "ଭାଷା ବାଛନ୍ତୁ",
-      pt: "Selecionar idioma",
-      ru: "Выбрать язык",
-      so: "Dooro Luqadda",
-      su: "Pilih Basa",
-      ta: "மொழியை தெரிவுசெய்",
-      te: "భాషను ఎంచుకోండి",
-      tr: "Dil Seç",
-      uk: "Вибрати мову",
-      vi: "Chọn ngôn ngữ",
-      "zh-cn": "选择语言",
-      "zh-tw": "選擇語言",
-    },
+
+"Language": {
+  en: "Language",
+  ar: "لغة",
+  bn: "ভাষা",
+  de: "Sprache",
+  es: "Idioma",
+  fa: "زبان",
+  fr: "Langue",
+  gu: "ભાષા",
+  he: "שפה",
+  hi: "भाषा",
+  id: "Bahasa",
+  ja: "言語",
+  jv: "Basa",
+  kn: "ಭಾಷೆ",
+  ko: "언어",
+  ml: "ഭാഷ",
+  mn: "Хэл",
+  mr: "भाषा",
+  mrj: "Кель",
+  my: "ဘာသာစကား",
+  or: "ଭାଷା",
+  pt: "Língua",
+  ru: "Язык",
+  so: "Luqad",
+  su: "Basa",
+  ta: "மொழி",
+  te: "భాష",
+  tr: "Dil",
+  uk: "Мова",
+  vi: "Ngôn ngữ",
+  "zh-cn": "语言",
+  "zh-tw": "語言",
+},
+"Heading Font": {
+  en: "Heading Font",
+  ar: "خط العنوان",
+  bn: "শিরোনাম ফন্ট",
+  de: "Überschrift Schriftart",
+  es: "Fuente del título",
+  fa: "فونت سربرگ",
+  fr: "Police de titre",
+  gu: "શીર્ષક ફોન્ટ",
+  he: "גופן כותרת",
+  hi: "शीर्षक फ़ॉन्ट",
+  id: "Font Judul",
+  ja: "見出しフォント",
+  jv: "Judhul Font",
+  kn: "ಶೀರ್ಷಿಕೆ ಫಾಂಟ್",
+  ko: "제목 글꼴",
+  ml: "തലക്കെട്ട് ഫോണ്ട്",
+  mn: "Гарчиг үсгийн",
+  mr: "शीर्षक फॉन्ट",
+  mrj: "Темӹштӹмӓн кель",
+  my: "ခေါင်းစဉ် ဖော်ပြချက်",
+  or: "ଶୀର୍ଷକ ଫଣ୍ଟ",
+  pt: "Fonte do título",
+  ru: "Шрифт заголовка",
+  so: "Farta cinwaanka",
+  su: "Judhul Font",
+  ta: "தலைப்பு எழுத்து",
+  te: "శీర్షిక ఫాంట్",
+  tr: "Başlık Yazı Tipi",
+  uk: "Шрифт заголовка",
+  vi: "Phông tiêu đề",
+  "zh-cn": "标题字体",
+  "zh-tw": "標題字型",
+},
+"Body Font": {
+  en: "Body Font",
+  ar: "خط النص",
+  bn: "বডি ফন্ট",
+  de: "Text Schriftart",
+  es: "Fuente del cuerpo",
+  fa: "فونت متن",
+  fr: "Police de corps",
+  gu: "બોડી ફોન્ટ",
+  he: "גופן גוף",
+  hi: "बॉडी फ़ॉन्ट",
+  id: "Font Badan",
+  ja: "本文フォント",
+  jv: "Font Tubuh",
+  kn: "ಬಾಡಿ ಫಾಂಟ್",
+  ko: "본문 글꼴",
+  ml: "ശരീര ഫോണ്ട്",
+  mn: "Агуулгын үсгийн",
+  mr: "बॉडी फॉन्ट",
+  mrj: "Тӧрлӓмӓн кель",
+  my: "စာရင်း ဖော်ပြချက်",
+  or: "ବଡି ଫଣ୍ଟ",
+  pt: "Fonte do corpo",
+  ru: "Шрифт текста",
+  so: "Farta jidhka",
+  su: "Font Tubuh",
+  ta: "உடல் எழுத்து",
+  te: "బాడీ ఫాంట్",
+  tr: "Gövde Yazı Tipi",
+  uk: "Шрифт тексту",
+  vi: "Phông chữ thân",
+  "zh-cn": "正文字体",
+  "zh-tw": "正文字型",
+},
+
+"Code Font": {
+  en: "Code Font",
+  ar: "خط الكود",
+  bn: "কোড ফন্ট",
+  de: "Code Schriftart",
+  es: "Fuente del código",
+  fa: "فونت کد",
+  fr: "Police de code",
+  gu: "કોડ ફોન્ટ",
+  he: "גופן קוד",
+  hi: "कोड फ़ॉन्ट",
+  id: "Font Kode",
+  ja: "コードフォント",
+  jv: "Font Kode",
+  kn: "ಕೋಡ್ ಫಾಂಟ್",
+  ko: "코드 글꼴",
+  ml: "കോഡ് ഫോണ്ട്",
+  mn: "Кодын үсгийн",
+  mr: "कोड फॉन्ट",
+  mrj: "Кодтӹште кель",
+  my: "ကုဒ် ဖော်ပြချက်",
+  or: "କୋଡ ଫଣ୍ଟ",
+  pt: "Fonte do código",
+  ru: "Шрифт кода",
+  so: "Farta Code-ka",
+  su: "Font Kode",
+  ta: "குறியீடு எழுத்து",
+  te: "కోడ్ ఫాంట్",
+  tr: "Kod Yazı Tipi",
+  uk: "Шрифт коду",
+  vi: "Phông chữ mã",
+  "zh-cn": "代码字体",
+  "zh-tw": "程式碼字型",
+},
+
+
   };
