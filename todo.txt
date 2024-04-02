@@ -4,17 +4,8 @@ Make CTRL-S and CMD-S save the current editor (as well as ESC). Or save all edit
 
 Images
 
-Export to full-page print and 6-up handouts.
 
-Put cursor at top of editor on initial showing. Focus editors on display.
+Put cursor at top of editor on initial showing, restore its position on later showings. Focus editor when displayed. Maybe do a Markdown cheatsheet display?
+
 
 Clicking too fast skips transitions. Need to queue them up somehow. This is still happening somehow. Unrecognized race condition? Continue to investigate.
-
-
-Gets confused if full screen is exited via escape, from right-click menu, or from top menu bar rather than internal menu. Error is VM1281:581 Uncaught (in promise) TypeError: Failed to execute 'exitFullscreen' on 'Document': Document not active
-    at Object.exitFullScreen (<anonymous>:581:18)
-    at HTMLDivElement.processMainMenuClick (<anonymous>:52:31)
-exitFullScreen @ VM1281:581
-processMainMenuClick @ VM1281:52
-
-Probably need to change the toggle if fullscreen is exited/entered via alternate method.

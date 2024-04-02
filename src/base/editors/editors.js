@@ -1,15 +1,42 @@
-GorillaPresenter.slideEditorPosition = 0;
-GorillaPresenter.editor_mode = "light";
+GorillaPresenter.initSlideEditor = function(){
+    let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
+    slideEditor.value = GorillaPresenter.slideData;
+    slideEditor.addEventListener('input', GorillaPresenter.saveEditorCursors);
+    slideEditor.addEventListener('paste', GorillaPresenter.handleEditorPaste);
+   /* slideEditor.addEventListener('keydown', GorillaPresenter.handleEditorKeydown);
+    slideEditor.addEventListener('keyup', GorillaPresenter.handleEditorKeyup);*/
+    slideEditor.focus();
+  }
 
+  GorillaPresenter.showSlideEditor = function(){
+    GorillaPresenter.showUIScreen("gorilla-presenter-slide-editor-container");
+    GorillaPresenter.onHomeScreen = false;
+    let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
+    slideEditor.value = GorillaPresenter.slideData;
+    if(GorillaPresenter.config.slidePosition < 0){
+      GorillaPresenter.config.slideEditorPosition = 0;
+    }
+    else {
+      GorillaPresenter.config.slideEditorPosition = GorillaPresenter.slideOffsets[GorillaPresenter.config.slidePosition];
+    }
+    setTimeout(function(){
+      slideEditor.setSelectionRange(GorillaPresenter.config.slideEditorPosition, GorillaPresenter.config.slideEditorPosition);
+      slideEditor.blur();
+      slideEditor.focus();
+      
+  },100);
+  }
 GorillaPresenter.saveEditorCursors = function(){
     let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
-    GorillaPresenter.slideEditorPosition = slideEditor.selectionStart;
+    GorillaPresenter.config.slideEditorPosition = slideEditor.selectionStart;
   }
 
 GorillaPresenter.updateEditorData = function(){
-    GorillaPresenter.config.slideData = document.getElementById("gorilla-presenter-slide-text-editor").value;
-      GorillaPresenter.renderSlides(GorillaPresenter.slideRoot);
-      GorillaPresenter.saveConfig();
+    let editor = document.getElementById("gorilla-presenter-slide-text-editor");
+    GorillaPresenter.slideData = editor.value;
+    GorillaPresenter.config.slideEditorPosition = editor.selectionStart;
+    GorillaPresenter.renderSlides(GorillaPresenter.slideRoot);
+    GorillaPresenter.saveConfig();
 }
 
   

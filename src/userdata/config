@@ -5,7 +5,8 @@
         "bodyFontStack" : "--humanist-font-stack",
         "codeFontStack" : "--monospace-code-font-stack",
         "slidePosition": -1,
+        "slideEditorPosition":0,
+        "editorMode":"slides",
         "slidesperpage":"6up",
-        "papersize":"usletter",
-        "slideData":"; Any line beginning with a semicolon (;) will not appear on the slide,\r\n; but will appear in the speaker notes.\r\n# Demo Slide 1\r\nDouble-click to edit this. \r\nEsc to leave editor and apply changes.\r\nRegular text with **bold**, *italic*, and ***bold italic***\r\n\r\n* Bullet\r\n* list\r\n\r\n1) Number\r\n2) List\r\n\r\n> Blockquote\r\n\r\n```\r\nCode\r\n```\r\n\r\n# Demo Slide 2\r\n\r\n\\\\(KaTeX\\\\) Equations:\r\n\r\n$$x=\\frac{-b\\pm \\sqrt{{{b}^{2}}-4ac}}{2a}$$\r\n\r\n$$\\int_a^b x^2 dx  = \\frac{x^3}{3}\\LARGE{|}{_{\\small a}^{\\small b}}$$\r\n\r\n# Demo Slide 3\r\nHey mang!\r\n\r\n\r\n# Demo Slide 4\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in hac habitasse platea dictumst vestibulum rhoncus est.\r\n# Demo Slide 5\r\nNunc consequat interdum varius sit amet mattis vulputate enim. Arcu non sodales neque sodales ut etiam sit amet. Lacus vestibulum sed arcu non odio euismod lacinia at quis. Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar. \r\n\r\n# Demo Slide 6\r\nFames ac turpis egestas integer eget aliquet nibh praesent. Tincidunt dui ut ornare lectus sit amet est. Tincidunt eget nullam non nisi est. Est ullamcorper eget nulla facilisi etiam dignissim diam. \r\n\r\n# Demo Slide 7\r\nNon nisi est sit amet facilisis. Cursus metus aliquam eleifend mi in nulla. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Massa placerat duis ultricies lacus. \r\n\r\n# Demo Slide 8\r\nEget velit aliquet sagittis id consectetur purus. Turpis egestas pretium aenean pharetra magna. Sed turpis tincidunt id aliquet risus feugiat. At varius vel pharetra vel. Faucibus purus in massa tempor nec.\r\n\r\n# Credits\r\nMade with love by Tony Hursh"
+        "papersize":"usletter"
 }

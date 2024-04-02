@@ -9,6 +9,18 @@ GorillaPresenter.slideTransitionsForward = [];
 GorillaPresenter.slideTransitionsBack =  [];
 GorillaPresenter.transitionBusy = false; // This is a flag to prevent multiple transitions from happening at once.
 
+GorillaPresenter.loadSlides = function(){
+  if(BrowserFileSystem.fileExists("userdata/slides.md") === false){
+    GorillaPresenter.slideData = "";
+  }
+  else{
+    GorillaPresenter.slideData = BrowserFileSystem.readInternalTextFile("userdata/slides.md");
+  }
+}
+GorillaPresenter.saveSlides = function(){
+  BrowserFileSystem.writeTextFile("userdata/slides.md",GorillaPresenter.slideData);
+}
+
 GorillaPresenter.renderSlides = function(element){
     GorillaPresenter.speakerNotes = "";
     for(let i = 0; i < GorillaPresenter.slideIDs.length; i++) {
@@ -19,8 +31,19 @@ GorillaPresenter.renderSlides = function(element){
       }
     }
     GorillaPresenter.slideIDs = [];
-    let text; 
-    let slidelines = GorillaPresenter.config.slideData.split("\n");
+    GorillaPresenter.slideOffsets = [];
+    
+
+    let text = GorillaPresenter.slideData;
+    text = text + "\r\n# Gorilla Presenter\nMade with love by Tony Hursh. See \"About\" for full credits.\nGorilla Presenter needs your help.\r\n\r\n" + "<a href='https://www.gorillapresenter.com/support'><img src=" + BrowserFileSystem.readInternalFileDataURL("icons/logo-small.png") + " width='25%' height='25%' style='display:block;margin-left:auto;margin-right:auto;'></a>\r\n";
+    let index = text.indexOf("#");
+    while (index !== -1) {
+        if (index === 0 || text[index - 1] === "\n") {
+          GorillaPresenter.slideOffsets.push(index);
+        }
+        index = text.indexOf("#", index + 1);
+    }
+    let slidelines = text.split("\n");
     let decommentedlines = [];
     for(let i=0;i < slidelines.length;i++){
        text = slidelines[i];
@@ -31,7 +54,6 @@ GorillaPresenter.renderSlides = function(element){
       decommentedlines.push(text);
     }
     text = decommentedlines.join("\n");
-    text = text + "# Gorilla Presenter\n\Gorilla Presenter needs your help.\n\n" + "<a href='https://www.gorillapresenter.com/support'><img src=" + BrowserFileSystem.readInternalFileDataURL("icons/logo-small.png") + " width='30%' height='30%' style='display:block;margin-left:auto;margin-right:auto;'></a>\n";
     let slidetexts = text.split(/^# /gm);
     slidetexts.shift();
     for(let j=0; j < slidetexts.length;j++){

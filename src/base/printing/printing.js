@@ -18,7 +18,7 @@ GorillaPresenter.renderPrinterDialog = function(){
     dialogContent += "<input type='radio' name='slidesperpage' id='slides1up' value='1up'/>";
     dialogContent += "<label for='slides1up'>1</label>";
     dialogContent += "<br/>";
-    dialogContent += "<div><span class='translatable'>In the print dialog, please set landscape orientation for one slide per page and portrait orientation for six slides per page</span>.</div>";
+    dialogContent += "<div><span class='translatable'>In the system print dialog, please set landscape orientation for one slide per page and portrait orientation for six slides per page, and ensure the paper size is set to the desired format</span>.</div>";
     dialogContent += "<br/>";
     dialogContent += "<hr />";
     dialogContent += "<button id='print-button' onclick='GorillaPresenter.printSlides()'><span class='translatable'>Print</span></button><button id='print-cancel-button' onclick='document.getElementById(\"gorilla-presenter-printer-dialog\").style.display = \"none\"'><span class='translatable'>Cancel</span></button>";
@@ -92,7 +92,7 @@ GorillaPresenter.renderPrinterDialog = function(){
     const container1up = document.getElementById("gorilla-presenter-1-up-container");
     container1up.innerHTML = "";
     let text; 
-    let slidelines = GorillaPresenter.config.slideData.split("\n");
+    let slidelines = GorillaPresenter.slideData.split("\n");
     let decommentedlines = [];
     for(let i=0;i < slidelines.length;i++){
        text = slidelines[i];
@@ -130,7 +130,7 @@ GorillaPresenter.renderPrinterDialog = function(){
     const container6up = document.getElementById("gorilla-presenter-6-up-container");
     container6up.innerHTML = "";
     let text; 
-    let slidelines = GorillaPresenter.config.slideData.split("\n");
+    let slidelines = GorillaPresenter.slideData.split("\n");
     let decommentedlines = [];
     for(let i=0;i < slidelines.length;i++){
       text = slidelines[i];
@@ -164,7 +164,7 @@ GorillaPresenter.renderPrinterDialog = function(){
       document.getElementById("gorilla-presenter-slideroot").style.display = "none";
       container6up.style.display="block";
       window.print();
-     /* container6up.style.display="none";
-      document.getElementById("gorilla-presenter-slideroot").style.display = "block"; */
+      container6up.style.display="none";
+      document.getElementById("gorilla-presenter-slideroot").style.display = "block"; 
     }
   

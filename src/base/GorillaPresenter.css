@@ -192,7 +192,6 @@ table, th, td {
     background-color: white;
     width: 100%;
   }
-}
   /* 1-up slides */
   #gorilla-presenter-1-up-container{
     width:auto;
@@ -339,7 +338,7 @@ table, th, td {
     height: calc(297mm - 50mm);
     width: 210mm;
   }
- 
+}
 
 #gorilla-presenter-warning-message {
   display:none;

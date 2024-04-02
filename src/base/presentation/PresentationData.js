@@ -4,8 +4,9 @@ GorillaPresenter.config = {
   headingFontStack :"--didone-font-stack",
   bodyFontStack :"--humanist-font-stack",
   codeFontStack : "--monospace-code-font-stack",
-  slideData:"",
   slidePosition: -1,
+  slideEditorPosition: 0,
+  editorMode:"light",
   slidesperpage: "6up",
   papersize: "usletter",
 }
@@ -18,7 +19,7 @@ GorillaPresenter.config = {
       GorillaPresenter.saveConfig();
     }
     GorillaPresenter.config = JSON.parse(BrowserFileSystem.readInternalTextFile("userdata/config"));
-    document.getElementById("gorilla-presenter-slide-text-editor").value = GorillaPresenter.config.slideData;
+    document.getElementById("gorilla-presenter-slide-text-editor").value = GorillaPresenter.slideData;
   }
 
   GorillaPresenter.renderPresentationData = function(){

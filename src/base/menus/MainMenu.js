@@ -12,7 +12,7 @@ GorillaPresenter.renderMainMenu = function(){
 
 GorillaPresenter.renderMainMenuItems = function(mainMenu){
   //let mainMenu = document.getElementById("gorilla-presenter-main-menu");
-  let menuItems = ["Slide Show","Enter/Exit Full Screen","Slide Editor","Media Library","Save Presentation","Print","Documentation","About","Extra Settings"];
+  let menuItems = ["Slide Show","Enter/Exit Full Screen","Slide Editor","Media Library","Save Presentation","Print","About"];
   for(let i = 0;i < menuItems.length; i++){
     let menuItem = document.createElement("div");
     menuItem.setAttribute("baselabel",menuItems[i]);
@@ -189,15 +189,6 @@ GorillaPresenter.processMainMenuClick = function(event){
   GorillaPresenter.hideMainMenu();
 },
 
-GorillaPresenter.showSlideEditor = function(){
-  GorillaPresenter.saveEditorCursors();
-  GorillaPresenter.showUIScreen("gorilla-presenter-slide-editor-container");
-  GorillaPresenter.onHomeScreen = false;
-  let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
-  slideEditor.value = GorillaPresenter.config.slideData;
-  slideEditor.focus();
-  slideEditor.setSelectionRange(GorillaPresenter.slideEditorPosition, GorillaPresenter.slideEditorPosition);
-}
 
 
 GorillaPresenter.showMediaLibrary = function(){
