@@ -1,9 +1,10 @@
+
 body {
+  display:block;
   font-family:sans-serif;
   font-size:20px;
   line-height:1.33em;
   background: #000;
-  display:block;
   padding:0;
   margin:0;
   height: auto !important;
@@ -67,6 +68,10 @@ table, th, td {
   padding:0.25em;
 }
 
+#gorilla-presenter-launcher{
+  display:none;
+}
+
 .gorilla-presenter-slide {
   box-sizing: border-box;
   width: 100%;
@@ -84,6 +89,32 @@ table, th, td {
   margin: 0;
   background-color: #bbb;
   display: none;
+}
+
+#gorilla-presenter-media-library{
+  padding-top:1em;
+  overflow: auto;
+}
+.gorilla-presenter-media-library-item {
+  display: block;
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  padding: 0.5em;
+  border: 1px solid #777;
+  background-color: #ddd;
+}
+
+
+.gorilla-presenter-media-library-item:first-child {
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+}
+
+
+.gorilla-presenter-media-library-item:last-child {
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
 }
 
 #gorilla-presenter-slideroot {
@@ -123,6 +154,12 @@ table, th, td {
   margin-top:0;
 }
 
+.gorilla-presenter-main-menu-item select {
+    min-width: 30%;
+    max-width: 50%;
+    width:auto;
+    margin: auto;
+}
 
 #gorilla-presenter-about-container {
   overflow: auto;
@@ -131,9 +168,9 @@ table, th, td {
   max-height: calc(100vh - 4vw);
   border-radius: 5vw;
   resize: none;
-  padding: 2em;
-  background: #000055;
-  color: #bbbb00;
+  padding: 3em;
+  background: #e3e5eb;
+  color: #092303;
 }
 
 #gorilla-presenter-printer-dialog{
@@ -154,6 +191,11 @@ table, th, td {
   border-radius: 20px;
   line-height: 1.2em;
 }
+#gorilla-presenter-main-menu-wrapper{
+  max-width: 1vw;
+  max-height: 1vh;
+  overflow: auto;
+}
 #gorilla-presenter-main-menu {
   padding-left:0.5em;
   padding-right:0.5em;
@@ -164,7 +206,8 @@ table, th, td {
   width:auto;
   word-break:break-word;
   word-wrap:break-word;
-  max-width:50em;
+  max-width:100vw;
+  max-height:100vh;
   display: none;
   position: absolute;
   height: max-content;
@@ -174,6 +217,7 @@ table, th, td {
   color: white;
   border-radius: 20px;
   line-height: 1.2em;
+  overflow:auto;
 }
 
 .gorilla-presenter-unselectable {
@@ -184,20 +228,52 @@ table, th, td {
 }
 
 
-@media print {
-  body {
-    margin: 0;
-    padding: 0;
-    color:black;
-    background-color: white;
-    width: 100%;
-  }
   /* 1-up slides */
   #gorilla-presenter-1-up-container{
     width:auto;
     height:auto;
     padding:0;
     margin:0;
+  }
+
+  .gorilla-presenter-printslide-1-up-pdf{
+    color:black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px; 
+    padding:1em;
+    padding-top:0;
+    margin:72pt;
+   /*margin:0; */
+    box-sizing: border-box;
+    page-break-after: always;
+    font-family: var(--slide-body-font-stack);
+  }
+
+  .gorilla-presenter-printslide-1-up-pdf:last-child {
+    page-break-after: avoid;
+  }
+  .gorilla-presenter-printslide-1-up-pdf h1 {
+    background-color:darkgrey;
+    color:white;
+    border-bottom:2px solid black;
+    margin:0;
+    margin-left:-0.5em;
+    margin-right:-0.5em;
+    padding-bottom:0.25em;
+    padding-left:0.5em;
+    padding-top:0.5em;
+    box-sizing: border-box;
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+    font-family: var(--slide-heading-font-stack);
+  }
+  .gorilla-presenter-printslide-1-up-pdf code {
+    font-family: var(--slide-code-font-stack);
+  }
+
+  .gorilla-presenter-printslide-1-up-pdf pre {
+    font-family: var(--slide-code-font-stack);
   }
 
   .gorilla-presenter-printslide-1-up {
@@ -242,6 +318,68 @@ table, th, td {
   }
 
   /* 6-up slides */
+
+
+  .gorilla-presenter-printslide-6-up-page-pdf {
+    margin: auto;
+    box-sizing: border-box;
+    page-break-after:always;
+}
+
+  #gorilla-presenter-printslide-6-up-page-pdf :last-child{
+    page-break-after:avoid;
+  }
+
+  .gorilla-presenter-6-up-slide-wrapper-pdf{
+    width: 100%;
+    height: calc(100% - 36pt);
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+}
+
+.gorilla-presenter-printslide-6-up-slide-pdf {
+  color: black;
+  font-size:75%;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+  .gorilla-presenter-printslide-6-up-slide-pdf {
+    padding:1em;
+    font-family: var(--slide-body-font-stack);
+  }
+
+  .gorilla-presenter-printslide-6-up-slide-pdf h1 {
+    background-color:white;
+    color:black;
+    border-bottom:2px solid black;
+    margin:0;
+    margin-left:-0.5em;
+    margin-right:-0.5em;
+    padding-bottom:0.25em;
+    padding-left:0.5em;
+    box-sizing: border-box;
+    font-family: var(--slide-heading-font-stack);
+  }
+  .gorilla-presenter-printslide-6-up-pdf code {
+    font-family: var(--slide-code-font-stack);
+  }
+
+  .gorilla-presenter-printslide-6-up-slide-pdf pre {
+    font-family: var(--slide-code-font-stack);
+  }
+
+
   #gorilla-presenter-6-up-container{
     display:none;
     width:auto;
@@ -319,12 +457,12 @@ table, th, td {
   /* We calculate a 1in/25mm margin on all sides from the base paper size.
   Hopefully this is enough to make the printout fit on printers that can't print all the way to the edge of the paper. The portrait orientation for the 6-up slides need an extra 1in/25mm in the middle horizontally and an extra 2in/50mm vertically. */
 
-  .usletter-landscape{
+  .letter-landscape{
     width: calc(11in - 2in);
     height: calc(8.5in - 2in);
   }
 
-  .usletter-portrait{
+  .letter-portrait{
     width: 8.5in;
     height: 10in;
   }
@@ -338,21 +476,45 @@ table, th, td {
     height: calc(297mm - 50mm);
     width: 210mm;
   }
-}
+
+  .letter-landscape-pdf{
+    width: calc(11in - 2in);
+    height: calc(8.5in - 2in);
+  }
+
+  .letter-portrait-pdf{
+    width: 8.5in;
+    height: 10in;
+  }
+
+  .a4-landscape-pdf{
+    height: calc(210mm - 50mm);
+    width: calc(297mm - 50mm);
+  }
+
+  .a4-portrait-pdf{
+    height: calc(297mm - 50mm);
+    width: 210mm;
+  }
+  
+
+
+
 
 #gorilla-presenter-warning-message {
   display:none;
   position: absolute;
-  height: auto;
   background-color: rgba(0,0,0,0.5);
   z-index: 1000;
   color: white;
   border-radius: 20px;
   padding: 1em;
   margin:0;
-  max-width:25em;
-  font-size: 150%;
-  text-align:justify;
+  word-wrap: break-word;
+  max-width:75vw;
+  max-height:75vh;
+  overflow:auto;
+  font-size: 100%;
   line-height:1.33;
 }
 

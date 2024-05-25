@@ -1,11 +1,12 @@
 
 Make CTRL-S and CMD-S save the current editor (as well as ESC). Or save all editors and download? Maybe that would be better, come to think about it.
 
+I think that CTRL/CMD-S should save the editor and return to the slide show, if the slide editor is active. If on the home screen, should download the self-contained app. Think about this some more, though.
+
 
 Images
 
 
-Put cursor at top of editor on initial showing, restore its position on later showings. Focus editor when displayed. Maybe do a Markdown cheatsheet display?
 
+Clicking too fast skips transitions. Need to queue them up somehow. This is still happening somehow. Unrecognized race condition? Continue to investigate. Seems to be fixed? Torture test this.
 
-Clicking too fast skips transitions. Need to queue them up somehow. This is still happening somehow. Unrecognized race condition? Continue to investigate.

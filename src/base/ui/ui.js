@@ -86,10 +86,13 @@ GorillaPresenter.fadeIn = function(element) {
     let slideHeight = parseInt(slideStyles.height);
     let elementWidth = parseInt(elementStyle.width);
     let maxElementWidth = parseInt(elementStyle.maxWidth);
-    let actualElementWidth = (elementWidth > maxElementWidth) ? maxelementWidth : elementWidth;
+    let actualElementWidth = (elementWidth > maxElementWidth) ? maxElementWidth : elementWidth;
     let elementHeight = parseInt(elementStyle.height);
     let left = (slideWidth - actualElementWidth) / 2;
     let top = (slideHeight - elementHeight) / 2;
+    if(top < 0){
+      top = 0;
+    }
     element.style.left = left + "px";
     element.style.top = top + "px"; 
   }

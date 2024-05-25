@@ -39,6 +39,9 @@ function process_files(err,results){
     process_file(results[i]);
   }
   write_html();
+  write_manifest();
+  write_icons();
+  write_filesystem();
 }
 
 function write_filesystem(){
@@ -55,29 +58,53 @@ function create_directories(){
   }
 }
 
+function write_icons(){
+  let icon_name = __dirname + "/src/icons/apple-touch-icon-152x152.png";
+  let icon_data = fs.readFileSync(icon_name,"binary");
+  let icon_outfile = __dirname + "/dist/apple-touch-icon-152x152.png";
+  fs.writeFileSync(icon_outfile,icon_data,"binary");
+ 
+  icon_name = __dirname + "/src/icons/apple-touch-icon-180x180.png";
+  icon_data = fs.readFileSync(icon_name,"binary");
+  icon_outfile = __dirname + "/dist/apple-touch-icon-180x180.png";
+  fs.writeFileSync(icon_outfile,icon_data,"binary");
+  icon_name = __dirname + "/src/icons/apple-touch-icon-192x192.png";
+  icon_data = fs.readFileSync(icon_name,"binary");
+  icon_outfile = __dirname + "/dist/apple-touch-icon-192x192.png";
+  fs.writeFileSync(icon_outfile,icon_data,"binary");
+  icon_name = __dirname + "/src/icons/apple-touch-icon-512x512.png";
+  icon_data = fs.readFileSync(icon_name,"binary");
+  icon_outfile = __dirname + "/dist/apple-touch-icon-512x512.png";
+  fs.writeFileSync(icon_outfile,icon_data,"binary");
+  icon_name = __dirname + "/src/base/favicon.ico";
+  icon_data = fs.readFileSync(icon_name,"binary");
+  icon_outfile = __dirname + "/dist/favicon.ico";
+  fs.writeFileSync(icon_outfile,icon_data,"binary");
+}
+
+function write_manifest(){
+ /*  let manifest = fs.readFileSync(__dirname + "/src/manifest.json","utf8");
+  fs.writeFileSync(__dirname +  "/dist/manifest.json",manifest,"utf8");
+  let sw = fs.readFileSync(__dirname + "/src/base/sw.js","utf8");
+  sw = sw.replace(/___CACHE_NAME___/g,"V" + version_info + build_info + new Date());
+  fs.writeFileSync(__dirname +  "/dist/sw.js",sw,"utf8"); */
+}
+
+
 function write_html(){
-  let template = fs.readFileSync(__dirname + "/src/base/index_template.html","utf8");
-  template = template.replace(/___VERSION___/g, version_info);
-  template = template.replace(/___BUILD___/g, build_info);
-  template = template.replace(/___BUILD_DATE___/g,new Date()); 
-  let template_out = "";
-  let template_lines = template.split("\n");
-  for(var i = 0; i < template_lines.length; i++){
-    let template_line = template_lines[i];
-    if(template_line.indexOf("$$$") === -1){
-      template_out = template_out + template_line + "\n";
-    }
-    else{
-      switch(template_line.trim()){
-        case "$$$FILESYSTEM$$$":   template_out = template_out + "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs)
-              break;
-        default: template_out = template_out + template_line + "\n"
-              break;
-      }
-    }
-  }
+  let base_template = fs.readFileSync(__dirname + "/src/base/index_template.html","utf8");
+  let iframe_template = fs.readFileSync(__dirname + "/src/base/internal_frame_template.html","utf8");
+  iframe_template = iframe_template.replace(/___VERSION___/g, version_info);
+  iframe_template = iframe_template.replace(/___BUILD___/g, build_info);
+  iframe_template = iframe_template.replace(/___BUILD_DATE___/g,new Date());
+  iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs)); 
+  iframe_data =  btoa(iframe_template);
+  
+  base_template = base_template.replace(/___IFRAMECONTENT___/,'var iframeContent ="' + iframe_data + '";');
+ 
   console.log("Writing html file...");
-  fs.writeFileSync(__dirname +  "/dist/index.html",template_out,"utf8");
+
+  fs.writeFileSync(__dirname +  "/dist/index.html",base_template,"utf8");
 
 }
 function process_file(file_name){

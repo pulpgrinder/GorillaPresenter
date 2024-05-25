@@ -8,7 +8,7 @@ GorillaPresenter.config = {
   slideEditorPosition: 0,
   editorMode:"light",
   slidesperpage: "6up",
-  papersize: "usletter",
+  papersize: "letter",
 }
 
   GorillaPresenter.saveConfig = function(){

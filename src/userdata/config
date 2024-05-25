@@ -8,5 +8,5 @@
         "slideEditorPosition":0,
         "editorMode":"slides",
         "slidesperpage":"6up",
-        "papersize":"usletter"
+        "papersize":"letter"
 }

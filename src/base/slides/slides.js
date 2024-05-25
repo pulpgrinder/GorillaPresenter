@@ -18,9 +18,77 @@ GorillaPresenter.loadSlides = function(){
   }
 }
 GorillaPresenter.saveSlides = function(){
-  BrowserFileSystem.writeTextFile("userdata/slides.md",GorillaPresenter.slideData);
+  BrowserFileSystem.writeInternalTextFile("userdata/slides.md",GorillaPresenter.slideData);
+}
+GorillaPresenter.loadPresentation = function(){
+    document.getElementById("gorilla-presenter-workspace-chooser").click();
 }
 
+GorillaPresenter.workspaceChosen = function(){
+    let uploader = document.getElementById("gorilla-presenter-workspace-chooser");
+    let workspace = uploader.files[0];
+    let reader = new FileReader();
+    reader.onloadend = function(evt){
+      let newfile = evt.target.result;
+      console.log("newfile is " + newfile);
+      
+      parent.clearDocumentAndWrite(newfile);
+    };
+    reader.readAsText(workspace);
+  }
+
+
+GorillaPresenter.downloadSlides = function(){
+  GorillaPresenter.saveSlides();
+  let iframe_template = BrowserFileSystem.readInternalTextFile("base/internal_frame_template.html");
+  let version = BrowserFileSystem.readInternalTextFile("build/version").trim();
+  let build = BrowserFileSystem.readInternalTextFile("build/build").trim();
+  let date = new Date();
+  iframe_template = iframe_template.replace(/___VERSION___/g, version);
+  iframe_template = iframe_template.replace(/___BUILD___/g, build);
+  iframe_template = iframe_template.replace(/___BUILD_DATE___/g, date);
+  iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs));
+  iframe_data =  "var iframeContent = '" + btoa(iframe_template) + "';\n";
+  let index_template = BrowserFileSystem.readInternalTextFile("base/index_template.html");
+  console.log("index_template is " + index_template);
+  index_template = index_template.replace(/___IFRAMECONTENT___/,iframe_data);
+  console.log("Writing html file...");
+  BrowserFileSystem.downloadFile("GorillaPresenter" + GorillaPresenter.downloadDate(),index_template,"text/html");
+}
+
+GorillaPresenter.renderSlideSelector = function(){
+  let oldSelector = document.getElementById("gorilla-presenter-slide-selector");
+  if(oldSelector){
+    oldSelector.remove();
+  }   
+  let menuItem= document.createElement("div");
+  menuItem.className = "gorilla-presenter-main-menu-item";
+  let slideSelectorLabel = document.createElement("span");
+  slideSelectorLabel.className = "translatable";
+  slideSelectorLabel.innerHTML = GorillaPresenter.translate("Select Slide",GorillaPresenter.config.currentLanguage) + ": ";
+  menuItem.appendChild(slideSelectorLabel);
+  let slideSelector = document.createElement("select");
+  slideSelector.setAttribute("title",GorillaPresenter.translate("Select slide",GorillaPresenter.config.currentLanguage));
+  slideSelector.setAttribute("id","gorilla-presenter-slide-selector");
+  menuItem.appendChild(slideSelector);
+  for(let i = 0; i < GorillaPresenter.slideTitles.length; i++){
+    let option = document.createElement("option");
+    option.value = i;
+    if(GorillaPresenter.config.slidePosition === i){
+      option.selected = true;
+    }
+    option.text = GorillaPresenter.slideTitles[i];
+    slideSelector.appendChild(option);
+  }
+  document.getElementById("gorilla-presenter-main-menu").appendChild(menuItem);
+  slideSelector.onchange = function(event){
+    setTimeout(function(){
+        GorillaPresenter.config.slidePosition = parseInt(slideSelector.value);
+        GorillaPresenter.displaySlide("swipeInFromRight");
+        GorillaPresenter.hideMainMenu(event);
+    },100);
+  }
+}
 GorillaPresenter.renderSlides = function(element){
     GorillaPresenter.speakerNotes = "";
     for(let i = 0; i < GorillaPresenter.slideIDs.length; i++) {
@@ -32,7 +100,7 @@ GorillaPresenter.renderSlides = function(element){
     }
     GorillaPresenter.slideIDs = [];
     GorillaPresenter.slideOffsets = [];
-    
+    GorillaPresenter.slideTitles = [];
 
     let text = GorillaPresenter.slideData;
     text = text + "\r\n# Gorilla Presenter\nMade with love by Tony Hursh. See \"About\" for full credits.\nGorilla Presenter needs your help.\r\n\r\n" + "<a href='https://www.gorillapresenter.com/support'><img src=" + BrowserFileSystem.readInternalFileDataURL("icons/logo-small.png") + " width='25%' height='25%' style='display:block;margin-left:auto;margin-right:auto;'></a>\r\n";
@@ -58,6 +126,7 @@ GorillaPresenter.renderSlides = function(element){
     slidetexts.shift();
     for(let j=0; j < slidetexts.length;j++){
       let slidetext = "# " + slidetexts[j];
+      GorillaPresenter.slideTitles.push(slidetexts[j].split("\n")[0]);
       let newSlide = document.createElement("div");
       let id = GorillaPresenter.slideIdFragment + uuid();
       newSlide.setAttribute("class", GorillaPresenter.slideClass);
@@ -65,12 +134,11 @@ GorillaPresenter.renderSlides = function(element){
       newSlide.innerHTML =  `<div class="gorilla-presenter-editable"><div class="gorilla-presenter-slide-container">` + GorillaPresenter.markdown.render(slidetext) + "</div></div>";
       document.getElementById(GorillaPresenter.slideRoot).appendChild(newSlide);
       GorillaPresenter.sicTransit.transferPanel(newSlide);
-      renderMathInElement(newSlide);
+    //  renderMathInElement(newSlide);
       GorillaPresenter.slideIDs.push(id);
     }
-
+    renderMathInElement(document.body);
   }
-
 
 GorillaPresenter.slideForward = function(){
   if(GorillaPresenter.transitionBusy === true){
@@ -97,6 +165,7 @@ GorillaPresenter.slideBack = function(){
 }
 GorillaPresenter.transitionDone = function(){
   GorillaPresenter.transitionBusy = false;
+  document.getElementById(GorillaPresenter.slideIDs[GorillaPresenter.config.slidePosition]).focus();
 }
 GorillaPresenter.displaySlide = function(transition){
   if(GorillaPresenter.slideIDs.length === 0){
@@ -109,7 +178,7 @@ GorillaPresenter.displaySlide = function(transition){
     return;
   }
   if(GorillaPresenter.config.slidePosition >= GorillaPresenter.slideIDs.length){
-    GorillaPresenter.config.slidePosition = GorillaPresenter.slideIDs.length -1 ;
+    GorillaPresenter.config.slidePosition = (GorillaPresenter.slideIDs).length -1 ;
     GorillaPresenter.warn(GorillaPresenter.translate("At last slide.",GorillaPresenter.config.currentLanguage));
     return;
   }

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-us" style="visibility: hidden;">
+<!-- Gorilla Presenter. Copyright 2024 by Anthony W. Hursh. -->
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-store,must-revalidate,max-age=-1">
+    <meta http-equiv="Pragma" content="no-store">
+    <meta http-equiv="Expires" content="0">
+    <title>GorillaPresenter</title>
+  </head>
+
+  <body>
+    <noscript id="noscript">
+      Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
+    </noscript>
+    
+  <div id="gorilla-presenter-slideroot" class= "gorilla-presenter-screen">
+  </div>
+ 
+  <div id="gorilla-presenter-slide-editor-container" class= "gorilla-presenter-screen gorilla-presenter-editor-container">
+      <textarea title="Slide Text Editor" id="gorilla-presenter-slide-text-editor" class = "gorilla-presenter-text-editor"></textarea>
+  </div>
+    
+  <div id="gorilla-presenter-media-library-container" class="gorilla-presenter-screen gorilla-presenter-editor-container">
+    <div id="gorilla-presenter-media-library-uploader">
+      <h1>Media Library</h1>
+      <button id="gorilla-presenter-media-library-upload-button" onclick="GorillaPresenter.uploadMediaFile()">Upload</button>
+      <input type="file" id="gorilla-presenter-media-file-chooser" onchange="BrowserFileSystem" accept="image/*,video/*,audio/*"/>
+    </div>
+    <div id="gorilla-presenter-media-library">
+        
+    </div>
+  </div>
+  <div id="gorilla-presenter-about-container" class="gorilla-presenter-screen gorilla-presenter-editor-container">
+    <div id="gorilla-presenter-about">
+      <h1>Summary</h1>
+      <p><b>Gorilla Presenter depends on you. Please support it!</b></p>
+      <p>Version: ___VERSION___</p>
+      <p>Build: ___BUILD___</p>
+      <p>Compiled: ___BUILD_DATE___</p>
+      <p>Author: Anthony W. Hursh</p>
+      <p>License: MIT</p>
+      <p>Source code: <a href="https://github.com/pulpgrinder/GorillaPresenter" target="_blank" rel="noopener">available on GitHub</a></p>
+    </div>
+  </div>
+
+  <div id="gorilla-presenter-main-menu-wrapper">
+  <div id="gorilla-presenter-main-menu" class="gorilla-presenter-unselectable">
+  </div>
+  </div>
+    <div id="gorilla-presenter-warning-message">
+      This is a warning, y'all.
+    </div>
+  <div id="gorilla-presenter-printer-dialog"></div>
+
+<div id="gorilla-presenter-launcher" d>
+       <input type="file" id="gorilla-presenter-workspace-chooser" onchange="GorillaPresenter.workspaceChosen()" accept="html"/>
+</div>
+<div id="gorilla-presenter-1-up-container">
+</div>
+
+<div id="gorilla-presenter-6-up-container"></div>
+
+  </body>
+  <script type="text/javascript">
+
+   /* window.MathJax = {
+    tex: {        
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        processRefs: true,
+        tags: 'ams',
+        tagSide: 'right',
+        tagIndent: '.8em',
+        useLabelIds: true,
+        multlineWidth: '85%',
+        equationNumbers: {
+            autoNumber: "AMS",
+            formatNumber: function (n) {
+                return n;
+            }
+        },
+
+  }
+  
+}; */
+  </script>
+  <script type="text/javascript" id="Gorilla_presenter_file_system">
+
+    function setGlobalVariable(varname, value) {
+      window[varname] = value;
+    }
+
+    function isClassDefined(className) {
+    return typeof window[className] === 'function' && /^\s*class\s+/.test(window[className].toString());
+    }
+let BrowserFileSystem = {};
+
+    ___FILESYSTEM___
+  </script>
+  <script type="text/javascript" id="Gorilla_presenter_system_boot">
+ let launcher = {
+    initSystem: function(){
+      console.log("initSystem: GorillaPresenter version: " + "___VERSION___" + " build: " + "___BUILD___" + " compiled: " + "___BUILD_DATE___");
+      this.version = "___VERSION___";
+      this.build = "___BUILD___";
+      this.compileDate = "___BUILD_DATE___";
+      this.CumulativeErrors = [];
+      //Launch statistics.
+      this.cssLoaded = [];
+      this.cssErrors = [];
+      this.jsLoaded = [];
+      this.jsErrors = [];
+      self:this;
+      this.loadError = false;
+      this.currentSourceFile = null;
+      window.onerror = function (msg, url, lineNo, columnNo, error){
+        let errmsg = "";
+        if(this.currentSourceFile !== null){
+          errmsg = "Error in source file:" + this.currentSourceFile + " ->  ";
+        }
+        errmsg = errmsg + msg + "\n" + error.stack;
+        console.error(errmsg);
+        return false;
+      }
+    },
+    launchSystem:function(x){
+    this.loadError = false;
+    let jsQueue = [];
+    let cssQueue = [];
+    let filenames = Object.keys(BrowserFileSystem.fs).sort(naturalSort());
+    for(let i = 0; i < filenames.length; i++){
+        let filename = filenames[i];
+      if(filename.match(/\.css$/) !== null){
+          cssQueue.push(filename)
+      }
+      if(filename.match(/\.js$/) !== null){
+        jsQueue.push(filename)
+      }
+    }
+    for(let i = 0; i < cssQueue.length; i++){
+      this.addCSS(cssQueue[i])
+      if(this.loadError === true){
+        return;
+      }
+    }
+    for(let i = 0; i < jsQueue.length; i++){
+      this.addJS(jsQueue[i]);
+      if(this.loadError === true){
+        return;
+      }
+    }
+    setTimeout(function(){
+      if(launcher.CumulativeErrors.length !== 0){
+        let msg = launcher.CumulativeErrors.join("\n");
+        console.error(msg);
+        launcher.CumulativeErrors = [];
+      }
+    },100);
+  },
+  addCSS: function(filename,id){
+        this.currentSourceFile = filename;
+        console.log("adding CSS: " + filename);
+      try {
+        let code = BrowserFileSystem.fs[filename]["data"];
+        let style = document.createElement('style');
+        style.type = 'text/css';
+        if(id !== undefined){
+        style.id = id;
+        }
+        style.appendChild(document.createTextNode(this.decodeText(code)));
+        document.head.appendChild(style);
+      }
+      catch(e){
+        this.handleLoadError(filename,e);
+      }
+      this.currentSourceFile = null;
+    },
+
+  handleLoadError:function(filename,error){
+    console.error("Error in source file: " + filename + " -> " + error.toString())
+  },
+  // Append a script element containing JavaScript code from the internal
+  // file system to the document body.
+  addJS: function(filename){
+    this.currentSourceFile = filename;
+    console.log("adding JS: " + filename);
+    try {
+      let code = BrowserFileSystem.fs[filename]["data"];
+      let script = document.createElement('script');
+      script.type = 'text/javascript';
+      let jsCode = this.decodeText(code);
+      script.appendChild(document.createTextNode(jsCode));
+      document.body.appendChild(script);
+      script.remove()
+      }
+      catch(e){
+      this.handleLoadError(filename,e);
+      }
+      this.currentSourceFile = null;
+  },
+
+  decodeText: function(code){
+    let byteCharacters = window.atob(code);
+    let array = new Uint8Array(byteCharacters.length);
+    for(let i = 0; i < byteCharacters.length; i++ ) { 
+      array[i] = byteCharacters.charCodeAt(i);
+    }
+    return new TextDecoder("utf-8").decode(array);
+  },
+  
+  cleanSystem: function(keepFileSystem){
+    let styles = document.getElementsByTagName('style');
+    let stylearr = Array.prototype.slice.call(styles)
+    for(let i = 0; i < stylearr.length; i++){
+      stylearr[i].remove();
+    }
+    if(keepFileSystem !== true){
+      BrowserFileSystem.fs = null;
+    }
+    cleanScripts();
+  },
+  cleanScripts: function(){
+    let scripts = document.getElementsByTagName('script');
+    let scriptarr = Array.prototype.slice.call(scripts)
+    for(let i = 0; i < scriptarr.length; i++){
+      let script = scriptarr[i];
+      script.remove();
+      }
+  },
+  logLaunchStatistics: function(){
+        console.log("CSS files loaded:\n" + this.cssLoaded.join(", ") + "\n");
+        console.log("CSS files with errors:\n" + this.cssErrors.join(", ") + "\n");
+        console.log("JS files loaded:\n" + this.jsLoaded.join(", ") + "\n");
+        console.log("JS files with errors:\n" + this.jsErrors.join(", ") + "\n");
+    },
+  urlParams: new URLSearchParams(window.location.search)
+
+   }
+   
+
+    /*!
+   * natural-sort.js
+   * ===============
+   * Sorting with support for numbers, dates, unicode and more.
+   *
+   * http://github.com/studio-b12/natural-sort
+   * MIT License, © Studio B12 GmbH 2014
+   *
+   *//*
+   *
+   * Idea by Dave Koelle
+   * Original implementation by Jim Palmer
+   * Modified by Tomek Wiszniewski
+   *
+   */
+
+   let naturalSort = function naturalSort (options) { 'use strict';
+    if (!options) options = {};
+
+    return function(a, b) {
+      const EQUAL = 0;
+      const GREATER = (options.direction == 'desc' ?
+        -1 :
+        1
+      );
+      const SMALLER = -GREATER;
+
+      const re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi;
+      const sre = /(^[ ]*|[ ]*$)/g;
+      const dre = /(^([\w ]+,?[\w ]+)?[\w ]+,?[\w ]+\d+:\d+(:\d+)?[\w ]?|^\d{1,4}[\/\-]\d{1,4}[\/\-]\d{1,4}|^\w+, \w+ \d+, \d{4})/;
+      const hre = /^0x[0-9a-f]+$/i;
+      const ore = /^0/;
+
+      const normalize = function normalize (value) {
+        const string = '' + value;
+        return (options.caseSensitive ?
+          string :
+          string.toLowerCase()
+        );
+      };
+
+      // Normalize values to strings
+      const x = normalize(a).replace(sre, '') || '';
+      const y = normalize(b).replace(sre, '') || '';
+
+      // chunk/tokenize
+      const xN = x.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0');
+      const yN = y.replace(re, '\0$1\0').replace(/\0$/,'').replace(/^\0/,'').split('\0');
+
+      // Return immediately if at least one of the values is empty.
+      if (!x && !y) return EQUAL;
+      if (!x &&  y) return GREATER;
+      if ( x && !y) return SMALLER;
+
+      // numeric, hex or date detection
+      const xD = parseInt(x.match(hre)) || (xN.length != 1 && x.match(dre) && Date.parse(x));
+      const yD = parseInt(y.match(hre)) || xD && y.match(dre) && Date.parse(y) || null;
+      let oFxNcL;
+      let oFyNcL;
+
+      // first try and sort Hex codes or Dates
+      if (yD) {
+        if ( xD < yD ) return SMALLER;
+        else if ( xD > yD ) return GREATER;
+      }
+
+      // natural sorting through split numeric strings and default strings
+      for (let cLoc=0, numS=Math.max(xN.length, yN.length); cLoc < numS; cLoc++) {
+
+        // find floats not starting with '0', string or 0 if not defined (Clint Priest)
+        oFxNcL = !(xN[cLoc] || '').match(ore) && parseFloat(xN[cLoc]) || xN[cLoc] || 0;
+        oFyNcL = !(yN[cLoc] || '').match(ore) && parseFloat(yN[cLoc]) || yN[cLoc] || 0;
+
+        // handle numeric vs string comparison - number < string - (Kyle Adams)
+        if (isNaN(oFxNcL) !== isNaN(oFyNcL)) return (isNaN(oFxNcL)) ? GREATER : SMALLER;
+
+        // rely on string comparison if different types - i.e. '02' < 2 != '02' < '2'
+        else if (typeof oFxNcL !== typeof oFyNcL) {
+          oFxNcL += '';
+          oFyNcL += '';
+        }
+
+        if (oFxNcL < oFyNcL) return SMALLER;
+        if (oFxNcL > oFyNcL) return GREATER;
+      }
+
+      return EQUAL;
+    };
+  };
+
+  (function (root, factory) {
+    if (typeof exports === 'object') {
+      module.exports = factory();
+    } else {
+      root.naturalSort = factory();
+    }
+  }(this, function () {
+
+    return naturalSort;
+
+  }));
+
+ </script>
+ <script type="text/javascript">
+  launcher.initSystem();
+  launcher.launchSystem();
+  GorillaPresenter.startup();
+  console.log("setting type");
+  console.log("Setting visibility");
+  document.getElementsByTagName("html")[0].style.visibility = "visible";
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function(fn) {
+        var timer = 16.66; // 60 fps
+        setTimeout(fn,timer);
+    }
+  }
+  
+
+ /*setTimeout(function(){
+   launcher.cleanScripts()
+ },25); */
+</script>
+</body>
+</html>

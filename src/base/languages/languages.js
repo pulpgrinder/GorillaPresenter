@@ -30,11 +30,8 @@ GorillaPresenter.setLanguage = function(language){
 
 
 GorillaPresenter.selectLanguage = function(event){
-  console.log("in selectLanguage");
   GorillaPresenter.setLanguage(event.target.value);
-  console.log("language set to " + event.target.value);
   GorillaPresenter.renderMainMenu();
-  GorillaPresenter.renderPrinterDialog();
   GorillaPresenter.showMainMenu();
 }
 
@@ -61,34 +58,7 @@ GorillaPresenter.renderLanguages = function(mainMenu){
       document.getElementById("gorilla-presenter-language-selector").onchange = GorillaPresenter.selectLanguage;
       GorillaPresenter.translateUI();
 }
-/* languages and phrase list
-en, it, ar, bn, de, es, fa, fr, gu,hi, ja, ko, pt, ru, tr, zh-cn, zh-tw
-Support for languages other than English is experimental. Please report any issues at
-Heading
-Body
-Code
-No slides. You'll have to make some first.
-At first slide.
-At last slide.
-Theme
-Slide Show
-Enter/Exit Full Screen
-Slide Editor
-Media Library
-Save Presentation
-Theme Editor
-Done
-Documentation
-About
-Language
-Print
-Extra Settings
-Paper Size
-Slides Per Page
-US Letter
-In the print dialog, please set landscape orientation for one slide per page and portrait orientation for six slides per page
-Slide List
-*/
+
    
 GorillaPresenter.translations = {
     "en": {
@@ -104,6 +74,8 @@ GorillaPresenter.translations = {
         "Documentation": "Documentation",
         "Done": "Done",
         "Enter/Exit Full Screen": "Enter/Exit Full Screen",
+        "Export to PDF": "Export to PDF",
+        "Export PDF": "Export PDF",
         "Extra Settings": "Extra Settings",
         "Heading": "Heading",
         "Heading Font": "Heading Font",
@@ -116,6 +88,7 @@ GorillaPresenter.translations = {
         "Please select the number of slides per page." : "Please select the number of slides per page.",
         "Print": "Print",
         "Save Presentation": "Save Presentation",
+        "Select Slide": "Select Slide",
         "Slide Editor": "Slide Editor",
         "Slide List": "Slide List",
         "Slide Show": "Slide Show",
@@ -138,6 +111,8 @@ GorillaPresenter.translations = {
         "Documentation": "التوثيق",
         "Done": "تم",
         "Enter/Exit Full Screen": "دخول/خروج من وضع الشاشة الكاملة",
+        "Export to PDF": "تصدير إلى PDF",
+        "Export PDF": "تصدير PDF",
         "Extra Settings": "إعدادات إضافية",
         "Heading": "العنوان",
         "Heading Font": "خط العنوان",
@@ -150,6 +125,7 @@ GorillaPresenter.translations = {
         "Please select the number of slides per page." : "يرجى تحديد عدد الشرائح لكل صفحة.",
         "Print": "طباعة",
         "Save Presentation": "حفظ العرض",
+        "Select Slide": "تحديد الشريحة",
         "Slide Editor": "محرر الشرائح",
         "Slide List": "قائمة الشرائح",
         "Slide Show": "عرض الشرائح",
@@ -171,6 +147,8 @@ GorillaPresenter.translations = {
         "Documentation": "ডকুমেন্টেশন",
         "Done": "সম্পন্ন",
         "Enter/Exit Full Screen": "পূর্ণ স্ক্রিনে প্রবেশ/প্রস্থান",
+        "Export to PDF": "PDF এ রপ্তানি",
+        "Export PDF": "PDF রপ্তানি",
         "Extra Settings": "অতিরিক্ত সেটিংস",
         "Heading": "শিরোনাম",
         "Heading Font": "হেডিং ফন্ট",
@@ -183,6 +161,7 @@ GorillaPresenter.translations = {
         "Please select the number of slides per page." : "দয়া করে প্রতি পৃষ্ঠায় স্লাইডের সংখ্যা নির্বাচন করুন।",
         "Print": "প্রিন্ট",
         "Save Presentation": "প্রেজেন্টেশন সংরক্ষণ করুন",
+        "Select Slide": "স্লাইড নির্বাচন করুন",
         "Slide Editor": "স্লাইড সম্পাদক",
         "Slide List": "স্লাইড তালিকা",
         "Slide Show": "স্লাইড শো",
@@ -205,6 +184,8 @@ GorillaPresenter.translations = {
         "Documentation": "Dokumentation",
         "Done": "Fertig",
         "Enter/Exit Full Screen": "Vollbild ein/aus",
+        "Export to PDF": "Als PDF exportieren",
+        "Export PDF": "PDF exportieren",
         "Extra Settings": "Zusätzliche Einstellungen",
         "Heading": "Überschrift",
         "Heading Font": "Überschrift-Schriftart",
@@ -217,6 +198,7 @@ GorillaPresenter.translations = {
         "Please select the number of slides per page." : "Bitte wählen Sie die Anzahl der Folien pro Seite.",
         "Print": "Drucken",
         "Save Presentation": "Präsentation speichern",
+        "Select Slide": "Folie auswählen",
         "Slide Editor": "Folien-Editor",
         "Slide List": "Folienliste",
         "Slide Show": "Diashow",
@@ -239,6 +221,8 @@ GorillaPresenter.translations = {
       "Documentation": "Documentación",
       "Done": "Hecho",
       "Enter/Exit Full Screen": "Entrar/Salir de pantalla completa",
+      "Export to PDF": "Exportar a PDF",
+      "Export PDF": "Exportar PDF",
       "Extra Settings": "Configuraciones extras",
       "Heading": "Encabezado",
       "Heading Font": "Fuente del encabezado",
@@ -251,6 +235,7 @@ GorillaPresenter.translations = {
       "Please select the number of slides per page." : "Por favor, selecciona el número de diapositivas por página.",
       "Print": "Imprimir",
       "Save Presentation": "Guardar presentación",
+      "Select Slide": "Seleccionar diapositiva",
       "Slide Editor": "Editor de diapositivas",
       "Slide List": "Lista de diapositivas",
       "Slide Show": "Presentación de diapositivas",
@@ -273,6 +258,8 @@ GorillaPresenter.translations = {
         "Documentation": "مستندات",
         "Done": "انجام شد",
         "Enter/Exit Full Screen": "ورود/خروج از تمام صفحه",
+        "Export to PDF": "صدور به PDF",
+        "Export PDF": "صدور PDF",
         "Extra Settings": "تنظیمات اضافی",
         "Heading": "سرفصل",
         "Heading Font": "فونت سرفصل",
@@ -285,6 +272,7 @@ GorillaPresenter.translations = {
         "Please select the number of slides per page." : "لطفاً تعداد اسلایدها در هر صفحه را انتخاب کنید.",
         "Print": "چاپ",
         "Save Presentation": "ذخیره ارائه",
+        "Select Slide": "انتخاب اسلاید",
         "Slide Editor": "ویرایشگر اسلاید",
         "Slide List": "لیست اسلایدها",
         "Slide Show": "نمایش اسلاید",
@@ -307,6 +295,8 @@ GorillaPresenter.translations = {
         "Documentation": "Documentation",
         "Done": "Terminé",
         "Enter/Exit Full Screen": "Entrer/Sortir du plein écran",
+        "Export to PDF": "Exporter au format PDF",
+        "Export PDF": "Exporter PDF",
         "Extra Settings": "Paramètres supplémentaires",
         "Heading": "En-tête",
         "Heading Font": "Police de l'en-tête",
@@ -319,6 +309,7 @@ GorillaPresenter.translations = {
         "Please select the number of slides per page." : "Veuillez sélectionner le nombre de diapositives par page.",
         "Print": "Imprimer",
         "Save Presentation": "Sauvegarder la présentation",
+        "Select Slide": "Sélectionner une diapositive",
         "Slide Editor": "Éditeur de diapositives",
         "Slide List": "Liste des diapositives",
         "Slide Show": "Diaporama",
@@ -341,6 +332,8 @@ GorillaPresenter.translations = {
   "Documentation": "दस्तावेज़ीकरण",
   "Done": "हो गया",
   "Enter/Exit Full Screen": "पूर्ण स्क्रीन में प्रवेश करें/बाहर निकलें",
+  "Export to PDF": "PDF में निर्यात करें",
+  "Export PDF": "PDF निर्यात",
   "Extra Settings": "अतिरिक्त सेटिंग्स",
   "Heading": "शीर्षक",
   "Heading Font": "शीर्षक फॉन्ट",
@@ -353,6 +346,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "कृपया प्रति पृष्ठ स्लाइड्स की संख्या चुनें।",
   "Print": "प्रिंट",
   "Save Presentation": "प्रस्तुतिकरण सहेजें",
+  "Select Slide": "स्लाइड चुनें",
   "Slide Editor": "स्लाइड संपादक",
   "Slide List": "स्लाइड सूची",
   "Slide Show": "स्लाइड शो",
@@ -375,6 +369,8 @@ GorillaPresenter.translations = {
   "Documentation": "ドキュメンテーション",
   "Done": "完了",
   "Enter/Exit Full Screen": "全画面表示を入力/終了",
+  "Export to PDF": "PDFにエクスポート",
+  "Export PDF": "PDFをエクスポート",
   "Extra Settings": "追加設定",
   "Heading": "見出し",
   "Heading Font": "見出しフォント",
@@ -387,6 +383,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "ページあたりのスライド数を選択してください。",
   "Print": "印刷",
   "Save Presentation": "プレゼンテーションを保存",
+  "Select Slide": "スライドを選択",
   "Slide Editor": "スライドエディタ",
   "Slide List": "スライドリスト",
   "Slide Show": "スライドショー",
@@ -409,6 +406,8 @@ GorillaPresenter.translations = {
   "Documentation": "문서",
   "Done": "완료",
   "Enter/Exit Full Screen": "전체 화면 입력/종료",
+  "Export to PDF": "PDF로 내보내기",
+  "Export PDF": "PDF 내보내기",
   "Extra Settings": "추가 설정",
   "Heading": "제목",
   "Heading Font": "제목 글꼴",
@@ -421,6 +420,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "페이지 당 슬라이드 수를 선택하세요.",
   "Print": "인쇄",
   "Save Presentation": "발표 저장",
+  "Select Slide": "슬라이드 선택",
   "Slide Editor": "슬라이드 편집기",
   "Slide List": "슬라이드 목록",
   "Slide Show": "슬라이드 쇼",
@@ -443,6 +443,8 @@ GorillaPresenter.translations = {
   "Documentation": "Documentação",
   "Done": "Concluído",
   "Enter/Exit Full Screen": "Entrar/Sair da tela cheia",
+  "Export to PDF": "Exportar para PDF",
+  "Export PDF": "Exportar PDF",
   "Extra Settings": "Configurações extras",
   "Heading": "Cabeçalho",
   "Heading Font": "Fonte do cabeçalho",
@@ -456,6 +458,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "Por favor, selecione o número de slides por página.",
   "Print": "Imprimir",
   "Save Presentation": "Salvar apresentação",
+  "Select Slide": "Selecionar slide",
   "Slide Editor": "Editor de slides",
   "Slide List": "Lista de slides",
   "Slide Show": "Apresentação de slides",
@@ -478,6 +481,8 @@ GorillaPresenter.translations = {
   "Documentation": "Документация",
   "Done": "Готово",
   "Enter/Exit Full Screen": "Войти/Выйти из полноэкранного режима",
+  "Export to PDF": "Экспорт в PDF",
+  "Export PDF": "Экспорт PDF",
   "Extra Settings": "Дополнительные настройки",
   "Heading": "Заголовок",
   "Heading Font": "Шрифт заголовков",
@@ -490,6 +495,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "Пожалуйста, выберите количество слайдов на страницу.",
   "Print": "Печать",
   "Save Presentation": "Сохранить презентацию",
+  "Select Slide": "Выбрать слайд",
   "Slide Editor": "Редактор слайдов",
   "Slide List": "Список слайдов",
   "Slide Show": "Слайд-шоу",
@@ -512,6 +518,8 @@ GorillaPresenter.translations = {
   "Documentation": "Dokümantasyon",
   "Done": "Tamamlandı",
   "Enter/Exit Full Screen": "Tam Ekranı Aç/Kapat",
+  "Export to PDF": "PDF'ye Aktar",
+  "Export PDF": "PDF Aktar",
   "Extra Settings": "Ekstra Ayarlar",
   "Heading": "Başlık",
   "Heading Font": "Başlık Yazı Tipi",
@@ -524,6 +532,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "Lütfen sayfa başına slayt sayısını seçin.",
   "Print": "Yazdır",
   "Save Presentation": "Sunumu Kaydet",
+  "Select Slide": "Slayt Seç",
   "Slide Editor": "Slayt Düzenleyici",
   "Slide List": "Slayt Listesi",
   "Slide Show": "Slayt Gösterisi",
@@ -546,6 +555,8 @@ GorillaPresenter.translations = {
   "Documentation": "文档",
   "Done": "完成",
   "Enter/Exit Full Screen": "进入/退出全屏",
+  "Export to PDF": "导出为 PDF",
+  "Export PDF": "导出 PDF",
   "Extra Settings": "额外设置",
   "Heading": "标题",
   "Heading Font": "标题字体",
@@ -558,6 +569,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "请选择每页幻灯片数。",
   "Print": "打印",
   "Save Presentation": "保存演示",
+  "Select Slide": "选择幻灯片",
   "Slide Editor": "幻灯片编辑器",
   "Slide List": "幻灯片列表",
   "Slide Show": "幻灯片放映",
@@ -580,6 +592,8 @@ GorillaPresenter.translations = {
   "Documentation": "文檔",
   "Done": "完成",
   "Enter/Exit Full Screen": "進入/退出全屏",
+  "Export to PDF": "導出為 PDF",
+  "Export PDF": "導出 PDF",
   "Extra Settings": "額外設置",
   "Heading": "標題",
   "Heading Font": "標題字體",
@@ -592,6 +606,7 @@ GorillaPresenter.translations = {
   "Please select the number of slides per page." : "請選擇每頁幻燈片數。",
   "Print": "打印",
   "Save Presentation": "保存演示",
+  "Select Slide": "選擇幻燈片",
   "Slide Editor": "幻燈片編輯器",
   "Slide List": "幻燈片列表",
   "Slide Show": "幻燈片放映",

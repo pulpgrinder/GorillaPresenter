@@ -10,7 +10,7 @@ GorillaPresenter.initSlideEditor = function(){
 
   GorillaPresenter.showSlideEditor = function(){
     GorillaPresenter.showUIScreen("gorilla-presenter-slide-editor-container");
-    GorillaPresenter.onHomeScreen = false;
+    GorillaPresenter.currentScreen = "Slide Editor";
     let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
     slideEditor.value = GorillaPresenter.slideData;
     if(GorillaPresenter.config.slidePosition < 0){

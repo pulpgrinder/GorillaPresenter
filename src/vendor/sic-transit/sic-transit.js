@@ -5,8 +5,6 @@
  * @endpreserve
  */
 
-"use strict";
-
 class SicTransit {
 /* Constructor takes two arguments, the id for the panel container,
  * and the CSS class for the panels. 
@@ -140,6 +138,9 @@ class SicTransit {
         // Would be nice if we could use  navigator.locks.request() instead of this hack, but it causes flickering in Safari. Investigate further
         if(self.animationLock === true){
             console.log("SicTransit: animation lock is set. Ignoring request to perform transition.");
+            setTimeout(function(){
+                self.animationLock = false;
+            },1000);
             return;
         }
         self.animationLock = true;

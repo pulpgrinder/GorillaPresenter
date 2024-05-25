@@ -2,6 +2,9 @@
 ; but will appear in the speaker notes.
 # Demo Slide 1
 
+$$\int_a^b x^2 dx  = \frac{x^3}{3}\LARGE{|}{_{\small a}^{\small b}}$$
+
+
 Double-click to edit this. 
 Esc to leave editor and apply changes.
 Regular text with **bold**, *italic*, and ***bold italic***

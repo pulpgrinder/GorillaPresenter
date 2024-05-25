@@ -77,7 +77,7 @@ BrowserFileSystem.getInternalDir = function(basedir){
   let filelist = Object.keys(BrowserFileSystem.fs).sort();
   for(var i = 0; i < filelist.length; i++){
     let key = filelist[i];
-    if((basedir === "") || (key.match(RegExp("^" + GorillaPresenter.makeGlob(basedir))) !== null)){
+    if((basedir === "") || (key.match(RegExp("^" + BrowserFileSystem.makeGlob(basedir))) !== null)){
         dirfiles.push(key);
     }
   }
@@ -554,3 +554,17 @@ BrowserFileSystem.mimeTypes = {
     mimetype: "text/markdown"
   },
 };
+
+
+
+
+
+BrowserFileSystem.escapeRegExp = function(text) {
+      return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+    }
+
+BrowserFileSystem.makeGlob = function(text) {
+      text =  text.replace(/[-[\]{}()+.,\\^$|#\s]/g, '\\$&')
+      return text.replace(/\*/,".*")
+    }
+// ISBN regex ^(ISBN[-]*(1[03])*[ ]*(: ){0,1})*(([0-9Xx][- ]*){13}|([0-9Xx][- ]*){10})$
