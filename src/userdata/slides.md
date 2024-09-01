@@ -1,29 +1,60 @@
 ; Any line beginning with a semicolon (;) will not appear on the slide,
 ; but will appear in the speaker notes.
-# Demo Slide 1
+# Gorilla Presenter
 
-$$\int_a^b x^2 dx  = \frac{x^3}{3}\LARGE{|}{_{\small a}^{\small b}}$$
+{{{image Bob | Our Founder Says "Hi"}}}
+
+* 100% self-contained 
+* No app
+* No server 
+* No net connection needed
+
+# Gorilla Presenter
+
+* Produces a standard HTML file
+* Compatible with all standard modern browsers
+
+(iOS and iPadOS require adding a home screen shortcut)
+
+# Gorilla Presenter
+
+* Fast text-based editing.
+* Can be edited anywhere, even on a phone or tablet
+
+Get your presentation done and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
 
 
-Double-click to edit this. 
-Esc to leave editor and apply changes.
-Regular text with **bold**, *italic*, and ***bold italic***
+# How do I get it?
 
-* Bullet
-* list
+You're soaking in it, mang! 
+* Control+click (long press on mobile) 
+* Choose "Save Presentation"
+* That's it!
 
-1) Number
-2) List
+# Editing Slides
 
-> Blockquote
+* Control-click/long press
+* Choose "Edit Slides"
+* Use standard Markdown formatting
+* Scroll down to see some examples
+
+This is regular text with **bold**, *italic*, and ***bold italic***
+
+* Bullet Point 1
+* Bullet Point 2
+
+1) Numbered Point 1
+2) Numbered Point 2
+
+> This is a Blockquote
 
 ```
 Code
 ```
 
-# Demo Slide 2
+# Equations
 
-\\(KaTeX\\) Equations:
+Gorilla Presenter supports \\(\LaTeX\\) equations:
 
 $$x=\frac{-b\pm \sqrt{{{b}^{2}}-4ac}}{2a}$$
 

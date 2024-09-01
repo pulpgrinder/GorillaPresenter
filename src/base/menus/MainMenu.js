@@ -15,7 +15,7 @@ GorillaPresenter.renderMainMenu = function () {
 
   GorillaPresenter.renderMainMenuItems = function (mainMenu) {
     //let mainMenu = document.getElementById("gorilla-presenter-main-menu");
-    let menuItems = ["Slide Show", "Enter/Exit Full Screen", "Slide Editor", "Media Library", "Save Presentation", "Load Presentation", "Export to PDF", "About"];
+    let menuItems = ["Slide Show", "Enter/Exit Full Screen", "Show Speaker Notes", "Slide Editor", "Media Library", "Save Presentation", "Load Presentation", "Export to PDF", "About"];
     for (let i = 0; i < menuItems.length; i++) {
       if (GorillaPresenter.currentScreen === menuItems[i]) {
         continue;
@@ -147,7 +147,15 @@ GorillaPresenter.setMenuHandlers = function (element) {
       return;
     }
     if ((GorillaPresenter.currentScreen === "Slide Show") && (event.target.id === "gorilla-presenter-slideroot" || event.target.closest("#gorilla-presenter-slideroot"))) {
+      const viewportWidth = window.innerWidth;
+      const x = event.clientX;
+    if (x < viewportWidth / 2) {
+      GorillaPresenter.slideBack();
+    } else {
+      // Mouseup on the right half
+  
       GorillaPresenter.slideForward();
+    }
       return;
     }
   });
@@ -162,6 +170,7 @@ GorillaPresenter.setMenuHandlers = function (element) {
     }
     switch (label) {
       case "Slide Show": GorillaPresenter.showSlideShowScreen(); break;
+      case "Show Speaker Notes": GorillaPresenter.showSpeakerNotes(); break;
       case "Enter/Exit Full Screen": if (GorillaPresenter.fullScreen === true) {
         GorillaPresenter.exitFullScreen()
       }
@@ -174,7 +183,6 @@ GorillaPresenter.setMenuHandlers = function (element) {
       case "Load Presentation": GorillaPresenter.loadPresentation(); break;
       case "Documentation": GorillaPresenter.showDocumentation(); break;
       case "About": GorillaPresenter.showAbout(); break;
-      case "Export to PDF": GorillaPresenter.showPrint(); break;
     }
     GorillaPresenter.hideMainMenu(event);
   },
@@ -189,7 +197,8 @@ GorillaPresenter.setMenuHandlers = function (element) {
       let mediaInfoFile = mediaInfoFiles[i];
       let mediaElement = document.createElement("div");
       let mediaFileName = BrowserFileSystem.readInternalTextFile(mediaInfoFile);
-      let mediaFileData = BrowserFileSystem.readInternalFileDataURL(mediaFileName);
+      let mediaFileData = BrowserFileSystem.readInternalFileDataURL(  mediaFileName);
+
       mediaElement.className = "gorilla-presenter-media-library-item";
       let mediaNickname = BrowserFileSystem.file_basename_no_extension(mediaInfoFile);
       mediaElement.innerHTML = "<img src='" + mediaFileData + "' height='100px'/>" +  "<span class='gorilla-presenter-media-file-name' original-file-name='" + mediaNickname + "' contenteditable='plaintext-only'>" + mediaNickname + "</span>";
@@ -212,8 +221,7 @@ GorillaPresenter.setMenuHandlers = function (element) {
         }
         let originalFileName = element.getAttribute("original-file-name");
         let originalFileFullPath = "userdata/media/" + originalFileName + ".info";
-        let newFileName = element.innerText.replace(/[^a-zA-Z0-9]/g, '').replace(/S+/g, ' ').trim();
-        console.log("newFileName is " + newFileName);
+        let newFileName = element.innerText.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
         element.innerText = newFileName;
         let newFileFullPath = "userdata/media/" + newFileName + ".info";
         BrowserFileSystem.file_rename(originalFileFullPath,newFileFullPath);

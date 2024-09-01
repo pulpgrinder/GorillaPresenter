@@ -9,15 +9,6 @@ GorillaPresenter.findAttributeInAncestors = function(element, attributeName) {
   return GorillaPresenter.findAttributeInAncestors(element.parentElement, attributeName);
 }
 
-GorillaPresenter.bytes_to_base_64 = function(buffer){
-    let arr = new Uint8Array(buffer)
-    let raw = '';
-    for (let i = 0, l = arr.length; i < l; i++) {
-      raw += String.fromCharCode(arr[i]);
-    }
-    return window.btoa(raw);
-  }
-
 GorillaPresenter.pad = (number) => (number < 10 ? '0' + number : number);
 
 GorillaPresenter.downloadDate = function(){
@@ -32,7 +23,6 @@ GorillaPresenter.downloadDate = function(){
 
 GorillaPresenter.patchSVGs = function(containerID){
   document.querySelectorAll('svg').forEach(svg => {
-    console.log("got one, height is " + svg.getAttribute('height') + " width is " + svg.getAttribute('width'));
     let height = parseInt(svg.getAttribute('height'));
     let width = parseInt(svg.getAttribute('width'));
     height = height * 1.5 + "ex";
@@ -41,5 +31,16 @@ GorillaPresenter.patchSVGs = function(containerID){
 })}
 
 
+function clearDocumentAndWrite(content) {
+  setTimeout(() => {
+      parent.document.open();
+      parent.document.write(content);
+      parent.document.close();
+  }, 100);
+}
 
-
+GorillaPresenter.getScreenSize = function(){
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  return {"width":width,"height":height};
+}

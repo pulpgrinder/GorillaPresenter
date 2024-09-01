@@ -6,7 +6,6 @@ function isInStandaloneMode() {
 
 
 GorillaPresenter.startup = function() {
-  console.log("page: " + window.location.href);
     GorillaPresenter.loadConfig();
     GorillaPresenter.loadThemes();
     GorillaPresenter.loadSlides();
@@ -17,11 +16,8 @@ GorillaPresenter.startup = function() {
     let aboutElement = document.getElementById("gorilla-presenter-about");
     aboutElement.innerHTML = aboutElement.innerHTML + GorillaPresenter.markdown.render( BrowserFileSystem.collectLicenses());
     GorillaPresenter.renderPresentationData();
-    console.log("presentation data rendered");
-    GorillaPresenter.renderMainMenu();
-    console.log("mainmenu data rendered");
+    GorillaPresenter.renderMainMenu()
     GorillaPresenter.showSlideShowScreen();
-    console.log("slideshow screen shown");
     GorillaPresenter.setTheme();
     GorillaPresenter.touchStartTimer = GorillaPresenter.touchEndTimer =  GorillaPresenter.clickTimer = null;
       GorillaPresenter.setMenuHandlers(document.body);

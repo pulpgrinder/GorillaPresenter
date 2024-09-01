@@ -898,6 +898,734 @@ color: #FFFFFF;
 background-color: #000000;
 }
 
+// Begin City Pack
+Certainly! Here is a curated list of 20 themes with distinctive color palettes:
+
+%%% Paris
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #2C3E50;
+    border-bottom: 1px solid #BDC3C7;
+}
+.gorilla-presenter-slide {
+    color: #34495E;
+    background-color: #ECF0F1;
+}
+
+%%% Rome
+
+.gorilla-presenter-editable h1 {
+    color: #FDE3A7;
+    background-color: #D35400;
+    border-bottom: 1px solid #A04000;
+}
+.gorilla-presenter-slide {
+    color: #6E2C00;
+    background-color: #FDF3E7;
+}
+
+%%% New York
+
+.gorilla-presenter-editable h1 {
+    color: #E8E8E8;
+    background-color: #2D2D2D;
+    border-bottom: 1px solid #5A5A5A;
+}
+.gorilla-presenter-slide {
+    color: #4A4A4A;
+    background-color: #EFEFEF;
+}
+
+%%% Tokyo
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FF5733;
+    border-bottom: 1px solid #C70039;
+}
+.gorilla-presenter-slide {
+    color: #2C2C2C;
+    background-color: #F5F5F5;
+}
+
+%%% Rio de Janeiro
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #006600;
+    border-bottom: 1px solid #FFCC00;
+}
+.gorilla-presenter-slide {
+    color: #003300;
+    background-color: #99FF99;
+}
+
+%%% Sydney
+
+.gorilla-presenter-editable h1 {
+    color: #F1F1F1;
+    background-color: #1A5276;
+    border-bottom: 1px solid #5499C7;
+}
+.gorilla-presenter-slide {
+    color: #154360;
+    background-color: #D6EAF8;
+}
+
+%%% Athens
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #0E6251;
+    border-bottom: 1px solid #1ABC9C;
+}
+.gorilla-presenter-slide {
+    color: #0B5345;
+    background-color: #E8F8F5;
+}
+
+%%% Istanbul
+
+.gorilla-presenter-editable h1 {
+    color: #FFF8DC;
+    background-color: #8B0000;
+    border-bottom: 1px solid #A52A2A;
+}
+.gorilla-presenter-slide {
+    color: #4B0082;
+    background-color: #FFE4B5;
+}
+
+%%% Seoul
+
+.gorilla-presenter-editable h1 {
+    color: #E6E6E6;
+    background-color: #333333;
+    border-bottom: 1px solid #808080;
+}
+.gorilla-presenter-slide {
+    color: #2B2B2B;
+    background-color: #FAFAFA;
+}
+
+%%% Nairobi
+
+.gorilla-presenter-editable h1 {
+    color: #FDFEFE;
+    background-color: #229954;
+    border-bottom: 1px solid #1E8449;
+}
+.gorilla-presenter-slide {
+    color: #145A32;
+    background-color: #E8F6F3;
+}
+
+%%% London
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #283747;
+    border-bottom: 1px solid #566573;
+}
+.gorilla-presenter-slide {
+    color: #212F3D;
+    background-color: #F2F3F4;
+}
+
+%%% Mumbai
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #E74C3C;
+    border-bottom: 1px solid #CB4335;
+}
+.gorilla-presenter-slide {
+    color: #943126;
+    background-color: #FDEDEC;
+}
+
+%%% Buenos Aires
+
+.gorilla-presenter-editable h1 {
+    color: #F2F3F4;
+    background-color: #2980B9;
+    border-bottom: 1px solid #3498DB;
+}
+.gorilla-presenter-slide {
+    color: #1F618D;
+    background-color: #D4E6F1;
+}
+
+%%% Cairo
+
+.gorilla-presenter-editable h1 {
+    color: #FDFEFE;
+    background-color: #B03A2E;
+    border-bottom: 1px solid #943126;
+}
+.gorilla-presenter-slide {
+    color: #641E16;
+    background-color: #F9EBEA;
+}
+
+%%% Bangkok
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #FF4500;
+    border-bottom: 1px solid #FF6347;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #FFE4E1;
+}
+
+%%% Barcelona
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FF4500;
+    border-bottom: 1px solid #FF6347;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #FFE4B5;
+}
+
+%%% San Francisco
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FF6347;
+    border-bottom: 1px solid #FF4500;
+}
+.gorilla-presenter-slide {
+    color: #8B0000;
+    background-color: #FFE4E1;
+}
+
+%%% Amsterdam
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #008080;
+    border-bottom: 1px solid #20B2AA;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #E0FFFF;
+}
+
+%%% Los Angeles
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #FF4500;
+    border-bottom: 1px solid #FF6347;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #FFF0F5;
+}
+
+%%% Marrakech
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background-color: #8B4513;
+    border-bottom: 1px solid #DAA520;
+}
+.gorilla-presenter-slide {
+    color: #4B0082;
+    background-color: #FAFAD2;
+}
+
+// End City Pack
+// Geography Pack
+
+%%% Sahara (Desert)
+
+.gorilla-presenter-editable h1 {
+    color: #FDF5E6;
+    background-color: #DAA520;
+    border-bottom: 1px solid #B8860B;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #F4A460;
+}
+
+%%% Siberia (Taiga)
+
+.gorilla-presenter-editable h1 {
+    color: #E8F5E9;
+    background-color: #2E8B57;
+    border-bottom: 1px solid #006400;
+}
+.gorilla-presenter-slide {
+    color: #004d40;
+    background-color: #A5D6A7;
+}
+
+%%% Everglades (Wetlands)
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #008080;
+    border-bottom: 1px solid #20B2AA;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #E0FFFF;
+}
+
+%%% Badlands (Badlands)
+
+.gorilla-presenter-editable h1 {
+    color: #FDFEFE;
+    background-color: #8B0000;
+    border-bottom: 1px solid #A52A2A;
+}
+.gorilla-presenter-slide {
+    color: #4B0082;
+    background-color: #FFE4B5;
+}
+
+%%% Arctic (Tundra)
+
+.gorilla-presenter-editable h1 {
+    color: #F0F8FF;
+    background-color: #4682B4;
+    border-bottom: 1px solid #5F9EA0;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #E0FFFF;
+}
+
+%%% Amazon (Rainforest)
+
+.gorilla-presenter-editable h1 {
+    color: #E8F5E9;
+    background-color: #388E3C;
+    border-bottom: 1px solid #1B5E20;
+}
+.gorilla-presenter-slide {
+    color: #004d40;
+    background-color: #C8E6C9;
+}
+
+%%% Serengeti (Savanna)
+
+.gorilla-presenter-editable h1 {
+    color: #FFF8DC;
+    background-color: #DAA520;
+    border-bottom: 1px solid #B8860B;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #FAF0E6;
+}
+
+%%% Great Barrier Reef (Coral Reef)
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FF4500;
+    border-bottom: 1px solid #FF6347;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #FFF5EE;
+}
+
+%%% Rockies (Mountains)
+
+.gorilla-presenter-editable h1 {
+    color: #E0E0E0;
+    background-color: #2F4F4F;
+    border-bottom: 1px solid #5D6D7E;
+}
+.gorilla-presenter-slide {
+    color: #212F3C;
+    background-color: #D6DBDF;
+}
+
+%%% Greenland (Glacier)
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFFF;
+    background-color: #4682B4;
+    border-bottom: 1px solid #5F9EA0;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #E6E6FA;
+}
+
+%%% Pampas (Grassland)
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFF0;
+    background-color: #32CD32;
+    border-bottom: 1px solid #228B22;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #E0FFE0;
+}
+
+%%% Gobi (Desert)
+
+.gorilla-presenter-editable h1 {
+    color: #FDF5E6;
+    background-color: #DEB887;
+    border-bottom: 1px solid #D2B48C;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #F5DEB3;
+}
+
+%%% Okefenokee (Swamp)
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #006400;
+    border-bottom: 1px solid #228B22;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #F0FFF0;
+}
+
+%%% Grand Canyon (Canyon)
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #A52A2A;
+    border-bottom: 1px solid #8B0000;
+}
+.gorilla-presenter-slide {
+    color: #800000;
+    background-color: #F5DEB3;
+}
+
+%%% Great Plains (Prairie)
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #32CD32;
+    border-bottom: 1px solid #228B22;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #F0FFF0;
+}
+
+%%% Bora Bora (Lagoon)
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFFF;
+    background-color: #20B2AA;
+    border-bottom: 1px solid #008B8B;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #E0FFFF;
+}
+
+%%% Mongolian Steppe (Steppe)
+
+.gorilla-presenter-editable h1 {
+    color: #F5F5F5;
+    background-color: #BDB76B;
+    border-bottom: 1px solid #8B4513;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #EEE8AA;
+}
+
+%%% Congo Basin (Jungle)
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #006400;
+    border-bottom: 1px solid #2E8B57;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #C8E6C9;
+}
+
+%%% Everglades (Marsh)
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFF0;
+    background-color: #2E8B57;
+    border-bottom: 1px solid #006400;
+}
+.gorilla-presenter-slide {
+    color: #2E4D40;
+    background-color: #E8F5E9;
+}
+
+%%% Mauna Loa (Volcanic)
+
+.gorilla-presenter-editable h1 {
+    color: #F5F5F5;
+    background-color: #B22222;
+    border-bottom: 1px solid #8B0000;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #FAEBD7;
+}
+// End Geography Pack
+
+// Begin Artist Pack
+%%% Van Gogh
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background: linear-gradient(to right, #000080, #191970);
+    border-bottom: 1px solid #6495ED;
+}
+.gorilla-presenter-slide {
+    color: #1E90FF;
+    background: #191970;
+}
+
+%%% Picasso
+
+.gorilla-presenter-editable h1 {
+    color: #ADD8E6;
+    background: #000080;
+    border-bottom: 1px solid #5F9EA0;
+}
+.gorilla-presenter-slide {
+    color: #4682B4;
+    background: #B0C4DE;
+}
+
+%%% Monet
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #6B8E23;
+    border-bottom: 1px solid #4682B4;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background: #AFEEEE;
+}
+
+%%% Dali
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #8B4513;
+    border-bottom: 1px solid #A0522D;
+}
+.gorilla-presenter-slide {
+    color: #A9A9A9;
+    background: #2F4F4F;
+}
+
+%%% Warhol
+
+.gorilla-presenter-editable h1 {
+    color: #FF00FF;
+    background: #FFFF00;
+    border-bottom: 1px solid #00FFFF;
+}
+.gorilla-presenter-slide {
+    color: #0000FF;
+    background: #FF0000;
+}
+
+%%% Kahlo
+
+.gorilla-presenter-editable h1 {
+    color: #E9967A;
+    background: #8B0000;
+    border-bottom: 1px solid #FFD700;
+}
+.gorilla-presenter-slide {
+    color: #556B2F;
+    background: #F4A460;
+}
+
+%%% Matisse
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #FF6347;
+    border-bottom: 1px solid #FFD700;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background: #FFDAB9;
+}
+
+%%% Hokusai
+
+.gorilla-presenter-editable h1 {
+    color: #1E90FF;
+    background: #FFFFFF;
+    border-bottom: 1px solid #4682B4;
+}
+.gorilla-presenter-slide {
+    color: #000080;
+    background: #F0F8FF;
+}
+
+%%% Michelangelo
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background: #708090;
+    border-bottom: 1px solid #8B4513;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background: #F5F5DC;
+}
+
+%%% Seurat
+
+.gorilla-presenter-editable h1 {
+    color: #000000;
+    background: #FFD700;
+    border-bottom: 1px solid #32CD32;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background: #FFDEAD;
+}
+
+%%% Klimt
+
+.gorilla-presenter-editable h1 {
+    color: #DAA520;
+    background: #000000;
+    border-bottom: 1px solid #FFD700;
+}
+.gorilla-presenter-slide {
+    color: #8B0000;
+    background: #FFE4B5;
+}
+
+%%% O&#39;Keeffe
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #FF4500;
+    border-bottom: 1px solid #FFD700;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background: #FFD700;
+}
+
+%%% Pollock
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background: #000000;
+    border-bottom: 1px solid #D3D3D3;
+}
+.gorilla-presenter-slide {
+    color: #A9A9A9;
+    background: #696969;
+}
+
+%%% Magritte
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #228B22;
+    border-bottom: 1px solid #B22222;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background: #C0C0C0;
+}
+
+%%% Mondrian
+
+.gorilla-presenter-editable h1 {
+    color: #000000;
+    background: #FFFFFF;
+    border-bottom: 1px solid #FF0000;
+}
+.gorilla-presenter-slide {
+    color: #0000FF;
+    background: #FFFF00;
+}
+
+%%% Cezanne
+
+.gorilla-presenter-editable h1 {
+    color: #8B4513;
+    background: #FFD700;
+    border-bottom: 1px solid #FF4500;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background: #FFE4B5;
+}
+
+%%% Renoir
+
+.gorilla-presenter-editable h1 {
+    color: #FF6347;
+    background: #FFE4B5;
+    border-bottom: 1px solid #2E8B57;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background: #FFF8DC;
+}
+
+%%% Rousseau
+
+.gorilla-presenter-editable h1 {
+    color: #FF4500;
+    background: #2F4F4F;
+    border-bottom: 1px solid #8B4513;
+}
+.gorilla-presenter-slide {
+    color: #8B0000;
+    background: #F5F5DC;
+}
+
+%%% Degas
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #A9A9A9;
+    border-bottom: 1px solid #FF69B4;
+}
+.gorilla-presenter-slide {
+    color: #000000;
+    background: #D3D3D3;
+}
+
+%%% Bosch
+
+.gorilla-presenter-editable h1 {
+    color: #32CD32;
+    background: #8B4513;
+    border-bottom: 1px solid #FF4500;
+}
+.gorilla-presenter-slide {
+    color: #000000;
+    background: #F5F5F5;
+}
+// End Artist Pack
 /* 
 To create a new theme, begin a new line with %%%, a space, and the name of your theme. Begin your CSS rules for the theme on the next line.
 

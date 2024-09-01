@@ -1,4 +1,15 @@
+/* Overwrite the default to keep the scrollbar always visible */
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5vw;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
 body {
   display:block;
   font-family:sans-serif;
@@ -91,9 +102,17 @@ table, th, td {
   display: none;
 }
 
+#gorilla-presenter-media-file-chooser{
+  display:none;
+}
+#gorilla-presenter-media-library-container{
+  overflow: auto;
+}
 #gorilla-presenter-media-library{
   padding-top:1em;
-  overflow: auto;
+}
+#gorilla-presenter-media-library-uploader{
+  padding:1em;
 }
 .gorilla-presenter-media-library-item {
   display: block;
@@ -116,6 +135,22 @@ table, th, td {
   border-bottom-left-radius:10px;
   border-bottom-right-radius:10px;
 }
+
+.gorilla-presenter-image-container {
+  margin-top:0.5em;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+gorilla-presenter-img {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+}
+
 
 #gorilla-presenter-slideroot {
   width: 96vw;
@@ -543,12 +578,14 @@ table, th, td {
   box-sizing: border-box;
   font-style: normal;
   font-size: 1.25em;
-  height: 1.5em;
+  line-height: 1.25em; /* Replacing height with line-height */
   font-family: var(--slide-heading-font-stack);
   margin: 0;
   display: block;
-  padding-left: 0.5em;
-  padding-top: .75em;
+  padding-left: 0.6em;
+
+  /* padding-top: .75em; */
+  border-bottom:2px solid black;
 }
 
 .gorilla-presenter-editable p {
@@ -572,6 +609,7 @@ table, th, td {
   font-family: var(--slide-code-font-stack);
   line-height: 1.5;
   font-size: 0.75em;
+  margin-left:1em;
 }
 
 

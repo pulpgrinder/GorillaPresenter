@@ -3,11 +3,20 @@ const fs = require('fs');
 const path = require('path')
 const mime = require('mime');
 const btoa  = require('btoa');
+const { get } = require('http');
 const jsmin = require('jsmin').jsmin;
 let version_info
 let build_info;
 let BrowserFileSystem = {}
 BrowserFileSystem.fs = {}
+
+let debugging = false;
+if(process.argv.length === 3){
+ if(process.argv[2] === "--debug"){
+    debugging = true;
+    console.log("Debugging requested. Producing debuggable output.");
+ }
+}
 
 let source_folder =  __dirname + "/src/"
 console.log("Source folder is " + source_folder);
@@ -32,7 +41,7 @@ function bump_version(){
 function process_files(err,results){
   console.log("Building internal filesystem...")
   if(err !== null){
-    console.error("Build Monster error: " + err);
+    console.error("BuildBrowserFS error: " + err);
     return;
   }
   for(var i = 0; i < results.length; i++){
@@ -41,7 +50,7 @@ function process_files(err,results){
   write_html();
   write_manifest();
   write_icons();
-  write_filesystem();
+ // write_filesystem();
 }
 
 function write_filesystem(){
@@ -97,16 +106,21 @@ function write_html(){
   iframe_template = iframe_template.replace(/___VERSION___/g, version_info);
   iframe_template = iframe_template.replace(/___BUILD___/g, build_info);
   iframe_template = iframe_template.replace(/___BUILD_DATE___/g,new Date());
-  iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs)); 
+  iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs));
+  iframe_template = iframe_template.replace(/___DEBUGGING___/g,debugging);
   iframe_data =  btoa(iframe_template);
-  
   base_template = base_template.replace(/___IFRAMECONTENT___/,'var iframeContent ="' + iframe_data + '";');
- 
   console.log("Writing html file...");
-
-  fs.writeFileSync(__dirname +  "/dist/index.html",base_template,"utf8");
+  if(debugging){
+    fs.writeFileSync(__dirname +  "/dist/index.html",iframe_template,"utf8");
+  }
+  else {
+    fs.writeFileSync(__dirname +  "/dist/index.html",base_template,"utf8");
+  }
+ 
 
 }
+
 function process_file(file_name){
   // Don't need extraneous MacOS metadata files.
   if(file_name.match(/\.DS_Store$/) !== null){
@@ -121,7 +135,15 @@ function process_file(file_name){
   console.log("Processing: " + outfile_name);
 
   file_data = fs.readFileSync(file_name,"binary");
-  BrowserFileSystem.fs[outfile_name] = {"timestamp": Date.now(),"data":btoa(file_data)};
+  let encodedData = convert_to_data_url(file_name,file_data);
+    BrowserFileSystem.fs[outfile_name] = {"timestamp": Date.now(),"data":encodedData};
+  
+}
+
+function convert_to_data_url(file_name,data){
+  let base64 = btoa(data);
+  let mimetype = mime.getType(file_name);
+  return "data:" + mimetype + ";base64," + base64;
 }
 
 /**

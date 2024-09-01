@@ -3,10 +3,13 @@ GorillaPresenter.uploadMediaFile = function(){
 }
 
 GorillaPresenter.mediaFileUploaded = function(filename,data){
-    console.log("mediaFileUploaded: filename is " + filename);
     let basename = BrowserFileSystem.file_basename_no_extension(filename);
     let filepath = "userdata/media/" + filename;
-    BrowserFileSystem.writeInternalFile(filepath,data);
+    if(BrowserFileSystem.fs[filepath] === undefined){
+        BrowserFileSystem.fs[filepath] = {}
+      }
+    BrowserFileSystem.fs[filepath]["data"] = data;
+    BrowserFileSystem.fs[filepath]["timestamp"] = Date.now();
     let infoname = "userdata/media/" + basename + ".info";
     BrowserFileSystem.writeInternalTextFile(infoname,filepath);
     setTimeout(function(){

@@ -59,7 +59,7 @@ BrowserFileSystem.collectLicenses = function(){
   return license_text;
 
 }
-
+/*
 BrowserFileSystem.base_64_to_bytes = function(string_buffer){
   //let datastart = string_buffer.substring(string_buffer.indexOf(",") + 1);
   //let contentType = string_buffer.substring(11,string_buffer.indexOf(";"))
@@ -71,6 +71,7 @@ BrowserFileSystem.base_64_to_bytes = function(string_buffer){
   }
   return array;
 }
+*/
 
 BrowserFileSystem.getInternalDir = function(basedir){
   let dirfiles = [];
@@ -84,37 +85,7 @@ BrowserFileSystem.getInternalDir = function(basedir){
   return dirfiles;
 }
 
-BrowserFileSystem.internalFileToBlob = function(filename) {
-  let filetype = BrowserFileSystem.file_extension(filename);
-  if(BrowserFileSystem.mimeTypes[filetype] === undefined){
-    filetype = "application/octet-stream";
-  }
-  if(BrowserFileSystem.fs[filename] !== undefined){
-    let bytes = BrowserFileSystem.base_64_to_bytes(BrowserFileSystem.fs[filename]["data"]);
-    var blob = new Blob([bytes], {type: mimetype});
-  return blob;
-  }
-  console.error("BrowserFileSystem.internalFileToBlob: " + filename + " is not in internal filesystem");
-  return false;
-}
 
-BrowserFileSystem.readInternalFileDataURL = function(filename){
-  if(BrowserFileSystem.fs[filename] !== undefined){
-    const filetype = BrowserFileSystem.file_extension(filename);
-    let mimeEntry = BrowserFileSystem.mimeTypes[filetype];
-    if(mimeEntry === undefined){
-        mimetype = "application/octet-stream";
-    }
-    else {
-        mimetype = mimeEntry["mimetype"];
-    } 
-    return 'data:' + mimetype + ';base64,' + BrowserFileSystem.fs[filename]["data"];
-  }
-  else{
-  console.error("BrowserFileSystem.readInternalFileDataURL: " + filename + " is not in internal filesystem");
-  return null;
-  }
-}
 
 BrowserFileSystem.getFileSystemJSON = function(){
   return JSON.stringify(BrowserFileSystem.fs);
@@ -197,23 +168,71 @@ BrowserFileSystem.unTrashInternalFile = function(filename){
     return false;
   }
 }
+BrowserFileSystem.getBase64Data = function(filename){
+  if(BrowserFileSystem.fs[filename] !== undefined){
+    let dataURL = BrowserFileSystem.fs[filename]["data"]
+    let base64offset = dataURL.indexOf(";base64,");
+    let base64data  = dataURL.substring(base64offset + 8);
+    return base64data;
+  }
+  console.error("BrowserFileSystem.getBase64Data: " + filename + " is not in internal filesystem");
+  return null;
+}
+BrowserFileSystem.internalFileToBlob = function(filename) {
+  let filetype = BrowserFileSystem.file_extension(filename);
+  if(BrowserFileSystem.mimeTypes[filetype] === undefined){
+    filetype = "application/octet-stream";
+  }
+  if(BrowserFileSystem.fs[filename] !== undefined){
+    //let bytes = BrowserFileSystem.base_64_to_bytes(BrowserFileSystem.getBase64Data(filename));
+    let bytes = BrowserFileSystem.base64ToBytes(BrowserFileSystem.getBase64Data(filename));
+    let blob = new Blob([bytes], {type: mimetype});
+  return blob;
+  }
+  console.error("BrowserFileSystem.internalFileToBlob: " + filename + " is not in internal filesystem");
+  return false;
+}
+
+BrowserFileSystem.readInternalFileDataURL = function(filename){
+  if(BrowserFileSystem.fs[filename] !== undefined){
+    return BrowserFileSystem.fs[filename]["data"];
+  }
+  console.error("BrowserFileSystem.readInternalFileDataURL: " + filename + " is not in internal filesystem");
+  return null;
+}
+
 BrowserFileSystem.readInternalFile = function(filename){
   if(BrowserFileSystem.fs[filename] !== undefined){
-      return BrowserFileSystem.base_64_to_bytes(BrowserFileSystem.fs[filename]["data"]);
+     // return BrowserFileSystem.base_64_to_bytes(BrowserFileSystem.getBase64Data(filename));
+     return BrowserFileSystem.base64ToBytes(BrowserFileSystem.getBase64Data(filename));
   }
   console.error("BrowserFileSystem.readInternalFile: " + filename + " is not in internal filesystem");
   return null;
 }
 
+BrowserFileSystem.base64ToBytes = function(base64) {
+  const binString = atob(base64);
+  return Uint8Array.from(binString, (m) => m.codePointAt(0));
+}
+
+BrowserFileSystem.bytesToBase64 = function(bytes){
+  const encodedBytes = new TextEncoder("utf-8").encode(bytes);
+  const binString = Array.from(encodedBytes, (byte) =>
+    String.fromCodePoint(byte),
+  ).join("");
+  return btoa(binString);
+}
+
+
 BrowserFileSystem.dataToDataURL = function(data,mimetype){
-  let base64data = GorillaPresenter.bytes_to_base_64(new TextEncoder("utf-8").encode(data))
+  let base64data = BrowserFileSystem.bytesToBase64(data)
   return 'data:' + mimetype + ';base64,' + base64data;
 }
 
 BrowserFileSystem.dataURLToData = function(dataURI){
   let base64Index = dataURI.indexOf(';base64,') + 8;
   let base64 = dataURI.substring(base64Index);
-  let raw = window.atob(base64);
+  let raw = BrowserFileSystem.base64ToBytes(base64);
   let rawLength = raw.length;
   let array = new Uint8Array(new ArrayBuffer(rawLength));
   let i;
@@ -223,13 +242,12 @@ BrowserFileSystem.dataURLToData = function(dataURI){
   return array;
 }
 BrowserFileSystem.writeDataURLToInternalFile = function(filename,data){
-  let base64offset = data.indexOf("base64,");
-  data = data.substring(base64offset + 7);
   BrowserFileSystem.fs[filename] = {}
   BrowserFileSystem.fs[filename]["data"] = data;
   BrowserFileSystem.fs[filename]["timestamp"] = Date.now();
   return true;
 }
+
 BrowserFileSystem.getFileTimeStamp = function(filename){
   if(BrowserFileSystem.fs[filename] === undefined){
     return false;
@@ -237,14 +255,18 @@ BrowserFileSystem.getFileTimeStamp = function(filename){
   return parseInt(BrowserFileSystem.fs[filename]["timestamp"])
 }
 BrowserFileSystem.writeInternalFile = function(filename,data){
-  BrowserFileSystem.writeRawInternalFile(filename,  GorillaPresenter.bytes_to_base_64(data));
+  BrowserFileSystem.writeRawInternalFile(filename,  BrowserFileSystem.bytesToBase64(data));
 }
 BrowserFileSystem.writeRawInternalFile = function(filename,data){
   let filetype = BrowserFileSystem.file_extension(filename);
+  let mimetype = BrowserFileSystem.mimeTypes[filetype];
+  if(mimetype === undefined){
+    mimetype = "application/octet-stream";
+  }
   if(BrowserFileSystem.fs[filename] === undefined){
     BrowserFileSystem.fs[filename] = {}
   }
-  BrowserFileSystem.fs[filename]["data"] = data;
+  BrowserFileSystem.fs[filename]["data"] = 'data:' + mimetype + ';base64,' + data;
   BrowserFileSystem.fs[filename]["timestamp"] = Date.now();
   return true;
 }
@@ -382,7 +404,6 @@ BrowserFileSystem.downloadFile = function(filename,data,mime_type){
 }
 
 BrowserFileSystem.downloadBlob = function(filename,blob){
-
 let element = document.createElement('a')
 element.href = window.URL.createObjectURL(blob);
 element.setAttribute('download', filename);

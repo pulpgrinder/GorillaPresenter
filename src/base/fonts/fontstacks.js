@@ -15,7 +15,6 @@ GorillaPresenterFontStackOptions = {
     "Neo-Grotesque": "--neo-grotesque-font-stack",
     "Old Style": "--old-style-font-stack",
     "Rounded Sans": "--rounded-sans-font-stack",
-    "Slab Serif": "--slab-serif-font-stack",
     "System UI": "--system-ui-font-stack",
     "Transitional": "--transitional-font-stack",
   }

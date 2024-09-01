@@ -25,8 +25,7 @@
   <div id="gorilla-presenter-media-library-container" class="gorilla-presenter-screen gorilla-presenter-editor-container">
     <div id="gorilla-presenter-media-library-uploader">
       <h1>Media Library</h1>
-      <button id="gorilla-presenter-media-library-upload-button" onclick="GorillaPresenter.uploadMediaFile()">Upload</button>
-      <input type="file" id="gorilla-presenter-media-file-chooser" onchange="BrowserFileSystem" accept="image/*,video/*,audio/*"/>
+      <button id="gorilla-presenter-media-library-upload-button" onclick="GorillaPresenter.uploadMediaFile()">Import Media</button>
     </div>
     <div id="gorilla-presenter-media-library">
         
@@ -63,31 +62,7 @@
 <div id="gorilla-presenter-6-up-container"></div>
 
   </body>
-  <script type="text/javascript">
-
-   /* window.MathJax = {
-    tex: {        
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true,
-        processRefs: true,
-        tags: 'ams',
-        tagSide: 'right',
-        tagIndent: '.8em',
-        useLabelIds: true,
-        multlineWidth: '85%',
-        equationNumbers: {
-            autoNumber: "AMS",
-            formatNumber: function (n) {
-                return n;
-            }
-        },
-
-  }
-  
-}; */
-  </script>
+ 
   <script type="text/javascript" id="Gorilla_presenter_file_system">
 
     function setGlobalVariable(varname, value) {
@@ -98,10 +73,16 @@
     return typeof window[className] === 'function' && /^\s*class\s+/.test(window[className].toString());
     }
 let BrowserFileSystem = {};
-
     ___FILESYSTEM___
   </script>
   <script type="text/javascript" id="Gorilla_presenter_system_boot">
+  let debugging = ___DEBUGGING___;
+  if(debugging === true){
+    console.log("Debugging is enabled.");
+  }
+  else{
+    console.log("Debugging is disabled.");
+  }
  let launcher = {
     initSystem: function(){
       console.log("initSystem: GorillaPresenter version: " + "___VERSION___" + " build: " + "___BUILD___" + " compiled: " + "___BUILD_DATE___");
@@ -131,6 +112,14 @@ let BrowserFileSystem = {};
     this.loadError = false;
     let jsQueue = [];
     let cssQueue = [];
+    let BrowserFileSystemObject = BrowserFileSystem.fs["vendor/BrowserFileSystem/BrowserFileSystem.js"];
+    let BrowserFileSystemDataStart = BrowserFileSystemObject["data"].indexOf("base64,") + 7;
+    let BrowserFileSystemData = BrowserFileSystemObject["data"].substring(BrowserFileSystemDataStart);
+    let BrowserFileSystemCode = this.decodeText(BrowserFileSystemData);
+    let script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.appendChild(document.createTextNode(BrowserFileSystemCode));
+    document.body.appendChild(script);
     let filenames = Object.keys(BrowserFileSystem.fs).sort(naturalSort());
     for(let i = 0; i < filenames.length; i++){
         let filename = filenames[i];
@@ -138,7 +127,9 @@ let BrowserFileSystem = {};
           cssQueue.push(filename)
       }
       if(filename.match(/\.js$/) !== null){
-        jsQueue.push(filename)
+        if(filename !== "vendor/BrowserFileSystem/BrowserFileSystem.js"){ // Don't load the file system again.
+        jsQueue.push(filename);
+        }
       }
     }
     for(let i = 0; i < cssQueue.length; i++){
@@ -162,10 +153,8 @@ let BrowserFileSystem = {};
     },100);
   },
   addCSS: function(filename,id){
-        this.currentSourceFile = filename;
-        console.log("adding CSS: " + filename);
       try {
-        let code = BrowserFileSystem.fs[filename]["data"];
+        let code = BrowserFileSystem.getBase64Data(filename);
         let style = document.createElement('style');
         style.type = 'text/css';
         if(id !== undefined){
@@ -185,17 +174,18 @@ let BrowserFileSystem = {};
   },
   // Append a script element containing JavaScript code from the internal
   // file system to the document body.
-  addJS: function(filename){
+  addJS: function(filename,id){
     this.currentSourceFile = filename;
-    console.log("adding JS: " + filename);
+    console.log("Adding JS file: " + filename);
     try {
-      let code = BrowserFileSystem.fs[filename]["data"];
-      let script = document.createElement('script');
-      script.type = 'text/javascript';
-      let jsCode = this.decodeText(code);
-      script.appendChild(document.createTextNode(jsCode));
-      document.body.appendChild(script);
-      script.remove()
+      let code = BrowserFileSystem.getBase64Data(filename);
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        if(id !== undefined){
+        script.id = id;
+        }
+        script.appendChild(document.createTextNode(this.decodeText(code)));
+        document.head.appendChild(script);
       }
       catch(e){
       this.handleLoadError(filename,e);
@@ -232,9 +222,7 @@ let BrowserFileSystem = {};
       }
   },
   logLaunchStatistics: function(){
-        console.log("CSS files loaded:\n" + this.cssLoaded.join(", ") + "\n");
         console.log("CSS files with errors:\n" + this.cssErrors.join(", ") + "\n");
-        console.log("JS files loaded:\n" + this.jsLoaded.join(", ") + "\n");
         console.log("JS files with errors:\n" + this.jsErrors.join(", ") + "\n");
     },
   urlParams: new URLSearchParams(window.location.search)
@@ -349,8 +337,6 @@ let BrowserFileSystem = {};
   launcher.initSystem();
   launcher.launchSystem();
   GorillaPresenter.startup();
-  console.log("setting type");
-  console.log("Setting visibility");
   document.getElementsByTagName("html")[0].style.visibility = "visible";
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = function(fn) {

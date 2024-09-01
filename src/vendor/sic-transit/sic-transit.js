@@ -137,7 +137,7 @@ class SicTransit {
         let self = args.self;
         // Would be nice if we could use  navigator.locks.request() instead of this hack, but it causes flickering in Safari. Investigate further
         if(self.animationLock === true){
-            console.log("SicTransit: animation lock is set. Ignoring request to perform transition.");
+            console.error("SicTransit: animation lock is set. Ignoring request to perform transition.");
             setTimeout(function(){
                 self.animationLock = false;
             },1000);
@@ -146,7 +146,7 @@ class SicTransit {
         self.animationLock = true;
         const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)') === true || window.matchMedia('(prefers-reduced-motion: reduce)').matches === true;
         if(isReduced === true){
-            console.log("SicTransit: prefers-reduced-motion is set to reduce. Using cutIn/cutOut transitions.");
+            console.log("SicTransit: prefers-reduced-motion is set to reduce. Using cutIn/cutOut transitions rather than animated transitions.");
             args.transitionName = args.self.dispatchTable[args.transitionName]["prefersReducedMotion"];
         }
         self.removeOverlayPanels(self);
