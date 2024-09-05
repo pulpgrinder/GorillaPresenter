@@ -34,6 +34,8 @@ function bump_version(){
   build_info = parseInt(fs.readFileSync(__dirname + "/src/build/build","utf8"));
   build_info = build_info + 1;
   fs.writeFileSync(__dirname + "/src/build/build","" + build_info,"utf8");
+  date = new Date();
+  fs.writeFileSync(__dirname + "/src/build/build_date","" + date,"utf8");
 }
 
 
@@ -143,6 +145,10 @@ function process_file(file_name){
 function convert_to_data_url(file_name,data){
   let base64 = btoa(data);
   let mimetype = mime.getType(file_name);
+  if(mimetype === null){
+    console.error("No mimetype for " + file_name);
+    mimetype = "text/plain";
+  }
   return "data:" + mimetype + ";base64," + base64;
 }
 

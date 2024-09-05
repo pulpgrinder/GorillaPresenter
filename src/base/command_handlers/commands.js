@@ -2,13 +2,13 @@ GorillaPresenter.processCommands = function(text){
     text = text.replace(/{{{(.*?)}}}/gi,function(match){
       match = match.substring(3,match.length - 3);
       commandparts = match.split(" ");
-      console.log("command parts are " + commandparts);
       if(commandparts.length === 0){
         return "Found {{{ }}} without a command";
       }
-      let command = commandparts[0];
+      let command = commandparts[0].trim();
       commandparts.shift();
       console.log("Command: " + command);
+      console.log("command parts are " + commandparts);
       switch(command){
         case "image":
           return GorillaPresenter.processImage(commandparts);
@@ -30,7 +30,7 @@ GorillaPresenter.processCommands = function(text){
             return GorillaPresenter.processFontSize(commandparts);
         case "font":
             return GorillaPresenter.processFont(commandparts);    
-        default: return ("unrecognized command: {{{" + command + "}}}");
+        default: return ("<span class='gorilla-presenter-error-message'>Unrecognized command: " + command + "</span>");
       }
      
     })

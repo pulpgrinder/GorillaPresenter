@@ -1,10 +1,12 @@
-; Any line beginning with a semicolon (;) will not appear on the slide,
-; but will appear in the speaker notes.
+; Any line beginning with a semicolon (;), like this one, will not appear on the slide, but will appear in the speaker notes.
+Any line beginning with two slashes (//), like the next one one, will appear neither on the slide nor in the speaker notes.
+// This will only appear in the slide editor. It won't be on the slides or in the speaker notes.
+; A line that begins with an octothorpe (#), like the next one, begins a new slide.
 # Gorilla Presenter
-
+// The line below will be explained later. For now, don't worry about how it works.
 {{{image Bob | Our Founder Says "Hi"}}}
 
-* 100% self-contained 
+* 100% self-contained
 * No app
 * No server 
 * No net connection needed
@@ -17,11 +19,10 @@
 (iOS and iPadOS require adding a home screen shortcut)
 
 # Gorilla Presenter
-
+; Notes for slide 2.
 * Fast text-based editing.
 * Can be edited anywhere, even on a phone or tablet
-
-Get your presentation done and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
+* Get your presentation done and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
 
 
 # How do I get it?
@@ -29,16 +30,22 @@ Get your presentation done and be off enjoying a tasty beverage while your rival
 You're soaking in it, mang! 
 * Control+click (long press on mobile) 
 * Choose "Save Presentation"
-* That's it!
+* That's it! You can open this file on your local computer and have a full working copy of Gorilla Presenter.
 
 # Editing Slides
 
 * Control-click/long press
 * Choose "Edit Slides"
 * Use standard Markdown formatting
-* Scroll down to see some examples
+* Switch back to the Slide Show to see your changes.
 
-This is regular text with **bold**, *italic*, and ***bold italic***
+# Bold and Italic
+* Italic text segments are surrounded by \* (for instance, *This is italic*)
+* Bold text segments are surrounded by \*\* (for instance, **This is Bold**)
+* Bold text segments are surrounded by \*\*\* (for instance, ***This is Bold Italic***)
+# Lists
+
+Bulleted list items begin with \*. Numbered list  items begin with a number followed by a parenthesis.
 
 * Bullet Point 1
 * Bullet Point 2
@@ -46,8 +53,11 @@ This is regular text with **bold**, *italic*, and ***bold italic***
 1) Numbered Point 1
 2) Numbered Point 2
 
-> This is a Blockquote
+# Block Quotes
 
+> This is a block quote
+
+# Code
 ```
 Code
 ```
@@ -65,7 +75,11 @@ $$\int_a^b x^2 dx  = \frac{x^3}{3}\LARGE{|}{_{\small a}^{\small b}}$$
 Hey mang!
 
 
-# Demo Slide 4
+# Media
+
+{{{image Bob | Our Founder Says "Hi"}}}
+{{{audio BWV764 | Excerpt from Wie schön leuchtet der Morgenstern, BWV 764, Johann Sebastian Bach (variation of completion, performed by Thomas A. Schneider)}}}
+
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus in hac habitasse platea dictumst vestibulum rhoncus est.
 
@@ -81,10 +95,32 @@ Fames ac turpis egestas integer eget aliquet nibh praesent. Tincidunt dui ut orn
 
 Non nisi est sit amet facilisis. Cursus metus aliquam eleifend mi in nulla. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Massa placerat duis ultricies lacus. 
 
-# Demo Slide 8
+# The fontsize Command
 
-Eget velit aliquet sagittis id consectetur purus. Turpis egestas pretium aenean pharetra magna. Sed turpis tincidunt id aliquet risus feugiat. At varius vel pharetra vel. Faucibus purus in massa tempor nec.
+The \{\{\{fontsize (size) (text)\}\}\} command lets you alter the size of a run of text. For example, \{\{\{fontsize Large Hi, there!\}\}\} produces {{{fontsize Large Hi, there!}}}.
 
-# Credits
+Available sizes are:
 
-Made with love by Tony Hursh
+{{{fontsize tiny tiny}}}
+
+{{{fontsize scriptsize scriptsize}}}
+
+{{{fontsize footnotesize footnotesize}}}
+
+{{{fontsize small small}}}
+
+{{{fontsize normalsize normalsize}}}
+
+{{{fontsize large large}}}
+
+{{{fontsize Large Large}}}
+
+{{{fontsize LARGE LARGE}}}
+
+{{{fontsize huge huge}}}
+
+{{{fontsize Huge Huge}}}
+
+{{{fontsize HUGE HUGE}}}
+
+These are designed to match the corresponding font sizes in \\(\LaTeX\\). For example, \{\{\{fontsize Large Hi, there!\}\}\}  should produce approximately the same size text as \Large in \\(\LaTeX\\).

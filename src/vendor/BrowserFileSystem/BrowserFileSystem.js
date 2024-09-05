@@ -180,8 +180,12 @@ BrowserFileSystem.getBase64Data = function(filename){
 }
 BrowserFileSystem.internalFileToBlob = function(filename) {
   let filetype = BrowserFileSystem.file_extension(filename);
+  let mimetype;
   if(BrowserFileSystem.mimeTypes[filetype] === undefined){
-    filetype = "application/octet-stream";
+    mimetype = "text/plain";
+  }
+  else{
+    mimetype = BrowserFileSystem.mimeTypes[filetype].mimetype;
   }
   if(BrowserFileSystem.fs[filename] !== undefined){
     //let bytes = BrowserFileSystem.base_64_to_bytes(BrowserFileSystem.getBase64Data(filename));
@@ -216,11 +220,8 @@ BrowserFileSystem.base64ToBytes = function(base64) {
 }
 
 BrowserFileSystem.bytesToBase64 = function(bytes){
-  const encodedBytes = new TextEncoder("utf-8").encode(bytes);
-  const binString = Array.from(encodedBytes, (byte) =>
-    String.fromCodePoint(byte),
-  ).join("");
-  return btoa(binString);
+  
+  return btoa(bytes);
 }
 
 
@@ -259,10 +260,13 @@ BrowserFileSystem.writeInternalFile = function(filename,data){
 }
 BrowserFileSystem.writeRawInternalFile = function(filename,data){
   let filetype = BrowserFileSystem.file_extension(filename);
-  let mimetype = BrowserFileSystem.mimeTypes[filetype];
-  if(mimetype === undefined){
-    mimetype = "application/octet-stream";
+  if(BrowserFileSystem.mimeTypes[filetype] === undefined){
+    mimetype = "text/plain";
   }
+  else{
+    mimetype = BrowserFileSystem.mimeTypes[filetype].mimetype;
+  }
+  console.log("Writing raw internal file: " + filename + " with mimetype: " + mimetype);
   if(BrowserFileSystem.fs[filename] === undefined){
     BrowserFileSystem.fs[filename] = {}
   }
@@ -275,8 +279,10 @@ BrowserFileSystem.readInternalTextFile = function(filename){
     return new TextDecoder("utf-8").decode(BrowserFileSystem.readInternalFile(filename));
 }
 BrowserFileSystem.writeInternalTextFile = function(filename,data){
+/*  alert("writing internal text file: " + filename);
     let bindata = new TextEncoder("utf-8").encode(data)
-    BrowserFileSystem.writeInternalFile(filename,bindata);
+    console.log("encoded text: " + bindata); */
+    BrowserFileSystem.writeInternalFile(filename,data);
     return true;
 }
 

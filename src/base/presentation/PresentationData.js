@@ -12,14 +12,17 @@ GorillaPresenter.config = {
 }
 
   GorillaPresenter.saveConfig = function(){
-    BrowserFileSystem.writeInternalTextFile("userdata/config",JSON.stringify(GorillaPresenter.config));
+    console.log("Saving config: " + JSON.stringify(GorillaPresenter.config));
+    BrowserFileSystem.writeInternalTextFile("userdata/config.json",JSON.stringify(GorillaPresenter.config));
   }
   GorillaPresenter.loadConfig = function(){
-    if(BrowserFileSystem.fileExists("userdata/config") === false){
+    if(BrowserFileSystem.fileExists("userdata/config.json") === false){
+      console.log("No config file found. Using defaults.");
       GorillaPresenter.saveConfig();
     }
-    GorillaPresenter.config = JSON.parse(BrowserFileSystem.readInternalTextFile("userdata/config"));
-    document.getElementById("gorilla-presenter-slide-text-editor").value = GorillaPresenter.slideData;
+    GorillaPresenter.config = JSON.parse(BrowserFileSystem.readInternalTextFile("userdata/config.json"));
+    console.log("Config loaded. value: " + JSON.stringify(GorillaPresenter.config));
+   
   }
 
   GorillaPresenter.renderPresentationData = function(){

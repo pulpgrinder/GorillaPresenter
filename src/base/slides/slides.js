@@ -10,6 +10,7 @@ GorillaPresenter.slideTransitionsBack =  [];
 GorillaPresenter.speakerNotesWindow = null;
 GorillaPresenter.transitionBusy = false; // This is a flag to prevent multiple transitions from happening at once.
 
+
 GorillaPresenter.loadSlides = function(){
   if(BrowserFileSystem.fileExists("userdata/slides.md") === false){
     GorillaPresenter.slideData = "";
@@ -17,10 +18,13 @@ GorillaPresenter.loadSlides = function(){
   else{
     GorillaPresenter.slideData = BrowserFileSystem.readInternalTextFile("userdata/slides.md");
   }
+  document.getElementById("gorilla-presenter-slide-text-editor").value = GorillaPresenter.slideData;
 }
+
 GorillaPresenter.saveSlides = function(){
   BrowserFileSystem.writeInternalTextFile("userdata/slides.md",GorillaPresenter.slideData);
 }
+
 GorillaPresenter.loadPresentation = function(){
     document.getElementById("gorilla-presenter-workspace-chooser").click();
 }
@@ -36,24 +40,33 @@ GorillaPresenter.workspaceChosen = function(){
     reader.readAsText(workspace);
   }
 
-
-GorillaPresenter.downloadSlides = function(){
-  GorillaPresenter.saveSlides();
-  let iframe_template = BrowserFileSystem.readInternalTextFile("base/internal_frame_template.html");
-  let version = BrowserFileSystem.readInternalTextFile("build/version").trim();
-  let build = BrowserFileSystem.readInternalTextFile("build/build").trim();
-  let date = new Date();
-  iframe_template = iframe_template.replace(/___VERSION___/g, version);
-  iframe_template = iframe_template.replace(/___BUILD___/g, build);
-  iframe_template = iframe_template.replace(/___BUILD_DATE___/g, date);
-  iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs));
-
-  iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs));
-  iframe_data =  "var iframeContent = \"" + BrowserFileSystem.bytesToBase64(iframe_template) + "\";\n";
-  let index_template = BrowserFileSystem.readInternalTextFile("base/index_template.html");
-  index_template = index_template.replace(/___IFRAMECONTENT___/,iframe_data);
-  BrowserFileSystem.downloadFile("GorillaPresenter" + GorillaPresenter.downloadDate(),index_template,"text/html");
-}
+  GorillaPresenter.downloadSlides = function(){
+    GorillaPresenter.saveSlides();
+    let iframe_template = BrowserFileSystem.readInternalTextFile("base/internal_frame_template.html");
+    let version = BrowserFileSystem.readInternalTextFile("build/version").trim();
+    let build = BrowserFileSystem.readInternalTextFile("build/build").trim();
+    let date = BrowserFileSystem.readInternalTextFile("build/build_date").trim();
+    iframe_template = iframe_template.replace(/___VERSION___/g, version);
+    iframe_template = iframe_template.replace(/___BUILD___/g, build);
+    iframe_template = iframe_template.replace(/___BUILD_DATE___/g, date);
+    iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs));
+  
+    iframe_template = iframe_template.replace(/___FILESYSTEM___/g, "BrowserFileSystem.fs=" + JSON.stringify(BrowserFileSystem.fs));
+    iframe_template = iframe_template.replace(/___DEBUGGING___/g,debugging);
+    iframe_data =  "var iframeContent = \"" + BrowserFileSystem.bytesToBase64(iframe_template) + "\";\n";
+    let index_template = BrowserFileSystem.readInternalTextFile("base/index_template.html");
+    index_template = index_template.replace(/___IFRAMECONTENT___/,iframe_data);
+    if(debugging){
+      console.log("Downloading debuggable file");
+      BrowserFileSystem.downloadFile("GorillaPresenter" + GorillaPresenter.downloadDate(),iframe_template,"text/html");
+    }
+    else{
+      console.log("Downloading base file");
+    BrowserFileSystem.downloadFile("GorillaPresenter" + GorillaPresenter.downloadDate(),index_template,"text/html");
+    }
+  }
+  
+  
 
 GorillaPresenter.renderSlideSelector = function(){
   let oldSelector = document.getElementById("gorilla-presenter-slide-selector");
@@ -102,32 +115,36 @@ GorillaPresenter.renderSlides = function(element){
     GorillaPresenter.slideIDs = [];
     GorillaPresenter.slideOffsets = [];
     GorillaPresenter.slideTitles = [];
-
+    let decommentedlines = ""
     let text = GorillaPresenter.slideData;
     text = text + "\r\n# Gorilla Presenter\nMade with love by Tony Hursh. See \"About\" for full credits.\nGorilla Presenter needs your help.\r\n\r\n" + "<a href='https://www.gorillapresenter.com/support'><img src=" + BrowserFileSystem.readInternalFileDataURL("icons/logo-small.png") + " width='25%' height='25%' style='display:block;margin-left:auto;margin-right:auto;'></a>\r\n";
-    let index = text.indexOf("#");
-    while (index !== -1) {
-        if (index === 0 || text[index - 1] === "\n") {
-          GorillaPresenter.slideOffsets.push(index);
+    let lines = text.split("\n");
+    let slideOffset = 0;
+    for(let i = 0; i < lines.length; i++){
+        let line = lines[i];
+        slideOffset = slideOffset + line.length + 1;
+        if(line.indexOf(";") === 0){
+          GorillaPresenter.speakerNotes += line.substring(1) + "\n";
+          continue;
         }
-        index = text.indexOf("#", index + 1);
-    }
-    let slidelines = text.split("\n");
-    let decommentedlines = [];
-    for(let i=0;i < slidelines.length;i++){
-       text = slidelines[i];
-      if(text.indexOf(";") === 0){
-        GorillaPresenter.speakerNotes += text.substring(1) + "\n";
-        continue;
+        else if(line.indexOf("//") === 0){
+          continue;
+        }
+        else {
+          decommentedlines = decommentedlines + line + "\n";
+          if(line.indexOf("#") === 0){
+          slideTitle = line.substring(2);
+          GorillaPresenter.slideOffsets.push(slideOffset);
+          GorillaPresenter.slideTitles.push(slideTitle);
+          GorillaPresenter.speakerNotes += slideTitle + "\n";
+          }
+        }
       }
-      decommentedlines.push(text);
-    }
-    text = decommentedlines.join("\n");
-    let slidetexts = text.split(/^# /gm);
+
+    let slidetexts = decommentedlines.split(/^# /gm);
     slidetexts.shift();
     for(let j=0; j < slidetexts.length;j++){
       let slidetext = "# " + slidetexts[j];
-      GorillaPresenter.slideTitles.push(slidetexts[j].split("\n")[0]);
       let newSlide = document.createElement("div");
       let id = GorillaPresenter.slideIdFragment + uuid();
       newSlide.setAttribute("class", GorillaPresenter.slideClass);
@@ -210,6 +227,7 @@ GorillaPresenter.showSpeakerNotes = function(){
 else{
     GorillaPresenter.speakerNotesWindow.focus();
 }
-  GorillaPresenter.speakerNotesWindow.document.write("<html><head><title>" + GorillaPresenter.translate("Speaker Notes",GorillaPresenter.config.currentLanguage) + "</title></head><body><pre>" + GorillaPresenter.speakerNotes + "</pre></body></html>");
+let notes = GorillaPresenter.speakerNotes.replace(/\n/g,"<br/><br/>\n");
+  GorillaPresenter.speakerNotesWindow.document.write("<html><head><title>" + GorillaPresenter.translate("Speaker Notes",GorillaPresenter.config.currentLanguage) + "</title></head><body>" + notes + "</body></html>");
 }
 

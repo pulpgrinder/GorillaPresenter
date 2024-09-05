@@ -33,12 +33,13 @@
   </div>
   <div id="gorilla-presenter-about-container" class="gorilla-presenter-screen gorilla-presenter-editor-container">
     <div id="gorilla-presenter-about">
+      <button onclick="GorillaPresenter.showSlideShowScreen()">Done</button>
       <h1>Summary</h1>
       <p><b>Gorilla Presenter depends on you. Please support it!</b></p>
+      <p>Author: Anthony W. Hursh</p>
       <p>Version: ___VERSION___</p>
       <p>Build: ___BUILD___</p>
-      <p>Compiled: ___BUILD_DATE___</p>
-      <p>Author: Anthony W. Hursh</p>
+      <p>Build date: ___BUILD_DATE___</p>
       <p>License: MIT</p>
       <p>Source code: <a href="https://github.com/pulpgrinder/GorillaPresenter" target="_blank" rel="noopener">available on GitHub</a></p>
     </div>
@@ -74,6 +75,8 @@
     }
 let BrowserFileSystem = {};
     ___FILESYSTEM___
+
+
   </script>
   <script type="text/javascript" id="Gorilla_presenter_system_boot">
   let debugging = ___DEBUGGING___;
@@ -344,7 +347,9 @@ let BrowserFileSystem = {};
         setTimeout(fn,timer);
     }
   }
-  
+  window.onload = function(){
+    GorillaPresenter.renderSlides();
+  }
 
  /*setTimeout(function(){
    launcher.cleanScripts()

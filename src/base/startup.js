@@ -5,6 +5,7 @@ function isInStandaloneMode() {
 
 
 
+
 GorillaPresenter.startup = function() {
     GorillaPresenter.loadConfig();
     GorillaPresenter.loadThemes();
@@ -20,6 +21,6 @@ GorillaPresenter.startup = function() {
     GorillaPresenter.showSlideShowScreen();
     GorillaPresenter.setTheme();
     GorillaPresenter.touchStartTimer = GorillaPresenter.touchEndTimer =  GorillaPresenter.clickTimer = null;
-      GorillaPresenter.setMenuHandlers(document.body);
+    GorillaPresenter.setMenuHandlers(document.body);
 
 }

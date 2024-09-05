@@ -1,4 +1,6 @@
+Add save button to editor screen.
 
+Need to replace spaces in title for audio (and maybe other media) with %20, maybe.
 Quiz
 Mailto
 Branch
@@ -7,8 +9,10 @@ Audio
 Video
 YouTube
 ISBN
-Font Size Control
+Font
+Font Size
 
+O'Keeffe not working (probably due to apostrophe)
 
 Media library screen is a little plain. Make it prettier. Add trash button.
 

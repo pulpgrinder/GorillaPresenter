@@ -48,8 +48,14 @@ body {
   --slide-code-font-stack: var(--monospace-code-font-stack);
 }
 
-
-
+.gorilla-presenter-error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  font-size: 70%;
+}
 #GorillaPresenter_upload_download{
   display:none;
   z-index:1000;
@@ -137,6 +143,15 @@ table, th, td {
 }
 
 .gorilla-presenter-image-container {
+  margin-top:0.5em;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gorilla-presenter-audio-container {
   margin-top:0.5em;
   position: relative;
   width: 100%;
@@ -621,6 +636,21 @@ gorilla-presenter-img {
   line-height: 1.3em;
   margin-left: 1em;
 }
+
+
+#gorilla-presenter-about-container {
+  display: block;
+  width: 100vw;
+  border-radius: 0;
+  padding-top: 0.5em;
+}
+
+#gorilla-presenter-about-container button {
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+}
+
 /*
 .katex-display>.katex {
   display: block;

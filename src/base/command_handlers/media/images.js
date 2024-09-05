@@ -1,5 +1,5 @@
 GorillaPresenter.processImage = function(arguments){
-    console.log("Processing image, arguments are " + arguments);
+   // console.log("Processing image, arguments are " + arguments);
     arguments = arguments.join(" ");
     arguments = arguments.split("|");
     let imagename = arguments[0];
@@ -8,15 +8,18 @@ GorillaPresenter.processImage = function(arguments){
       imagedescription = arguments[1];
     }
     else {
-      imagedescription = "(" + imagename + ")";
+      imagedescription =  imagename ;
     }
+    imagedescription = imagedescription.trim();
+
+    imagedescription = imagedescription.replace(/\"/g,"&quot;");
+
     let infofilename = GorillaPresenter.getMatchingInfoFileName(imagename);
     if(infofilename !== null){
       let filename = BrowserFileSystem.readInternalTextFile(infofilename);
       let dataURL = BrowserFileSystem.readInternalFileDataURL(filename);
-      let alttag = imagedescription.replace(/\"/g,"&quot;");
-      let imgString = '<div class="gorilla-presenter-image-container"><img class="gorilla-presenter-img" src="' + dataURL + '" alt="' + alttag + '" title="' + alttag + '"></div>';
-      console.log("Returning image string " + imgString);
+      let imgString = '<div class="gorilla-presenter-image-container"><img class="gorilla-presenter-img" src="' + dataURL + '" alt="' + imagedescription + '" title="' + imagedescription + '" aria-label="' + imagedescription + '"></div>';
+     // console.log("Returning image string " + imgString);
       return imgString;
     }
     console.error("No matching info file for " + imagename);
@@ -27,8 +30,9 @@ GorillaPresenter.processImage = function(arguments){
     let images = document.getElementsByClassName("gorilla-presenter-img");
     for(let i = 0; i < images.length; i++){
       const screenWidth = window.innerWidth;
+      console.log("Screen width is " + screenWidth);
       const screenHeight = window.innerHeight;
-  
+      console.log("Screen height is " + screenHeight);
       let image = images[i];
       const naturalWidth = image.naturalWidth;
       const naturalHeight = image.naturalHeight;
@@ -39,7 +43,7 @@ GorillaPresenter.processImage = function(arguments){
         image.style.height = `${naturalHeight}px`;
       } else {
         // Scale the image to fit the screen while maintaining aspect ratio
-        image.style.width = '';
+         image.style.width = '';
         image.style.height = '';
         image.style.maxWidth = '100%';
         image.style.maxHeight = '100vh';
