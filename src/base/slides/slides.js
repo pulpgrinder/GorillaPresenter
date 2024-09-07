@@ -117,7 +117,7 @@ GorillaPresenter.renderSlides = function(element){
     GorillaPresenter.slideTitles = [];
     let decommentedlines = ""
     let text = GorillaPresenter.slideData;
-    text = text + "\r\n# Gorilla Presenter\nMade with love by Tony Hursh. See \"About\" for full credits.\nGorilla Presenter needs your help.\r\n\r\n" + "<a href='https://www.gorillapresenter.com/support'><img src=" + BrowserFileSystem.readInternalFileDataURL("icons/logo-small.png") + " width='25%' height='25%' style='display:block;margin-left:auto;margin-right:auto;'></a>\r\n";
+    text = text + "\n# Gorilla Presenter\nMade with &hearts; by Tony Hursh. See \"About\" for full credits.\n" + "<a href='https://www.gorillapresenter.com/support'><img src=" + BrowserFileSystem.readInternalFileDataURL("icons/logo-small.png") + " width='25%' height='25%' style='display:block;margin-left:auto;margin-right:auto;'></a>\r\n";
     let lines = text.split("\n");
     let slideOffset = 0;
     for(let i = 0; i < lines.length; i++){
@@ -158,8 +158,26 @@ GorillaPresenter.renderSlides = function(element){
     }
     renderMathInElement(document.body);
     GorillaPresenter.adjustImageSizes();
+    GorillaPresenter.patchHyperlinks();
   }
 
+
+  GorillaPresenter.patchHyperlinks = function(){
+    // Prevent hyperlink events from performing slide navigation.
+   const links = document.getElementsByTagName('a');
+   for (let i = 0; i < links.length; i++) {
+     links[i].addEventListener('click', function(event) {
+     event.stopPropagation();
+     });
+     links[i].addEventListener('mouseup', function(event) {
+       event.stopPropagation();
+       });
+     links[i].addEventListener('touchend', function(event) {
+         event.stopPropagation();
+         });
+   }
+ }
+ 
 GorillaPresenter.slideForward = function(){
   if(GorillaPresenter.transitionBusy === true){
     return;

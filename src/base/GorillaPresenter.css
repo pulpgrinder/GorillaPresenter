@@ -172,7 +172,7 @@ gorilla-presenter-img {
   height: 62.7vw;
   max-height: calc(100vh - 4vw);
   border-radius: 5vw;
-  font-size: 5vw;
+  font-size: 3vw;
   resize: none;
   margin: 2vw;
   padding: 0;
@@ -223,24 +223,7 @@ gorilla-presenter-img {
   color: #092303;
 }
 
-#gorilla-presenter-printer-dialog{
-  padding:1em;
-  font-size:100%;
-  margin:auto;
-  width:auto;
-  word-break:break-word;
-  word-wrap:break-word;
-  max-width:30em;
-  display: none;
-  position: absolute;
-  height: max-content;
-  width: max-content;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 500;
-  color: white;
-  border-radius: 20px;
-  line-height: 1.2em;
-}
+
 #gorilla-presenter-main-menu-wrapper{
   max-width: 1vw;
   max-height: 1vh;
@@ -278,275 +261,6 @@ gorilla-presenter-img {
 }
 
 
-  /* 1-up slides */
-  #gorilla-presenter-1-up-container{
-    width:auto;
-    height:auto;
-    padding:0;
-    margin:0;
-  }
-
-  .gorilla-presenter-printslide-1-up-pdf{
-    color:black;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 10px; 
-    padding:1em;
-    padding-top:0;
-    margin:72pt;
-   /*margin:0; */
-    box-sizing: border-box;
-    page-break-after: always;
-    font-family: var(--slide-body-font-stack);
-  }
-
-  .gorilla-presenter-printslide-1-up-pdf:last-child {
-    page-break-after: avoid;
-  }
-  .gorilla-presenter-printslide-1-up-pdf h1 {
-    background-color:darkgrey;
-    color:white;
-    border-bottom:2px solid black;
-    margin:0;
-    margin-left:-0.5em;
-    margin-right:-0.5em;
-    padding-bottom:0.25em;
-    padding-left:0.5em;
-    padding-top:0.5em;
-    box-sizing: border-box;
-    border-top-right-radius:10px;
-    border-top-left-radius:10px;
-    font-family: var(--slide-heading-font-stack);
-  }
-  .gorilla-presenter-printslide-1-up-pdf code {
-    font-family: var(--slide-code-font-stack);
-  }
-
-  .gorilla-presenter-printslide-1-up-pdf pre {
-    font-family: var(--slide-code-font-stack);
-  }
-
-  .gorilla-presenter-printslide-1-up {
-    color:black;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 10px; 
-    padding:1em;
-    margin:auto;
-    margin-top:36pt;
-    box-sizing: border-box;
-    page-break-after: always;
-  }
-
-  .gorilla-presenter-printslide-1-up:last-child {
-    page-break-after: avoid;
-  }
-
-  .gorilla-presenter-printslide-1-up {
-    padding:1em;
-    font-family: var(--slide-body-font-stack);
-  }
-
-  .gorilla-presenter-printslide-1-up h1 {
-    background-color:white;
-    color:black;
-    border-bottom:2px solid black;
-    margin:0;
-    margin-left:-0.5em;
-    margin-right:-0.5em;
-    padding-bottom:0.25em;
-    padding-left:0.5em;
-    box-sizing: border-box;
-    font-family: var(--slide-heading-font-stack);
-  }
-  .gorilla-presenter-printslide-1-up code {
-    font-family: var(--slide-code-font-stack);
-  }
-
-  .gorilla-presenter-printslide-1-up pre {
-    font-family: var(--slide-code-font-stack);
-  }
-
-  /* 6-up slides */
-
-
-  .gorilla-presenter-printslide-6-up-page-pdf {
-    margin: auto;
-    box-sizing: border-box;
-    page-break-after:always;
-}
-
-  #gorilla-presenter-printslide-6-up-page-pdf :last-child{
-    page-break-after:avoid;
-  }
-
-  .gorilla-presenter-6-up-slide-wrapper-pdf{
-    width: 100%;
-    height: calc(100% - 36pt);
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    border-radius: 10px;
-    color: black;
-    background-color: white;
-}
-
-.gorilla-presenter-printslide-6-up-slide-pdf {
-  color: black;
-  font-size:75%;
-  background-color: white;
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 1em;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-  .gorilla-presenter-printslide-6-up-slide-pdf {
-    padding:1em;
-    font-family: var(--slide-body-font-stack);
-  }
-
-  .gorilla-presenter-printslide-6-up-slide-pdf h1 {
-    background-color:white;
-    color:black;
-    border-bottom:2px solid black;
-    margin:0;
-    margin-left:-0.5em;
-    margin-right:-0.5em;
-    padding-bottom:0.25em;
-    padding-left:0.5em;
-    box-sizing: border-box;
-    font-family: var(--slide-heading-font-stack);
-  }
-  .gorilla-presenter-printslide-6-up-pdf code {
-    font-family: var(--slide-code-font-stack);
-  }
-
-  .gorilla-presenter-printslide-6-up-slide-pdf pre {
-    font-family: var(--slide-code-font-stack);
-  }
-
-
-  #gorilla-presenter-6-up-container{
-    display:none;
-    width:auto;
-    height:auto;
-    padding:0;
-    margin:0;
-  }
-
-  .gorilla-presenter-printslide-6-up-page {
-    display: grid;
-    column-gap: 18pt;
-    row-gap: 18pt;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    padding: 2em;
-    margin: auto;
-    box-sizing: border-box;
-    page-break-after:always;
-}
-
-  #gorilla-presenter-printslide-6-up-page :last-child{
-    page-break-after:avoid;
-  }
-
-  .gorilla-presenter-6-up-slide-wrapper {
-    width: 100%;
-    height: calc(100% - 36pt);
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    border-radius: 10px;
-    color: black;
-    background-color: white;
-}
-
-.gorilla-presenter-printslide-6-up-slide {
-  color: black;
-  font-size:75%;
-  background-color: white;
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 1em;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-  .gorilla-presenter-printslide-6-up-slide {
-    padding:1em;
-    font-family: var(--slide-body-font-stack);
-  }
-
-  .gorilla-presenter-printslide-6-up-slide h1 {
-    background-color:white;
-    color:black;
-    border-bottom:2px solid black;
-    margin:0;
-    margin-left:-0.5em;
-    margin-right:-0.5em;
-    padding-bottom:0.25em;
-    padding-left:0.5em;
-    box-sizing: border-box;
-    font-family: var(--slide-heading-font-stack);
-  }
-  .gorilla-presenter-printslide-6-up code {
-    font-family: var(--slide-code-font-stack);
-  }
-
-  .gorilla-presenter-printslide-6-up-slide pre {
-    font-family: var(--slide-code-font-stack);
-  }
-
-
-  /* We calculate a 1in/25mm margin on all sides from the base paper size.
-  Hopefully this is enough to make the printout fit on printers that can't print all the way to the edge of the paper. The portrait orientation for the 6-up slides need an extra 1in/25mm in the middle horizontally and an extra 2in/50mm vertically. */
-
-  .letter-landscape{
-    width: calc(11in - 2in);
-    height: calc(8.5in - 2in);
-  }
-
-  .letter-portrait{
-    width: 8.5in;
-    height: 10in;
-  }
-
-  .a4-landscape{
-    height: calc(210mm - 50mm);
-    width: calc(297mm - 50mm);
-  }
-
-  .a4-portrait{
-    height: calc(297mm - 50mm);
-    width: 210mm;
-  }
-
-  .letter-landscape-pdf{
-    width: calc(11in - 2in);
-    height: calc(8.5in - 2in);
-  }
-
-  .letter-portrait-pdf{
-    width: 8.5in;
-    height: 10in;
-  }
-
-  .a4-landscape-pdf{
-    height: calc(210mm - 50mm);
-    width: calc(297mm - 50mm);
-  }
-
-  .a4-portrait-pdf{
-    height: calc(297mm - 50mm);
-    width: 210mm;
-  }
-  
 
 
 
@@ -592,8 +306,8 @@ gorilla-presenter-img {
   font-weight: bold;
   box-sizing: border-box;
   font-style: normal;
-  font-size: 1.25em;
-  line-height: 1.25em; /* Replacing height with line-height */
+  font-size: 6vw;
+  line-height: 6vw; /* Replacing height with line-height */
   font-family: var(--slide-heading-font-stack);
   margin: 0;
   display: block;
@@ -623,7 +337,7 @@ gorilla-presenter-img {
 .gorilla-presenter-slide code {
   font-family: var(--slide-code-font-stack);
   line-height: 1.5;
-  font-size: 0.75em;
+  font-size: 1em;
   margin-left:1em;
 }
 
@@ -634,6 +348,7 @@ gorilla-presenter-img {
 
 .gorilla-presenter-editable li {
   line-height: 1.3em;
+  font-size:5vw;
   margin-left: 1em;
 }
 

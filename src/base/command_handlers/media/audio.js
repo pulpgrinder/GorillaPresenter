@@ -1,5 +1,4 @@
 GorillaPresenter.processAudio = function(arguments){
-    // console.log("Processing image, arguments are " + arguments);
      arguments = arguments.join(" ");
      arguments = arguments.split("|");
      let audioname = arguments[0];
@@ -17,7 +16,7 @@ GorillaPresenter.processAudio = function(arguments){
        let filename = BrowserFileSystem.readInternalTextFile(infofilename);
        let dataURL = BrowserFileSystem.readInternalFileDataURL(filename);
        let alttag = audiodescription.replace(/\"/g,"&quot;");
-         let audioString = '<div class="gorilla-presenter-audio-container"><audio controls title="' + alttag + '" aria-label="' + alttag + '" <source src="' + dataURL + '" type="audio/mpeg">Your browser does not support the audio element.</audio></div>';
+         let audioString = '<div class="gorilla-presenter-audio-container"><audio controls title="' + alttag + '" aria-label="' + alttag + '>" <source src="' + dataURL + '" type="audio/mpeg">Your browser does not support the audio element.</audio></div>';
        
        return audioString;
      }

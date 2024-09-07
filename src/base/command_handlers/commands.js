@@ -10,11 +10,11 @@ GorillaPresenter.processCommands = function(text){
       console.log("Command: " + command);
       console.log("command parts are " + commandparts);
       switch(command){
-        case "image":
+        case "image": // done
           return GorillaPresenter.processImage(commandparts);
-        case "audio":
+        case "audio": // done
           return GorillaPresenter.processAudio(commandparts);
-        case "video":
+        case "video": // done
           return GorillaPresenter.processVideo(commandparts);
         case "youtube":
           return GorillaPresenter.processYouTube(commandparts);
@@ -22,17 +22,20 @@ GorillaPresenter.processCommands = function(text){
           return GorillaPresenter.processISBN(commandparts);
         case "quiz":
             return GorillaPresenter.processQuiz(commandparts);
-        case "mailto":
+        case "mailto": // done
             return GorillaPresenter.processMailto(commandparts);
         case "branch":
             return GorillaPresenter.processBranch(commandparts);
-        case "fontsize":
+        case "fontsize": // done
             return GorillaPresenter.processFontSize(commandparts);
         case "font":
             return GorillaPresenter.processFont(commandparts);    
         default: return ("<span class='gorilla-presenter-error-message'>Unrecognized command: " + command + "</span>");
       }
      
-    })
+    });
     return text;
   }
+
+   
+   

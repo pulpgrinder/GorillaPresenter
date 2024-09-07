@@ -2,27 +2,27 @@ Add save button to editor screen.
 
 Need to replace spaces in title for audio (and maybe other media) with %20, maybe.
 Quiz
-Mailto
+* Mailto
 Branch
-Images
-Audio
-Video
+* Images
+* Audio
+* Video
 YouTube
 ISBN
 Font
-Font Size
+* Font Size
+No Title
 
 O'Keeffe not working (probably due to apostrophe)
 
 Media library screen is a little plain. Make it prettier. Add trash button.
 
+Test importing of audio and video.
 
 Make CTRL-S and CMD-S save the current editor (as well as ESC). Or save all editors and download? Maybe that would be better, come to think about it.
 
 I think that CTRL/CMD-S should save the editor and return to the slide show, if the slide editor is active. If on the home screen, should download the self-contained app. Think about this some more, though.
 
-
-Images
 
 Clicking too fast skips transitions. Need to queue them up somehow. This is still happening somehow. Unrecognized race condition? Continue to investigate. Seems to be fixed? Torture test this.
 

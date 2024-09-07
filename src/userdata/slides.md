@@ -93,11 +93,22 @@ Fames ac turpis egestas integer eget aliquet nibh praesent. Tincidunt dui ut orn
 
 # Demo Slide 7
 
-Non nisi est sit amet facilisis. Cursus metus aliquam eleifend mi in nulla. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Massa placerat duis ultricies lacus. 
+Non nisi est sit amet facilisis. Cursus metus aliquam eleifend mi in nulla. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Massa placerat duis ultricies lacus.
+
+# The isbn command
+
+Given an ISBN, this creates links to find a book on a variety of sources (including WorldCat, Amazon, and Open Library).
+
+\{\{\{isbn 9358562277|Beyond Good and Evil, by Friedrich Wilhelm Nietzsche\}\}\} produces {{{isbn 9358562277|Beyond Good and Evil, by Friedrich Wilhelm Nietzsche}}}
+
+# The mailto Command
+\{\{\{mailto (email)|(subject)|(body)\}\}\} sends email to an address of your choice, along with a subject and body, via the user's default email program. 
+
+Example: {{{mailto example@example.com|This is a test|This is the test body. Please attach (whatever) to this email. Thanks!}}}
 
 # The fontsize Command
 
-The \{\{\{fontsize (size) (text)\}\}\} command lets you alter the size of a run of text. For example, \{\{\{fontsize Large Hi, there!\}\}\} produces {{{fontsize Large Hi, there!}}}.
+The \{\{\{fontsize (size) (text)\}\}\} command lets you alter the size of a run of text. For example, \{\{\{fontsize tiny Hi, there!\}\}\} produces {{{fontsize tiny Hi, there!}}}.
 
 Available sizes are:
 

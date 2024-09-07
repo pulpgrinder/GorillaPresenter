@@ -3,8 +3,6 @@ GorillaPresenter.initSlideEditor = function(){
     slideEditor.value = GorillaPresenter.slideData;
     slideEditor.addEventListener('input', GorillaPresenter.saveEditorCursors);
     slideEditor.addEventListener('paste', GorillaPresenter.handleEditorPaste);
-   /* slideEditor.addEventListener('keydown', GorillaPresenter.handleEditorKeydown);
-    slideEditor.addEventListener('keyup', GorillaPresenter.handleEditorKeyup);*/
     slideEditor.focus();
   }
 

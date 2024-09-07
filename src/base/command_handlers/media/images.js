@@ -1,5 +1,4 @@
 GorillaPresenter.processImage = function(arguments){
-   // console.log("Processing image, arguments are " + arguments);
     arguments = arguments.join(" ");
     arguments = arguments.split("|");
     let imagename = arguments[0];
@@ -19,7 +18,6 @@ GorillaPresenter.processImage = function(arguments){
       let filename = BrowserFileSystem.readInternalTextFile(infofilename);
       let dataURL = BrowserFileSystem.readInternalFileDataURL(filename);
       let imgString = '<div class="gorilla-presenter-image-container"><img class="gorilla-presenter-img" src="' + dataURL + '" alt="' + imagedescription + '" title="' + imagedescription + '" aria-label="' + imagedescription + '"></div>';
-     // console.log("Returning image string " + imgString);
       return imgString;
     }
     console.error("No matching info file for " + imagename);
@@ -30,9 +28,7 @@ GorillaPresenter.processImage = function(arguments){
     let images = document.getElementsByClassName("gorilla-presenter-img");
     for(let i = 0; i < images.length; i++){
       const screenWidth = window.innerWidth;
-      console.log("Screen width is " + screenWidth);
       const screenHeight = window.innerHeight;
-      console.log("Screen height is " + screenHeight);
       let image = images[i];
       const naturalWidth = image.naturalWidth;
       const naturalHeight = image.naturalHeight;

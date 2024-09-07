@@ -266,7 +266,6 @@ BrowserFileSystem.writeRawInternalFile = function(filename,data){
   else{
     mimetype = BrowserFileSystem.mimeTypes[filetype].mimetype;
   }
-  console.log("Writing raw internal file: " + filename + " with mimetype: " + mimetype);
   if(BrowserFileSystem.fs[filename] === undefined){
     BrowserFileSystem.fs[filename] = {}
   }
@@ -279,9 +278,6 @@ BrowserFileSystem.readInternalTextFile = function(filename){
     return new TextDecoder("utf-8").decode(BrowserFileSystem.readInternalFile(filename));
 }
 BrowserFileSystem.writeInternalTextFile = function(filename,data){
-/*  alert("writing internal text file: " + filename);
-    let bindata = new TextEncoder("utf-8").encode(data)
-    console.log("encoded text: " + bindata); */
     BrowserFileSystem.writeInternalFile(filename,data);
     return true;
 }

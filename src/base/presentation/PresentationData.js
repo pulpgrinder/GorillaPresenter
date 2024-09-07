@@ -12,7 +12,6 @@ GorillaPresenter.config = {
 }
 
   GorillaPresenter.saveConfig = function(){
-    console.log("Saving config: " + JSON.stringify(GorillaPresenter.config));
     BrowserFileSystem.writeInternalTextFile("userdata/config.json",JSON.stringify(GorillaPresenter.config));
   }
   GorillaPresenter.loadConfig = function(){
@@ -21,8 +20,6 @@ GorillaPresenter.config = {
       GorillaPresenter.saveConfig();
     }
     GorillaPresenter.config = JSON.parse(BrowserFileSystem.readInternalTextFile("userdata/config.json"));
-    console.log("Config loaded. value: " + JSON.stringify(GorillaPresenter.config));
-   
   }
 
   GorillaPresenter.renderPresentationData = function(){
