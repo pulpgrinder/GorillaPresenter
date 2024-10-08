@@ -2,6 +2,27 @@ GorillaPresenter.convertPixelsToInches = function(pixels){
     floatPixels = parseFloat(pixels);
     return floatPixels / window.devicePixelRatio / 96;
 }
+
+GorillaPresenter.printHandler = function() {
+    let slideClass = "gorilla-presenter-slide";
+    let paperSize = document.getElementById('gorilla-presenter-paper-size').value;
+    let slidesPerPage = parseInt(document.getElementById('gorilla-presenter-slides-per-page').value);
+    GorillaPresenter.printSlides(slideClass, paperSize, slidesPerPage);
+    GorillaPresenter.hidePrintDialog();
+}
+
+GorillaPresenter.showPrintDialog = function() {
+    let printerDialog = document.getElementById('gorilla-presenter-printer-dialog');
+    printerDialog.style.display = 'block';
+    document.getElementById('gorilla-presenter-printer-dialog').showModal();
+}
+
+GorillaPresenter.hidePrintDialog = function() {
+    let printerDialog = document.getElementById('gorilla-presenter-printer-dialog');
+    printerDialog.style.display = 'none';
+    document.getElementById('gorilla-presenter-printer-dialog').close();
+}
+
 GorillaPresenter.printSlides = function (slideClass, paperSize, slidesPerPage) {
     const printContainer = document.getElementById('print-container');
     const slideRoot = document.getElementById('gorilla-presenter-slideroot');

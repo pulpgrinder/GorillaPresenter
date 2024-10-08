@@ -15,7 +15,7 @@ GorillaPresenter.renderMainMenu = function () {
 
   GorillaPresenter.renderMainMenuItems = function (mainMenu) {
     //let mainMenu = document.getElementById("gorilla-presenter-main-menu");
-    let menuItems = ["Slide Show", "Slide Editor", "Save Presentation", "Load Presentation", "Enter/Exit Full Screen", "Show Speaker Notes",  "Media Library",  "About"];
+    let menuItems = ["Slide Show", "Slide Editor", "Save Presentation", "Load Presentation", "Enter/Exit Full Screen", "Show Speaker Notes",  "Media Library", "Print Slides", "About"];
     for (let i = 0; i < menuItems.length; i++) {
       if (GorillaPresenter.currentScreen === menuItems[i]) {
         continue;
@@ -185,6 +185,7 @@ GorillaPresenter.setMenuHandlers = function (element) {
         GorillaPresenter.enterFullScreen();
       } break;
       case "Slide Editor": GorillaPresenter.showSlideEditor(); break;
+      case "Print Slides": GorillaPresenter.showPrintDialog(); break;
       case "Media Library": GorillaPresenter.showMediaLibrary(); break;
       case "Save Presentation": GorillaPresenter.downloadSlides(); break;
       case "Load Presentation": GorillaPresenter.loadPresentation(); break;
@@ -214,21 +215,21 @@ GorillaPresenter.showMainMenu = function (event) {
   GorillaPresenter.editor.saveEditorCursors();
   let slideElement = document.getElementById(GorillaPresenter.slideRoot);
   const slideStyles = window.getComputedStyle(slideElement);
- /* let mainMenu = document.getElementById("gorilla-presenter-main-menu");
-  mainMenu.style.opacity = 1;
-  mainMenu.style.display = "block";
-  GorillaPresenter.centerElement(mainMenu); */
+  let mainMenuInterior = document.getElementById("gorilla-presenter-main-menu");
+  mainMenuInterior.style.opacity = 1;
+  mainMenuInterior.style.display = "block";
+  GorillaPresenter.centerElement(mainMenuInterior);
   let mainMenu = document.getElementById("gorilla-presenter-main-menu-wrapper");
   mainMenu.showModal();
 }
 
 GorillaPresenter.hideMainMenu = function (event) {
   if (GorillaPresenter.mainMenuVisible === false) {
-    return
+    return;
   }
   GorillaPresenter.eatMouseUp = true;
-  /*let mainMenu = document.getElementById("gorilla-presenter-main-menu");
-  mainMenu.style.display = "none";*/
+  let mainMenuInterior = document.getElementById("gorilla-presenter-main-menu");
+  mainMenuInterior.style.display = "none";
   let mainMenu = document.getElementById("gorilla-presenter-main-menu-wrapper");
   mainMenu.close();
   GorillaPresenter.mainMenuVisible = false;

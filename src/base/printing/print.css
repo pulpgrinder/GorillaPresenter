@@ -1,3 +1,26 @@
+
+#gorilla-presenter-printer-dialog {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin: 0 auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    display: none;
+    text-align: center;
+    top: 45%;
+    width: auto;
+    max-width: 30vw;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    line-height: 1.2em;
+    overflow: auto;
+  }
+
+
+
 .print-page-1-up {
     position:relative;
     width: auto;

@@ -196,7 +196,7 @@ gorilla-presenter-img {
   border-bottom-right-radius:10px;
 }
 
-.gorilla-presenter-main-menu-item {
+.gorilla-presenter-main-menu-item{
   border-left:1px solid #cacaca;
   border-bottom:1px solid #cacaca;
   border-right:1px solid #cacaca;
@@ -207,6 +207,11 @@ gorilla-presenter-img {
   padding-top:0.5em;
   padding-bottom:0.5em;
   margin-top:0;
+}
+
+.gorilla-presenter-main-menu-item.link {
+  padding:0.2em;
+  cursor:pointer;
 }
 
 #gorilla-presenter-main-menu-wrapper {
@@ -240,12 +245,6 @@ gorilla-presenter-img {
   line-height: 1.2em;
   overflow: auto;
 }
-
-/*#gorilla-presenter-main-menu-wrapper{
-  max-width: 1vw;
-  max-height: 1vh;
-  overflow: auto;
-} */
 
 .gorilla-presenter-main-menu-item select {
     min-width: 30%;

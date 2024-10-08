@@ -75,7 +75,7 @@ GorillaPresenter.renderSlideSelector = function(){
     oldSelector.remove();
   }   
   let menuItem= document.createElement("div");
-  menuItem.className = "gorilla-presenter-main-menu-item";
+  menuItem.className = "gorilla-presenter-main-menu-item link";
   let slideSelectorLabel = document.createElement("span");
   slideSelectorLabel.className = "translatable";
   slideSelectorLabel.innerHTML = GorillaPresenter.translate("Select Slide",GorillaPresenter.config.currentLanguage) + ": ";
@@ -96,15 +96,12 @@ GorillaPresenter.renderSlideSelector = function(){
   document.getElementById("gorilla-presenter-main-menu").appendChild(menuItem);
   slideSelector.onchange = function(event){
     setTimeout(function(){
-        GorillaPresenter.slidenav.forwardHistory = [];
-        GorillaPresenter.slidenav.addSlideToHistory(GorillaPresenter.config.slidePosition);
-        GorillaPresenter.config.slidePosition = parseInt(slideSelector.value);
-        GorillaPresenter.displaySlide("swipeInFromRight");
-        GorillaPresenter.hideMainMenu(event);
+
+      GorillaPresenter.slidenav.directNavigate(parseInt(slideSelector.value));
     },100);
+    GorillaPresenter.hideMainMenu(event);
   }
 }
-
 
 GorillaPresenter.renderSlides = function(){
     GorillaPresenter.clickHandlers = {};
@@ -137,7 +134,8 @@ GorillaPresenter.renderSlides = function(){
         }
         else {
           decommentedlines = decommentedlines + line + "\n";
-          if(line.indexOf("#") === 0){
+          if(line.match(/^#(?!#).*/) !== null){
+          //if(line.indexOf("#") === 0){
           slideTitle = line.substring(2);
           GorillaPresenter.slideOffsets.push(slideOffset);
           GorillaPresenter.slideTitles.push(slideTitle);
@@ -234,6 +232,7 @@ GorillaPresenter.displaySlide = function(transition){
     GorillaPresenter.warn(GorillaPresenter.translate("Unrecognized transition",GorillaPresenter.config.currentLanguage) + ": " + transition);
     return;
   }
+  console.log("displaySlide:"+ GorillaPresenter.config.slidePosition);
   console.log("displaying slide " + GorillaPresenter.config.slidePosition);
   let slideId = GorillaPresenter.slideIDs[GorillaPresenter.config.slidePosition];
   if(slideId === undefined){

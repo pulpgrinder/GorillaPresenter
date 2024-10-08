@@ -2,17 +2,19 @@ Use horizontal rule --- to divide slides rather than first-level heading? How to
 
 Menu runs off the screen on mobile? Possibly this was fixed -- check
 
-CSS for inline code is a little ugly. So is blockquote.
+CSS for inline code is really ugly. So is blockquote.
+
+Slide body text needs a bit more padding at least for printing.
+Right margin is a little tight on plain text slides.
 
 
-Look into making menu a dialog. 
+Maybe scale the text a little larger for printing 1up slides.
 
 
 Wire up editor buttons
 
 Editor cheatsheet.
 
-Right margin is a little tight on plain text slides.
 
 Need to replace spaces in title for audio (and maybe other media) with %20, maybe.
 

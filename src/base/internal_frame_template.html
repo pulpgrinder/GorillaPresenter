@@ -78,7 +78,20 @@
     <div id="gorilla-presenter-warning-message" class="nonprintable">
       This is a warning, y'all.
     </div>
-  <div id="gorilla-presenter-printer-dialog" class="nonprintable"></div>
+  <dialog id="gorilla-presenter-printer-dialog" class="nonprintable">
+    Paper size: <select id="gorilla-presenter-paper-size">
+      <option value="letter">U.S. letter</option>
+      <option value="a4">A4</option>
+    </select>
+    Slides per page: <select id="gorilla-presenter-slides-per-page">
+      <option value="1">1</option>
+      <option value="6">6</option>
+    </select>
+    <br>
+    <br>
+    <button onclick="GorillaPresenter.printHandler()">Print</button>
+    <button onclick="GorillaPresenter.hidePrintDialog()">Cancel</button>
+  </dialog>
 
 <div id="gorilla-presenter-launcher" class="nonprintable">
        <input type="file" id="gorilla-presenter-workspace-chooser" onchange="GorillaPresenter.workspaceChosen()" accept="html"/>
