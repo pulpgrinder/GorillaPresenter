@@ -1,10 +1,10 @@
 
 GorillaPresenter.scoreQuiz = function(event,isCorrect){
     if(isCorrect === "true"){
-        alert(GorillaPresenter.config.correctAnswer);
+        GorillaPresenter.notify(GorillaPresenter.config.correctAnswer);
     }
     else{
-        alert(GorillaPresenter.config.incorrectAnswer);
+        GorillaPresenter.notify(GorillaPresenter.config.incorrectAnswer);
     }
 }
 

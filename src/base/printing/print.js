@@ -26,8 +26,6 @@ GorillaPresenter.hidePrintDialog = function() {
 GorillaPresenter.printSlides = function (slideClass, paperSize, slidesPerPage) {
     const printContainer = document.getElementById('print-container');
     const slideRoot = document.getElementById('gorilla-presenter-slideroot');
-    console.log("printContainer is " + printContainer);
-    console.log("slideRoot is " + slideRoot);
     printContainer.innerHTML = '';
     printContainer.style.display = 'block';
     const slides = GorillaPresenter.slideIDs;
@@ -82,8 +80,10 @@ GorillaPresenter.printSlides = function (slideClass, paperSize, slidesPerPage) {
             let displayStyle = getComputedStyle(currentSlide);
             let currentSlideHeight = GorillaPresenter.convertPixelsToInches(displayStyle.height);
             let scaleFactorHeight = (size.safeHeight / 3) / currentSlideHeight;
-            let thumbnailWidth = ((size.safeWidth - 0.5) / 2) + "in";
-            let thumbnailHeight = ((size.safeHeight - 0.5) / 3) + "in";
+            let thumbnailWidth = (size.safeWidth / 2) + "in";
+            let thumbnailHeight = (size.safeHeight / 3) + "in";
+         /*    let thumbnailWidth = ((size.safeWidth - 0.5) / 2) + "in";
+            let thumbnailHeight = ((size.safeHeight - 0.5) / 3) + "in"; */
             currentSlide.classList.remove('sic-transit-panel');
             currentSlide.style.width = thumbnailWidth;
             currentSlide.style.height = thumbnailHeight;

@@ -6,7 +6,6 @@ GorillaPresenter.config = {
   codeFontStack : "--monospace-code-font-stack",
   slidePosition: -1,
   slideEditorPosition: 0,
-  editorMode:"light",
   slidesperpage: "6up",
   papersize: "letter",
   incorrectAnswer: "I'm sorry, that is incorrect.",

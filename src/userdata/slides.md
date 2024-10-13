@@ -1,3 +1,26 @@
+# Outline
+// Outlines are introduced with a colon (:) at the beginning of a blank line.
+// Subsequent lines begin with the number of colons corresponding to the desired level.
+// Numbering/lettering is handled automatically. Going up one or more levels makes the
+// lettering/numbering for all lower levels reset.
+:
+:TU This is my title. There are many like it but this one is mine.
+:L This is at level one. Goes to Google. | http://www.google.com
+:L This is also at level one. Goes to quiz. | quiz
+:: This is at level two.
+:: So is this.
+::: This is at level three.
+:: Back to level two
+::: Back down to level three. Numbering for level three has been reset.
+: Back to level one
+::  Lettering for level 2 has been reset.
+::: Level three
+:::: Level four
+::::: Level five
+:::::: Level six
+::::::: Level seven
+:::::::: Level eight
+
 # Gorilla Presenter
 
 {{{image Bob | Our Founder Says "Hi"}}}
@@ -77,12 +100,18 @@ Bulleted list items begin with \*. Numbered list items begin with a number follo
 
 # Block Quotes
 
-> This is a block quote
-> Here's some more quoted material.
+This slide contains a block quote.
 
-# Code
+> Be yourself; everyone else is already taken. – Oscar Wilde
+
+# Source Code
+
+This slide contains computer source code.
+
 ```
-Code
+int main(int argc, char *argv[]{
+    printf("Hello, world!\n");
+}
 ```
 
 # Advanced Functions and Directives
@@ -177,8 +206,9 @@ The externallinks directive|externallinks
 The branch directive|branch
 }}}
 
+
 # Directive: quiz
-The first line is the title. Question and answer sets are separated by blank lines. The correct answer)s) should preceded with an asterisk (*).
+The first line is the title. Question and answer sets are separated by blank lines. The correct answer(s) should be preceded with an asterisk (*).
 
 {{{quiz This is the quiz title
 True or false: the quiz directive allows you to add a quiz to a slide.
@@ -193,11 +223,12 @@ By hitting enter enough times to go to a new page
 It can't be done. A quiz can only have one question and answer set.
 }}}
 
+
 # Directive: quizconfig
 
 This lets you customize the correct/incorrect responses for quizzes. 
 
-{{{quizconfig "Woohoo! That is correct!" | "I'm sorry. That is incorrect."}}}
+{{{quizconfig Woohoo! That is correct!|I'm sorry. That is incorrect.}}}
 
 would change the default responses of "Correct" and "Incorrect"  to "Woohoo! That is correct! and "I'm sorry. That is incorrect." respectively. This is a global setting (i.e., it affects all the slides, regardless of which slide contains the directive).
 

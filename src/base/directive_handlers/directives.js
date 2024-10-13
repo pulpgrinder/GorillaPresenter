@@ -28,7 +28,7 @@ GorillaPresenter.processDirectives = function(text,slideIndex){
             GorillaPresenter.setTransition(directiveparts,slideIndex);
             return "";
         case "quizconfig": return GorillaPresenter.setQuizConfig(directiveparts);
-        case "branch": return GorillaPresenter.processBranch(directiveparts);
+        case "branch": return  ""; // GorillaPresenter.processBranch(directiveparts);
         case "notitle":GorillaPresenter.notitle = true; return "";
         default: return ("<span class='gorilla-presenter-error-message'>Unrecognized directive: " + directive + "</span>");
       }
@@ -51,8 +51,8 @@ GorillaPresenter.processDirectives = function(text,slideIndex){
        switch(directive){
         case "quiz": return GorillaPresenter.processQuiz(directiveparts,directivelines);
         case "branches":
-            return GorillaPresenter.processBranches(directiveparts,directivelines);
-        case "externallinks": return GorillaPresenter.processExternalLinks(directiveparts,directivelines);
+            return ""; // GorillaPresenter.processBranches(directiveparts,directivelines);
+        case "externallinks": return "";//  GorillaPresenter.processExternalLinks(directiveparts,directivelines);
         default: return ("<span class='gorilla-presenter-error-message'>Unrecognized directive: " + directive + "</span>");
        }
       });

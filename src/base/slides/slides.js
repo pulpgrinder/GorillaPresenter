@@ -70,11 +70,13 @@ GorillaPresenter.workspaceChosen = function(){
   
 
 GorillaPresenter.renderSlideSelector = function(){
+  console.log("rendering slide selector");
   let oldSelector = document.getElementById("gorilla-presenter-slide-selector");
   if(oldSelector){
     oldSelector.remove();
   }   
   let menuItem= document.createElement("div");
+  menuItem.id = "gorilla-presenter-slide-selector";
   menuItem.className = "gorilla-presenter-main-menu-item link";
   let slideSelectorLabel = document.createElement("span");
   slideSelectorLabel.className = "translatable";
@@ -125,6 +127,10 @@ GorillaPresenter.renderSlides = function(){
     for(let i = 0; i < lines.length; i++){
         let line = lines[i];
         slideOffset = slideOffset + line.length + 1;
+        line = OutlineGenerator.parseOutlineComponents(line);
+        if(line === null){
+          continue;
+        }
         if(line.indexOf(";") === 0){
           GorillaPresenter.speakerNotes += line.substring(1) + "\n";
           continue;
@@ -135,7 +141,6 @@ GorillaPresenter.renderSlides = function(){
         else {
           decommentedlines = decommentedlines + line + "\n";
           if(line.match(/^#(?!#).*/) !== null){
-          //if(line.indexOf("#") === 0){
           slideTitle = line.substring(2);
           GorillaPresenter.slideOffsets.push(slideOffset);
           GorillaPresenter.slideTitles.push(slideTitle);
@@ -168,15 +173,16 @@ GorillaPresenter.renderSlides = function(){
     renderMathInElement(document.body);
     GorillaPresenter.adjustImageSizes();
     GorillaPresenter.patchHyperlinks();
-   /*  setTimeout(function(){
-      GorillaPresenter.swapColors(".gorilla-presenter-slide",".link");},50);
+     setTimeout(function(){
+   //   GorillaPresenter.swapColors(".gorilla-presenter-slide",".link");},50);
     Object.keys(GorillaPresenter.clickHandlers).forEach(function(key){
       let elements = document.getElementsByClassName(key);
       for(let i = 0; i < elements.length; i++){
         elements[i].addEventListener("click",GorillaPresenter.clickHandlers[key]);
       }
-    }) */
-  }
+    })
+  },50)
+}
 
 
   GorillaPresenter.patchHyperlinks = function(){
@@ -218,8 +224,8 @@ GorillaPresenter.renderSlides = function(){
   console.log("parentBackgroundColor: " + parentBackgroundColor);
   const elements = document.querySelectorAll(targetClass);
   elements.forEach(el => {
-      el.style.color = parentBackgroundColor;        // Swap text color
-      el.style.backgroundColor = parentColor;        // Swap background color
+      el.style.color = parentBackgroundColor;
+      el.style.backgroundColor = parentColor;
   });
 }
 
@@ -229,7 +235,7 @@ GorillaPresenter.transitionDone = function(){
 }
 GorillaPresenter.displaySlide = function(transition){
   if(GorillaPresenter.sicTransit.isValidTransition(transition) === false){
-    GorillaPresenter.warn(GorillaPresenter.translate("Unrecognized transition",GorillaPresenter.config.currentLanguage) + ": " + transition);
+    GorillaPresenter.error(GorillaPresenter.translate("Unrecognized transition",GorillaPresenter.config.currentLanguage) + ": " + transition);
     return;
   }
   console.log("displaySlide:"+ GorillaPresenter.config.slidePosition);

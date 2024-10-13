@@ -75,17 +75,23 @@
   <div id="gorilla-presenter-main-menu" class="gorilla-presenter-unselectable">
   </div>
 </dialog>
-    <div id="gorilla-presenter-warning-message" class="nonprintable">
+    <div id="gorilla-presenter-warning-message" class="gorilla-presenter-notification gorilla-presenter-warning-message nonprintable">
       This is a warning, y'all.
+    </div>
+    <div id="gorilla-presenter-error-message" class="gorilla-presenter-notification gorilla-presenter-error-message nonprintable">
+      This is an error, y'all.
+    </div>
+    <div id="gorilla-presenter-notification-message" class="gorilla-presenter-notification gorilla-presenter-notification-message nonprintable">
+      This is a notification, y'all.
     </div>
   <dialog id="gorilla-presenter-printer-dialog" class="nonprintable">
     Paper size: <select id="gorilla-presenter-paper-size">
-      <option value="letter">U.S. letter</option>
+      <option value="letter" selected>U.S. letter</option>
       <option value="a4">A4</option>
     </select>
     Slides per page: <select id="gorilla-presenter-slides-per-page">
+      <option value="6" selected>6</option>
       <option value="1">1</option>
-      <option value="6">6</option>
     </select>
     <br>
     <br>

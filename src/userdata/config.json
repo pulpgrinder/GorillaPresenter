@@ -6,7 +6,7 @@
         "codeFontStack" : "--monospace-code-font-stack",
         "slidePosition": 0,
         "slideEditorPosition":0,
-        "editorMode":"slides",
+        "themeEditorPosition":0,
         "slidesperpage":"6up",
         "papersize":"letter",
          "incorrectAnswer": "I'm sorry. That is incorrect.",

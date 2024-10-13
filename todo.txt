@@ -1,8 +1,6 @@
-Use horizontal rule --- to divide slides rather than first-level heading? How to do titles for the sorter, then?
 
 Menu runs off the screen on mobile? Possibly this was fixed -- check
-
-CSS for inline code is really ugly. So is blockquote.
+Theme editor
 
 Slide body text needs a bit more padding at least for printing.
 Right margin is a little tight on plain text slides.
@@ -10,20 +8,21 @@ Right margin is a little tight on plain text slides.
 
 Maybe scale the text a little larger for printing 1up slides.
 
+Maybe try scaling the text down if the slide is overfull.
+
+Maybe make the 6up slides a bit larger.
 
 Wire up editor buttons
 
 Editor cheatsheet.
 
-
 Need to replace spaces in title for audio (and maybe other media) with %20, maybe.
 
-Need to add history stack so going back from a branch works properly. Done? Needs more testing.
-
+Need to cancel any previous warn, error, notify before beginning a new one.
+Some sort of bug with the screen time for popup messages (e.g. the one about experimental languages)
 
 Outlines?
 
-* Need to define class for second-level heading in navigable list (e.g., question from a quiz) Make questions stand out from answers with CSS. Still needs some work.
 
 
 Need classes and directives for single inline links and branches.
@@ -32,7 +31,7 @@ Weirdness in media library "Can't rename".
 
 Media library screen is a little plain. Make it prettier. Add trash buttons.
 
-Some sort of bug with the screen time for popup messages (e.g. the one about experimental languages)
+
 
 Clicking too fast skips transitions. Need to queue them up somehow. This is still happening somehow. Unrecognized race condition? Continue to investigate. Seems to be fixed? Torture test this.
 

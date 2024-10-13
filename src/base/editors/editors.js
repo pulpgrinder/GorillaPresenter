@@ -1,6 +1,9 @@
 GorillaPresenter.editor = {};
 
 GorillaPresenter.editor.syncEditorTextAreas = function (event) {
+
+  setTimeout(function() {
+    
   const source = event.target;
   let mainEditor = document.getElementById("gorilla-presenter-slide-text-editor");
   let splitEditor = document.getElementById("gorilla-presenter-secondary-slide-text-editor");
@@ -19,7 +22,9 @@ GorillaPresenter.editor.syncEditorTextAreas = function (event) {
   source.scrollTop = sourceScroll;
   source.selectionStart = source.selectionEnd = sourceCaret;
   target.scrollTop = targetScroll;
-  
+  }, 0);
+  GorillaPresenter.editor.saveEditorCursors();
+  GorillaPresenter.editor.updateEditorData();
 }
 
 GorillaPresenter.editor.editorResized = function() {
@@ -31,6 +36,7 @@ GorillaPresenter.editor.editorResized = function() {
  }
 
 GorillaPresenter.initSlideEditor = function(){
+    GorillaPresenter.editormode = null;
     const slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
     slideEditor.style.height = '94vh';
     GorillaPresenter.editor.slideEditor = slideEditor;
@@ -52,7 +58,6 @@ GorillaPresenter.initSlideEditor = function(){
     slideEditor.addEventListener(eventType, GorillaPresenter.editor.syncEditorTextAreas);
     splitEditor.addEventListener(eventType, GorillaPresenter.editor.syncEditorTextAreas);
    
-   // GorillaPresenter.editorResizeObserver.observe(slideEditor);
 });
 GorillaPresenter.editor.editorResizeObserver = new ResizeObserver(GorillaPresenter.editor.editorResized);
 GorillaPresenter.editor.editorResizeObserver.unobserve(slideEditor);
@@ -76,6 +81,7 @@ hideButton.addEventListener('click', () => {
   }
 
   GorillaPresenter.showSlideEditor = function(){
+    GorillaPresenter.editormode = "slide";
     GorillaPresenter.showUIScreen("gorilla-presenter-slide-editor-container");
     GorillaPresenter.currentScreen = "Slide Editor";
     let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
@@ -94,17 +100,58 @@ hideButton.addEventListener('click', () => {
       
   },100);
   }
+
+  GorillaPresenter.showThemeEditor = function(){
+    GorillaPresenter.editormode = "theme";
+    GorillaPresenter.showUIScreen("gorilla-presenter-slide-editor-container");
+    GorillaPresenter.currentScreen = "Theme Editor";
+    let themeEditor = document.getElementById("gorilla-presenter-slide-text-editor");
+   themeEditor.value = BrowserFileSystem.readInternalTextFile("userdata/themes.vss");
+ 
+    setTimeout(function(){
+      themeEditor.setSelectionRange(GorillaPresenter.config.themeEditorPosition, GorillaPresenter.config.themeEditorPosition);
+      themeEditor.blur();
+      themeEditor.focus();
+      
+  },100);
+  }
 GorillaPresenter.editor.saveEditorCursors = function(){
+    if(GorillaPresenter.editormode === null){
+      return;
+    }
     let slideEditor = document.getElementById("gorilla-presenter-slide-text-editor");
+    if(GorillaPresenter.editormode === "slide"){
     GorillaPresenter.config.slideEditorPosition = slideEditor.selectionStart;
+    }
+    else if(GorillaPresenter.editormode === "theme"){
+      GorillaPresenter.config.themeEditorPosition = slideEditor.selectionStart;
+    }
   }
 
 GorillaPresenter.editor.updateEditorData = function(){
+  if(GorillaPresenter.editormode === null){
+    return;
+  }
+  console.log("updating editor data");
     let editor = document.getElementById("gorilla-presenter-slide-text-editor");
-    GorillaPresenter.slideData = editor.value;
-    GorillaPresenter.config.slideEditorPosition = editor.selectionStart;
-    GorillaPresenter.renderPresentationData();
-    GorillaPresenter.saveConfig();
+    if(GorillaPresenter.editormode === "slide"){
+      console.log("slide data is " + editor.value);
+     GorillaPresenter.slideData = editor.value;
+      GorillaPresenter.config.slideEditorPosition = editor.selectionStart;
+     GorillaPresenter.renderPresentationData();
+    }
+    else if(GorillaPresenter.editormode === "theme"){ 
+      console.log("saving themes")
+      GorillaPresenter.themeData = editor.value;
+      GorillaPresenter.config.themeEditorPosition = editor.selectionStart;
+      BrowserFileSystem.writeInternalTextFile("userdata/themes.vss", GorillaPresenter.themeData);
+      GorillaPresenter.setTheme();
+     GorillaPresenter.saveConfig();
+     GorillaPresenter.renderMainMenu();
+    }
+    else {
+      console.error("Unknown editor mode: " + GorillaPresenter.config.editormode);
+    }
 }
 
   

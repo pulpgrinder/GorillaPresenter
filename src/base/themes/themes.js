@@ -1,13 +1,13 @@
 GorillaPresenter.themes  = {};
 
 GorillaPresenter.loadThemes = function(){
-  if(BrowserFileSystem.fileExists("userdata/themes.csx") === false){
-    alert("Themes are missing! Cannot proceed without a theme!");
+  if(BrowserFileSystem.fileExists("userdata/themes.vss") === false){
+    GorillaPresenter.error("Themes are missing! Cannot proceed without a theme!");
     GorillaPresenter.themeData = "";
     return;
   }
   else {
-    GorillaPresenter.themeData = BrowserFileSystem.readInternalTextFile("userdata/themes.csx");
+    GorillaPresenter.themeData = BrowserFileSystem.readInternalTextFile("userdata/themes.vss");
   }
 }
 
@@ -29,10 +29,10 @@ GorillaPresenter.setTheme = function(){
 }
 
 GorillaPresenter.renderThemes = function(mainMenu){
-  let themeItem = document.createElement("div");
-  themeItem.innerHTML = "<span class='translatable'>Theme</span>: <select title='Theme Selector' id='gorilla-presenter-theme-selector' onchange='GorillaPresenter.themeSelected(this.value)'></select>";
-  themeItem.className = "gorilla-presenter-main-menu-item link";
-  mainMenu.appendChild(themeItem);
+  let themeContainer = document.createElement("div");
+  themeContainer.innerHTML = "<span class='translatable'>Theme</span>: <select title='Theme Selector' id='gorilla-presenter-theme-selector' onchange='GorillaPresenter.themeSelected(this.value)'></select>";
+  themeContainer.className = "gorilla-presenter-main-menu-item link";
+  mainMenu.appendChild(themeContainer);
     let themeSelector = document.getElementById("gorilla-presenter-theme-selector");
     let themeChoices = ""
     let unnamedCounter = 1;

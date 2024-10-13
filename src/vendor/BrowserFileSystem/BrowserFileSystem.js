@@ -207,7 +207,6 @@ BrowserFileSystem.readInternalFileDataURL = function(filename){
 
 BrowserFileSystem.readInternalFile = function(filename){
   if(BrowserFileSystem.fs[filename] !== undefined){
-     // return BrowserFileSystem.base_64_to_bytes(BrowserFileSystem.getBase64Data(filename));
      return BrowserFileSystem.base64ToBytes(BrowserFileSystem.getBase64Data(filename));
   }
   console.error("BrowserFileSystem.readInternalFile: " + filename + " is not in internal filesystem");
@@ -215,13 +214,18 @@ BrowserFileSystem.readInternalFile = function(filename){
 }
 
 BrowserFileSystem.base64ToBytes = function(base64) {
-  const binString = atob(base64);
-  return Uint8Array.from(binString, (m) => m.codePointAt(0));
+  return decodeURIComponent(Array.prototype.map.call(atob(base64), function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+}).join(''));
+  //const binString = atob(base64);
+  ///return Uint8Array.from(binString, (m) => m.codePointAt(0));
 }
 
 BrowserFileSystem.bytesToBase64 = function(bytes){
-  
-  return btoa(bytes);
+  return btoa(encodeURIComponent(bytes).replace(/%([0-9A-F]{2})/g, function(_, p1) {
+    return String.fromCharCode('0x' + p1);
+}));
+  //return btoa(bytes);
 }
 
 
@@ -275,7 +279,8 @@ BrowserFileSystem.writeRawInternalFile = function(filename,data){
 }
 
 BrowserFileSystem.readInternalTextFile = function(filename){
-    return new TextDecoder("utf-8").decode(BrowserFileSystem.readInternalFile(filename));
+  return BrowserFileSystem.base64ToBytes(BrowserFileSystem.getBase64Data(filename));
+    //return new TextDecoder("utf-8").decode(BrowserFileSystem.readInternalFile(filename));
 }
 BrowserFileSystem.writeInternalTextFile = function(filename,data){
     BrowserFileSystem.writeInternalFile(filename,data);

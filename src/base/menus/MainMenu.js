@@ -15,7 +15,7 @@ GorillaPresenter.renderMainMenu = function () {
 
   GorillaPresenter.renderMainMenuItems = function (mainMenu) {
     //let mainMenu = document.getElementById("gorilla-presenter-main-menu");
-    let menuItems = ["Slide Show", "Slide Editor", "Save Presentation", "Load Presentation", "Enter/Exit Full Screen", "Show Speaker Notes",  "Media Library", "Print Slides", "About"];
+    let menuItems = ["Slide Show", "Slide Editor", "Save Presentation", "Load Presentation", "Enter/Exit Full Screen", "Show Speaker Notes",  "Media Library", "Print Slides", "Theme Editor", "About"];
     for (let i = 0; i < menuItems.length; i++) {
       if (GorillaPresenter.currentScreen === menuItems[i]) {
         continue;
@@ -191,12 +191,16 @@ GorillaPresenter.setMenuHandlers = function (element) {
       case "Load Presentation": GorillaPresenter.loadPresentation(); break;
       case "Documentation": GorillaPresenter.showDocumentation(); break;
       case "About": GorillaPresenter.showAbout(); break;
+      case "Theme Editor": GorillaPresenter.showThemeEditor(); break;
     }
     GorillaPresenter.hideMainMenu(event);
   },
   
 
 GorillaPresenter.showSlideShowScreen = function () {
+  GorillaPresenter.editor.saveEditorCursors();
+  GorillaPresenter.editor.updateEditorData();
+  GorillaPresenter.renderSlides();
   GorillaPresenter.showUIScreen("gorilla-presenter-slideroot");
   GorillaPresenter.editor.updateEditorData();
   GorillaPresenter.displaySlide("cutIn");

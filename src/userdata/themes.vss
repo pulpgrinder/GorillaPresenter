@@ -1,0 +1,3156 @@
+; Here be dragons! Theming assumes that you're familiar with CSS, or at
+; least want to learn. If you mess up the CSS, you could make your 
+; slides unviewable. Always make a backup of your presentation BEFORE
+; editing themes. Themes consist of %%% (on a new line), followed by a space, 
+; followed by a list of CSS rules.
+; 
+; There's a list of some relevant CSS rules at the bottom of this
+; file for your theming pleasure. 
+; Just remember: if you break it, you get to keep both halves!
+%%% Bucky Fuller
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #2E86C1;
+    border-bottom: 1px solid #1B4F72;
+    font-family: 'Helvetica', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    padding-left: 1em;
+}
+
+.gorilla-presenter-slide {
+    color: #212F3D;
+    background-color: #D6DBDF;
+    font-family: 'Futura', sans-serif;
+    line-height: 1.6;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #D6DBDF; 
+    background-color: #212F3D; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #212F3D; 
+    background-color: #D6DBDF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #2E86C1;
+}
+
+%%% Default
+
+.gorilla-presenter-slide {
+    color: #2C3E50; 
+    background-color: #ECF0F1; 
+}
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF; 
+    background-color: #3498DB; 
+    border-bottom: 2px solid #2980B9; 
+    padding-left: 0.6em 
+    text-transform: uppercase; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #ECF0F1; 
+    background-color: #2C3E50; 
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #3498DB; 
+    background-color: #FFFFFF; 
+}
+
+.navigable-list-item.link {
+    color: #2C3E50; 
+    background-color: #ECF0F1; 
+}
+
+%%% Old Default
+
+.gorilla-presenter-slide {
+    color: rgb(213 146 11);
+    background-color: #30628e;
+}
+
+.gorilla-presenter-editable h1 {
+    background-color: darkgreen;
+    border-bottom: 1px solid black;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #30628e;
+    background-color: rgb(213 146 11);
+}
+.navigable-list-item.navigable-list-header {
+    color: rgb(213 146 11);
+    background-color: #30628e;
+}
+.navigable-list-item.link {
+    color: darkgreen;
+    background-color: #FFFFFF;
+}
+
+%%% Modern & Clean
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #0A84FF;
+    border-bottom: 1px solid #B3B3B3;
+}
+.gorilla-presenter-slide {
+    color: #000000;
+    background-color: #F0F0F0;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0F0F0;
+    background-color: #000000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #000000;
+    background-color: #F0F0F0;
+}
+.navigable-list-item.link {
+    color: #0A84FF;
+    background-color: #FFFFFF;
+}
+
+%%% Professional & Sophisticated
+
+.gorilla-presenter-editable h1 {
+    color: #FDFDFD;
+    background-color: #333333;
+    border-bottom: 1px solid #606060;
+}
+.gorilla-presenter-slide {
+    color: #050505;
+    background-color: #EAEAEA;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #EAEAEA;
+    background-color: #050505;
+}
+.navigable-list-item.navigable-list-header {
+    color: #050505;
+    background-color: #EAEAEA;
+}
+.navigable-list-item.link {
+    color: #333333;
+    background-color: #FDFDFD;
+}
+
+%%% Greeting
+
+.gorilla-presenter-editable h1 {
+    color: #F4ECE6;
+    background-color: #D35400;
+    border-bottom: 1px solid #A6A6A6;
+}
+.gorilla-presenter-slide {
+    color: #563F2E;
+    background-color: #FFF0E1;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFF0E1;
+    background-color: #563F2E;
+}
+.navigable-list-item.navigable-list-header {
+    color: #563F2E;
+    background-color: #FFF0E1;
+}
+.navigable-list-item.link {
+    color: #D35400;
+    background-color: #F4ECE6;
+}
+
+%%% Punk Rock
+
+.gorilla-presenter-editable h1 {
+    color: #FF0000;
+    background: #000000;
+    border-bottom: 3px solid #FFFFFF;
+}
+.gorilla-presenter-slide {
+    color: #C0C0C0;
+    background: #333333;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #333333;
+    background-color: #C0C0C0;
+}
+.navigable-list-item.navigable-list-header {
+    color: #C0C0C0;
+    background-color: #333333;
+}
+.navigable-list-item.link {
+    color: #FF0000;
+    background-color: #000000;
+}
+
+%%% Refreshing
+
+.gorilla-presenter-editable h1 {
+    color: #E8FFFF;
+    background-color: #1ABC9C;
+    border-bottom: 1px solid #7F8C8D;
+}
+.gorilla-presenter-slide {
+    color: #34495E;
+    background-color: #ECF0F1;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #ECF0F1;
+    background-color: #34495E;
+}
+.navigable-list-item.navigable-list-header {
+    color: #34495E;
+    background-color: #ECF0F1;
+}
+.navigable-list-item.link {
+    color: #1ABC9C;
+    background-color: #E8FFFF;
+}
+
+%%% Natural Colors
+
+.gorilla-presenter-editable h1 {
+    color: #FEFEE3;
+    background-color: #8E44AD;
+    border-bottom: 1px solid #95A5A6;
+}
+.gorilla-presenter-slide {
+    color: #3E2723;
+    background-color: #FBEEE6;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FBEEE6;
+    background-color: #3E2723;
+}
+.navigable-list-item.navigable-list-header {
+    color: #3E2723;
+    background-color: #FBEEE6;
+}
+.navigable-list-item.link {
+    color: #8E44AD;
+    background-color: #FEFEE3;
+}
+
+%%% Bold & Dynamic
+
+.gorilla-presenter-editable h1 {
+    color: #FFECF5;
+    background-color: #E91E63;
+    border-bottom: 1px solid #9B59B6;
+}
+.gorilla-presenter-slide {
+    color: #3E2723;
+    background-color: #FBEEE6;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FBEEE6;
+    background-color: #3E2723;
+}
+.navigable-list-item.navigable-list-header {
+    color: #3E2723;
+    background-color: #FBEEE6;
+}
+.navigable-list-item.link {
+    color: #E91E63;
+    background-color: #FFECF5;
+}
+
+%%% Damaged Robot
+
+.gorilla-presenter-editable h1 {
+    color: #FFA07A;
+    background: #6E260E;
+    border-bottom: 3px solid #8B4513;
+}
+.gorilla-presenter-slide {
+    color: #D2B48C;
+    background: #8B4513;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #8B4513;
+    background-color: #D2B48C;
+}
+.navigable-list-item.navigable-list-header {
+    color: #D2B48C;
+    background-color: #8B4513;
+}
+.navigable-list-item.link {
+    color: #6E260E;
+    background-color: #FFA07A;
+}
+
+%%% Serene & Peaceful
+
+.gorilla-presenter-editable h1 {
+    color: #F4F6F7;
+    background-color: #3498DB;
+    border-bottom: 1px solid #ABB7B7;
+}
+.gorilla-presenter-slide {
+    color: #2C3E50;
+    background-color: #EAEDED;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #EAEDED;
+    background-color: #2C3E50;
+}
+.navigable-list .navigable-list-header {
+    font-family: var(--serif-font-stack);
+    font-style: italic;
+    background-color: #c2cedf;
+    color: black;
+}
+.navigable-list-item.link {
+    color: #252a2a;
+    background-color: #5DADE2;
+}
+
+%%% Mauve Decade
+
+.gorilla-presenter-editable h1 {
+    color: #FAF0E6;
+    background-color: #6C3483;
+    border-bottom: 1px solid #BDC3C7;
+}
+.gorilla-presenter-slide {
+    color: #5D6D7E;
+    background-color: #D5D8DC;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #D5D8DC;
+    background-color: #5D6D7E;
+}
+.navigable-list-item.navigable-list-header {
+    color: #CACFD2;
+    background-color: #7D3C98;
+}
+.navigable-list-item.link {
+    color: #BDC3C7;
+    background-color: #6C3483;
+}
+
+%%% Fresh & Lively
+
+.gorilla-presenter-editable h1 {
+    color: #FEF9E7;
+    background-color: #2ECC71;
+    border-bottom: 1px solid #F1C40F;
+}
+.gorilla-presenter-slide {
+    color: #196F3D;
+    background-color: #E9F7EF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E9F7EF;
+    background-color: #196F3D;
+}
+.navigable-list-item.navigable-list-header {
+    color: #D5F5E3;
+    background-color: #27AE60;
+}
+.navigable-list-item.link {
+    color: #F1C40F;
+    background-color: #2ECC71;
+}
+
+%%% Minimalist & Chic
+
+.gorilla-presenter-editable h1 {
+    color: #FBFCFC;
+    background-color: #7F8C8D;
+    border-bottom: 1px solid #B2BABB;
+}
+.gorilla-presenter-slide {
+    color: #17202A;
+    background-color: #EAECEE;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #EAECEE;
+    background-color: #17202A;
+}
+.navigable-list-item.navigable-list-header {
+    color: #CACFD2;
+    background-color: #5D6D7E;
+}
+.navigable-list-item.link {
+    color: #B2BABB;
+    background-color: #7F8C8D;
+}
+
+%%% Warm & Loving
+
+.gorilla-presenter-editable h1 {
+    color: #FFC0CB; 
+    background-color: #FF69B4; 
+    border-bottom: 1px solid #FFB6C1; 
+}
+.gorilla-presenter-slide {
+    color: #8B4513; 
+    background-color: #FFF5EE; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFF5EE;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFE4E1;
+    background-color: #CD5C5C;
+}
+.navigable-list-item.link {
+    color: #FFB6C1;
+    background-color: #FF69B4;
+}
+
+%%% Clinical Data
+
+.gorilla-presenter-editable h1 {
+    color: #0000FF; 
+    background-color: #E6E6E6; 
+    border-bottom: 1px solid #A9A9A9; 
+}
+.gorilla-presenter-slide {
+    color: #000000; 
+    background-color: #FFFFFF; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #E6E6E6;
+    background-color: #000080;
+}
+.navigable-list-item.link {
+    color: #A9A9A9;
+    background-color: #0000FF;
+}
+
+%%% Informal Party
+
+.gorilla-presenter-editable h1 {
+    color: #FFFF00; 
+    background-color: #FF4500; 
+    border-bottom: 1px solid #FFD700; 
+}
+.gorilla-presenter-slide {
+    color: #2E8B57; 
+    background-color: #F0E68C; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0E68C;
+    background-color: #2E8B57;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #FF4500;
+}
+.navigable-list-item.link {
+    color: #FFFF00;
+    background-color: #FFD700;
+}
+
+%%% Calm
+
+.gorilla-presenter-editable h1 {
+    color: #B0C4DE; 
+    background-color: #4682B4; 
+    border-bottom: 1px solid #5F9EA0; 
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F; 
+    background-color: #F0FFFF; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0FFFF;
+    background-color: #2C3E50; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #EAF3F8; 
+    background-color: #4682B4;
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #5F9EA0; 
+}
+
+
+%%% Industrial
+
+.gorilla-presenter-editable h1 {
+    color: #FF6347; 
+    background-color: #484848; 
+    border-bottom: 1px solid #A52A2A; 
+}
+.gorilla-presenter-slide {
+    color: #F5F5F5; 
+    background-color: #708090; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #708090;
+    background-color: #F5F5F5;
+}
+.navigable-list-item.navigable-list-header {
+    color: #484848;
+    background-color: #FF6347;
+}
+.navigable-list-item.link {
+    color: #A52A2A;
+    background-color: #484848;
+}
+
+%%% Spring Meadow
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700; 
+    background-color: #8FBC8F; 
+    border-bottom: 1px solid #556B2F; 
+}
+.gorilla-presenter-slide {
+    color: #6B8E23; 
+    background-color: #F0FFF0; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0FFF0;
+    background-color: #6B8E23;
+}
+.navigable-list-item.navigable-list-header {
+    color: #DFFF00;
+    background-color: #8FBC8F;
+}
+.navigable-list-item.link {
+    color: #FFD700;
+    background-color: #556B2F;
+}
+
+%%% Northern Lights
+
+.gorilla-presenter-editable h1 {
+    color: #00FA9A; 
+    background-color: #191970; 
+    border-bottom: 1px solid #00008B; 
+}
+.gorilla-presenter-slide {
+    color: #87CEFA; 
+    background-color: #000000; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #000000;
+    background-color: #87CEFA;
+}
+.navigable-list-item.navigable-list-header {
+    color: #1E90FF;
+    background-color: #191970;
+}
+.navigable-list-item.link {
+    color: #00FA9A;
+    background-color: #00008B;
+}
+
+%%% Tropical Beach
+
+.gorilla-presenter-editable h1 {
+    color: #F0E68C; 
+    background-color: #20B2AA; 
+    border-bottom: 1px solid #008B8B; 
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F; 
+    background-color: #E0FFFF; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E0FFFF;
+    background-color: #2F4F4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #C8FFF9;
+    background-color: #20B2AA;
+}
+.navigable-list-item.link {
+    color: #F0E68C;
+    background-color: #008B8B;
+}
+
+%%% Las Vegas
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700; 
+    background-color: #000000; 
+    border: 1px solid #FFD700; 
+    border-top-right-radius:5vw;
+    border-top-left-radius:5vw;
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF; 
+    background-color: #800080; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #800080;
+    background-color: #FFD700;
+}
+.navigable-list-item.navigable-list-header {
+    color: #8B008B;
+    background-color: #FFFF00;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #FF4500;
+}
+
+%%% Paris
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF; 
+    background-color: #6495ED; 
+    border-bottom: 1px solid #FFC0CB; 
+}
+.gorilla-presenter-slide {
+    color: #696969; 
+    background-color: #FFF0F5; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFF0F5;
+    background-color: #696969;
+}
+.navigable-list-item.navigable-list-header {
+    color: #D6EAF8;
+    background-color: #5DADE2;
+}
+.navigable-list-item.link {
+    color: #FFC0CB;
+    background-color: #6495ED;
+}
+
+%%% Manhattan
+
+.gorilla-presenter-editable h1 {
+    color: #C0C0C0;
+    background-color: #000000;
+    border: 5px #FF4500;
+    border-style: double;
+    border-top-right-radius: 5vw;
+    border-top-left-radius: 5vw;
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF; 
+    background-color: #708090; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #708090;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.navigable-list-header {
+    color: #A0A0A0;
+    background-color: #2C3E50;
+}
+.navigable-list-item.link {
+    color: #FF4500;
+    background-color: #000000;
+}
+
+%%% Bangkok
+
+.gorilla-presenter-editable h1 {
+    color: #FFA07A; 
+    background-color: #008B8B; 
+    border-bottom: 1px solid #2E8B57; 
+}
+.gorilla-presenter-slide {
+    color: #333330; 
+    background-color: #F0E68C; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0E68C;
+    background-color: #333330;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #FF4500;
+}
+.navigable-list-item.link {
+    color: #FFA07A;
+    background-color: #008B8B;
+}
+
+%%% Mumbai
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700; 
+    background: #000000; 
+    border-bottom: 2px solid #B22222; 
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF; 
+    background: #1A237E; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #1A237E;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #1A237E;
+}
+.navigable-list-item.link {
+    color: #FFD700;
+    background-color: #B22222;
+}
+
+%%% Vitruvius
+
+.gorilla-presenter-editable h1 {
+    color: #5E503F;
+    background: #F0E6D2;
+    border-bottom: 2px solid #8D7B67;
+}
+.gorilla-presenter-slide {
+    color: #4A3F36;
+    background: #FFF8E7;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0E6D2; 
+    background-color: #4A3F36;
+}
+.navigable-list-item.navigable-list-header {
+    color: #D7CCC8;
+    background-color: #5D4037;
+}
+.navigable-list-item.link {
+    color: #8D7B67;
+    background-color: #F0E6D2;
+}
+
+%%% 80s Retro
+
+.gorilla-presenter-editable h1 {
+    color: #FF00FF;
+    background: #000;
+    border-bottom: 3px solid #00FFFF;
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF;
+    background: #FF007F;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFD700;
+    background-color: #FF007F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFC0CB;
+    background-color: #FF00FF;
+}
+.navigable-list-item.link {
+    color: #00FFFF;
+    background-color: #000000;
+}
+
+%%% Crayon
+
+.gorilla-presenter-slide {
+    color: #f6e4ad;
+    background-color: #240747;
+}
+.gorilla-presenter-editable h1 {
+    background-color: #eb2632;
+    border-bottom: 1px solid #f0ab8d;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #f0ab8d;
+    background-color: #f6e4ad;
+}
+.navigable-list-item.navigable-list-header {
+    color: #f0ab8d;
+    background-color: #240747;
+}
+.navigable-list-item.link {
+    color: #f0ab8d;
+    background-color: #eb2632;
+}
+
+%%% Paint It Black
+
+.gorilla-presenter-slide {
+    color: #ddd;
+    background-color: #000;
+}
+.gorilla-presenter-editable h1 {
+    border-bottom: 1px solid #bbb;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #ddd;
+    background-color: #000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #bbb;
+    background-color: #222;
+}
+.navigable-list-item.link {
+    color: #bbb;
+    background-color: #111;
+}
+
+%%% Typographical Error
+
+.gorilla-presenter-slide {
+    color: #000;
+    background-color: #fff;
+}
+.gorilla-presenter-editable h1 {
+    border-bottom: 1px solid black;
+    display: block;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #000;
+    background-color: #fff;
+}
+.navigable-list-item.navigable-list-header {
+    color: #fff;
+    background-color: #000;
+}
+.navigable-list-item.link {
+    color: #000;
+    background-color: #ddd;
+}
+
+%%% Ocean Dive
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF; 
+    background: #2E3192; 
+    border-bottom: 1px solid #0F3057; 
+}
+.gorilla-presenter-slide {
+    color: #000000; 
+    background: #6DD5FA; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #6DD5FA;
+    background-color: #000000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #2980B9;
+    background-color: #2E3192;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #1BFFFF;
+}
+
+%%% Sunset Glow
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF; 
+    background:#FF5F6D; 
+    border-bottom: 1px solid #CB2D3E; 
+}
+.gorilla-presenter-slide {
+    color: #2C3E50; 
+    background: #F9D423; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FF4E50;
+    background-color: #FFC371;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF5F6D;
+    background-color: #2C3E50;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #CB2D3E;
+}
+
+%%% Forest Whisper
+
+.gorilla-presenter-editable h1 {
+    color: #004D40; 
+    background: #E8F5E9; 
+    border-bottom: 1px solid #1B5E20; 
+}
+.gorilla-presenter-slide {
+    color: #1B5E20; 
+    background: #C8E6C9; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E8F5E9;
+    background-color: #1B5E20;
+}
+.navigable-list-item.navigable-list-header {
+    color: #4CAF50;
+    background-color: #004D40;
+}
+.navigable-list-item.link {
+    color: #004D40;
+    background-color: #E8F5E9;
+}
+
+%%% Desert Mirage
+
+.gorilla-presenter-editable h1 {
+    color: #FFEB3B; 
+    background: #FFC107; 
+    border-bottom: 1px solid #FF9800; 
+}
+.gorilla-presenter-slide {
+    color: #3E2723; 
+    background:#FFD54F; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #3E2723; 
+    background-color: #FFEB3B; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #3E2723; 
+    background-color: #FFC107; 
+}
+.navigable-list-item.link {
+    color: #FF9800;
+    background-color: #FFD54F; 
+}
+
+%%% Fancy Invitation
+
+.gorilla-presenter-editable h1 {
+    color: #D4AF37; 
+    background: #8C7853; 
+    border-bottom: 1px solid #C0C0C0;
+}
+.gorilla-presenter-slide {
+    color: #763C28; 
+    background: #FFF0F5; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #D4AF37;
+    background-color: #FFF0F5;
+}
+.navigable-list-item.navigable-list-header {
+    color: #8C7853;
+    background-color: #FAEBD7;
+}
+.navigable-list-item.link {
+    color: #763C28;
+    background-color: #EDEAE0;
+}
+
+%%% Mechanical Marvel
+
+.gorilla-presenter-editable h1 {
+    color: #C0C0C0; 
+    background: #505050; 
+    border-bottom: 1px solid #303030; 
+}
+.gorilla-presenter-slide {
+    color: #E0E0E0; 
+    background: #696969; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #808080;
+    background-color: #696969;
+}
+.navigable-list-item.navigable-list-header {
+    color: #505050;
+    background-color: #A9A9A9;
+}
+.navigable-list-item.link {
+    color: #E0E0E0;
+    background-color: #303030;
+}
+
+%%% Blueprint
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #3A6F8F;
+    border-bottom: 2px dashed #FFFFFF;
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF;
+    background: #345D7E;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF;
+    background-color: #345D7E;
+}
+.navigable-list-item.navigable-list-header {
+    color: #3A6F8F;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #3A6F8F;
+}
+
+%%% Naval Briefing
+
+.gorilla-presenter-editable h1 {
+    color: #F0F8FF; 
+    background: #000080; 
+    border-bottom: 1px solid #4682B4; 
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF; 
+    background: #B0C4DE; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #000080; 
+    background-color: #FFFFFF; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #B0C4DE; 
+    background-color: #000080; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #4682B4; 
+}
+
+
+%%% Steampunk
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700; 
+    background: #996515; 
+    border-bottom: 1px solid #5D4037; 
+}
+.gorilla-presenter-slide {
+    color: #FAFAD2; 
+    background: #8B4513; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FAFAD2;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #d98f1e;
+    background-color: #A0522D;
+}
+
+.navigable-list-item.link {
+    color: #FFD700;
+    background-color: #5D4037;
+}
+
+%%% Cantata
+
+.gorilla-presenter-slide {
+color: #566573;
+background-color: #FDFEFE; 
+}
+
+.gorilla-presenter-editable h1 {
+color: #17202A;
+background-color: #D5D8DC;
+border-bottom: 2px solid #AEB6BF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FDFEFE;
+    background-color: #566573;
+}
+.navigable-list-item.navigable-list-header {
+    color: #AEB6BF;
+    background-color: #17202A;
+}
+.navigable-list-item.link {
+    color: #D5D8DC;
+    background-color: #626567;
+}
+
+%%% Deep Woods
+
+.gorilla-presenter-editable h1 {
+color: #F5F5DC;
+background-color: #013220;
+border-bottom: 2px solid #004225;
+}
+.gorilla-presenter-slide {
+color: #DEB887;
+background-color: #2F4F4F;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #2F4F4F;
+    background-color: #DEB887;
+}
+.navigable-list-item.navigable-list-header {
+    color: #013220;
+    background-color: #F5F5DC;
+}
+.navigable-list-item.link {
+    color: #004225;
+    background-color: #F5F5DC;
+}
+
+%%% Scholium
+
+.gorilla-presenter-editable h1 {
+color: #FBF6E1;
+background-color: #3E4A59;
+border-bottom: 1px solid #6D7B8D;
+}
+.gorilla-presenter-slide {
+color: #4A4A4A;
+background-color: #ECECEC;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #ECECEC;
+    background-color: #4A4A4A;
+}
+.navigable-list-item.navigable-list-header {
+    color: #9eb4cf;
+    background-color: #3E4A59;
+}
+.navigable-list-item.link {
+    color: #4A4A4A;
+    background-color: #FBF6E1;
+}
+
+%%% Neverland
+
+.gorilla-presenter-editable h1 {
+color: #00FF00;
+background-color: #00008B;
+border-bottom: 1px solid #48D1CC;
+}
+.gorilla-presenter-slide {
+color: #32CD32;
+background-color: #FAFAD2;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FAFAD2;
+    background-color: #32CD32;
+}
+.navigable-list-item.navigable-list-header {
+    color: #48D1CC;
+    background-color: #00008B;
+}
+.navigable-list-item.link {
+    color: #00FF00;
+    background-color: #48D1CC;
+}
+
+%%% Hammurabi
+
+.gorilla-presenter-editable h1 {
+color: #F4F4F2;
+background-color: #5E3A06;
+border-bottom: 2px solid #8E6B23;
+}
+.gorilla-presenter-slide {
+color: #E1D9C0;
+background-color: #9A7B4F;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E1D9C0;
+    background-color: #9A7B4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #8E6B23;
+    background-color: #5E3A06;
+}
+.navigable-list-item.link {
+    color: #F4F4F2;
+    background-color: #8E6B23;
+}
+
+%%% Bali
+
+.gorilla-presenter-editable h1 {
+color: #FFFFFF;
+background-color: #136A8A;
+border-bottom: 2px solid #2685A8;
+}
+.gorilla-presenter-slide {
+color: #F4EFE9;
+background-color: #88B04B;
+}
+.navigable-list-item.navigable-list-title {
+    color: #668635;
+    background-color: #f7efe6;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #1dade2;
+    background-color: #136A8A;
+}
+
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #2685A8;
+}
+
+%%% Prairie
+
+.gorilla-presenter-editable h1 {
+    color: #5B4B0E;
+    background-color: #C2B280;
+    border-bottom: 2px solid #9A8B68;
+}
+.gorilla-presenter-slide {
+    color: #6E664E;
+    background-color: #F5F5DC;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F5F5DC;
+    background-color: #5B4B0E; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #C2B280;
+    background-color: #6E664E; 
+}
+.navigable-list-item.link {
+    color: #9A8B68;
+    background-color: #5B4B0E; 
+}
+
+%%% Ancient Rome
+
+.gorilla-presenter-editable h1 {
+color: #F5F5F5;
+background-color: #8B0000;
+border-bottom: 2px solid #660000;
+}
+.gorilla-presenter-slide {
+color: #DAA520;
+background-color: #3E2723;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #3E2723;
+    background-color: #DAA520;
+}
+.navigable-list-item.navigable-list-header {
+    color: #8B0000;
+    background-color: #F5F5F5;
+}
+.navigable-list-item.link {
+    color: #660000;
+    background-color: #DAA520;
+}
+
+%%% Tropical Fish
+
+.gorilla-presenter-editable h1 {
+    color: #013ADF;
+    background-color: #FF4500;
+    border-bottom: 2px solid #FA8072;
+}
+.gorilla-presenter-slide {
+    color: #EEDFCC;
+    background-color: #46C7C7;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #013ADF; 
+    background-color: #EEDFCC; 
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #FF4500;
+    background-color: #013ADF;
+}
+
+.navigable-list-item.link {
+    color: #FA8072;
+    background-color: #FF4500;
+}
+
+%%% Spacecraft
+
+.gorilla-presenter-editable h1 {
+color: #C0C0C0;
+background-color: #333333;
+border-bottom: 2px solid #808080;
+}
+.gorilla-presenter-slide {
+color: #DCDCDC;
+background-color: #000000;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #000000;
+    background-color: #DCDCDC;
+}
+.navigable-list-item.navigable-list-header {
+    color: #333333;
+    background-color: #C0C0C0;
+}
+.navigable-list-item.link {
+    color: #5b5858;
+    background-color: #DCDCDC;
+}
+
+%%% Cobblestone
+
+.gorilla-presenter-editable h1 {
+color: #FFFFFF;
+background-color: #A9A9A9;
+border-bottom: 2px solid #696969;
+}
+.gorilla-presenter-slide {
+color: #F5F5F5;
+background-color: #778899;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #778899;
+    background-color: #F5F5F5;
+}
+.navigable-list-item.navigable-list-header {
+    color: #A9A9A9;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #696969;
+    background-color: #A9A9A9;
+}
+
+%%% Stained Glass
+
+.gorilla-presenter-editable h1 {
+color: #FFFFFF;
+background-color: #00008B;
+border-bottom: 3px solid #B0C4DE;
+}
+.gorilla-presenter-slide {
+color: #D3D3D3;
+background-color: #8A2BE2;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #8A2BE2;
+    background-color: #D3D3D3;
+}
+.navigable-list-item.navigable-list-header {
+    color: #00008B;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #B0C4DE;
+    background-color: #8A2BE2;
+}
+
+%%% Fresco
+
+.gorilla-presenter-editable h1 {
+color: #FAEBD7;
+background-color: #6495ED;
+border-bottom: 2px solid #B0E0E6;
+}
+.gorilla-presenter-slide {
+color: #7d1f1f;
+background-color: #F0E68C;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0E68C;
+    background-color: #7d1f1f;
+}
+.navigable-list-item.navigable-list-header {
+    color: #6495ED;
+    background-color: #FAEBD7;
+}
+.navigable-list-item.link {
+    color: #B0E0E6;
+    background-color: #6495ED;
+}
+
+%%% Rager
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background-color: #FF4500;
+    border-bottom: 3px solid #FF8C00;
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #000000; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF4500;
+    background-color: #FFD700;
+}
+.navigable-list-item.link {
+    color: #FFD700; 
+    background-color: #FF4500;
+}
+
+
+// Begin City Pack
+
+%%% Paris
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #2C3E50;
+    border-bottom: 1px solid #BDC3C7;
+}
+.gorilla-presenter-slide {
+    color: #34495E;
+    background-color: #ECF0F1;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #ECF0F1;
+    background-color: #34495E;
+}
+.navigable-list-item.navigable-list-header {
+    color: #2C3E50;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #BDC3C7;
+    background-color: #2C3E50;
+}
+
+
+%%% New York
+
+.gorilla-presenter-editable h1 {
+    color: #E8E8E8;
+    background-color: #2D2D2D;
+    border-bottom: 1px solid #5A5A5A;
+}
+.gorilla-presenter-slide {
+    color: #4A4A4A;
+    background-color: #EFEFEF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #EFEFEF;
+    background-color: #2D2D2D; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #2D2D2D;
+    background-color: #E8E8E8;
+}
+.navigable-list-item.link {
+    color: #EFEFEF; 
+    background-color: #5A5A5A; 
+}
+
+
+%%% Los Angeles
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #FF4500;
+    border-bottom: 1px solid #FF6347;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #FFF0F5;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F5FFFA; 
+    background-color: #2F4F4F; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF4500; 
+    background-color: #F5FFFA; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #FF4500; 
+}
+
+%%% Marrakech
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background-color: #8B4513;
+    border-bottom: 1px solid #DAA520;
+}
+.gorilla-presenter-slide {
+    color: #4B0082;
+    background-color: #FAFAD2;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FAFAD2;
+    background-color: #4B0082;
+}
+.navigable-list-item.navigable-list-header {
+    color: #8B4513;
+    background-color: #FFD700;
+}
+.navigable-list-item.link {
+    color: #DAA520;
+    background-color: #8B4513;
+}
+
+// End City Pack
+// Geography Pack
+
+%%% Sahara
+
+.gorilla-presenter-editable h1 {
+    color: #FDF5E6;
+    background-color: #DAA520;
+    border-bottom: 1px solid #B8860B;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #F4A460;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F4A460;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #DAA520;
+    background-color: #FDF5E6;
+}
+.navigable-list-item.link {
+    color: #FDF5E6; 
+    background-color: #B8860B;
+}
+
+
+%%% Siberia
+
+.gorilla-presenter-editable h1 {
+    color: #E8F5E9;
+    background-color: #2E8B57;
+    border-bottom: 1px solid #006400;
+}
+.gorilla-presenter-slide {
+    color: #004d40;
+    background-color: #A5D6A7;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #A5D6A7;
+    background-color: #004d40;
+}
+.navigable-list-item.navigable-list-header {
+    color: #2E8B57;
+    background-color: #E8F5E9;
+}
+.navigable-list-item.link {
+    color: #006400;
+    background-color: #4cce86;
+}
+
+%%% Everglades
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #008080;
+    border-bottom: 1px solid #20B2AA;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #E0FFFF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E0FFFF;
+    background-color: #2F4F4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #008080;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #20B2AA;
+    background-color: #008080;
+}
+
+%%% Badlands
+
+.gorilla-presenter-editable h1 {
+    color: #FDFEFE;
+    background-color: #8B0000;
+    border-bottom: 1px solid #A52A2A;
+}
+.gorilla-presenter-slide {
+    color: #4B0082;
+    background-color: #FFE4B5;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFE4B5;
+    background-color: #4B0082;
+}
+.navigable-list-item.navigable-list-header {
+    color: #8B0000;
+    background-color: #FDFEFE;
+}
+.navigable-list-item.link {
+    color: #ff3c3c;
+    background-color: #8B0000;
+}
+
+%%% Arctic
+
+.gorilla-presenter-editable h1 {
+    color: #F0F8FF;
+    background-color: #4682B4;
+    border-bottom: 1px solid #5F9EA0;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #E0FFFF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E0FFFF;
+    background-color: #2F4F4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #4682B4;
+    background-color: #F0F8FF;
+}
+.navigable-list-item.link {
+    color: #97fcff;
+    background-color: #4682B4;
+}
+
+%%% Amazon
+
+.gorilla-presenter-editable h1 {
+    color: #E8F5E9;
+    background-color: #388E3C;
+    border-bottom: 1px solid #1B5E20;
+}
+.gorilla-presenter-slide {
+    color: #004d40;
+    background-color: #C8E6C9;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #C8E6C9;
+    background-color: #004d40;
+}
+.navigable-list-item.navigable-list-header {
+    color: #388E3C;
+    background-color: #E8F5E9;
+}
+.navigable-list-item.link {
+    color: #144217;
+    background-color: #41a145;
+}
+
+%%% Serengeti
+
+.gorilla-presenter-editable h1 {
+    color: #FFF8DC;
+    background-color: #DAA520;
+    border-bottom: 1px solid #B8860B;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #FAF0E6;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FAF0E6;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #DAA520;
+    background-color: #FFF8DC;
+}
+.navigable-list-item.link {
+    color: #694d07;
+    background-color: #DAA520;
+}
+
+%%% Great Barrier Reef
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FF4500;
+    border-bottom: 1px solid #FF6347;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #FFF5EE;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #2E8B57; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF4500; 
+    background-color: #FFF5EE; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #FF4500; 
+}
+
+%%% Rockies
+
+.gorilla-presenter-editable h1 {
+    color: #E0E0E0;
+    background-color: #2F4F4F;
+    border-bottom: 1px solid #5D6D7E;
+}
+.gorilla-presenter-slide {
+    color: #212F3C;
+    background-color: #D6DBDF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #D6DBDF;
+    background-color: #2F4F4F; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #2F4F4F;
+    background-color: #E0E0E0;
+}
+.navigable-list-item.link {
+    color: #D6DBDF; 
+    background-color: #5D6D7E;
+}
+
+%%% Greenland
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFFF;
+    background-color: #4682B4;
+    border-bottom: 1px solid #5F9EA0;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #E6E6FA;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0FFFF; 
+    background-color: #2F4F4F; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #4682B4; 
+    background-color: #F0FFFF; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #4682B4; 
+}
+
+
+%%% Pampas
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFF0;
+    background-color: #32CD32;
+    border-bottom: 1px solid #228B22;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #E0FFE0;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0FFF0; 
+    background-color: #2E8B57; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #2E8B57; 
+    background-color: #F0FFF0; 
+}
+.navigable-list-item.link {
+    color: #F0FFF0; 
+    background-color: #228B22; 
+}
+
+
+%%% Gobi
+
+.gorilla-presenter-editable h1 {
+    color: #FDF5E6;
+    background-color: #DEB887;
+    border-bottom: 1px solid #D2B48C;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #F5DEB3;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FDF5E6; 
+    background-color: #8B4513; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #8B4513; 
+    background-color: #FDF5E6; 
+}
+.navigable-list-item.link {
+    color: #8B4513; 
+    background-color: #D2B48C; 
+}
+
+
+%%% Okefenokee
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #006400;
+    border-bottom: 1px solid #228B22;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #F0FFF0;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0FFF0;
+    background-color: #2E8B57;
+}
+.navigable-list-item.navigable-list-header {
+    color: #006400;
+    background-color: #F5FFFA;
+}
+.navigable-list-item.link {
+    color: #228B22;
+    background-color: #006400;
+}
+%%% Grand Canyon
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #A52A2A;
+    border-bottom: 1px solid #8B0000;
+}
+.gorilla-presenter-slide {
+    color: #800000;
+    background-color: #F5DEB3;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #800000; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #A52A2A; 
+    background-color: #F5DEB3; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #A52A2A; 
+}
+
+
+%%% Great Plains
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #32CD32;
+    border-bottom: 1px solid #228B22;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #F0FFF0;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0FFF0;
+    background-color: #2E8B57;
+}
+.navigable-list-item.navigable-list-header {
+    color: #32CD32;
+    background-color: #F5FFFA;
+}
+.navigable-list-item.link {
+    color: #228B22;
+    background-color: #32CD32;
+}
+
+%%% Bora Bora
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFFF;
+    background-color: #20B2AA;
+    border-bottom: 1px solid #008B8B;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background-color: #E0FFFF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E0FFFF;
+    background-color: #2E8B57;
+}
+.navigable-list-item.navigable-list-header {
+    color: #20B2AA;
+    background-color: #F0FFFF;
+}
+.navigable-list-item.link {
+    color: #008B8B;
+    background-color: #20B2AA;
+}
+
+%%% Mongolian Steppe
+
+.gorilla-presenter-editable h1 {
+    color: #F5F5F5;
+    background-color: #BDB76B;
+    border-bottom: 1px solid #8B4513;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #EEE8AA;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #EEE8AA;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #BDB76B;
+    background-color: #F5F5F5;
+}
+.navigable-list-item.link {
+    color: #8B4513;
+    background-color: #BDB76B;
+}
+
+%%% Congo Basin
+
+.gorilla-presenter-editable h1 {
+    color: #F5FFFA;
+    background-color: #006400;
+    border-bottom: 1px solid #2E8B57;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #C8E6C9;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F5FFFA; 
+    background-color: #2F4F4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #006400;
+    background-color: #E0F2E9; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #2E8B57; 
+}
+
+%%% Everglades
+
+.gorilla-presenter-editable h1 {
+    color: #F0FFF0;
+    background-color: #2E8B57;
+    border-bottom: 1px solid #006400;
+}
+.gorilla-presenter-slide {
+    color: #2E4D40;
+    background-color: #E8F5E9;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #E8F5E9;
+    background-color: #2E4D40;
+}
+.navigable-list-item.navigable-list-header {
+    color: #2E8B57;
+    background-color: #F0FFF0;
+}
+.navigable-list-item.link {
+    color: #006400;
+    background-color: #2E8B57;
+}
+
+%%% Mauna Loa
+
+.gorilla-presenter-editable h1 {
+    color: #F5F5F5;
+    background-color: #B22222;
+    border-bottom: 1px solid #8B0000;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background-color: #FAEBD7;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F5F5F5; 
+    background-color: #8B4513; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #B22222; 
+    background-color: #F5F5F5; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #B22222; 
+}
+
+// End Geography Pack
+// Begin Artist Pack
+
+%%% Van Gogh
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background: #191970;
+    border-bottom: 1px solid #6495ED;
+}
+.gorilla-presenter-slide {
+    color: #1E90FF;
+    background: #191970;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #191970;
+    background-color: #1E90FF;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #000080;
+}
+.navigable-list-item.link {
+    color: #6495ED;
+    background-color: #FFD700;
+}
+
+%%% Picasso
+
+.gorilla-presenter-editable h1 {
+    color: #ADD8E6;
+    background: #000080;
+    border-bottom: 1px solid #5F9EA0;
+}
+.gorilla-presenter-slide {
+    color: #4682B4;
+    background: #B0C4DE;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #B0C4DE; 
+    background-color: #000080; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #ADD8E6;
+    background-color: #000080; 
+}
+.navigable-list-item.link {
+    color: #5F9EA0;
+    background-color: #ADD8E6; 
+}
+
+%%% Monet
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #6B8E23;
+    border-bottom: 1px solid #4682B4;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background: #AFEEEE;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #2E8B57; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #6B8E23;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #4682B4; 
+}
+
+%%% Dali
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #8B4513;
+    border-bottom: 1px solid #A0522D;
+}
+.gorilla-presenter-slide {
+    color: #A9A9A9;
+    background: #2F4F4F;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #2F4F4F; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFFFFF;
+    background-color: #8B4513;
+}
+.navigable-list-item.link {
+    color: #8B4513; 
+    background-color: #F0F0F0; 
+}
+
+
+%%% Warhol
+
+.gorilla-presenter-editable h1 {
+    color: #FF00FF;
+    background: #FFFF00;
+    border-bottom: 1px solid #00FFFF;
+}
+.gorilla-presenter-slide {
+    color: #0000FF;
+    background: #FF0000;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FF0000;
+    background-color: #0000FF;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF00FF;
+    background-color: #FFFF00;
+}
+.navigable-list-item.link {
+    color: #00FFFF;
+    background-color: #FF00FF;
+}
+%%% Kahlo
+
+.gorilla-presenter-editable h1 {
+    color: #E9967A;
+    background: #8B0000;
+    border-bottom: 1px solid #FFD700;
+}
+.gorilla-presenter-slide {
+    color: #556B2F;
+    background: #F4A460;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F4A460;
+    background-color: #556B2F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #E9967A;
+    background-color: #8B0000;
+}
+.navigable-list-item.link {
+    color: #FFD700;
+    background-color: #E9967A;
+}
+
+%%% Matisse
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #FF6347;
+    border-bottom: 1px solid #FFD700;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background: #FFDAB9;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFDAB9;
+    background-color: #2E8B57;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF6347;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFD700;
+    background-color: #FF6347;
+}
+
+%%% Hokusai
+
+.gorilla-presenter-editable h1 {
+    color: #1E90FF;
+    background: #FFFFFF;
+    border-bottom: 1px solid #4682B4;
+}
+.gorilla-presenter-slide {
+    color: #000080;
+    background: #F0F8FF;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0F8FF;
+    background-color: #000080;
+}
+.navigable-list-item.navigable-list-header {
+    color: #1E90FF;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #4682B4;
+    background-color: #1E90FF;
+}
+
+%%% Michelangelo
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background: #708090;
+    border-bottom: 1px solid #8B4513;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background: #F5F5DC;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F5F5DC;
+    background-color: #2F4F4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #708090;
+}
+.navigable-list-item.link {
+    color: #8B4513;
+    background-color: #FFD700;
+}
+
+%%% Seurat
+
+.gorilla-presenter-editable h1 {
+    color: #000000;
+    background: #FFD700;
+    border-bottom: 1px solid #32CD32;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background: #FFDEAD;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFDEAD;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #000000;
+}
+.navigable-list-item.link {
+    color: #32CD32;
+    background-color: #FFD700;
+}
+
+%%% Klimt
+
+.gorilla-presenter-editable h1 {
+    color: #DAA520;
+    background: #000000;
+    border-bottom: 1px solid #FFD700;
+}
+.gorilla-presenter-slide {
+    color: #8B0000;
+    background: #FFE4B5;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFE4B5;
+    background-color: #8B0000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #DAA520;
+    background-color: #000000;
+}
+.navigable-list-item.link {
+    color: #FFD700;
+    background-color: #DAA520;
+}
+
+%%% Pollock
+
+.gorilla-presenter-editable h1 {
+    color: #FFD700;
+    background: #000000;
+    border-bottom: 1px solid #D3D3D3;
+}
+.gorilla-presenter-slide {
+    color: #A9A9A9;
+    background: #696969;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #A9A9A9; 
+    background-color: #000000; 
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #000000;
+}
+.navigable-list-item.link {
+    color: #D3D3D3;
+    background-color: #FFD700;
+}
+
+%%% Magritte
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #228B22;
+    border-bottom: 1px solid #B22222;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background: #C0C0C0;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #C0C0C0;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #228B22;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #B22222;
+    background-color: #228B22;
+}
+
+%%% Mondrian
+
+.gorilla-presenter-editable h1 {
+    color: #000000;
+    background: #FFFFFF;
+    border-bottom: 1px solid #FF0000;
+}
+.gorilla-presenter-slide {
+    color: #0000FF;
+    background: #FFFF00;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFF00;
+    background-color: #0000FF;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+.navigable-list-item.link {
+    color: #FF0000;
+    background-color: #FFFFFF;
+}
+
+%%% Cezanne
+
+.gorilla-presenter-editable h1 {
+    color: #8B4513;
+    background: #FFD700;
+    border-bottom: 1px solid #FF4500;
+}
+.gorilla-presenter-slide {
+    color: #2E8B57;
+    background: #FFE4B5;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFE4B5;
+    background-color: #2E8B57;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #8B4513;
+}
+.navigable-list-item.link {
+    color: #FF4500;
+    background-color: #FFD700;
+}
+
+%%% Renoir
+
+.gorilla-presenter-editable h1 {
+    color: #FF6347;
+    background: #FFE4B5;
+    border-bottom: 1px solid #2E8B57;
+}
+.gorilla-presenter-slide {
+    color: #8B4513;
+    background: #FFF8DC;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFE4B5; 
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF6347;
+    background-color: #FFF8DC; 
+}
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #2E8B57;
+}
+
+
+%%% Degas
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background: #A9A9A9;
+    border-bottom: 1px solid #FF69B4;
+}
+.gorilla-presenter-slide {
+    color: #000000;
+    background: #D3D3D3;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #D3D3D3;
+    background-color: #000000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFFFFF;
+    background-color: #A9A9A9;
+}
+.navigable-list-item.link {
+    color: #FF69B4;
+    background-color: #FFFFFF;
+}
+
+%%% Bosch
+
+.gorilla-presenter-editable h1 {
+    color: #32CD32;
+    background: #8B4513;
+    border-bottom: 1px solid #FF4500;
+}
+.gorilla-presenter-slide {
+    color: #000000;
+    background: #F5F5F5;
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F5F5F5;
+    background-color: #000000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #32CD32;
+    background-color: #8B4513;
+}
+.navigable-list-item.link {
+    color: #FF4500;
+    background-color: #32CD32;
+}
+
+// End Artist Pack
+// Begin Fictional Locations Pack
+
+%%% Airstrip One
+
+.gorilla-presenter-editable h1 { 
+    color: #FFFFFF; 
+    background-color: #3C3C3C; 
+    border-bottom: 1px solid #8B0000; 
+}
+.gorilla-presenter-slide { 
+    color: #DCDCDC; 
+    background-color: #2F2F2F; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #2F2F2F;
+    background-color: #DCDCDC;
+}
+.navigable-list-item.navigable-list-header {
+    color: #3C3C3C;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #da1111;
+    background-color: #3C3C3C;
+}
+
+%%% Arrakis
+
+.gorilla-presenter-editable h1 { 
+    color: #FFD700; 
+    background-color: #8B4513; 
+    border-bottom: 1px solid #DAA520; 
+}
+.gorilla-presenter-slide { 
+    color: #8B4513; 
+    background-color: #DEB887; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #DEB887;
+    background-color: #8B4513;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #8B4513;
+}
+
+.navigable-list-item.link {
+    color: #6f5412;
+    background-color: #FFD700;
+}
+
+%%% Narnia
+
+.gorilla-presenter-editable h1 {
+    color: #F0F8FF; 
+    background-color: #4B0082; 
+    border-bottom: 1px solid #708090; 
+}
+
+.gorilla-presenter-slide {
+    color: #2F4F4F; 
+    background-color: #E6E6FA; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #2F4F4F;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #4B0082; 
+    background-color: #F0F8FF; 
+}
+
+.navigable-list-item.link {
+    color: #708090; 
+    background-color: #4B0082;
+}
+
+%%% Oz
+
+.gorilla-presenter-editable h1 {
+    color: #FFFACD; 
+    background-color: #32CD32; 
+    border-bottom: 1px solid #FFD700; 
+}
+
+.gorilla-presenter-slide {
+    color: #4B0082; 
+    background-color: #F0E68C; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #4B0082;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #32CD32; 
+    background-color: #FFFACD; 
+}
+
+.navigable-list-item.link {
+    color: #FFD700; 
+    background-color: #32CD32;
+}
+
+%%% Graustark
+
+.gorilla-presenter-editable h1 {
+    color: #D3D3D3; 
+    background-color: #2F4F4F; 
+    border-bottom: 1px solid #8B0000; 
+}
+
+.gorilla-presenter-slide {
+    color: #8B0000; 
+    background-color: #A9A9A9; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #8B0000;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #2F4F4F; 
+    background-color: #D3D3D3; 
+}
+
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #2F4F4F;
+}
+
+%%% Barsoom
+
+.gorilla-presenter-editable h1 {
+    color: #FFE4C4; 
+    background-color: #8B0000; 
+    border-bottom: 1px solid #B22222; 
+}
+
+.gorilla-presenter-slide {
+    color: #D2B48C; 
+    background-color: #800000; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #D2B48C;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #8B0000; 
+    background-color: #FFE4C4; 
+}
+
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #8B0000;
+}
+
+%%% The Shire
+
+.gorilla-presenter-editable h1 {
+    color: #2C5F2D; 
+    background-color: #A8E6A1; 
+    border-bottom: 1px solid #6B8E23; 
+}
+
+.gorilla-presenter-slide {
+    color: #4B5320; 
+    background-color: #F0F8E7; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #F0F8E7; 
+    background-color: #4B5320;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #A8E6A1; 
+    background-color: #2C5F2D; 
+}
+
+.navigable-list-item.link {
+    color: #6B8E23; 
+    background-color: #A8E6A1;
+}
+
+%%% Rohan
+
+.gorilla-presenter-editable h1 {
+    color: #FFF8DC; 
+    background-color: #556B2F; 
+    border-bottom: 1px solid #8B4513; 
+}
+
+.gorilla-presenter-slide {
+    color: #2F4F4F; 
+    background-color: #EEE8AA; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #2F4F4F;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #556B2F; 
+    background-color: #FFF8DC; 
+}
+
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #556B2F;
+}
+
+%%% Mordor
+
+.gorilla-presenter-editable h1 {
+    color: #F5F3CE; 
+    background-color: #2C0A0A; 
+    border-bottom: 1px solid #8B0000; 
+}
+
+.gorilla-presenter-slide {
+    color: #DCDCDC; 
+    background-color: #1C1C1C; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #1C1C1C; 
+    background-color: #DCDCDC; 
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #2C0A0A; 
+    background-color: #F5F3CE; 
+}
+
+.navigable-list-item.link {
+    color: #F5F3CE; 
+    background-color: #2C0A0A; 
+}
+
+%%% Gondor
+
+.gorilla-presenter-editable h1 {
+    color: #F8F9F9; 
+    background-color: #2C3E50; 
+    border-bottom: 1px solid #A9A9A9; 
+}
+
+.gorilla-presenter-slide {
+    color: #2E4053; 
+    background-color: #E5E8E8; 
+}
+
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF; 
+    background-color: #2E4053;
+}
+
+.navigable-list-item.navigable-list-header {
+    color: #2C3E50; 
+    background-color: #F8F9F9; 
+}
+
+.navigable-list-item.link {
+    color: #FFFFFF; 
+    background-color: #2C3E50;
+}
+
+
+%%% Ruby
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #9B111E;
+    border-bottom: 2px solid #8B0000;
+}
+.gorilla-presenter-slide {
+    color: #8B0000;
+    background-color: #F5E1E1;
+}
+.navigable-list-item.navigable-list-title {
+    color: #F5E1E1;
+    background-color: #8B0000;
+}
+.navigable-list-item.navigable-list-header {
+    color: #9B111E;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #8B0000;
+    background-color: #9B111E;
+}
+
+%%% Pearl
+
+.gorilla-presenter-editable h1 {
+    color: #2C3E50;
+    background-color: #F0F8FF;
+    border-bottom: 2px solid #B0C4DE;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #FAF0E6;
+}
+.navigable-list-item.navigable-list-title {
+    color: #FAF0E6;
+    background-color: #2C3E50;
+}
+.navigable-list-item.navigable-list-header {
+    color: #F0F8FF;
+    background-color: #2F4F4F;
+}
+.navigable-list-item.link {
+    color: #B0C4DE;
+    background-color: #2C3E50;
+}
+
+%%% Emerald
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #2E8B57;
+    border-bottom: 2px solid #3CB371;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #98FB98;
+}
+.navigable-list-item.navigable-list-title {
+    color: #98FB98;
+    background-color: #2F4F4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #2E8B57;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #3CB371;
+}
+
+%%% Turquoise
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #40E0D0;
+    border-bottom: 2px solid #008B8B;
+}
+.gorilla-presenter-slide {
+    color: #2F4F4F;
+    background-color: #AFEEEE;
+}
+.navigable-list-item.navigable-list-title {
+    color: #AFEEEE;
+    background-color: #2F4F4F;
+}
+.navigable-list-item.navigable-list-header {
+    color: #40E0D0;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #008B8B;
+}
+
+%%% Amber
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FFBF00;
+    border-bottom: 2px solid #FF8C00;
+}
+.gorilla-presenter-slide {
+    color: #4B3B0A;
+    background-color: #FFE4B5;
+}
+.navigable-list-item.navigable-list-title {
+    color: #FFE4B5;
+    background-color: #4B3B0A;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFBF00;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #FF8C00;
+}
+
+%%% Sapphire
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #0F52BA;
+    border-bottom: 2px solid #002366;
+}
+.gorilla-presenter-slide {
+    color: #E0E0E0;
+    background-color: #1034A6;
+}
+.navigable-list-item.navigable-list-title {
+    color: #E0E0E0;
+    background-color: #1034A6;
+}
+.navigable-list-item.navigable-list-header {
+    color: #0F52BA;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #002366;
+}
+
+%%% Orchid
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #9932CC;
+    border-bottom: 2px solid #4B0082;
+}
+.gorilla-presenter-slide {
+    color: #E6E6FA;
+    background-color: #8A2BE2;
+}
+.navigable-list-item.navigable-list-title {
+    color: #E6E6FA;
+    background-color: #8A2BE2;
+}
+.navigable-list-item.navigable-list-header {
+    color: #9932CC;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #4B0082;
+}
+
+%%% Rose
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FF007F;
+    border-bottom: 2px solid #8B0000;
+}
+.gorilla-presenter-slide {
+    color: #FFC0CB;
+    background-color: #DC143C;
+}
+.navigable-list-item.navigable-list-title {
+    color: #FFC0CB;
+    background-color: #DC143C;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF007F;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #8B0000;
+}
+
+%%% Daisy
+
+.gorilla-presenter-editable h1 {
+    color: #000000;
+    background-color: #FFD700;
+    border-bottom: 2px solid #FFA500;
+}
+.gorilla-presenter-slide {
+    color: #FFFFFF;
+    background-color: #FFEA00;
+}
+.navigable-list-item.navigable-list-title {
+    color: #FFFFFF;
+    background-color: #FFEA00;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FFD700;
+    background-color: #000000;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #FFA500;
+}
+
+%%% Petunia
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #800080;
+    border-bottom: 2px solid #4B0082;
+}
+.gorilla-presenter-slide {
+    color: #E6E6FA;
+    background-color: #9370DB;
+}
+.navigable-list-item.navigable-list-title {
+    color: #E6E6FA;
+    background-color: #9370DB;
+}
+.navigable-list-item.navigable-list-header {
+    color: #800080;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #4B0082;
+}
+
+%%% Marigold
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #FF8C00;
+    border-bottom: 2px solid #FF4500;
+}
+.gorilla-presenter-slide {
+    color: #FFEFD5;
+    background-color: #FFA500;
+}
+.navigable-list-item.navigable-list-title {
+    color: #FFEFD5;
+    background-color: #FFA500;
+}
+.navigable-list-item.navigable-list-header {
+    color: #FF8C00;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #FF4500;
+}
+
+%%% Bluebells
+
+.gorilla-presenter-editable h1 {
+    color: #FFFFFF;
+    background-color: #1E90FF;
+    border-bottom: 2px solid #0000CD;
+}
+.gorilla-presenter-slide {
+    color: #E0FFFF;
+    background-color: #4169E1;
+}
+.navigable-list-item.navigable-list-title {
+    color: #E0FFFF;
+    background-color: #4169E1;
+}
+.navigable-list-item.navigable-list-header {
+    color: #1E90FF;
+    background-color: #FFFFFF;
+}
+.navigable-list-item.link {
+    color: #FFFFFF;
+    background-color: #0000CD;
+}
+
+
+/* 
+To create a new theme, begin a new line with %%%, a space, and the name of your theme. Begin your CSS rules for the theme on the next line.
+
+Caveat: If you do create a custom theme, you should probably check to make sure it looks okay on different browsers, operating systems, and devices. It is also STRONGLY recommended that you save a backup of your current presentation BEFORE writing a new theme, or even tweaking any part of an existing theme. A CSS mistake can make your slides unviewable. You can't undo your mistakes if you can't see them. :-)
+
+CSS rule that applies to the styling of the entire slide:
+
+.gorilla-presenter-slide {
+
+}
+
+ CSS rule that applies to the editable region of the slide (i.e, the header and the content):
+
+.gorilla-presenter-editable {
+}
+
+CSS rule for the level 1 header on the slide, i.e. h1 tags. While you can certainly define rules for h2-h6, those are probably overkill for most slide presentations.
+
+.gorilla-presenter-editable h1 {
+}
+
+CSS rule for blockquotes within the slide:
+
+.gorilla-presenter-editable blockquote p {
+}
+
+CSS rule for paragraphs within the slide (i.e., normal body text):
+
+.gorilla-presenter-editable p {
+}
+
+ CSS rule for code blocks within the slide.
+
+.gorilla-presenter-editable code: {
+}
+
+CSS rule for preformatted text within the slide.
+
+.gorilla-presenter-editable pre: {
+}
+
+CSS rule for unordered lists within the slide.
+
+.gorilla-presenter-editable ul {
+}
+
+CSS rule for ordered lists within the slide:
+.gorilla-presenter-editable ol {
+}
+
+CSS rule for list items within the slide:
+
+.gorilla-presenter-editable li {
+}
+
+CSS rule for links within the slide:
+
+.gorilla-presenter-editable a {
+}
+
+CSS rule for images within the slide:
+
+.gorilla-presenter-editable img {
+}
+
+
+CSS rule for navigable list titles (for example, quizzes or branches):
+
+.navigable-list-item.navigable-list-title
+{
+}
+
+CSS rule for navigable list intermediate headers (for example, the individual questions in a quiz):
+
+.navigable-list-item.navigable-list-header
+{
+}
+
+
+CSS rule for navigable list items (for example, the individual answers in a quiz):
+
+.navigable-list-item link {
+}
+
+
+CSS rule for KaTeX display equations within the slide:
+
+.katex-display >. katex {
+}
+
+*/

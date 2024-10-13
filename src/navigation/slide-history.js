@@ -33,8 +33,9 @@ GorillaPresenter.slidenav.slideForward = function(){
         GorillaPresenter.config.slidePosition = GorillaPresenter.config.slidePosition + 1;
     }
     if(GorillaPresenter.config.slidePosition >= GorillaPresenter.slideIDs.length){
+      GorillaPresenter.slidenav.backHistory.pop()
       GorillaPresenter.config.slidePosition = GorillaPresenter.slideIDs.length -1 ;
-      GorillaPresenter.warn(GorillaPresenter.translate("At last slide.",GorillaPresenter.config.currentLanguage));
+      GorillaPresenter.notify(GorillaPresenter.translate("At last slide.",GorillaPresenter.config.currentLanguage));
       return;
     }
     let transition = GorillaPresenter.slideTransitions[GorillaPresenter.config.slidePosition][0];
@@ -71,7 +72,7 @@ GorillaPresenter.slidenav.slideForward = function(){
     }
     if(GorillaPresenter.config.slidePosition < 0){
       GorillaPresenter.config.slidePosition = 0;
-      GorillaPresenter.warn(GorillaPresenter.translate("At first slide.",GorillaPresenter.config.currentLanguage));
+      GorillaPresenter.notify(GorillaPresenter.translate("At first slide.",GorillaPresenter.config.currentLanguage));
       GorillaPresenter.slidenav.forwardHistory.pop();
       return;
     }

@@ -33,7 +33,8 @@ GorillaPresenter.enterFullScreen = function(){
     }
     GorillaPresenter.fullScreen = false;
   }
-
+  GorillaPresenter.messageCanceled = false;
+  
   GorillaPresenter.fadeOut = function(element) {
     let opacity = 1;
     function decrease() {
@@ -67,17 +68,32 @@ GorillaPresenter.fadeIn = function(element) {
 }
 
 
-  GorillaPresenter.warn = function(message,time=1000){
-    let warningElement = document.getElementById("gorilla-presenter-warning-message");
-    warningElement.innerHTML = message;
-    warningElement.style.opacity = 1;
-    warningElement.style.display = "block";
-   GorillaPresenter.centerElement(warningElement)
-    GorillaPresenter.fadeIn(warningElement);
+  GorillaPresenter.displayMessage= function(element,message,time=1500){
+    element.innerHTML = message;
+    element.style.opacity = 1;
+    element.style.display = "block";
+   GorillaPresenter.centerElement(element);
+    GorillaPresenter.fadeIn(element);
     setTimeout(function(){
-      GorillaPresenter.fadeOut(warningElement);
+      GorillaPresenter.fadeOut(element);
     },time);
   }
+
+  GorillaPresenter.warn = function(message,time=1500){
+     let warningElement = document.getElementById("gorilla-presenter-warning-message");
+     GorillaPresenter.displayMessage(warningElement,message);
+  }
+
+  GorillaPresenter.notify = function(message,time=1500){
+    let notificationElement = document.getElementById("gorilla-presenter-notification-message");
+    GorillaPresenter.displayMessage(notificationElement,message);
+  }
+
+  GorillaPresenter.error = function(message,time=1500){
+    let errorElement = document.getElementById("gorilla-presenter-error-message");
+    GorillaPresenter.displayMessage(errorElement,message);
+  }
+
   GorillaPresenter.centerElement = function(element){
     let slideElement = document.getElementById(GorillaPresenter.slideRoot);
     const slideStyles = window.getComputedStyle(slideElement);

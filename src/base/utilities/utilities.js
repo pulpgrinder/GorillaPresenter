@@ -44,3 +44,14 @@ GorillaPresenter.getScreenSize = function(){
   let height = window.innerHeight;
   return {"width":width,"height":height};
 }
+
+GorillaPresenter.countLeadingCharacters = function (line, char) {
+    const regex = new RegExp(`^${char}+`); 
+    let count = 0;
+    const match = line.match(regex);
+    if (match) {
+      return match[0].length;
+        count += match[0].length; // Add the number of leading characters
+      }
+    return 0;
+  }
