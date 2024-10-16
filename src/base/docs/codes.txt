@@ -1,0 +1,40 @@
+Block 
+
+:A (author name)
+:B
+:C (chapter title)
+:D
+:E email
+:F 
+:G 
+:H heading
+:I ISBN (all configured sources)
+:J
+:K 
+:L (link, either internal or external)
+:M (media, either image, audio, or video -- use prefix and extension to determine which)
+:N turn on outline numbering
+:O new outline
+:P (isbn purchase description | isbn purchase url )
+:Q (question text)
+:R (right answer)
+:S (section/slide title) 
+:T (title)
+:U turn off outline numbering
+:V (verso -- copyright, etc.)
+:W (wrong answer)
+:> Right Align
+:< Left Align
+:| Center
+:^ Hanging indent
+:_ Justify
+:* Transition
+:+ Set correct answer string
+:- Set incorrect answer string
+
+
+Inline 
+
+size
+font
+note 

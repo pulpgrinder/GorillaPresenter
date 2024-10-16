@@ -1,42 +1,46 @@
-GorillaPresenter.themes  = {};
+let ThemeHandler = {
+  themes: {},
+  currentTheme: "Default",
+  headingFontStack :"--didone-font-stack",
+  bodyFontStack :"--humanist-font-stack",
+  codeFontStack : "--monospace-code-font-stack",
+  themeData: "",
+  loadThemes:function(){
+    if(BrowserFileSystem.fileExists("userdata/themes.vss") === false){
+   UIHandler.error("Themes are missing! Cannot proceed without a theme!");
+     ThemeHandler.themeData = "";
+      return;
+    }
+    else {
+      ThemeHandler.themeData = BrowserFileSystem.readInternalTextFile("userdata/themes.vss");
+    }
+    ThemeHandler.renderThemes();
+    ThemeHandler.setTheme();
+  },
 
-GorillaPresenter.loadThemes = function(){
-  if(BrowserFileSystem.fileExists("userdata/themes.vss") === false){
-    GorillaPresenter.error("Themes are missing! Cannot proceed without a theme!");
-    GorillaPresenter.themeData = "";
-    return;
-  }
-  else {
-    GorillaPresenter.themeData = BrowserFileSystem.readInternalTextFile("userdata/themes.vss");
-  }
-}
-
-GorillaPresenter.setTheme = function(){
-    let themeData = GorillaPresenter.themes[GorillaPresenter.config.themeName];
+  setTheme:function(){
+    let themeData = ThemeHandler.themes[ThemeHandler.currentTheme];
     if(themeData === undefined){
         console.error("Theme not found. Using Default");
-        themeData = GorillaPresenter.themes["Default"];
-        GorillaPresenter.config.themeName = "Default";
+        themeData = ThemeHandler.themes["Default"];
+       ConfigHandler.config.Theme = "Default";
     }
-    if(document.getElementById("gorilla-presenter-theme")){
-        document.getElementById("gorilla-presenter-theme").remove();
+    let styleElement = document.getElementById("theme");
+    if(styleElement !== null){
+        styleElement.remove();
     }
-    let styleElement = document.createElement('style');
+    styleElement = document.createElement('style');
     styleElement.innerHTML = themeData;
-    styleElement.id = "gorilla-presenter-theme";
+    styleElement.id = "theme";
     document.head.appendChild(styleElement);
-    GorillaPresenter.setFontStacks();
-}
+},
 
-GorillaPresenter.renderThemes = function(mainMenu){
-  let themeContainer = document.createElement("div");
-  themeContainer.innerHTML = "<span class='translatable'>Theme</span>: <select title='Theme Selector' id='gorilla-presenter-theme-selector' onchange='GorillaPresenter.themeSelected(this.value)'></select>";
-  themeContainer.className = "gorilla-presenter-main-menu-item link";
-  mainMenu.appendChild(themeContainer);
-    let themeSelector = document.getElementById("gorilla-presenter-theme-selector");
+  renderThemes:function(){
+    let themeSelector = document.getElementById("theme-selector");
+    themeSelector.innerHTML = "";
     let themeChoices = ""
     let unnamedCounter = 1;
-    let themeBlocks = GorillaPresenter.themeData.split(/^%%%/gm);
+    let themeBlocks = ThemeHandler.themeData.split(/^%%%/gm);
     themeBlocks.shift();
     for(let i=0;i< themeBlocks.length;i++){
       let themeBlock = themeBlocks[i];
@@ -47,19 +51,13 @@ GorillaPresenter.renderThemes = function(mainMenu){
         unnamedCounter++;
       }
       themeLines.shift();
-      GorillaPresenter.themes[themeName] = themeLines.join("\n");
+      ThemeHandler.themes[themeName] = themeLines.join("\n");
     }
-    let themeNames = Object.keys(GorillaPresenter.themes);
+    let themeNames = Object.keys(ThemeHandler.themes);
     themeNames.sort();
-    if(GorillaPresenter.themes["Default"] !== undefined){
-        themeChoices += "<option value='" + "Default" + "'>" + "Default" + "</option>";
-    }
     for(let i=0;i<themeNames.length;i++){
       let themeName = themeNames[i];
-      if(themeName === "Default"){
-        continue;
-      }
-      if(themeName === GorillaPresenter.config.themeName){
+      if(themeName === ThemeHandler.currentTheme){
           themeChoices += "<option value='" + themeName + "' selected>" + themeName + "</option>";
       }
       else {
@@ -67,11 +65,11 @@ GorillaPresenter.renderThemes = function(mainMenu){
       }
     }
     themeSelector.innerHTML = themeChoices;
-  }
-
-
-  GorillaPresenter.themeSelected = function(theme){
-    GorillaPresenter.config.themeName = theme.replace("'","&#39;");
-    GorillaPresenter.saveConfig();
-    GorillaPresenter.setTheme(theme);
-  }
+  },
+  themeSelected:function(themeName){
+    ThemeHandler.currentTheme = themeName;
+    ConfigHandler.config.Theme = themeName;
+    ThemeHandler.setTheme();
+    ConfigHandler.saveConfig();
+  },
+}

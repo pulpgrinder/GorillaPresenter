@@ -14,99 +14,54 @@
     <noscript id="noscript">
       Yeah, there's absolutely no way this can work with JavaScript turned off. Sorry, my friend.
     </noscript>
-    
-  <div id="gorilla-presenter-slideroot" class= "gorilla-presenter-screen nonprintable">
-  </div>
- 
-  <div id="gorilla-presenter-slide-editor-container" class= "gorilla-presenter-screen gorilla-presenter-editor-container nonprintable">
-    <div id="gorilla-presenter-editor-controls">
-      <span class="gorilla-presenter-button-bar">
-      <button class="gorilla-presenter-editor-button icon-ok" type="button" englishtitle="Done""></button>
-      <button class="gorilla-presenter-editor-button icon-bold" type="button" 
-       englishtitle = "Bold"></button>
 
-      <button class="gorilla-presenter-editor-button icon-italic" type="button" englishtitle="Italic"></button>
-      <button class="gorilla-presenter-editor-button icon-list-bullet" type="button" englishtitle="Bulleted List"></button>
-      <button class="gorilla-presenter-editor-button icon-list-numbered" type="button" englishtitle="Numbered List"></button>
-      <button class="gorilla-presenter-editor-button icon-quote-left" type="button" englishtitle="Block Quote"></button>
-      <button class="gorilla-presenter-editor-button icon-scissors" type="button" englishtitle="Cut"></button>
-      <button class="gorilla-presenter-editor-button icon-docs" type="button" englishtitle="Copy"></button>
-      <button class="gorilla-presenter-editor-button icon-paste" type="button" englishtitle="Paste"></button>
-      <button class="gorilla-presenter-editor-button icon-sticky-note-o" type="button" englishtitle="Insert Note"></button>
-      <button class="gorilla-presenter-editor-button icon-comment-empty" type="button" englishtitle="Insert Comment"></button>
-      <button class="gorilla-presenter-editor-button icon-minus-squared-alt" type="button" id= "split-editor" englishtitle="Split Editor"></button>
-      <button class="gorilla-presenter-editor-button hidden-editor-button  icon-check-empty" type="button" id="unsplit-editor" style="display:none;" englishtitle= "Unsplit Editor"></button>
-    
-      <button class="gorilla-presenter-editor-button icon-download" type="button" englishtitle="Save Presentation"></button>
-      <button class="gorilla-presenter-editor-button icon-upload" type="button" englishtitle="Import Presentation"></button>
-      <button class="gorilla-presenter-editor-button icon-question-circle-o" type="button" englishtitle="Help"></button>
-    </span>
-    </div>
-    <div id="gorilla-presenter-slide-text-editor-wrapper">
-      <textarea title="Slide Text Editor" id="gorilla-presenter-slide-text-editor" class="gorilla-presenter-text-editor"></textarea>
-      <textarea title="Secondary Slide Text Editor" id="gorilla-presenter-secondary-slide-text-editor" class="gorilla-presenter-text-editor"></textarea>
-    </div>
+  <!-- <div class="slide-title">Slide Title</div>
+  <div class="slide-body">Slide Body</div>
+  <div class="navigable-list-title">Navigable List Title</div>
+  <div class="navigable-list-header">Navigable List Header</div>
+  <div class="navigable-list-item">Navigable List Item</div> -->
+  
+  <div id="slideroot" class= "nonprintable">
   </div>
-    
-  <div id="gorilla-presenter-media-library-container" class="gorilla-presenter-screen gorilla-presenter-editor-container nonprintable">
-    <div id="gorilla-presenter-media-library-uploader">
-      <h1>Media Library</h1>
-      <button id="gorilla-presenter-media-library-upload-button" onclick="GorillaPresenter.uploadMediaFile()">Import Media</button>
-    </div>
-    <div id="gorilla-presenter-media-library">
-        
-    </div>
+  <dialog id="main-menu-wrapper" class="nonprintable">
+    <div id="mainmenu" class="unselectable mainmenu">
+      <div class="main-menu-item">
+          <span class="translatable" english="Select Slide">Select Slide: </span>
+          <select title="Select slide" id="slide-selector"  onchange="SlideHandler.selectSlide(this.value)"></select>
+      </div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Slide Editor"><bdi>Slide Editor</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Save Presentation"><bdi>Save Presentation</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english = "Load Presentation"><bdi>Load Presentation</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Enter/Exit Full Screen"><bdi>Enter/Exit Full Screen</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Show Speaker Notes"><bdi>Show Speaker Notes</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Media Library"><bdi>Media Library</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Print Slides"><bdi>Print Slides</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Theme Editor"><bdi>Theme Editor</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="About"><bdi>About</bdi></span></div>
+      <div class="main-menu-item menu-choice"><span class="translatable" english="Theme"><bdi>Theme</bdi></span>: 
+          <select id="theme-selector" onchange="ThemeHandler.themeSelected(this.value)">
+          </select>
+      </div>
+      <div class="main-menu-item"><span class="translatable" english="Heading"><bdi>Heading</bdi></span>: 
+          <select title="Heading Font" id="heading-font-stack-selector" onchange="UIHandler.headingFontStackSelected(this.value)">
+            </select>
+      </div>
+      <div class="main-menu-item"><span class="translatable" english="Body"><bdi>Body</bdi></span>: 
+          <select title="Body Font Stack" id="body-font-stack-selector" onchange="UIHandler.bodyFontStackSelected(this.value)">
+          </select>
+      </div>
+      <div class="main-menu-item"><span class="translatable" english="Code"><bdi>Code</bdi></span>: 
+          <select title="Code Font Stack" id="code-font-stack-selector" onchange="UIHandler.codeFontStackSelected(this.value)">
+          </select>
+      </div>
+      <div class="main-menu-item"><span class="translatable" english="Language"><bdi>Language</bdi></span>: 
+          <select title="Language Selector" id="language-selector" onchange="LanguageHandler.languageSelected(this.value)">
+          </select>
+      </div>
   </div>
-  <div id="gorilla-presenter-about-container" class="gorilla-presenter-screen gorilla-presenter-editor-container nonprintable">
-    <div id="gorilla-presenter-about">
-      <button onclick="GorillaPresenter.showSlideShowScreen()">Done</button>
-      <h1>Summary</h1>
-      <p><b>Gorilla Presenter depends on you. Please support it!</b></p>
-      <p>Author: Anthony W. Hursh</p>
-      <p>Version: ___VERSION___</p>
-      <p>Build: ___BUILD___</p>
-      <p>Build date: ___BUILD_DATE___</p>
-      <p>License: MIT</p>
-      <p>Source code: <a href="https://github.com/pulpgrinder/GorillaPresenter" target="_blank" rel="noopener">available on GitHub</a></p>
-    </div>
-  </div>
-
-  <dialog id="gorilla-presenter-main-menu-wrapper"  class="nonprintable">
-  <div id="gorilla-presenter-main-menu" class="gorilla-presenter-unselectable">
-  </div>
-</dialog>
-    <div id="gorilla-presenter-warning-message" class="gorilla-presenter-notification gorilla-presenter-warning-message nonprintable">
-      This is a warning, y'all.
-    </div>
-    <div id="gorilla-presenter-error-message" class="gorilla-presenter-notification gorilla-presenter-error-message nonprintable">
-      This is an error, y'all.
-    </div>
-    <div id="gorilla-presenter-notification-message" class="gorilla-presenter-notification gorilla-presenter-notification-message nonprintable">
-      This is a notification, y'all.
-    </div>
-  <dialog id="gorilla-presenter-printer-dialog" class="nonprintable">
-    Paper size: <select id="gorilla-presenter-paper-size">
-      <option value="letter" selected>U.S. letter</option>
-      <option value="a4">A4</option>
-    </select>
-    Slides per page: <select id="gorilla-presenter-slides-per-page">
-      <option value="6" selected>6</option>
-      <option value="1">1</option>
-    </select>
-    <br>
-    <br>
-    <button onclick="GorillaPresenter.printHandler()">Print</button>
-    <button onclick="GorillaPresenter.hidePrintDialog()">Cancel</button>
   </dialog>
+</body>
 
-<div id="gorilla-presenter-launcher" class="nonprintable">
-       <input type="file" id="gorilla-presenter-workspace-chooser" onchange="GorillaPresenter.workspaceChosen()" accept="html"/>
-</div>
-
-<div id="print-container">
-</div>
-  </body>
- 
   <script type="text/javascript" id="Gorilla_presenter_file_system">
 
     function setGlobalVariable(varname, value) {
@@ -154,11 +109,11 @@ let BrowserFileSystem = {};
         return false;
       }
     },
-    launchSystem:function(x){
+    launchSystem:function(){
     this.loadError = false;
     let jsQueue = [];
     let cssQueue = [];
-    let BrowserFileSystemObject = BrowserFileSystem.fs["vendor/BrowserFileSystem/BrowserFileSystem.js"];
+    let BrowserFileSystemObject = BrowserFileSystem.fs["1-vendor/BrowserFileSystem/BrowserFileSystem.js"];
     let BrowserFileSystemDataStart = BrowserFileSystemObject["data"].indexOf("base64,") + 7;
     let BrowserFileSystemData = BrowserFileSystemObject["data"].substring(BrowserFileSystemDataStart);
     let BrowserFileSystemCode = this.decodeText(BrowserFileSystemData);

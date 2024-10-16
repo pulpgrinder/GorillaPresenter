@@ -1,116 +1,89 @@
-GorillaPresenter.fullScreen = false;
 
-
-GorillaPresenter.showUIScreen = function(id){
-    let screens = document.querySelectorAll(".gorilla-presenter-screen");
-    for(let i=0;i<screens.length;i++){
-      screens[i].style.display = "none";
-    }
-    let screen = document.getElementById(id);
-    screen.style.display = "block";
-    screen.focus();
-}
-
-GorillaPresenter.enterFullScreen = function(){
-    let element = document.body;
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.webkitrequestFullscreen) { /* Safari */
-      element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) { /* IE11 */
-      element.msRequestFullscreen();
-    }
-    GorillaPresenter.fullScreen = true;
-  }
-
-  GorillaPresenter.exitFullScreen = function(){
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-      document.msExitFullscreen();
-    }
-    GorillaPresenter.fullScreen = false;
-  }
-  GorillaPresenter.messageCanceled = false;
-  
-  GorillaPresenter.fadeOut = function(element) {
-    let opacity = 1;
-    function decrease() {
-        opacity -= 0.02;
-        if (opacity <= 0){
-            // complete
-            element.style.opacity = 0;
-            element.style.display = "none";
-            return true;
+let UIHandler = {
+    fontStackOptions: {
+        "Antique": "--antique-font-stack",
+        "Didone": "--didone-font-stack",
+        "Generic Cursive": "--cursive-font-stack",
+        "Generic Serif": "--serif-font-stack",
+        "Generic Sans Serif": "--sans-serif-font-stack",
+        "Generic Monospace": "--monospace-font-stack",
+        "Handwritten": "--handwritten-font-stack",
+        "Humanist": "--humanist-font-stack",
+        "Humanist (classical)": "--classical-humanist-font-stack",
+        "Humanist (geometric)": "--geometric-humanist-font-stack",
+        "Industrial": "--industrial-font-stack",
+        "Monospace Code": "--monospace-code-font-stack",
+        "Monospace Slab Serif": "--monospace-slab-serif-font-stack",
+        "Neo-Grotesque": "--neo-grotesque-font-stack",
+        "Old Style": "--old-style-font-stack",
+        "Rounded Sans": "--rounded-sans-font-stack",
+        "System UI": "--system-ui-font-stack",
+        "Transitional": "--transitional-font-stack",
+    },
+    headingFontStack: "--didone-font-stack",
+    bodyFontStack: "--humanist-font-stack",
+    codeFontStack: "--monospace-code-font-stack",
+    headingFontStackSelected: function(fontStack){
+        UIHandler.headingFontStack = UIHandler.fontStackOptions[fontStack];
+        UIHandler.setFontStacks();
+    },
+    bodyFontStackSelected: function(fontStack){
+        UIHandler.bodyFontStack = UIHandler.fontStackOptions[fontStack];
+        UIHandler.setFontStacks();
+    },
+    codeFontStackSelected: function(fontStack){
+        UIHandler.codeFontStack = UIHandler.fontStackOptions[fontStack];
+        UIHandler.setFontStacks();
+    },
+    setFontStacks: function(){
+        if(document.getElementById("ui-font-stack")){
+            document.getElementById("ui-font-stack").remove();
+          }
+            let styleElement = document.createElement('style');
+            styleElement.id = "ui-font-stack";
+            styleElement.innerHTML = ":root {\n--slide-heading-font-stack: var(" + UIHandler.headingFontStack + ");\n--slide-body-font-stack: var(" + UIHandler.bodyFontStack + ");\n--slide-code-font-stack:var(" + UIHandler.codeFontStack + ");}\n";
+            document.head.appendChild(styleElement);
+            ConfigHandler.saveConfig();
+    },
+    loadFontStackSelectors: function(){
+        let headingFontStackSelector = document.getElementById("heading-font-stack-selector");
+        let bodyFontStackSelector = document.getElementById("body-font-stack-selector");
+        let codeFontStackSelector = document.getElementById("code-font-stack-selector");
+        let fontStacks = Object.keys(UIHandler.fontStackOptions);
+        fontStacks.sort();
+        for(let i = 0; i < fontStacks.length; i++){
+            let fontStack = fontStacks[i];
+            let option = document.createElement("option");
+            option.value = UIHandler.fontStackOptions[fontStack];
+            option.text = fontStack;
+            if(option.value  === UIHandler.headingFontStack){
+                option.selected = true;
+              }
+            headingFontStackSelector.add(option);
+            option = document.createElement("option");
+            option.value = UIHandler.fontStackOptions[fontStack];
+            option.text = fontStack;
+            if(option.value  === UIHandler.bodyFontStack){
+                option.selected = true;
+              }
+            bodyFontStackSelector.add(option);
+            option = document.createElement("option");
+            option.value = UIHandler.fontStackOptions[fontStack];
+            option.text = fontStack;
+            if(option.value  === UIHandler.codeFontStack){
+                option.selected = true;
+              }
+            codeFontStackSelector.add(option);
         }
-        element.style.opacity = opacity;
-        requestAnimationFrame(decrease);
-    }
-    decrease();
+    },
+
+    warn: function(message){
+        alert(message);
+    },
+    error: function(message){
+        alert(message);
+    },
+    notify: function(message){
+        alert(message);
+    },
 }
-GorillaPresenter.fadeIn = function(element) {
-    let opacity = 0;
-    element.style.opacity =  0;
-    element.style.display = "block";
-    function increase() {
-        opacity += 0.02;
-        if (opacity >= 1){
-            // complete
-            element.style.opacity = 1;
-            return true;
-        }
-        element.style.opacity = opacity;
-        requestAnimationFrame(increase);
-    }
-    increase();
-}
-
-
-  GorillaPresenter.displayMessage= function(element,message,time=1500){
-    element.innerHTML = message;
-    element.style.opacity = 1;
-    element.style.display = "block";
-   GorillaPresenter.centerElement(element);
-    GorillaPresenter.fadeIn(element);
-    setTimeout(function(){
-      GorillaPresenter.fadeOut(element);
-    },time);
-  }
-
-  GorillaPresenter.warn = function(message,time=1500){
-     let warningElement = document.getElementById("gorilla-presenter-warning-message");
-     GorillaPresenter.displayMessage(warningElement,message);
-  }
-
-  GorillaPresenter.notify = function(message,time=1500){
-    let notificationElement = document.getElementById("gorilla-presenter-notification-message");
-    GorillaPresenter.displayMessage(notificationElement,message);
-  }
-
-  GorillaPresenter.error = function(message,time=1500){
-    let errorElement = document.getElementById("gorilla-presenter-error-message");
-    GorillaPresenter.displayMessage(errorElement,message);
-  }
-
-  GorillaPresenter.centerElement = function(element){
-    let slideElement = document.getElementById(GorillaPresenter.slideRoot);
-    const slideStyles = window.getComputedStyle(slideElement);
-    let elementStyle = window.getComputedStyle(element);
-    let slideWidth = parseInt(slideStyles.width);
-    let slideHeight = parseInt(slideStyles.height);
-    let elementWidth = parseInt(elementStyle.width);
-    let maxElementWidth = parseInt(elementStyle.maxWidth);
-    let actualElementWidth = (elementWidth > maxElementWidth) ? maxElementWidth : elementWidth;
-    let elementHeight = parseInt(elementStyle.height);
-    let left = (slideWidth - actualElementWidth) / 2;
-    let top = (slideHeight - elementHeight) / 2;
-    if(top < 0){
-      top = 0;
-    }
-    element.style.left = left + "px";
-    element.style.top = top + "px"; 
-  }
-
-  

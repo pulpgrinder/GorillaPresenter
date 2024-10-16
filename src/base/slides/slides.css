@@ -1,0 +1,57 @@
+
+.panel {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    margin:0;
+    padding:0;
+    overflow: auto;
+  }
+
+  #slideroot {
+    width: 96vw;
+    height: 62.7vw;
+    max-height: calc(100vh - 4vw);
+    border-radius: 5vw;
+    font-size: 4vw;
+    resize: none;
+    margin: 2vw;
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+.slide {
+    display: none;
+    border: 1px solid gray;
+    border-radius: 5vw;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin:0;
+}
+
+.slide-title{
+    font-size:150%;
+    font-weight:bold;
+    padding:0.5em;
+    padding-left: 2em;
+    margin:0
+
+}
+
+.slide pre code {
+    line-height: 1.5;
+    font-size: 0.5em;
+    border: 1px solid black;
+    color:white;
+    background-color: black;
+    border-radius: 10px;
+    display: block;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 1em;
+  }
+  
+  .slide pre {
+    font-family: var(--slide-code-font-stack);
+  }

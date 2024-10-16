@@ -1,6 +1,6 @@
 {
     "currentLanguage":"en",
-        "themeName":"Default",
+        "theme":"Default",
         "headingFontStack": "--didone-font-stack",
         "bodyFontStack" : "--humanist-font-stack",
         "codeFontStack" : "--monospace-code-font-stack",

@@ -1,66 +1,56 @@
-
-GorillaPresenter.translateUI = function(){
-  let language = GorillaPresenter.config.currentLanguage;
+let LanguageHandler = {
+  currentLanguage: "en",
+  translateUI:function(){
+  let language = LanguageHandler.currentLanguage;
   let elements = document.getElementsByClassName("translatable");
   for(let i=0;i<elements.length;i++){
     let element = elements[i];
-    let text = element.innerText;
-    let translation = GorillaPresenter.translations[language][text];
+    let englishtext = element.getAttribute("english");
+    console.log("Translating " + englishtext);
+    let translation = LanguageHandler.translations[language][englishtext];
     if(translation !== undefined){
         element.innerHTML = "<bdi>" + translation + "</bdi>";
       }
     }
-  }
-
-GorillaPresenter.translate = function(phrase,language) {
-  if (GorillaPresenter.translations[language][phrase]) {
-    return GorillaPresenter.translations[language][phrase];
-    }
-   else return phrase;
-}
-
-
-GorillaPresenter.setLanguage = function(language){
-  GorillaPresenter.config.currentLanguage = language;
-  if(language !== "en"){
-    GorillaPresenter.warn(GorillaPresenter.translate("Support for languages other than English is experimental. Please report any issues at",language) + " https://github.com/pulpgrinder/GorillaPresenter",3000);
-  }
-  GorillaPresenter.saveConfig();
-}
-
-
-GorillaPresenter.selectLanguage = function(event){
-  GorillaPresenter.setLanguage(event.target.value);
-  GorillaPresenter.renderMainMenu();
-  GorillaPresenter.showMainMenu();
-}
-
-
-GorillaPresenter.renderLanguages = function(mainMenu){
-    let languageDiv = document.createElement("div")
-    languageDiv.className = "gorilla-presenter-main-menu-item link";
-    let langHTML = "<span class='translatable'>Language</span>: <select title='Language Selector' id='gorilla-presenter-language-selector' onchange='GorillaPresenter.selectLanguage(this.value)'>"
-      let languageList = Object.keys(GorillaPresenter.translations);
-      let selected = "";
-      for(let i=0;i<languageList.length;i++){
-        let language = languageList[i];
-        if(language === GorillaPresenter.config.currentLanguage){
-          selected = " selected";
-        }
-        else {
-          selected = "";
-        }
-        langHTML += "<option value='" + language + "'" + selected + ">" + language + "</option>";
+  },
+  loadLanguageSelector: function(){
+    let languageSelector = document.getElementById("language-selector");
+    let languages = Object.keys(LanguageHandler.translations);
+    languages.sort();
+    for(let i=0;i<languages.length;i++){
+      let language = languages[i];
+      let option = document.createElement("option");
+      option.value = language;
+      option.text = language;
+      if(language === LanguageHandler.currentLanguage){
+        option.selected = true;
       }
-      langHTML += "</select>";
-      languageDiv.innerHTML = langHTML;
-      mainMenu.appendChild(languageDiv);
-      document.getElementById("gorilla-presenter-language-selector").onchange = GorillaPresenter.selectLanguage;
-      GorillaPresenter.translateUI();
-}
+      languageSelector.add(option);
+    }
+  },
+  translate: function(phrase,language) {
+    if(LanguageHandler.translations[language][phrase]) {
+      return LanguageHandler.translations[language][phrase];
+      }
+    else return phrase;
+  },
 
-   
-GorillaPresenter.translations = {
+  languageSelected: function(language){
+    LanguageHandler.currentLanguage = language;
+    LanguageHandler.translateUI();
+    ConfigHandler.saveConfig();
+},
+ 
+selectLanguage:function(language){
+  LanguageHandler.currentLanguage = language;
+  LanguageHandler.translateUI();
+  ConfigHandler.saveConfig();
+  if(language !== "en"){
+    UIHandler.warn(LanguageHandler.translate("Support for languages other than English is experimental. Please report any issues at",language) + " https://github.com/pulpgrinder/GorillaPresenter",3000);
+  }
+},
+
+  translations: {
     "en": {
         "rtl": false,
         "About": "About",
@@ -661,5 +651,5 @@ GorillaPresenter.translations = {
   "Theme Editor": "主題編輯器",
   "US Letter": "美國信紙"
 },
-
+}
 }

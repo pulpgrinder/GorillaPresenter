@@ -14,26 +14,17 @@ GorillaPresenter.checkMobileSafari = function() {
 
 }
 
-
 GorillaPresenter.startup = function() {
     GorillaPresenter.checkMobileSafari();
     if(GorillaPresenter.isMobileSafari){
       alert("iOS");
     }
-    GorillaPresenter.loadConfig();
-    GorillaPresenter.loadThemes();
-    GorillaPresenter.loadSlides();
-    GorillaPresenter.initSlideEditor();
-    GorillaPresenter.sicTransit =  new SicTransit("#" + GorillaPresenter.slideRoot,GorillaPresenter.slideSelector);
-    GorillaPresenter.sicTransit.setParameter("callback",GorillaPresenter.transitionDone,"*");
     GorillaPresenter.markdown =  window.markdownit({html:true,xhtmlOut:true,typographer:true});
-    let aboutElement = document.getElementById("gorilla-presenter-about");
-    aboutElement.innerHTML = aboutElement.innerHTML + GorillaPresenter.markdown.render(BrowserFileSystem.collectLicenses());
-    //GorillaPresenter.renderPresentationData();
-    GorillaPresenter.showSlideShowScreen();
-    GorillaPresenter.renderMainMenu();
-    GorillaPresenter.setTheme();
-    GorillaPresenter.touchStartTimer = GorillaPresenter.touchEndTimer =  GorillaPresenter.clickTimer = null;
-    GorillaPresenter.setMenuHandlers(document.body);
-
+    ConfigHandler.loadConfig();
+    LanguageHandler.loadLanguageSelector();
+    ThemeHandler.loadThemes();
+    SlideRenderer.init();
+    UIHandler.loadFontStackSelectors();
+    SlideRenderer.renderSlides();
+  
 }
