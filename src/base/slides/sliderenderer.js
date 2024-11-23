@@ -171,7 +171,7 @@ let SlideRenderer = {
         }
         if (line.indexOf(":") === 0) {
             let slideObject = {
-                type: "P",
+                type: "~",
                 numbering: true,
                 level: 0,
                 levelSet: false,
@@ -222,7 +222,6 @@ let SlideRenderer = {
                         continue;
                     case "S": slideObject.type = "S"; // (new section/slide)
                         SlideRenderer.slideOffsets.push(SlideRenderer.currentSourceOffset);
-
                         continue;
                     case "T": slideObject.type = "T"; // (title)
                         continue;
@@ -268,6 +267,8 @@ let SlideRenderer = {
     renderResult: function (line, slideObject) {
         let result = "";
         switch (slideObject.type) {
+            case "~": result = SlideRenderer.plainString(line, slideObject.level);
+                break;
             case "A": result = SlideRenderer.metadataAuthorString(line, slideObject.level);
                 break;
             case "D": result = SlideRenderer.metaData.documentTitleString(line, slideObject.level);
@@ -287,9 +288,9 @@ let SlideRenderer = {
                 break;
             case "P": result = SlideRenderer.metadataPublisher(line, slideObject.level);
                 break;
-            case "Q": result = SlideRenderer.questionString(line, slideObject.level);
+            case "Q": result = SlideRenderer.questionString(line, 2);
                 break;
-            case "R": result = SlideRenderer.markCorrectAnswer(line, slideObject.level);
+            case "R": result = SlideRenderer.markCorrectAnswer(line, 3);
                 break;
             case "S": result = SlideRenderer.generateNewSlide(line, slideObject.level);
                 break;
@@ -298,7 +299,7 @@ let SlideRenderer = {
                 break;
             case "V": result = SlideRenderer.versoString(line, slideObject.level);
                 break;
-            case "W": result = SlideRenderer.markIncorrectAnswer(line, slideObject.level);
+            case "W": result = SlideRenderer.markIncorrectAnswer(line, 3);
                 break;
             default: result = "<span class='error-message'>Error: found unknown slide componenet type: " + slideObject.type + " in line: " + originalLine + ".</span>";
                 console.error(result);
@@ -364,17 +365,50 @@ let SlideRenderer = {
         let processedSlides = SlideRenderer.markdown.render(SlideRenderer.renderedSlideString);
         SlideRenderer.rootElement.innerHTML = SlideRenderer.rootElement.innerHTML + "\n" + processedSlides; // the root element has some non-slide panels in in it, so we append the rendered slides to it.
         renderMathInElement(SlideRenderer.rootElement);
-        // debugging code
-        /*  let newSlides = document.getElementsByClassName(SlideRenderer.slideClass);
-          if(newSlides.length > 0){
-            newSlides[0].style.display = "block";
-            } */
         SlideRenderer.renderSlideSelector();
         SlideHandler.sicTransit.loadPanelStack();
         SlideHandler.directNavigate(SlideRenderer.slideIDs[0]);
-        // end debugging code
+        console.log("There are " + document.querySelectorAll(".outline-correct-answer").length + " correct answers.");
+        console.log("There are " + document.querySelectorAll(".outline-incorrect-answer").length + " incorrect answers.");
+        document.querySelectorAll(".outline-incorrect-answer").forEach(function (element) {
+            element.addEventListener("click", function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                event.currentTarget.classList.add("isincorrect");
+                UIHandler.notify("Incorrect answer: " + element.innerText);
+            })
+        });
+        document.querySelectorAll(".outline-correct-answer").forEach(function (element) {
+            element.addEventListener("click", function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                event.currentTarget.classList.add("iscorrect");
+                UIHandler.notify("Correct answer: " + element.innerText);
+            })
+        });
+        document.querySelectorAll(".external-link").forEach(function (element) {
+            element.addEventListener("click", function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                let url = element.getAttribute("param");
+                window.open(url, "_blank");
+            })
+        });
+        document.querySelectorAll(".internal-link").forEach(function (element) {
+            element.addEventListener("click", function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                let slideName = element.getAttribute("param");
+                for(index = 0; index < SlideRenderer.slideTitles.length; index++){
+                    if(SlideRenderer.slideTitles[index].toLowerCase().match(slideName.toLowerCase()) !== null){
+                            SlideHandler.directNavigateByIndex(index);
+                            return;
+                    }
+                }
+                        UIHandler.error("Slide not found: " + slideName);
+                });
+        });  
     },
-
 
     generateNewSlide: function (line, level) {
         let returnValue = "";
@@ -412,7 +446,11 @@ let SlideRenderer = {
         SlideRenderer.resetMLALevelCounters();
         return returnValue + "<div class='outline'>";
     },
-    metadatAuthorString: function (line, level) {
+    plainString: function (line, level) {
+        let heading = SlideRenderer.mlaHeadingString(level);
+        return SEML.parseSEML("p", ".outline-item" + ".outline-level-" + level, heading + " " + SlideRenderer.textProcessor(line));
+    },
+    metadataAuthorString: function (line, level) {
         let heading = SlideRenderer.mlaHeadingString(level);
         return SEML.parseSEML("p", ".outline-item.author" + ".outline-level-" + level, heading + " " + SlideRenderer.textProcessor(line));
     },
@@ -460,37 +498,39 @@ let SlideRenderer = {
         return SEML.parseSEML("p", ".outline-item.outline-title" + ".outline-level-" + level, heading + " " + SlideRenderer.textProcessor(line));
     },
 
+    headingString: function (line, level) {
+        let heading = SlideRenderer.mlaHeadingString(level);
+        return SEML.parseSEML("p", ".outline-item.outline-subtitle" + ".outline-level-" + level, heading + " " + SlideRenderer.textProcessor(line));
+    },
     questionString: function (line, level) {
         let heading = SlideRenderer.mlaHeadingString(level);
-        return SEML.parseSEML("p", ".outline-item.outline-header.outline-question" + ".outline-level-" + level, heading + " " + SlideRenderer.textProcessor(line));
+        return SEML.parseSEML("p", ".outline-item.outline-subtitle.outline-question" + ".outline-level-0", heading + " " + SlideRenderer.textProcessor(line));
     },
     markCorrectAnswer: function (line, level) {
         let heading = SlideRenderer.mlaHeadingString(level);
-        return SEML.parseSEML("p", ".outline-item.outline-correct-answer.outline-level-" + level + "!onclick=\"function(event){SlideHandler.displayAnswer(1);event.stopPropagation();}\")", heading + SlideRenderer.textProcessor(line));
+        return SEML.parseSEML("p", ".outline-item.outline-correct-answer.outline-level-1", heading + " " + SlideRenderer.textProcessor(line));
     },
 
 
     markIncorrectAnswer: function (line, level) {
         let heading = SlideRenderer.mlaHeadingString(level);
-        return SEML.parseSEML("p", ".outline-item.outline-incorrect-answer.outline-level-" + level + "!onclick=\"function(event){SlideHandler.displayAnswer(0);event.stopPropagation()}\")", heading + SlideRenderer.textProcessor(line));
+        return SEML.parseSEML("p", ".outline-item.outline-incorrect-answer.outline-level-1", heading + " " + SlideRenderer.textProcessor(line));
     },
     linkString: function (line, level) {
         let heading = SlideRenderer.mlaHeadingString(level);
         let linkParts = line.split("|");
-        let linkText = linkParts[0];
-        let linkURL = linkParts[1];
         if (linkParts.length < 2) {
             let errorMessage = "<span class='error-message'>Error: found slide link  without enough arguments in line: " + line + ".</span>";
             console.error(errorMessage);
             return errorMessage;
         }
-        let linktext = linkParts[0].trim();
+        let linkText = linkParts[0].trim();
         let linkDestination = linkParts[1].trim();
         if (linkDestination.indexOf("http") === 0) {
-            return SEML.parseSEML("p", ".outline-item.link.external-link.outline-level-" + level + "!param='" + linkParts[1] + "'", heading + SlideRenderer.textProcessor(linktext));
+            return SEML.parseSEML("p", ".outline-item.link.external-link.outline-level-" + level + "!param='" + linkDestination + "'", heading + SlideRenderer.textProcessor(linkText));
         }
         else {
-            return SEML.parseSEML("p", ".outline-item.outline-item.link.branch.outline-level-" + level + "!param='" + linkParts[1] + "'", heading + SlideRenderer.textProcessor(linktext));
+            return SEML.parseSEML("p", ".outline-item.outline-item.link.internal-link.outline-level-" + level + "!param='" + linkDestination + "'", heading + SlideRenderer.textProcessor(linkText));
         }
     },
     versoString: function (line, level) {

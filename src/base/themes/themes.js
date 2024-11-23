@@ -6,13 +6,13 @@ let ThemeHandler = {
   codeFontStack: "--monospace-code-font-stack",
   themeData: "",
   loadThemes: function () {
-    if (BrowserFileSystem.fileExists("userdata/themes.vss") === false) {
+    if (BrowserFileSystem.fileExists("userdata/themevars.vss") === false) {
       UIHandler.error("Themes are missing! Cannot proceed without a theme!");
       ThemeHandler.themeData = "";
       return;
     }
     else {
-      ThemeHandler.themeData = BrowserFileSystem.readInternalTextFile("userdata/themes.vss");
+      ThemeHandler.themeData = BrowserFileSystem.readInternalTextFile("userdata/themevars.vss");
     }
     ThemeHandler.renderThemes();
     ThemeHandler.setTheme();

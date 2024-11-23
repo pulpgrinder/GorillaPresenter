@@ -5,7 +5,8 @@ Here's some regular text.
 :O
 :T This is my title. There are many like it but this one is mine.
 :L This is at level one. Goes to Google. | http://www.google.com
-:L This is also at level one. Goes to quiz. | quiz
+:L This is also at level one. Goes to Cross Dissolve. | Cross Dissolve
+:H This should show up as a subheading.
 :: This is at level two.
 ::: This is at level three.
 :::: This is at level 4

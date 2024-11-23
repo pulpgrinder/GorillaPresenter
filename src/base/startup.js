@@ -27,6 +27,8 @@ GorillaPresenter.startup = function() {
     SlideRenderer.init();
     SlideRenderer.renderSlides();
     UIHandler.wireUI(document.getElementById("slideroot"));
+    UIHandler.wireAccessoryScreens();
+    UIHandler.renderAbout();
 
   
 }

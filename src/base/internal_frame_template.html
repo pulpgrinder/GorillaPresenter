@@ -17,15 +17,18 @@
   </noscript>
 
   <div id="slideroot" class="nonprintable">
-    <div id="slideeditor" class="slide panel sic-transit-panel">
-      slide editor
-    </div>
-    <div id="csseditor" class="slide panel sic-transit-panel">
-      css editor
-    </div>
+    
 
   </div>
+  <div id="gorilla-presenter-about" class="panel sic-transit-panel accessory-screen">
+    <div>
+      <span><button class="close-button" onclick="UIHandler.hideAccessoryScreen('gorilla-presenter-about')">&#xe807;</button></span>
+    </div>
+    <div id="about-body">
 
+    </div>
+  </div>
+  
   <dialog id="main-menu-wrapper" class="nonprintable">
     <div id="mainmenu" class="unselectable mainmenu">
       <div class="main-menu-item">
@@ -74,6 +77,29 @@
     </div>
   </dialog>
   <input type="file" id="iohandler-workspace-chooser" style="display:none" onchange="IOHandler.workspaceChosen()" />
+  <div id="gorilla-presenter-warning-message" class="gorilla-presenter-notification gorilla-presenter-warning-message nonprintable">
+    This is a warning, y'all.
+  </div>
+  <div id="gorilla-presenter-error-message" class="gorilla-presenter-notification gorilla-presenter-error-message nonprintable">
+    This is an error, y'all.
+  </div>
+  <div id="gorilla-presenter-notification-message" class="gorilla-presenter-notification gorilla-presenter-notification-message nonprintable">
+    This is a notification, y'all.
+  </div>
+<dialog id="gorilla-presenter-printer-dialog" class="nonprintable">
+  Paper size: <select id="gorilla-presenter-paper-size">
+    <option value="letter" selected>U.S. letter</option>
+    <option value="a4">A4</option>
+  </select>
+  Slides per page: <select id="gorilla-presenter-slides-per-page">
+    <option value="6" selected>6</option>
+    <option value="1">1</option>
+  </select>
+  <br>
+  <br>
+  <button onclick="GorillaPresenter.printHandler()">Print</button>
+  <button onclick="GorillaPresenter.hidePrintDialog()">Cancel</button>
+</dialog>
 
 </body>
 

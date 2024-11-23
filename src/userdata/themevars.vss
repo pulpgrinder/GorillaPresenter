@@ -1,0 +1,1801 @@
+%%% Default
+:root{
+--slide-body-color: #A0522D;
+--slide-body-background-color: #013220;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #2E8B57;
+--slide-title-bottom-border: 1px solid #A0522D;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #2E8B57;
+--outline-item-color: #A0522D;
+--outline-item-background-color: #013220;
+--outline-item-border: 1px solid #2E8B57;
+}
+
+
+%%% Damaged Robot
+:root{
+--slide-body-color: #C0C0C0;
+--slide-body-background-color: #4B4B4B;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #6E260E;
+--slide-title-bottom-border: 1px solid #C0C0C0;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #6E260E;
+--outline-item-color: #C0C0C0;
+--outline-item-background-color: #4B4B4B;
+--outline-item-border: 1px solid #6E260E;
+}
+
+%%% Bucky Fuller
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #2C3E50;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #34495E;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #34495E;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #2C3E50;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+%%% Modern & Clean
+:root{
+--slide-body-color: #333333;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #3498DB;
+--slide-title-bottom-border: 1px solid #333333;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #3498DB;
+--outline-item-color: #333333;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #3498DB;
+}
+
+%%% Professional & Sophisticated
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #2C3E50;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #34495E;
+--slide-title-bottom-border: 1px solid #D4AF37;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #34495E;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #2C3E50;
+--outline-item-border: 1px solid #D4AF37;
+}
+
+%%% Greeting
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFACD;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FFA07A;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FFA07A;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFACD;
+--outline-item-border: 1px solid #FFA07A;
+}
+
+%%% Refreshing
+:root{
+--slide-body-color: #2E8B57;
+--slide-body-background-color: #E0FFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #20B2AA;
+--slide-title-bottom-border: 1px solid #2E8B57;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #20B2AA;
+--outline-item-color: #2E8B57;
+--outline-item-background-color: #E0FFFF;
+--outline-item-border: 1px solid #20B2AA;
+}
+
+%%% Bold & Dynamic
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #FF4136;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #0074D9;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #0074D9;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #FF4136;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+%%% Serene & Peaceful
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F0F8FF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #87CEFA;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #87CEFA;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F0F8FF;
+--outline-item-border: 1px solid #87CEFA;
+}
+
+%%% Mauve Decade
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #7E5E9B;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #6A5ACD;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #6A5ACD;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #7E5E9B;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+
+%%% Minimalist & Chic
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #000000;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #000000;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #000000;
+}
+
+
+%%% Warm & Loving
+:root{
+--slide-body-color: #800000;
+--slide-body-background-color: #FFE4E1;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF69B4;
+--slide-title-bottom-border: 1px solid #800000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF69B4;
+--outline-item-color: #800000;
+--outline-item-background-color: #FFE4E1;
+--outline-item-border: 1px solid #FF69B4;
+}
+
+
+%%% Clinical Data
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #4682B4;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #4682B4;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #4682B4;
+}
+
+
+%%% Informal Party
+:root{
+--slide-body-color: #000080;
+--slide-body-background-color: #FFFFE0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF69B4;
+--slide-title-bottom-border: 1px solid #000080;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF69B4;
+--outline-item-color: #000080;
+--outline-item-background-color: #FFFFE0;
+--outline-item-border: 1px solid #FF69B4;
+}
+
+
+%%% Calm
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #E6E6FA;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #6A5ACD;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #6A5ACD;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #E6E6FA;
+--outline-item-border: 1px solid #6A5ACD;
+}
+
+
+%%% Industrial
+:root{
+--slide-body-color: #E0E0E0;
+--slide-body-background-color: #2C2C2C;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #4F4F4F;
+--slide-title-bottom-border: 1px solid #E0E0E0;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #4F4F4F;
+--outline-item-color: #E0E0E0;
+--outline-item-background-color: #2C2C2C;
+--outline-item-border: 1px solid #4F4F4F;
+}
+
+
+%%% Spring Meadow
+:root{
+--slide-body-color: #006400;
+--slide-body-background-color: #F0FFF0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #7FFF00;
+--slide-title-bottom-border: 1px solid #006400;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #7FFF00;
+--outline-item-color: #006400;
+--outline-item-background-color: #F0FFF0;
+--outline-item-border: 1px solid #7FFF00;
+}
+
+%%% Northern Lights
+:root{
+--slide-body-color: #A5F3E9;
+--slide-body-background-color: #1B1B2F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #3A506B;
+--slide-title-bottom-border: 1px solid #A5F3E9;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #3A506B;
+--outline-item-color: #A5F3E9;
+--outline-item-background-color: #1B1B2F;
+--outline-item-border: 1px solid #3A506B;
+}
+
+%%% Tropical Beach
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F0E68C;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #1E90FF;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #1E90FF;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F0E68C;
+--outline-item-border: 1px solid #1E90FF;
+}
+
+%%% Las Vegas
+:root{
+--slide-body-color: #FFD700;
+--slide-body-background-color: #000000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF0000;
+--slide-title-bottom-border: 1px solid #FFD700;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF0000;
+--outline-item-color: #FFD700;
+--outline-item-background-color: #000000;
+--outline-item-border: 1px solid #FF0000;
+}
+
+%%% Paris
+:root{
+--slide-body-color: #2C3E50;
+--slide-body-background-color: #F5F5DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #E74C3C;
+--slide-title-bottom-border: 1px solid #2C3E50;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #E74C3C;
+--outline-item-color: #2C3E50;
+--outline-item-background-color: #F5F5DC;
+--outline-item-border: 1px solid #E74C3C;
+}
+
+%%% Manhattan
+:root{
+--slide-body-color: #E0E0E0;
+--slide-body-background-color: #2C3E50;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #34495E;
+--slide-title-bottom-border: 1px solid #E0E0E0;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #34495E;
+--outline-item-color: #E0E0E0;
+--outline-item-background-color: #2C3E50;
+--outline-item-border: 1px solid #34495E;
+}
+
+%%% Bangkok
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #8B0000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FFD700;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FFD700;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #8B0000;
+--outline-item-border: 1px solid #FFD700;
+}
+
+%%% Mumbai
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #FF9933;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #138808;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #138808;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #FF9933;
+--outline-item-border: 1px solid #138808;
+}
+
+%%% Vitruvius
+:root{
+--slide-body-color: #4B3621;
+--slide-body-background-color: #FAF0E6;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B4513;
+--slide-title-bottom-border: 1px solid #4B3621;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B4513;
+--outline-item-color: #4B3621;
+--outline-item-background-color: #FAF0E6;
+--outline-item-border: 1px solid #8B4513;
+}
+
+%%% 80s Retro
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #000000;
+--slide-title-background-color: #FF00FF;
+--slide-title-bottom-border: 1px solid #00FFFF;
+--outline-item-title-color: #000000;
+--outline-item-title-background-color: #00FFFF;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #FF00FF;
+
+}
+
+%%% Crayon
+:root{
+--slide-body-color: #0000FF;
+--slide-body-background-color: #FFFF00;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF0000;
+--slide-title-bottom-border: 1px solid #0000FF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF0000;
+--outline-item-color: #0000FF;
+--outline-item-background-color: #FFFF00;
+--outline-item-border: 1px solid #FF0000;
+}
+
+%%% Paint It Black
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #000000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #000000;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #000000;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #000000;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+%%% Typographical Error
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FF0000;
+--slide-title-background-color: #FFFFFF;
+--slide-title-bottom-border: 1px solid #FF0000;
+--outline-item-title-color: #FF0000;
+--outline-item-title-background-color: #FFFFFF;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #FF0000;
+}
+
+%%% Ocean Dive
+:root{
+--slide-body-color: #E0FFFF;
+--slide-body-background-color: #001F3F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #0074D9;
+--slide-title-bottom-border: 1px solid #E0FFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #0074D9;
+--outline-item-color: #E0FFFF;
+--outline-item-background-color: #001F3F;
+--outline-item-border: 1px solid #0074D9;
+}
+
+%%% Sunset Glow
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #FF4500;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #800080;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #800080;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #FF4500;
+--outline-item-border: 1px solid #800080;
+}
+
+%%% Forest Whisper
+:root{
+--slide-body-color: #F5F5DC;
+--slide-body-background-color: #013220;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #228B22;
+--slide-title-bottom-border: 1px solid #F5F5DC;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #228B22;
+--outline-item-color: #F5F5DC;
+--outline-item-background-color: #013220;
+--outline-item-border: 1px solid #228B22;
+}
+
+%%% Desert Mirage
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #D2B48C;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #D2B48C;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #D2B48C;
+}
+
+%%% Fancy Invitation
+:root{
+--slide-body-color: #4B0082;
+--slide-body-background-color: #FFF8DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #4B0082;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #4B0082;
+--outline-item-background-color: #FFF8DC;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Mechanical Marvel
+:root{
+--slide-body-color: #D3D3D3;
+--slide-body-background-color: #2F4F4F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #708090;
+--slide-title-bottom-border: 1px solid #D3D3D3;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #708090;
+--outline-item-color: #D3D3D3;
+--outline-item-background-color: #2F4F4F;
+--outline-item-border: 1px solid #708090;
+}
+
+%%% Blueprint
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #000080;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #00008B;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #00008B;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #000080;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+%%% Naval Briefing
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #000080;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #00008B;
+--slide-title-bottom-border: 1px solid #FFD700;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #00008B;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #000080;
+--outline-item-border: 1px solid #FFD700;
+}
+
+%%% Steampunk
+:root{
+--slide-body-color: #D2B48C;
+--slide-body-background-color: #3B2F2F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B4513;
+--slide-title-bottom-border: 1px solid #D2B48C;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B4513;
+--outline-item-color: #D2B48C;
+--outline-item-background-color: #3B2F2F;
+--outline-item-border: 1px solid #8B4513;
+}
+
+%%% Cantata
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFF8DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFF8DC;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Deep Woods
+:root{
+--slide-body-color: #A0522D;
+--slide-body-background-color: #013220;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #2E8B57;
+--slide-title-bottom-border: 1px solid #A0522D;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #2E8B57;
+--outline-item-color: #A0522D;
+--outline-item-background-color: #013220;
+--outline-item-border: 1px solid #2E8B57;
+}
+
+%%% Scholium
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FAF0E6;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #708090;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #708090;
+--outline-item-color: #000000;
+--outline-item-background-color: #FAF0E6;
+--outline-item-border: 1px solid #708090;
+}
+
+%%% Neverland
+:root{
+--slide-body-color: #4B0082;
+--slide-body-background-color: #E6E6FA;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8A2BE2;
+--slide-title-bottom-border: 1px solid #4B0082;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8A2BE2;
+--outline-item-color: #4B0082;
+--outline-item-background-color: #E6E6FA;
+--outline-item-border: 1px solid #8A2BE2;
+}
+
+%%% Hammurabi
+:root{
+--slide-body-color: #4B3621;
+--slide-body-background-color: #DEB887;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B4513;
+--slide-title-bottom-border: 1px solid #4B3621;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B4513;
+--outline-item-color: #4B3621;
+--outline-item-background-color: #DEB887;
+--outline-item-border: 1px solid #8B4513;
+}
+
+%%% Bali
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #E0FFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #20B2AA;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #20B2AA;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #E0FFFF;
+--outline-item-border: 1px solid #20B2AA;
+}
+
+%%% Prairie
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #87CEEB;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #87CEEB;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #87CEEB;
+}
+
+%%% Ancient Rome
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #DCDCDC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #800000;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #800000;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #DCDCDC;
+--outline-item-border: 1px solid #800000;
+}
+
+%%% Tropical Fish
+:root{
+--slide-body-color: #FF4500;
+--slide-body-background-color: #40E0D0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF69B4;
+--slide-title-bottom-border: 1px solid #FF4500;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF69B4;
+--outline-item-color: #FF4500;
+--outline-item-background-color: #40E0D0;
+--outline-item-border: 1px solid #FF69B4;
+}
+
+%%% Spacecraft
+:root{
+--slide-body-color: #C0C0C0;
+--slide-body-background-color: #000000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #1E90FF;
+--slide-title-bottom-border: 1px solid #C0C0C0;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #1E90FF;
+--outline-item-color: #C0C0C0;
+--outline-item-background-color: #000000;
+--outline-item-border: 1px solid #1E90FF;
+}
+
+%%% Cobblestone
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #D3D3D3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #696969;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #696969;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #D3D3D3;
+--outline-item-border: 1px solid #696969;
+}
+
+%%% Stained Glass
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #8B008B;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF4500;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF4500;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #8B008B;
+--outline-item-border: 1px solid #FF4500;
+}
+
+%%% Fresco
+:root{
+--slide-body-color: #556B2F;
+--slide-body-background-color: #FAFAD2;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #CD5C5C;
+--slide-title-bottom-border: 1px solid #556B2F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #CD5C5C;
+--outline-item-color: #556B2F;
+--outline-item-background-color: #FAFAD2;
+--outline-item-border: 1px solid #CD5C5C;
+}
+
+%%% Rager
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #FF00FF;
+--slide-title-color: #000000;
+--slide-title-background-color: #FFD700;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #000000;
+--outline-item-title-background-color: #FFD700;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #FF00FF;
+--outline-item-border: 1px solid #FFD700;
+}
+
+%%% New York
+:root{
+--slide-body-color: #E0E0E0;
+--slide-body-background-color: #2C3E50;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #34495E;
+--slide-title-bottom-border: 1px solid #E0E0E0;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #34495E;
+--outline-item-color: #E0E0E0;
+--outline-item-background-color: #2C3E50;
+--outline-item-border: 1px solid #34495E;
+}
+
+%%% Marrakech
+:root{
+--slide-body-color: #8B0000;
+--slide-body-background-color: #FFE4B5;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #CD853F;
+--slide-title-bottom-border: 1px solid #8B0000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #CD853F;
+--outline-item-color: #8B0000;
+--outline-item-background-color: #FFE4B5;
+--outline-item-border: 1px solid #CD853F;
+}
+
+
+%%% Siberia
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F0F8FF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #4682B4;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #4682B4;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F0F8FF;
+--outline-item-border: 1px solid #4682B4;
+}
+
+%%% Everglades
+:root{
+--slide-body-color: #2E8B57;
+--slide-body-background-color: #98FB98;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #006400;
+--slide-title-bottom-border: 1px solid #2E8B57;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #006400;
+--outline-item-color: #2E8B57;
+--outline-item-background-color: #98FB98;
+--outline-item-border: 1px solid #006400;
+}
+
+%%% Badlands
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #DEB887;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #A0522D;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #A0522D;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #DEB887;
+--outline-item-border: 1px solid #A0522D;
+}
+
+%%% Arctic
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F0FFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #5F9EA0;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #5F9EA0;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F0FFFF;
+--outline-item-border: 1px solid #5F9EA0;
+}
+
+%%% Amazon
+:root{
+--slide-body-color: #013220;
+--slide-body-background-color: #98FB98;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #228B22;
+--slide-title-bottom-border: 1px solid #013220;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #228B22;
+--outline-item-color: #013220;
+--outline-item-background-color: #98FB98;
+--outline-item-border: 1px solid #228B22;
+}
+
+%%% Serengeti
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #DAA520;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #DAA520;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #DAA520;
+}
+
+%%% Great Barrier Reef
+:root{
+--slide-body-color: #1E90FF;
+--slide-body-background-color: #E0FFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #00CED1;
+--slide-title-bottom-border: 1px solid #1E90FF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #00CED1;
+--outline-item-color: #1E90FF;
+--outline-item-background-color: #E0FFFF;
+--outline-item-border: 1px solid #00CED1;
+}
+
+%%% Rockies
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #D3D3D3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #696969;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #696969;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #D3D3D3;
+--outline-item-border: 1px solid #696969;
+}
+
+%%% Greenland
+:root{
+--slide-body-color: #2E8B57;
+--slide-body-background-color: #F0FFF0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #5F9EA0;
+--slide-title-bottom-border: 1px solid #2E8B57;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #5F9EA0;
+--outline-item-color: #2E8B57;
+--outline-item-background-color: #F0FFF0;
+--outline-item-border: 1px solid #5F9EA0;
+}
+
+%%% Pampas
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #D2B48C;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #D2B48C;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #D2B48C;
+}
+
+%%% Gobi
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #CD853F;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #CD853F;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #CD853F;
+}
+
+%%% Grand Canyon
+:root{
+--slide-body-color: #8B0000;
+--slide-body-background-color: #DEB887;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #A0522D;
+--slide-title-bottom-border: 1px solid #8B0000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #A0522D;
+--outline-item-color: #8B0000;
+--outline-item-background-color: #DEB887;
+--outline-item-border: 1px solid #A0522D;
+}
+
+%%% Great Plains
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5F5DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #BDB76B;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #BDB76B;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5F5DC;
+--outline-item-border: 1px solid #BDB76B;
+}
+
+%%% Bora Bora
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #E0FFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #1E90FF;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #1E90FF;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #E0FFFF;
+--outline-item-border: 1px solid #1E90FF;
+}
+
+%%% Mongolian Steppe
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5F5DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #A0522D;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #A0522D;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5F5DC;
+--outline-item-border: 1px solid #A0522D;
+}
+
+%%% Congo Basin
+:root{
+--slide-body-color: #013220;
+--slide-body-background-color: #98FB98;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #006400;
+--slide-title-bottom-border: 1px solid #013220;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #006400;
+--outline-item-color: #013220;
+--outline-item-background-color: #98FB98;
+--outline-item-border: 1px solid #006400;
+}
+
+%%% Mauna Loa
+:root{
+--slide-body-color: #FF4500;
+--slide-body-background-color: #2F4F4F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #FF4500;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #FF4500;
+--outline-item-background-color: #2F4F4F;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Van Gogh
+:root{
+--slide-body-color: #1B2631;
+--slide-body-background-color: #F7DC6F;
+--slide-title-color: #F7DC6F;
+--slide-title-background-color: #154360;
+--slide-title-bottom-border: 1px solid #F7DC6F;
+--outline-item-title-color: #F7DC6F;
+--outline-item-title-background-color: #154360;
+--outline-item-color: #1B2631;
+--outline-item-background-color: #F7DC6F;
+--outline-item-border: 1px solid #154360;
+}
+
+%%% Picasso
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #F5F5F5;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #000000;
+--outline-item-background-color: #F5F5F5;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Monet
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #E0FFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #6B8E23;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #6B8E23;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #E0FFFF;
+--outline-item-border: 1px solid #6B8E23;
+}
+
+%%% Dali
+:root{
+--slide-body-color: #4B0082;
+--slide-body-background-color: #F0E68C;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #4B0082;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #4B0082;
+--outline-item-background-color: #F0E68C;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Warhol
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFF00;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF1493;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF1493;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFF00;
+--outline-item-border: 1px solid #FF1493;
+}
+
+%%% Kahlo
+:root{
+--slide-body-color: #006400;
+--slide-body-background-color: #FFDAB9;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #006400;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #006400;
+--outline-item-background-color: #FFDAB9;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Matisse
+:root{
+--slide-body-color: #000080;
+--slide-body-background-color: #F0F8FF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #0000CD;
+--slide-title-bottom-border: 1px solid #000080;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #0000CD;
+--outline-item-color: #000080;
+--outline-item-background-color: #F0F8FF;
+--outline-item-border: 1px solid #0000CD;
+}
+
+%%% Hokusai
+:root{
+--slide-body-color: #1B2631;
+--slide-body-background-color: #E0FFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #000080;
+--slide-title-bottom-border: 1px solid #1B2631;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #000080;
+--outline-item-color: #1B2631;
+--outline-item-background-color: #E0FFFF;
+--outline-item-border: 1px solid #000080;
+}
+
+%%% Michelangelo
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F5F5F5;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #696969;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #696969;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F5F5F5;
+--outline-item-border: 1px solid #696969;
+}
+
+%%% Seurat
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #FFFACD;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #6A5ACD;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #6A5ACD;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #FFFACD;
+--outline-item-border: 1px solid #6A5ACD;
+}
+
+%%% Klimt
+:root{
+--slide-body-color: #4B0082;
+--slide-body-background-color: #FFD700;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #DAA520;
+--slide-title-bottom-border: 1px solid #4B0082;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #DAA520;
+--outline-item-color: #4B0082;
+--outline-item-background-color: #FFD700;
+--outline-item-border: 1px solid #DAA520;
+}
+
+%%% Pollock
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #000000;
+--slide-title-bottom-border: 1px solid #FF0000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #000000;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #FF0000;
+}
+
+%%% Magritte
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F5F5F5;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #708090;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #708090;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F5F5F5;
+--outline-item-border: 1px solid #708090;
+}
+
+%%% Mondrian
+:root{
+--slide-body-color: #000000;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF0000;
+--slide-title-bottom-border: 1px solid #000000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF0000;
+--outline-item-color: #000000;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #000000;
+}
+
+%%% Cezanne
+:root{
+--slide-body-color: #4B3621;
+--slide-body-background-color: #FAF0E6;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B4513;
+--slide-title-bottom-border: 1px solid #4B3621;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B4513;
+--outline-item-color: #4B3621;
+--outline-item-background-color: #FAF0E6;
+--outline-item-border: 1px solid #8B4513;
+}
+
+%%% Renoir
+:root{
+--slide-body-color: #800000;
+--slide-body-background-color: #FFE4E1;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FA8072;
+--slide-title-bottom-border: 1px solid #800000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FA8072;
+--outline-item-color: #800000;
+--outline-item-background-color: #FFE4E1;
+--outline-item-border: 1px solid #FA8072;
+}
+
+%%% Degas
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #FFF0F5;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #6A5ACD;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #6A5ACD;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #FFF0F5;
+--outline-item-border: 1px solid #6A5ACD;
+}
+
+%%% Bosch
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #2F4F4F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #000000;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #000000;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #2F4F4F;
+--outline-item-border: 1px solid #000000;
+}
+
+%%% Airstrip One
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #000000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #000000;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Arrakis
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #CD853F;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #CD853F;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #CD853F;
+}
+
+%%% Narnia
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F0F8FF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #4682B4;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #4682B4;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F0F8FF;
+--outline-item-border: 1px solid #4682B4;
+}
+
+%%% Oz
+:root{
+--slide-body-color: #006400;
+--slide-body-background-color: #FFFFE0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #228B22;
+--slide-title-bottom-border: 1px solid #006400;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #228B22;
+--outline-item-color: #006400;
+--outline-item-background-color: #FFFFE0;
+--outline-item-border: 1px solid #228B22;
+}
+
+%%% Graustark
+:root{
+--slide-body-color: #4B0082;
+--slide-body-background-color: #F8F8FF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #800080;
+--slide-title-bottom-border: 1px solid #4B0082;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #800080;
+--outline-item-color: #4B0082;
+--outline-item-background-color: #F8F8FF;
+--outline-item-border: 1px solid #800080;
+}
+
+%%% Barsoom
+:root{
+--slide-body-color: #8B0000;
+--slide-body-background-color: #FFE4C4;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #A52A2A;
+--slide-title-bottom-border: 1px solid #8B0000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #A52A2A;
+--outline-item-color: #8B0000;
+--outline-item-background-color: #FFE4C4;
+--outline-item-border: 1px solid #A52A2A;
+}
+
+%%% The Shire
+:root{
+--slide-body-color: #013220;
+--slide-body-background-color: #F0FFF0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #006400;
+--slide-title-bottom-border: 1px solid #013220;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #006400;
+--outline-item-color: #013220;
+--outline-item-background-color: #F0FFF0;
+--outline-item-border: 1px solid #006400;
+}
+
+%%% Rohan
+:root{
+--slide-body-color: #013220;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #228B22;
+--slide-title-bottom-border: 1px solid #013220;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #228B22;
+--outline-item-color: #013220;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #228B22;
+}
+
+%%% Mordor
+:root{
+--slide-body-color: #FF4500;
+--slide-body-background-color: #2F4F4F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #000000;
+--slide-title-bottom-border: 1px solid #FF4500;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #000000;
+--outline-item-color: #FF4500;
+--outline-item-background-color: #2F4F4F;
+--outline-item-border: 1px solid #000000;
+}
+
+%%% Gondor
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #FFFFFF;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #708090;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #708090;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #FFFFFF;
+--outline-item-border: 1px solid #708090;
+}
+
+%%% Ruby
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #8B0000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #B22222;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #B22222;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #8B0000;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+%%% Pearl
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #F0EAD6;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #B0C4DE;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #B0C4DE;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #F0EAD6;
+--outline-item-border: 1px solid #B0C4DE;
+}
+
+%%% Emerald
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #006400;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #008000;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #008000;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #006400;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+%%% Turquoise
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #AFEEEE;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #40E0D0;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #40E0D0;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #AFEEEE;
+--outline-item-border: 1px solid #40E0D0;
+}
+
+%%% Amber
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #FFBF00;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF8C00;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF8C00;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #FFBF00;
+--outline-item-border: 1px solid #FF8C00;
+}
+
+%%% Sapphire
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #0F52BA;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #1E90FF;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #1E90FF;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #0F52BA;
+--outline-item-border: 1px solid #FFFFFF;
+}
+
+%%% Orchid
+:root{
+--slide-body-color: #4B0082;
+--slide-body-background-color: #DA70D6;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #BA55D3;
+--slide-title-bottom-border: 1px solid #4B0082;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #BA55D3;
+--outline-item-color: #4B0082;
+--outline-item-background-color: #DA70D6;
+--outline-item-border: 1px solid #BA55D3;
+}
+
+%%% Rose
+:root{
+--slide-body-color: #800000;
+--slide-body-background-color: #FFC0CB;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF69B4;
+--slide-title-bottom-border: 1px solid #800000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF69B4;
+--outline-item-color: #800000;
+--outline-item-background-color: #FFC0CB;
+--outline-item-border: 1px solid #FF69B4;
+}
+
+%%% Daisy
+:root{
+--slide-body-color: #2F4F4F;
+--slide-body-background-color: #FFFFF0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FFD700;
+--slide-title-bottom-border: 1px solid #2F4F4F;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FFD700;
+--outline-item-color: #2F4F4F;
+--outline-item-background-color: #FFFFF0;
+--outline-item-border: 1px solid #FFD700;
+}
+
+%%% Petunia
+:root{
+--slide-body-color: #4B0082;
+--slide-body-background-color: #E6E6FA;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #9370DB;
+--slide-title-bottom-border: 1px solid #4B0082;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #9370DB;
+--outline-item-color: #4B0082;
+--outline-item-background-color: #E6E6FA;
+--outline-item-border: 1px solid #9370DB;
+}
+
+%%% Marigold
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #FFD700;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF8C00;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF8C00;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #FFD700;
+--outline-item-border: 1px solid #FF8C00;
+}
+
+%%% Bluebells
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #6A5ACD;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #483D8B;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #483D8B;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #6A5ACD;
+--outline-item-border: 1px solid #483D8B;
+}
+
+%%% Pizza
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #FFE5B4;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF4500;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF4500;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #FFE5B4;
+--outline-item-border: 1px solid #FF4500;
+}
+
+%%% Fresh Salad
+:root{
+--slide-body-color: #006400;
+--slide-body-background-color: #F0FFF0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #32CD32;
+--slide-title-bottom-border: 1px solid #006400;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #32CD32;
+--outline-item-color: #006400;
+--outline-item-background-color: #F0FFF0;
+--outline-item-border: 1px solid #32CD32;
+}
+
+%%% Bakery
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #FFF8DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #D2691E;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #D2691E;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #FFF8DC;
+--outline-item-border: 1px solid #D2691E;
+}
+
+%%% Chili
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #8B0000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #FF0000;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #FF0000;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #8B0000;
+--outline-item-border: 1px solid #FF0000;
+}
+
+%%% Pancake House
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #CD853F;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #CD853F;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #CD853F;
+}
+
+%%% Barbecue
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #2F4F4F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #2F4F4F;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Toad in the Hole
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #FFF8DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #A0522D;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #A0522D;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #FFF8DC;
+--outline-item-border: 1px solid #A0522D;
+}
+
+%%% Lobscouse
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #DEB887;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #A0522D;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #A0522D;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #DEB887;
+--outline-item-border: 1px solid #A0522D;
+}
+
+%%% Rocky Road
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #3D2B1F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B4513;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B4513;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #3D2B1F;
+--outline-item-border: 1px solid #8B4513;
+}
+
+%%% Phở
+:root{
+--slide-body-color: #006400;
+--slide-body-background-color: #F5FFFA;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #228B22;
+--slide-title-bottom-border: 1px solid #006400;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #228B22;
+--outline-item-color: #006400;
+--outline-item-background-color: #F5FFFA;
+--outline-item-border: 1px solid #228B22;
+}
+
+%%% Couscous
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #DAA520;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #DAA520;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #DAA520;
+}
+
+%%% Red Beans and Rice
+:root{
+--slide-body-color: #8B0000;
+--slide-body-background-color: #FFFFF0;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #B22222;
+--slide-title-bottom-border: 1px solid #8B0000;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #B22222;
+--outline-item-color: #8B0000;
+--outline-item-background-color: #FFFFF0;
+--outline-item-border: 1px solid #B22222;
+}
+
+%%% Poutine
+:root{
+--slide-body-color: #8B4513;
+--slide-body-background-color: #FFF8DC;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #D2691E;
+--slide-title-bottom-border: 1px solid #8B4513;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #D2691E;
+--outline-item-color: #8B4513;
+--outline-item-background-color: #FFF8DC;
+--outline-item-border: 1px solid #D2691E;
+}
+
+%%% Tandoori Chicken
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #FF6347;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #CD5C5C;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #CD5C5C;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #FF6347;
+--outline-item-border: 1px solid #CD5C5C;
+}
+
+%%% Goulash
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #8B0000;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #A0522D;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #A0522D;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #8B0000;
+--outline-item-border: 1px solid #A0522D;
+}
+
+%%% Pepperpot
+:root{
+--slide-body-color: #FFFFFF;
+--slide-body-background-color: #2F4F4F;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #8B0000;
+--slide-title-bottom-border: 1px solid #FFFFFF;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #8B0000;
+--outline-item-color: #FFFFFF;
+--outline-item-background-color: #2F4F4F;
+--outline-item-border: 1px solid #8B0000;
+}
+
+%%% Chocolate Chip
+:root{
+--slide-body-color: #2B1B17;
+--slide-body-background-color: #F5DEB3;
+--slide-title-color: #FFFFFF;
+--slide-title-background-color: #4B2E2E;
+--slide-title-bottom-border: 1px solid #2B1B17;
+--outline-item-title-color: #FFFFFF;
+--outline-item-title-background-color: #4B2E2E;
+--outline-item-color: #2B1B17;
+--outline-item-background-color: #F5DEB3;
+--outline-item-border: 1px solid #4B2E2E;
+}
