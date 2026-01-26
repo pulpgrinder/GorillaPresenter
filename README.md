@@ -1,11 +1,11 @@
 # Gorilla Presenter
 
-Gorilla Presenter is a fully self-contained presentation program. The entire system -- presentation, editor, media recorder, resources -- is contained in a single HTML file. No apps. No servers. The only thing you need for creating and displaying presentations is a normal web browser (iPhoneOS and iPadOS do require installing Microsoft Edge, as it is the only browser that currently allows opening HTML files from the device's file system).
+Gorilla Presenter is a complete presentation tool packed into **a single HTML file**. Everything lives there: the slides themselves, the editor, a media recorder, and supporting resources. You don't need to install any apps or rely on an internet connection—just open the file in a regular web browser.
 
-This also means that your presentation can be emailed, distributed on a thumb drive, or whatever, without worrying about the recipient being able to view it.
+(Quick note for iPhone or iPad users: you'll need Microsoft Edge, since it's currently the only mobile browser that lets you open local HTML files from the device's file system.)
 
-Slides are created using standard Markdown, with some specialty extensions aimed at presentations (e.g., autoplay, multimedia, custom menus, numerous others).
+Because it's just one file, sharing is easy. Email it, drop it on a USB drive, or hand it over however you like—the recipient can view and even edit it without installing anything or visiting a website.
 
-The best way to get a feel for Gorilla Presenter's capabilities is to visit the home page. You can not only view a presentation, you can get your own copy which can be edited as you wish.
+You create slides using ordinary Markdown, plus a handful of presentation-friendly extensions (things like autoplay timing, embedded audio/video, custom navigation menus, and several others that make life easier during talks).
 
-
+The easiest way to understand what it can do is to head to the home page. There you'll find a working example you can view right away—and you can download your own copy to open, edit, and adapt as you see fit.
