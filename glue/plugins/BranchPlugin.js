@@ -84,7 +84,7 @@ BranchPlugin = {
                 event.stopPropagation();
                 event.preventDefault();
                 const url = decodeURIComponent(event.currentTarget.getAttribute('data-url'));
-                window.location.href = url;
+                window.open(url, '_blank', 'noopener,noreferrer');
                 return false;
           }, { capture: true });  // Add this option
     }

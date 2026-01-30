@@ -7,6 +7,8 @@ GorillaPresenter = {
     timer: null,
     interval: 0,
     paused: false,
+    dirty: false,
+    lastCode: "",
     init: async function () {
         await GorillaPresenter.updateSlideData();
     },
@@ -27,7 +29,11 @@ GorillaPresenter = {
     },
     show_screen: async function (id) {
         const wrapper = document.getElementById('gorilla-app-wrapper');
-
+        if(GorillaPresenter.currentScreen === "gorilla-settings-screen" && id !== "gorilla-settings-screen") {
+            console.log("saving settings");
+            await GorillaSettings.saveSettings();
+            GorillaPresenter.markDirty(true);
+        }
         const slideChooser = document.getElementById("slidechooser");
         if (id === "gorilla-slide-show") {
             if (GorillaPresenter.currentScreen === "gorilla-editor-screen") {
@@ -175,11 +181,26 @@ GorillaPresenter = {
         await GorillaPresenter.showSlide(GorillaPresenter.currentSlideNumber - 1, "swipeInFromLeft");
     },
     handleUpdatedEditor: function () {
-        // Put some code here to make sure the edit buffer is actually dirty before saving, etc. It's fast enough that it probably doesn't matter, but still...
+
         let newText = GorillaEditor.getCode();
+        if (newText === GorillaPresenter.lastCode) {
+            return; // No changes
+        }
+        GorillaPresenter.lastCode = newText;
+        GorillaPresenter.markDirty(true);
         fs.writeTextFile("presentation.md", newText);
         fs.zipModified = true;
     },
+    markDirty: function (isDirty = true) {
+        dirtyIndicator = document.getElementById("gorilla-dirty-indicator");
+        if (isDirty) {
+            dirtyIndicator.style.display= "block";
+        } else {
+            dirtyIndicator.style.display = "none";
+        }
+        GorillaPresenter.dirty = isDirty;
+    },
+
     showScriptEditor: function () {
         GorillaPresenter.show_screen("gorilla-editor-screen");
         let slideOffset = GorillaSlideRenderer.slides[GorillaPresenter.currentSlideNumber]?.offset || 0;

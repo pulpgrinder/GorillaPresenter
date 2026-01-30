@@ -273,11 +273,11 @@ Menus are basically a collection of branches packed into a list. The link format
 
 ```
 {{{menu
-List Section 1
+Menu Section 1
 Go to the Navigation slide|>Navigation
 Go to an external site|~https://google.com
-List Section 2
-Alert Hi, there|Hi there!
+Menu Section 2
+Display a message|Hi there!
 *This is the right answer, yo.
 -This is a wrong answer
 }}}
@@ -286,11 +286,11 @@ Alert Hi, there|Hi there!
 will produce:
 
 {{{menu
-List Section 1
+Menu Section 1
 Go to the Navigation slide|>Navigation
 Go to an external site|~https://google.com
-List Section 2
-Alert Hi, there|Hi there!
+Menu Section 2
+Display a message|Hi there!
 *This is the right answer, yo.
 -This is a wrong answer
 }}}
@@ -298,7 +298,7 @@ Alert Hi, there|Hi there!
 
 # Outlines
 
-Outlines are exactly like menus, except they appear in MLA outline format. Outline indentation levels are specified by preceding the line with an equality operator for each desired indentation level.
+Outlines are exactly like menus, except they appear in MLA outline format. Outline indentation levels are specified by preceding the line with an equals sign for each desired indentation level.
 
 ````
 {{{outline
@@ -336,6 +336,9 @@ Level Demonstration
 }}}
 
 # Using Media
+
+The media screen lets you upload and manage resource files, such as images, audio files, video files, and custom fonts and CSS.
+
 
 This should {{{media theda}}} show a picture of Theda Bara
 

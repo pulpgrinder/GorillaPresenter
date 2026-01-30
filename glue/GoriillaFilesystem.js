@@ -239,18 +239,41 @@ window.fs =  {
     
     return filenames;
   },
-
-  async savePresentation() {
+async savePresentation() {
+    // Try modern API first (Chrome/Edge)
+    if ('showSaveFilePicker' in window) {
+        try {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: 'index.html',
+                types: [{
+                    description: 'HTML Files',
+                    accept: {'text/html': ['.html']},
+                }],
+            });
+            
+            const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const writable = await handle.createWritable();
+            await writable.write(html);
+            await writable.close();
+            
+            GorillaAlert.show('File saved successfully!');
+            return;
+        } catch (err) {
+            if (err.name === 'AbortError') {
+                GorillaAlert.show('Save canceled');
+                return;
+            }
+        }
+    }
+    
+    // Fallback for Safari and other browsers
     document.body.style.cursor = "wait";
+    
     if (this.zipModified) {
+        await this.packZipData();
     }
-    if( this.zipModified ) {
-     await this.packZipData();
-    }
+    
     const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-    
-    
-    // Save as UTF-8 HTML file
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     
@@ -260,9 +283,14 @@ window.fs =  {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-     document.body.style.cursor = "default";
-  },
+    
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+        document.body.style.cursor = "default";
+        GorillaAlert.show('Download initiated - check your downloads folder');
+    }, 100);
+    GorillaPresenter.markDirty(false);
+},
 
     async openPresentation() {
     const input = document.createElement("input");

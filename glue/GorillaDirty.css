@@ -1,0 +1,13 @@
+#gorilla-dirty-indicator {
+    position: fixed;
+    top: 0;
+    right: 10px;
+    margin: 0;
+    padding: 0.5em;
+    color: red;
+    background-color: white;
+    border-radius: 10px;
+    opacity: 0.7;
+    display: none;
+    z-index: 1000000;
+}

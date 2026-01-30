@@ -168,7 +168,7 @@ GorillaMedia = {
     if (oldFilename === newFilename) {
       return; // No change
     }
-    GorillaMedia.dirty = true;
+    GorillaPresenter.markDirty(true);
     fs.zipModified = true;
     await fs.renameFile(oldFilename, newFilename);
     setTimeout(() => { GorillaMedia.loadMediaScreens(); }, 100);
@@ -287,7 +287,7 @@ GorillaMedia = {
     }
     await GorillaMedia.loadMediaScreens();
     fs.zipModified = true;
-    GorillaMedia.dirty = true;
+    GorillaPresenter.markDirty(true);
   },
   emptyTrash: async function () {
     let mediafiles = await fs.readDirectory("trash/");
@@ -303,5 +303,6 @@ GorillaMedia = {
       await fs.deleteFile(file);
     }
     await GorillaMedia.loadMediaScreens();
+    GorillaPresenter.markDirty(true);
   },
 }

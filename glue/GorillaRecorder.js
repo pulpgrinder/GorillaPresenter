@@ -322,6 +322,7 @@ handlePlayheadMouseUp() {
         GorillaRecorder.recordingMode = mode;
         GorillaRecorder.updateExportButton();
     }
+    /* May put this back if clarification on copyright status of JS port of LAME is obtained 
     async convertToMp3(blob, bitrate = 128) {
         const audioContext = new AudioContext();
         const arrayBuffer = await blob.arrayBuffer();
@@ -356,7 +357,7 @@ handlePlayheadMouseUp() {
 
         audioContext.close();
         return new Blob(mp3Data, { type: 'audio/mp3' });
-    }
+    } */
 
     async saveRecording() {
         if (!GorillaRecorder.currentBlob) {
@@ -412,6 +413,9 @@ handlePlayheadMouseUp() {
             GorillaEditor.setCursorPosition(currentPosition.start + mediaString.length, currentPosition.start + mediaString.length);
         }
         await fs.writeBinaryFile(saveName, finalBlob);
+        GorillaPresenter.updateSlideData();
+        fs.zipModified = true;
+        GorillaPresenter.markDirty(true);
         GorillaRecorder.setStatus('Recording saved as ' + saveName);
 
     }

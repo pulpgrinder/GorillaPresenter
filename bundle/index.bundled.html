@@ -109,6 +109,21 @@
 }
 </style>
 <style>
+#gorilla-dirty-indicator {
+    position: fixed;
+    top: 0;
+    right: 10px;
+    margin: 0;
+    padding: 0.5em;
+    color: red;
+    background-color: white;
+    border-radius: 10px;
+    opacity: 0.7;
+    display: none;
+    z-index: 1000000;
+}
+</style>
+<style>
 
 #gorilla-editor-screen {
     padding: 0;
@@ -1472,18 +1487,13 @@ This text has **bold** and *italic* styles. You can type in here.
           value="Correct!" />
 
       </div>
-      <div class="gorilla-settings-option">
-        <label for="custom-css-area">Custom CSS:</label>
-        <textarea type="text" rows="20" cols="80" id="custom-css-area" variable="customCSS" class="settingsvalue"
-          value=""></textarea>
-
-      </div>
     </div>
   </div>
   </div>
   <div id="nav-overlay">
     <span class="overlay-nav-left">⇠</span><span class="overlay-nav-right">⇢</span>
   </div>
+  <div id="gorilla-dirty-indicator">Presentation has been edited <button class="main-menu-item ionicon" nav-value="save" title="Download Presentation">download-outline</button></div>
   <div id="gorilla-zip-data"></div>
 <script>
 const globalWindow = window;
@@ -2758,18 +2768,41 @@ window.fs =  {
     
     return filenames;
   },
-
-  async savePresentation() {
+async savePresentation() {
+    // Try modern API first (Chrome/Edge)
+    if ('showSaveFilePicker' in window) {
+        try {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: 'index.html',
+                types: [{
+                    description: 'HTML Files',
+                    accept: {'text/html': ['.html']},
+                }],
+            });
+            
+            const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const writable = await handle.createWritable();
+            await writable.write(html);
+            await writable.close();
+            
+            GorillaAlert.show('File saved successfully!');
+            return;
+        } catch (err) {
+            if (err.name === 'AbortError') {
+                GorillaAlert.show('Save canceled');
+                return;
+            }
+        }
+    }
+    
+    // Fallback for Safari and other browsers
     document.body.style.cursor = "wait";
+    
     if (this.zipModified) {
+        await this.packZipData();
     }
-    if( this.zipModified ) {
-     await this.packZipData();
-    }
+    
     const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-    
-    
-    // Save as UTF-8 HTML file
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     
@@ -2779,9 +2812,14 @@ window.fs =  {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-     document.body.style.cursor = "default";
-  },
+    
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+        document.body.style.cursor = "default";
+        GorillaAlert.show('Download initiated - check your downloads folder');
+    }, 100);
+    GorillaPresenter.markDirty(false);
+},
 
     async openPresentation() {
     const input = document.createElement("input");
@@ -2819,6 +2857,44 @@ console.log('await fs.deleteFile(pathname);');
 console.log('await fs.renameFile(oldPathname, newPathname);');
 console.log('await fs.readDirectory(regex);');
 console.log('await fs.saveUpdatedFile();'); */
+</script>
+<script>
+GorillaCSSLoader = {
+    loadCustomCSS: async function () {
+        let customCSS = "";
+        let mediaFiles = await fs.readDirectory("media/");
+        for (let i = 0; i < mediaFiles.length; i++) {
+            let mediaFile = mediaFiles[i];
+            if (mediaFile.match(/\.css$/i)) {
+               let cssBaseName = mediaFile.replace(/^media\//, ''); // Remove "media/" prefix if present
+               let cssNameWithoutExtension = cssBaseName.replace(/\.[^/.]+$/, ""); // Remove extension
+
+               try {
+                   // Read the CSS file content
+                   let content = await fs.readTextFile(mediaFile);
+                   if (typeof content !== "string" && content && content.toString) {
+                       content = content.toString();
+                   }
+                   if (typeof content === "string") {
+                       customCSS += "\n/* " + content + "\n";
+                   }
+               } catch (err) {
+                   console.error("Failed to read CSS file:", mediaFile, err);
+               }
+            }
+        }
+        let cssElement = document.getElementById("gorilla-custom-css");
+        if(cssElement !== null) { // Get rid of any old one
+          cssElement.remove();
+        }
+        cssElement = document.createElement('style');
+        cssElement.type = 'text/css';
+        cssElement.id = 'gorilla-custom-css';
+        cssElement.appendChild(document.createTextNode(customCSS));
+        document.head.appendChild(cssElement);
+    },
+ 
+}
 </script>
 <script>
 // Toast notification function
@@ -3760,7 +3836,7 @@ GorillaMedia = {
     if (oldFilename === newFilename) {
       return; // No change
     }
-    GorillaMedia.dirty = true;
+    GorillaPresenter.markDirty(true);
     fs.zipModified = true;
     await fs.renameFile(oldFilename, newFilename);
     setTimeout(() => { GorillaMedia.loadMediaScreens(); }, 100);
@@ -3879,7 +3955,7 @@ GorillaMedia = {
     }
     await GorillaMedia.loadMediaScreens();
     fs.zipModified = true;
-    GorillaMedia.dirty = true;
+    GorillaPresenter.markDirty(true);
   },
   emptyTrash: async function () {
     let mediafiles = await fs.readDirectory("trash/");
@@ -3895,6 +3971,7 @@ GorillaMedia = {
       await fs.deleteFile(file);
     }
     await GorillaMedia.loadMediaScreens();
+    GorillaPresenter.markDirty(true);
   },
 }
 
@@ -3909,6 +3986,8 @@ GorillaPresenter = {
     timer: null,
     interval: 0,
     paused: false,
+    dirty: false,
+    lastCode: "",
     init: async function () {
         await GorillaPresenter.updateSlideData();
     },
@@ -3929,7 +4008,11 @@ GorillaPresenter = {
     },
     show_screen: async function (id) {
         const wrapper = document.getElementById('gorilla-app-wrapper');
-
+        if(GorillaPresenter.currentScreen === "gorilla-settings-screen" && id !== "gorilla-settings-screen") {
+            console.log("saving settings");
+            await GorillaSettings.saveSettings();
+            GorillaPresenter.markDirty(true);
+        }
         const slideChooser = document.getElementById("slidechooser");
         if (id === "gorilla-slide-show") {
             if (GorillaPresenter.currentScreen === "gorilla-editor-screen") {
@@ -4077,11 +4160,26 @@ GorillaPresenter = {
         await GorillaPresenter.showSlide(GorillaPresenter.currentSlideNumber - 1, "swipeInFromLeft");
     },
     handleUpdatedEditor: function () {
-        // Put some code here to make sure the edit buffer is actually dirty before saving, etc. It's fast enough that it probably doesn't matter, but still...
+
         let newText = GorillaEditor.getCode();
+        if (newText === GorillaPresenter.lastCode) {
+            return; // No changes
+        }
+        GorillaPresenter.lastCode = newText;
+        GorillaPresenter.markDirty(true);
         fs.writeTextFile("presentation.md", newText);
         fs.zipModified = true;
     },
+    markDirty: function (isDirty = true) {
+        dirtyIndicator = document.getElementById("gorilla-dirty-indicator");
+        if (isDirty) {
+            dirtyIndicator.style.display= "block";
+        } else {
+            dirtyIndicator.style.display = "none";
+        }
+        GorillaPresenter.dirty = isDirty;
+    },
+
     showScriptEditor: function () {
         GorillaPresenter.show_screen("gorilla-editor-screen");
         let slideOffset = GorillaSlideRenderer.slides[GorillaPresenter.currentSlideNumber]?.offset || 0;
@@ -4440,6 +4538,7 @@ handlePlayheadMouseUp() {
         GorillaRecorder.recordingMode = mode;
         GorillaRecorder.updateExportButton();
     }
+    /* May put this back if clarification on copyright status of JS port of LAME is obtained 
     async convertToMp3(blob, bitrate = 128) {
         const audioContext = new AudioContext();
         const arrayBuffer = await blob.arrayBuffer();
@@ -4474,7 +4573,7 @@ handlePlayheadMouseUp() {
 
         audioContext.close();
         return new Blob(mp3Data, { type: 'audio/mp3' });
-    }
+    } */
 
     async saveRecording() {
         if (!GorillaRecorder.currentBlob) {
@@ -4530,6 +4629,9 @@ handlePlayheadMouseUp() {
             GorillaEditor.setCursorPosition(currentPosition.start + mediaString.length, currentPosition.start + mediaString.length);
         }
         await fs.writeBinaryFile(saveName, finalBlob);
+        GorillaPresenter.updateSlideData();
+        fs.zipModified = true;
+        GorillaPresenter.markDirty(true);
         GorillaRecorder.setStatus('Recording saved as ' + saveName);
 
     }
@@ -5334,10 +5436,12 @@ GorillaScript = {
 let GorillaSettings = {
     loadSettings: async function() {
         settingsData = await fs.readTextFile("settings.json");
+        GorillaSettings.savedSettings = settingsData;
         if(settingsData){
         try{
             const settings = JSON.parse(settingsData);
             GorillaSettings.settings = settings;
+           
             let settingsFields = document.getElementsByClassName("settingsvalue");
             for (let i = 0; i < settingsFields.length; i++) {
                 let field = settingsFields[i];
@@ -5349,7 +5453,6 @@ let GorillaSettings = {
         } catch(e){
             GorillaPresenter.notify("Error parsing settings.json:", e);
         }
-        this.applyCustomCSS();
         }
       document.querySelectorAll(".codejar").forEach((el) => { 
         el.style.fontSize = GorillaSettings.settings["editorFontSize"] + "px";
@@ -5365,18 +5468,13 @@ let GorillaSettings = {
             }
         }
         const settingsData = JSON.stringify(GorillaSettings.settings, null, 2);
-        await fs.writeTextFile("settings.json", settingsData);
-        GorillaSettings.applyCustomCSS();
-    },
-    applyCustomCSS: function() {
-        const customCSS = GorillaSettings.settings["customCSS"] || "";
-        let styleElement = document.getElementById("custom-css-style");
-        if (!styleElement) {
-            styleElement = document.createElement("style");
-            styleElement.id = "custom-css-style";
-            document.head.appendChild(styleElement);
+        if(settingsData === GorillaSettings.savedSettings){
+            return; // No changes
         }
-        styleElement.innerHTML = customCSS;
+        GorillaSettings.savedSettings = settingsData;
+        await fs.writeTextFile("settings.json", settingsData);
+        GorillaPresenter.markDirty(true);
+        fs.zipModified = true;
     },
 
 }
@@ -6643,7 +6741,7 @@ BranchPlugin = {
                 event.stopPropagation();
                 event.preventDefault();
                 const url = decodeURIComponent(event.currentTarget.getAttribute('data-url'));
-                window.location.href = url;
+                window.open(url, '_blank', 'noopener,noreferrer');
                 return false;
           }, { capture: true });  // Add this option
     }
@@ -6998,7 +7096,7 @@ MenuPlugin = {
                 event.preventDefault();
 
                 const url = decodeURIComponent(event.currentTarget.getAttribute('data-url'));
-                window.location.href = url;
+                window.open(url, '_blank', 'noopener,noreferrer');
                 return false;
             });
         });
@@ -8907,6 +9005,7 @@ await GorillaIconLoader.loadIcons();
 await GorillaSettings.loadSettings();
 await GorillaLicenseHandler.loadLicenseInfo();
 await GorillaFontLoader.loadFonts();
+await GorillaCSSLoader.loadCustomCSS();
 HammerDriver.init();
 await GorillaMedia.loadMediaScreens();
 await GorillaThemeHandler.init();
@@ -8961,6 +9060,9 @@ if (hashNumber !== GorillaPresenter.currentSlideNumber) {
   }
 
 }
+
+GorillaPresenter.markDirty(false);
+
 
 /* Rethink this... as written it causes too much distraction
 const overlay = document.getElementById('nav-overlay');

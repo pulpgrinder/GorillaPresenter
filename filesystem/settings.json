@@ -4,7 +4,6 @@
     "theme":"Damaged Robot",
     "editorTheme":"prism-editor-themes/Tomorrow.css",
     "editorFontSize":16,
-    "customCSS":".red {\n    color: red;\n}\n\n.blue {\n    color: blue;\n}\n\n.green {\n    color: green;\n}\n\n.purple {\n    color: rebeccapurple;\n}\n",
     "headingFontStack":"--didone-font-stack",
     "bodyFontStack":"--serif-font-stack",
     "codeFontStack":"--monospace-code-font-stack"
