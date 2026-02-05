@@ -15,13 +15,10 @@ GorillaSlideRenderer = {
        input = await StetPlugin.preprocess(input);
        input = await LiteralPlugin.preprocess(input);
          for (let plugin in GorillaSlideRenderer.plugins) {
-            console.log("Checking plugin: " + plugin);
             if(GorillaSlideRenderer.plugins[plugin].reset !== undefined) {
-                console.log("Resetting plugin: " + plugin);
                 await GorillaSlideRenderer.plugins[plugin].reset();
             }
             if (GorillaSlideRenderer.plugins[plugin].preprocess !== undefined) {
-                console.log("Preprocessing with plugin: " + plugin);
                 input= await GorillaSlideRenderer.plugins[plugin].preprocess(input);
             }
         }

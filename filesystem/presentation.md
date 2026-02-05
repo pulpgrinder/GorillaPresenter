@@ -402,13 +402,15 @@ The actual media file is named "Theda Bara With A Skeleton.jpg", but "theda" is 
 
 You can also use media files from anywhere on the web. Just use the URL in a media directive.
 
-{{{stet{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm}}}}}
+{{{stet{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm|Some views of the Moon from Apollo 13}}}}}
 
-Some views of the Moon from Apollo 13 (video courtesy Nasa)
+(video courtesy Nasa)
 
-{{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm}}}
+Here we're using an explicit title (the part following the |) because the file is on an external site and the file name is ugly. For local files, you should use descriptive file names, as discussed in the {{{branch Media Management|>Media Management}}} section though you can add an explicit title even for a local file if you wish.
 
-The upside of this is that you don't bloat the size of your presentation file. The downside is that you're loading the media file over the web, and thus must have an active Internet connection.
+{{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm|Some views of the Moon from Apollo 13}}}
+
+The advantage of this is that you don't bloat the size of your presentation file. The disadvantage is that you're loading the media file over the web, and thus must have an active Internet connection.
 
 You should consider this option if you're going to be using large video files and you know you're going to have an Internet connection available.
 

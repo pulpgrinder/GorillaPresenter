@@ -18,13 +18,8 @@ GorillaPresenter = {
         GorillaPresenter.currentSlideNumber = calculatedNumber >= 0 ? calculatedNumber : 0;
 
         GorillaPresenter.currentText = GorillaEditor.getCode();
-
-        // Could optimize here, maybe only reprocess if text has changed or the media library has changed.
-        let startTime = Date.now();
-        console.log("beginning processText at" + startTime);
         GorillaPresenter.slideData = await GorillaSlideRenderer.processText(GorillaPresenter.currentText);
-        let endTime = Date.now();
-        console.log("finished processText at" + endTime + " duration:" + (endTime - startTime) + "ms"); 
+
         for (let plugin in GorillaSlideRenderer.plugins) {
             if (GorillaSlideRenderer.plugins[plugin].postprocess !== undefined) {
                 await GorillaSlideRenderer.plugins[plugin].postprocess();
@@ -34,7 +29,6 @@ GorillaPresenter = {
     show_screen: async function (id) {
         const wrapper = document.getElementById('gorilla-app-wrapper');
         if (GorillaPresenter.currentScreen === "gorilla-settings-screen" && id !== "gorilla-settings-screen") {
-            console.log("saving settings");
             await GorillaSettings.saveSettings();
             GorillaPresenter.markDirty(true);
         }
@@ -73,13 +67,12 @@ GorillaPresenter = {
             return GorillaSlideRenderer.slides.length - 1;
 
         }
-        console.log("Editor position is null, defaulting to current slide number:", activeSlideNumber);
+       
         return activeSlideNumber;
 
     },
     showSlide: async function (slideNumber, transitionName = "cutIn") {
-        let startTime = Date.now();
-        console.log("beginning showslide with slideNumber:" + slideNumber + "at" + startTime);
+      
         let slidechooser = document.getElementById("slidechooser");
         if (slideNumber < 0) {
             let errormessage = "Already at first slide.";
@@ -99,17 +92,10 @@ GorillaPresenter = {
             return;
         }
         const slidename = "#gorilla-slide-" + slideNumber;
-        console.log("slide-name:", slidename);
         document.querySelectorAll('.gorilla-slide-class').forEach((el) => {
-          /*  el.style.opacity = "0";
-            el.style.visibility = "hidden";
-            el.style.pointerEvents = "none"; */
             el.style.display = "none";
         });
         const activeSlide = document.querySelector(slidename);
-     /*   activeSlide.style.opacity = "1";
-        activeSlide.style.visibility = "visible";
-        activeSlide.style.pointerEvents = "auto"; */
         activeSlide.style.display = "grid";
         GorillaPresenter.currentSlideNumber = slideNumber;
         slidechooser.value = slideNumber;
@@ -121,7 +107,6 @@ GorillaPresenter = {
             let hadTimer = false;
             if (GorillaPresenter.timer) { // Clear any existing timer
                 hadTimer = true;
-                console.log("Clearing existing timer before starting new one.");
                 clearInterval(GorillaPresenter.timer);
                 GorillaPresenter.timer = null;
                 GorillaPresenter.interval = 0;
@@ -129,7 +114,6 @@ GorillaPresenter = {
             }
             let duration = parseFloat(timerspan.getAttribute('data-duration'));
             let nextSlide = timerspan.getAttribute('data-next-slide');
-            console.log("Found timer directive with duration (s):", duration, " next slide:", nextSlide);
             if (duration === 0.0) {
                 if (hadTimer) {
                     GorillaDialog.showToast('<div>Autoplay turned off</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M392,432H120a40,40,0,0,1-40-40V120a40,40,0,0,1,40-40H392a40,40,0,0,1,40,40V392A40,40,0,0,1,392,432Z"/></svg>', 1500, 'info');
@@ -137,14 +121,12 @@ GorillaPresenter = {
                 return; // Don't start a new one.
             }
             let totalMilliseconds = duration * 1000 || null;
-            console.log("Parsed timer duration (ms):", totalMilliseconds);
             if (totalMilliseconds === NaN || totalMilliseconds <= 0) {
                 console.error("Invalid timer duration:", timerspan.getAttribute('data-duration'));
                 return;
             }
             GorillaPresenter.interval = totalMilliseconds;
             if (nextSlide === null || nextSlide === '') {
-                console.log("No nextSlide directive found");
                 GorillaPresenter.timer = setInterval(() => {
                     GorillaPresenter.nextSlide();
                 }, totalMilliseconds);
@@ -165,7 +147,6 @@ GorillaPresenter = {
     },
  
     nextSlide: async function () {
-        console.log("Advancing to next slide, current slide number:" +  GorillaPresenter.currentSlideNumber  + "next slide number:" + (GorillaPresenter.currentSlideNumber + 1));    
         await GorillaPresenter.showSlide(GorillaPresenter.currentSlideNumber + 1, "swipeInFromRight");
     },
     previousSlide: async function () {

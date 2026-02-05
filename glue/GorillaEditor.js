@@ -52,7 +52,7 @@ let GorillaEditor = {
         if (end === null) {
             end = start;
         }
-        console.log("Setting cursor position: start =", start, ", end =", end);
+       // console.log("Setting cursor position: start =", start, ", end =", end);
         GorillaEditor.jar.restore({ start: start, end: end, dir: "->" });
 
         setTimeout(() => {

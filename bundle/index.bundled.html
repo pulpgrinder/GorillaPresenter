@@ -3003,7 +3003,7 @@ let GorillaEditor = {
         if (end === null) {
             end = start;
         }
-        console.log("Setting cursor position: start =", start, ", end =", end);
+       // console.log("Setting cursor position: start =", start, ", end =", end);
         GorillaEditor.jar.restore({ start: start, end: end, dir: "->" });
 
         setTimeout(() => {
@@ -3893,13 +3893,8 @@ GorillaPresenter = {
         GorillaPresenter.currentSlideNumber = calculatedNumber >= 0 ? calculatedNumber : 0;
 
         GorillaPresenter.currentText = GorillaEditor.getCode();
-
-        // Could optimize here, maybe only reprocess if text has changed or the media library has changed.
-        let startTime = Date.now();
-        console.log("beginning processText at" + startTime);
         GorillaPresenter.slideData = await GorillaSlideRenderer.processText(GorillaPresenter.currentText);
-        let endTime = Date.now();
-        console.log("finished processText at" + endTime + " duration:" + (endTime - startTime) + "ms"); 
+
         for (let plugin in GorillaSlideRenderer.plugins) {
             if (GorillaSlideRenderer.plugins[plugin].postprocess !== undefined) {
                 await GorillaSlideRenderer.plugins[plugin].postprocess();
@@ -3909,7 +3904,6 @@ GorillaPresenter = {
     show_screen: async function (id) {
         const wrapper = document.getElementById('gorilla-app-wrapper');
         if (GorillaPresenter.currentScreen === "gorilla-settings-screen" && id !== "gorilla-settings-screen") {
-            console.log("saving settings");
             await GorillaSettings.saveSettings();
             GorillaPresenter.markDirty(true);
         }
@@ -3948,13 +3942,12 @@ GorillaPresenter = {
             return GorillaSlideRenderer.slides.length - 1;
 
         }
-        console.log("Editor position is null, defaulting to current slide number:", activeSlideNumber);
+       
         return activeSlideNumber;
 
     },
     showSlide: async function (slideNumber, transitionName = "cutIn") {
-        let startTime = Date.now();
-        console.log("beginning showslide with slideNumber:" + slideNumber + "at" + startTime);
+      
         let slidechooser = document.getElementById("slidechooser");
         if (slideNumber < 0) {
             let errormessage = "Already at first slide.";
@@ -3974,17 +3967,10 @@ GorillaPresenter = {
             return;
         }
         const slidename = "#gorilla-slide-" + slideNumber;
-        console.log("slide-name:", slidename);
         document.querySelectorAll('.gorilla-slide-class').forEach((el) => {
-          /*  el.style.opacity = "0";
-            el.style.visibility = "hidden";
-            el.style.pointerEvents = "none"; */
             el.style.display = "none";
         });
         const activeSlide = document.querySelector(slidename);
-     /*   activeSlide.style.opacity = "1";
-        activeSlide.style.visibility = "visible";
-        activeSlide.style.pointerEvents = "auto"; */
         activeSlide.style.display = "grid";
         GorillaPresenter.currentSlideNumber = slideNumber;
         slidechooser.value = slideNumber;
@@ -3996,7 +3982,6 @@ GorillaPresenter = {
             let hadTimer = false;
             if (GorillaPresenter.timer) { // Clear any existing timer
                 hadTimer = true;
-                console.log("Clearing existing timer before starting new one.");
                 clearInterval(GorillaPresenter.timer);
                 GorillaPresenter.timer = null;
                 GorillaPresenter.interval = 0;
@@ -4004,7 +3989,6 @@ GorillaPresenter = {
             }
             let duration = parseFloat(timerspan.getAttribute('data-duration'));
             let nextSlide = timerspan.getAttribute('data-next-slide');
-            console.log("Found timer directive with duration (s):", duration, " next slide:", nextSlide);
             if (duration === 0.0) {
                 if (hadTimer) {
                     GorillaDialog.showToast('<div>Autoplay turned off</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M392,432H120a40,40,0,0,1-40-40V120a40,40,0,0,1,40-40H392a40,40,0,0,1,40,40V392A40,40,0,0,1,392,432Z"/></svg>', 1500, 'info');
@@ -4012,14 +3996,12 @@ GorillaPresenter = {
                 return; // Don't start a new one.
             }
             let totalMilliseconds = duration * 1000 || null;
-            console.log("Parsed timer duration (ms):", totalMilliseconds);
             if (totalMilliseconds === NaN || totalMilliseconds <= 0) {
                 console.error("Invalid timer duration:", timerspan.getAttribute('data-duration'));
                 return;
             }
             GorillaPresenter.interval = totalMilliseconds;
             if (nextSlide === null || nextSlide === '') {
-                console.log("No nextSlide directive found");
                 GorillaPresenter.timer = setInterval(() => {
                     GorillaPresenter.nextSlide();
                 }, totalMilliseconds);
@@ -4040,7 +4022,6 @@ GorillaPresenter = {
     },
  
     nextSlide: async function () {
-        console.log("Advancing to next slide, current slide number:" +  GorillaPresenter.currentSlideNumber  + "next slide number:" + (GorillaPresenter.currentSlideNumber + 1));    
         await GorillaPresenter.showSlide(GorillaPresenter.currentSlideNumber + 1, "swipeInFromRight");
     },
     previousSlide: async function () {
@@ -5342,13 +5323,10 @@ GorillaSlideRenderer = {
        input = await StetPlugin.preprocess(input);
        input = await LiteralPlugin.preprocess(input);
          for (let plugin in GorillaSlideRenderer.plugins) {
-            console.log("Checking plugin: " + plugin);
             if(GorillaSlideRenderer.plugins[plugin].reset !== undefined) {
-                console.log("Resetting plugin: " + plugin);
                 await GorillaSlideRenderer.plugins[plugin].reset();
             }
             if (GorillaSlideRenderer.plugins[plugin].preprocess !== undefined) {
-                console.log("Preprocessing with plugin: " + plugin);
                 input= await GorillaSlideRenderer.plugins[plugin].preprocess(input);
             }
         }
@@ -6773,10 +6751,9 @@ MapPlugin = {
 <script>
 MediaPlugin = {
 
-     mediaSequenceNumber: 0,
+    mediaSequenceNumber: 0,
     mediaData: [],
     reset: async function () {
-        console.log("Resetting MediaPlugin.");
         this.mediaSequenceNumber = 0;
         for(let url of this.mediaData) {
             URL.revokeObjectURL(url);
@@ -6785,12 +6762,27 @@ MediaPlugin = {
     },
 
     renderHTML: async function (mediaSpec) {
+        let specparts = mediaSpec.split("|").map(part => part.trim());
+        mediaSpec = specparts[0];
+        let title = "";
+        if(specparts.length > 1) {
+            console.log("Media directive has title: " + specparts[1]);
+           title = specparts[1];
+        }
+        
         let mediaFile
         if(mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://") ) {
-        mediaFile= mediaSpec;
+            if(title === "") {
+                title = mediaSpec;
+            }
+            mediaFile= mediaSpec;
         } else {
          mediaFile = await GorillaMedia.findMediaFile(mediaSpec);
+         console.log("Resolved media spec '" + mediaSpec + "' to file: " + mediaFile);
+         if(title === "") {
+         title = GorillaMedia.splitFilePath(mediaFile).basePath.replace(/media\//, ""); // Strip "media/" from display title if present
         }
+            }
         if (mediaFile) {
              if(mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://") ) {
                     MediaPlugin.mediaData.push(mediaFile);
@@ -6798,11 +6790,11 @@ MediaPlugin = {
                 MediaPlugin.mediaData.push(URL.createObjectURL(await fs.readBinaryFile(mediaFile)));
                 }
             if (mediaFile.endsWith(".jpeg") || mediaFile.endsWith(".jpg") || mediaFile.endsWith(".png") || mediaFile.endsWith(".gif")) {
-                return `<img id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" src="" alt="Media: ${mediaFile}" title="Media: ${mediaFile}" class="gorilla-media gorilla-media-image" />`;
+                return `<img id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" src="" alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
             } else if (mediaFile.endsWith(".mp4") || mediaFile.endsWith(".mov") || mediaFile.endsWith(".avi") || mediaFile.endsWith(".webm")) {
-                return `<video id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" controls  alt="Media: ${mediaFile}" title="Media: ${mediaFile}" class="gorilla-media gorilla-media-video"><source src="">Your browser does not support the video tag.</video>`;
+                return `<video id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" controls  alt="${title}" title="${title}" class="gorilla-media gorilla-media-video"><source src="">Your browser does not support the video tag.</video>`;
             } else if (mediaFile.endsWith(".mp3") || mediaFile.endsWith(".wav")) {
-                return `<audio id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" controls  alt="Media: ${mediaFile}" title="Media: ${mediaFile}" class="gorilla-media gorilla-media-audio"><source src="">Your browser does not support the audio element.</audio>`;
+                return `<audio id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" controls  alt="${title}" title="${title}" class="gorilla-media gorilla-media-audio"><source src="">Your browser does not support the audio element.</audio>`;
             }
             else {
                 MediaPlugin.mediaData.pop();
@@ -7186,7 +7178,6 @@ StetPlugin = {
                         const content = text.slice(contentStart, j);
                         const index = this.index++;
                         let stetCode = `${this.uuid()}`
-                        console.log("Preserving stet block: " + stetCode + " content was [" + content + "]");
                         this.preserved[stetCode] = content;
                         result += stetCode;
                         i = j + 3;
@@ -7211,7 +7202,6 @@ StetPlugin = {
         // Restore stet blocks
         for (let key in this.preserved) {
             let value = this.preserved[key];
-            console.log("Restoring stet block: " + key);
             text = text.replace(key, value);
         };
         

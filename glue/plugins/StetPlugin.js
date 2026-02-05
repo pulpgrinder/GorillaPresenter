@@ -46,7 +46,6 @@ StetPlugin = {
                         const content = text.slice(contentStart, j);
                         const index = this.index++;
                         let stetCode = `${this.uuid()}`
-                        console.log("Preserving stet block: " + stetCode + " content was [" + content + "]");
                         this.preserved[stetCode] = content;
                         result += stetCode;
                         i = j + 3;
@@ -71,7 +70,6 @@ StetPlugin = {
         // Restore stet blocks
         for (let key in this.preserved) {
             let value = this.preserved[key];
-            console.log("Restoring stet block: " + key);
             text = text.replace(key, value);
         };
         
