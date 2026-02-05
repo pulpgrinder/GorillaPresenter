@@ -45,7 +45,6 @@ GorillaSlideRenderer = {
         html = await LiteralPlugin.postprocess(html);
         document.getElementById('gorilla-slide-show').innerHTML = html; 
         Prism.highlightAll();// Re-highlight code blocks after markdown rendering
-        GorillaSlideRenderer.slideShow = new SicTransit("#gorilla-slide-show", ".gorilla-slide-class");
         renderMathInElement(document.body);
         
     },

@@ -11,18 +11,18 @@ BranchPlugin = {
                 if (pair.text.startsWith("*")) {
                     pair.text = pair.text.substring(1).trim();
                     // Correct answer
-                    generatedHTML = `<span class="gorilla-branch gorilla-branch-multiple-choice" data-value="true">${pair.text}</span>`;
+                    generatedHTML = `<span class="gorilla-branch-item gorilla-branch-multiple-choice" data-value="true">${pair.text}</span>`;
                     return generatedHTML;
                 }
                 else if (pair.text.startsWith("-")) {
                     // Incorrect answer
                    pair.text = pair.text.substring(1).trim();
                     // Correct answer
-                    generatedHTML = `<span class="gorilla-branch gorilla-branch-multiple-choice" data-value="false">${pair.text}</span>`;
+                    generatedHTML = `<span class="gorilla-branch-item gorilla-branch-multiple-choice" data-value="false">${pair.text}</span>`;
                     return generatedHTML;
                 }
                 else {
-                    generatedHTML = `<span class="gorilla-branch">${pair.text}</span>`;
+                    generatedHTML = `<span class="gorilla-branch-item">${pair.text}</span>`;
                     return generatedHTML;
 
                 }
@@ -32,15 +32,15 @@ BranchPlugin = {
             switch (argtype.toLowerCase()) {
                 case ">":
                     let destinationSlideNumber = GorillaSlideRenderer.findSlideNumber(pair.target.substring(1).trim());
-                    generatedHTML = `<span class="gorilla-branch gorilla-branch-navigate" data-slide-number="${destinationSlideNumber}">${pair.text}</span>`;
+                    generatedHTML = `<span class="gorilla-branch-item gorilla-branch-navigate" data-slide-number="${destinationSlideNumber}">${pair.text}</span>`;
                     break;
                 case "~":
                     let url = encodeURIComponent(pair.target.substring(1).trim());
-                    generatedHTML = `<span class="gorilla-branch gorilla-branch-external" data-url="${url}">${pair.text}</span>`;
+                    generatedHTML = `<span class="gorilla-branch-item gorilla-branch-external" data-url="${url}">${pair.text}</span>`;
                     break;
                 default:
                     let message = encodeURIComponent(pair.target);
-                    generatedHTML = `<span class="gorilla-branch gorilla-branch-notify" data-message="${message}">${pair.text}</span>`;
+                    generatedHTML = `<span class="gorilla-branch-item gorilla-branch-notify" data-message="${message}">${pair.text}</span>`;
                     break;
             }
             return generatedHTML;
@@ -58,7 +58,7 @@ BranchPlugin = {
                     GorillaAlert.show(GorillaSettings.settings.defaultIncorrectResponse);
                 }
                 return false;
-             }, { capture: true });  // Add this option
+             });  // Add this option
         });
         document.querySelectorAll('.gorilla-branch-navigate:not(.gorilla-branch-sample)').forEach(item => {
             item.addEventListener('click', event => {
@@ -67,7 +67,7 @@ BranchPlugin = {
                 const slideNumber = parseInt(event.currentTarget.getAttribute('data-slide-number'));
                 GorillaPresenter.showSlide(slideNumber);
                 return false;
-             }, { capture: true });  // Add this option
+             });
         });
 
         document.querySelectorAll('.gorilla-branch-notify:not(.gorilla-branch-sample)').forEach(item => {
@@ -77,7 +77,7 @@ BranchPlugin = {
                 const message = decodeURIComponent(event.currentTarget.getAttribute('data-message'));
                 GorillaPresenter.notify(message);
                 return false;
-             }, { capture: true });  // Add this option
+             })
         });
         document.querySelectorAll('.gorilla-branch-external:not(.gorilla-branch-sample)').forEach(item => {
             item.addEventListener('click', event => {
@@ -86,7 +86,7 @@ BranchPlugin = {
                 const url = decodeURIComponent(event.currentTarget.getAttribute('data-url'));
                 window.open(url, '_blank', 'noopener,noreferrer');
                 return false;
-          }, { capture: true });  // Add this option
+          });
     }
     );
     }

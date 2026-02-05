@@ -1,5 +1,5 @@
 
-.gorilla-branch {
+.gorilla-branch-item {
     color: var(--menu-header-color);
     background-color: var(--menu-header-background-color);
     font-weight: bold;
@@ -15,10 +15,6 @@
  .gorilla-branch-external {
     color: var(--menu-body-color);
     background-color: var(--menu-background-color);
+    cursor: pointer;
 
-}
-  
-.gorilla-branch::after {
-    content: ' ›';
-  
 }

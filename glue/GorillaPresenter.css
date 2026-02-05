@@ -117,19 +117,19 @@ button svg {
 .gorilla-timer{
   display:none;
 }
-
-.gorilla-slide-class{
-  font-family: var(--slide-body-font-stack);
-  color: var(--slide-body-color);
-  background-color: var(--slide-body-background-color);
-  padding: 2em;
-  margin:0;
-  /*border-radius:20px;*/
-  border:1px solid #ccc;
-  overflow:hidden;
-  page-break-before:always;
-  grid-template-rows:auto 1fr;
-  height:100vh;
+.gorilla-slide-class {
+    /* ...existing properties... */
+    position: absolute; /* Stack them on top of each other */
+    display:block;
+    grid-template-rows:auto 1fr;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  /*  opacity: 0;
+    visibility: hidden;
+    pointer-events: none; */
+    transition: opacity 0.15s ease; /* Optional: smooth fade */
 }
 #gorilla-sample-slide{
   font-family: var(--slide-body-font-stack);
@@ -184,19 +184,21 @@ button svg {
     padding: 0;
 }
 
-
 .gorilla-slide-body-class {
-  color: var(--slide-body-color);
-  font-family: var(--slide-body-font-stack);
-  background-color: var(--slide-body-background-color);
-  padding: 1em;
-  margin-bottom: 1em;
-  margin-top: 3em;
-  padding-top: 1em;
-  font-size:150%;
-   overflow-x: hidden;  /* Disable horizontal scroll */
-    overflow-y: auto;    /* Enable vertical scroll */
-  /* This will now be constrained by the 1fr grid row */
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    color: var(--slide-body-color);
+    font-family: var(--slide-body-font-stack);
+    background-color: var(--slide-body-background-color);
+    padding: 1em;
+    margin-bottom: 1em;
+    margin-top: 3em;
+    padding-top: 1em;
+    font-size: 150%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #gorilla-slide-show{
@@ -407,6 +409,9 @@ span[contenteditable]:focus {
 }
 
 .gorilla-menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 0;
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -417,7 +422,7 @@ span[contenteditable]:focus {
     z-index: 100001;
     -webkit-user-select: none;
     user-select: none;
-    display: grid;
+    display: none;
     grid-template-columns: auto 1fr;
     color:black;
     background-color: lightgray;
@@ -435,8 +440,8 @@ span[contenteditable]:focus {
 #gorilla-app-wrapper {
     position: fixed;
     bottom: 0;
-    top: -2.75em;
-    transition: top 0.5s ease-in-out;
+    top: 0;
+   /* transition: top 0.5s ease-in-out; */
     left: 0;
     right: 0;
     margin: 0;

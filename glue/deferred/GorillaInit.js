@@ -1,5 +1,6 @@
 
 document.body.style.cursor = "default";
+
 GorillaSlideRenderer.registerPlugin('test', TestPlugin);
 GorillaSlideRenderer.registerPlugin('autoplay', AutoplayPlugin);
 GorillaSlideRenderer.registerPlugin('book', BookPlugin);
@@ -11,7 +12,7 @@ GorillaSlideRenderer.registerPlugin('wikipedia', WikipediaPlugin);
 GorillaSlideRenderer.registerPlugin('map', MapPlugin);
 GorillaSlideRenderer.registerPlugin('home', HomePlugin);
 GorillaSlideRenderer.registerPlugin('branch', BranchPlugin);
-GorillaSlideRenderer.registerPlugin('poetry', PoetryPlugin);
+GorillaSlideRenderer.registerPlugin('poetry', PoetryPlugin); 
 
 await window.fs.unpackZipData();
 //let cursorData = await fs.readBinaryFile("GorillaCursor.png");
@@ -68,7 +69,8 @@ document.getElementById("gorilla-editor-font-size").addEventListener("change", a
     el.style.fontSize = GorillaSettings.settings["editorFontSize"] + "px";
   });
 });
-document.body.style.display = "grid";
+//document.body.style.display = "grid";
+document.body.style.display = "block";
 const hashNumber = parseInt(window.location.hash.substring(1));
 if (hashNumber !== GorillaPresenter.currentSlideNumber) {
 

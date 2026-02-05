@@ -20,7 +20,11 @@ GorillaPresenter = {
         GorillaPresenter.currentText = GorillaEditor.getCode();
 
         // Could optimize here, maybe only reprocess if text has changed or the media library has changed.
+        let startTime = Date.now();
+        console.log("beginning processText at" + startTime);
         GorillaPresenter.slideData = await GorillaSlideRenderer.processText(GorillaPresenter.currentText);
+        let endTime = Date.now();
+        console.log("finished processText at" + endTime + " duration:" + (endTime - startTime) + "ms"); 
         for (let plugin in GorillaSlideRenderer.plugins) {
             if (GorillaSlideRenderer.plugins[plugin].postprocess !== undefined) {
                 await GorillaSlideRenderer.plugins[plugin].postprocess();
@@ -29,7 +33,7 @@ GorillaPresenter = {
     },
     show_screen: async function (id) {
         const wrapper = document.getElementById('gorilla-app-wrapper');
-        if(GorillaPresenter.currentScreen === "gorilla-settings-screen" && id !== "gorilla-settings-screen") {
+        if (GorillaPresenter.currentScreen === "gorilla-settings-screen" && id !== "gorilla-settings-screen") {
             console.log("saving settings");
             await GorillaSettings.saveSettings();
             GorillaPresenter.markDirty(true);
@@ -39,25 +43,19 @@ GorillaPresenter = {
             if (GorillaPresenter.currentScreen === "gorilla-editor-screen") {
                 await GorillaPresenter.updateSlideData();
             }
-            slideChooser.disabled = false;
+            slideChooser.style.display = "block";
             await GorillaPresenter.showSlide(GorillaPresenter.currentSlideNumber, "cutIn");
 
 
         }
         else {
-            slideChooser.disabled = true;
+            slideChooser.style.display = "none";
         }
         document.querySelectorAll(".gorilla-presenter-screen").forEach((el) => {
             el.style.display = "none";
         });
 
         document.getElementById(id).style.display = "grid";
-        if (id === "gorilla-editor-screen") {
-            document.getElementById('gorilla-app-wrapper').classList.remove("menu-active");
-            setTimeout(() => {
-                document.getElementById('gorilla-app-wrapper').classList.add("menu-active");
-            }, 500);
-        }
         GorillaPresenter.currentScreen = id;
 
     },
@@ -80,6 +78,9 @@ GorillaPresenter = {
 
     },
     showSlide: async function (slideNumber, transitionName = "cutIn") {
+        let startTime = Date.now();
+        console.log("beginning showslide with slideNumber:" + slideNumber + "at" + startTime);
+        let slidechooser = document.getElementById("slidechooser");
         if (slideNumber < 0) {
             let errormessage = "Already at first slide.";
             GorillaPresenter.notify(errormessage);
@@ -97,11 +98,21 @@ GorillaPresenter = {
             GorillaPresenter.notify(errormessage);
             return;
         }
+        const slidename = "#gorilla-slide-" + slideNumber;
+        console.log("slide-name:", slidename);
+        document.querySelectorAll('.gorilla-slide-class').forEach((el) => {
+          /*  el.style.opacity = "0";
+            el.style.visibility = "hidden";
+            el.style.pointerEvents = "none"; */
+            el.style.display = "none";
+        });
+        const activeSlide = document.querySelector(slidename);
+     /*   activeSlide.style.opacity = "1";
+        activeSlide.style.visibility = "visible";
+        activeSlide.style.pointerEvents = "auto"; */
+        activeSlide.style.display = "grid";
         GorillaPresenter.currentSlideNumber = slideNumber;
-        document.getElementById("slidechooser").value = slideNumber;
-        const slidename = "#gorilla-slide-" + GorillaPresenter.currentSlideNumber;
-        await GorillaSlideRenderer.slideShow.performTransition({ panelSelector: slidename, transitionName: transitionName, completionHandler: function () { GorillaPresenter.adjustScroll(slidename) } });
-
+        slidechooser.value = slideNumber;
         // Update the URL hash with the current slide number
         if (window.location.hash !== `#${slideNumber}`)
             window.location.hash = slideNumber;
@@ -132,49 +143,29 @@ GorillaPresenter = {
                 return;
             }
             GorillaPresenter.interval = totalMilliseconds;
-            if(nextSlide === null || nextSlide === '') {
+            if (nextSlide === null || nextSlide === '') {
                 console.log("No nextSlide directive found");
-                 GorillaPresenter.timer = setInterval(() => {
-                GorillaPresenter.nextSlide();
-            }, totalMilliseconds);
+                GorillaPresenter.timer = setInterval(() => {
+                    GorillaPresenter.nextSlide();
+                }, totalMilliseconds);
                 return;
 
             }
-                    let destinationSlideNumber = GorillaSlideRenderer.findSlideNumber(nextSlide);
-                        if (destinationSlideNumber !== GorillaPresenter.currentSlideNumber) {
-                            // This should be a one-shot timer, not an interval
-                           GorillaPresenter.timer = setTimeout(() => {
-                            GorillaPresenter.showSlide(destinationSlideNumber, "swipeInFromRight");
-                            return;
-                        }, totalMilliseconds);
-                    } else {
-                        console.log("Next slide is the current slide, not advancing.");
-                    }
-        }
-    },
-    adjustScroll: async function (slidename) {
-        let containerDiv = document.querySelector(slidename);
-        const cursor = containerDiv.querySelector('#gorilla-editor-cursor-position');
-        if (cursor) {
-            const subDiv = cursor.closest('.gorilla-slide-header-class, .gorilla-slide-body-class');
-            if (subDiv) {
-
-                const cursorRect = cursor.getBoundingClientRect();
-                const subDivRect = subDiv.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                // Check if cursor is outside the VIEWPORT (not just the container bounds)
-                if (cursorRect.top < 0 || cursorRect.top > viewportHeight) {
-                    console.log("Scrolling cursor into viewport view");
-                    // Scroll so cursor is roughly in the middle of the visible area
-                    const targetScrollTop = subDiv.scrollTop + (cursorRect.top - subDivRect.top) - (viewportHeight / 2);
-
-                    console.log("Setting scrollTop to:", targetScrollTop);
-                    subDiv.scrollTop = Math.max(0, targetScrollTop);
-                } // 
+            let destinationSlideNumber = GorillaSlideRenderer.findSlideNumber(nextSlide);
+            if (destinationSlideNumber !== GorillaPresenter.currentSlideNumber) {
+                // This should be a one-shot timer, not an interval
+                GorillaPresenter.timer = setTimeout(() => {
+                    GorillaPresenter.showSlide(destinationSlideNumber, "swipeInFromRight");
+                    return;
+                }, totalMilliseconds);
+            } else {
+                console.log("Next slide is the current slide, not advancing.");
             }
         }
     },
+ 
     nextSlide: async function () {
+        console.log("Advancing to next slide, current slide number:" +  GorillaPresenter.currentSlideNumber  + "next slide number:" + (GorillaPresenter.currentSlideNumber + 1));    
         await GorillaPresenter.showSlide(GorillaPresenter.currentSlideNumber + 1, "swipeInFromRight");
     },
     previousSlide: async function () {
@@ -194,7 +185,7 @@ GorillaPresenter = {
     markDirty: function (isDirty = true) {
         dirtyIndicator = document.getElementById("gorilla-dirty-indicator");
         if (isDirty) {
-            dirtyIndicator.style.display= "block";
+            dirtyIndicator.style.display = "block";
         } else {
             dirtyIndicator.style.display = "none";
         }

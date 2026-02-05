@@ -282,7 +282,7 @@ If you don't have an | at all, the branch won't do anything (other than being di
 
 {{{stet {{{branch The goggles do nothing!}}}}}} -> {{{branch The goggles do nothing!}}}
 
-This is of little use for a single branch, but is quite useful in Menus and Outlines (read on).
+This doesn't accomplish much for a single branch, but is used as a section separator in Menus and Outlines (read on).
 
 # Menus
 
@@ -354,7 +354,7 @@ Level Demonstration
 
 # Media Management
 
-**VERY IMPORTANT** Any changes you make on the media management screen will Go Away unless you download the altered presentation for later reloading. Simply clicking refresh or opening the original file again will result in all your changes being lost (this holds for slides you've edited too, of course).
+**VERY IMPORTANT** Any changes you make on the media management screen will Go Away unless you download the altered presentation for later reloading. Simply clicking refresh or opening the original file again will result in all your changes being lost (this holds for slides you've edited or changes you've made to the settings, too, of course). Gorilla Presenter does its best to keep track of changes, and displays a notice in the upper right-hand corner of the screen if something has changed. 
 
 To reach the media management screen, click/press and hold on any other screen until the menu appears, then select the media button.
 
@@ -400,8 +400,17 @@ The actual media file is named "Theda Bara With A Skeleton.jpg", but "theda" is 
 
 {{{media nasa}}}
 
+You can also use media files from anywhere on the web. Just use the URL in a media directive.
+
+{{{stet{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm}}}}}
+
+Some views of the Moon from Apollo 13 (video courtesy Nasa)
+
 {{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm}}}
 
+The upside of this is that you don't bloat the size of your presentation file. The downside is that you're loading the media file over the web, and thus must have an active Internet connection.
+
+You should consider this option if you're going to be using large video files and you know you're going to have an Internet connection available.
 
 # Media Recorder
 

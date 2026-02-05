@@ -40,10 +40,12 @@ HammerDriver = {
             if (target.tagName === 'BUTTON' ||
                 target.tagName === 'VIDEO' ||
                 target.tagName === 'A' ||
-                target.tagName === 'CODE' ||
-               target.closest('.gorilla-choice-item, .gorilla-branch, button, video, a, input, select, textarea, code')) {
+               // target.tagName === 'CODE' ||
+               target.closest('.gorilla-choice-item, .gorilla-choice-multiple-choice, .gorilla-choice-navigate, .gorilla-choice-external, .gorilla-choice-notify,.gorilla-branch-item, .gorilla-branch-multiple-choice, .gorilla-branch-navigate, .gorilla-branch-external, .gorilla-branch-notify, button, video, a, input, select, textarea')){
+                // Tap was on an interactive element; ignore it.
                 return;
-            }
+               }
+            
 
             const tapX = ev.center.x;
             const screenWidth = window.innerWidth;
@@ -59,7 +61,7 @@ HammerDriver = {
         elements.forEach((element) => {
             const hammer = new Hammer(element);
             hammer.get('press').set({
-                time: 250  // milliseconds
+                time: 500  // milliseconds
             });
             hammer.on("press", (ev) => {
                MainMenuDriver.toggleMenu();

@@ -49,7 +49,7 @@ MainMenuDriver = {
                     case "recorder":
                         GorillaPresenter.showRecordScreen();
                         break;
-                    case "fullscreen":
+                   case "fullscreen":
                         document.documentElement.requestFullscreen().catch((err) => {
                             console.warn("Failed to enter fullscreen mode:", err);
                         });
@@ -154,13 +154,14 @@ MainMenuDriver = {
 
     },
     hideMenu: function () {
-        document.getElementById('gorilla-app-wrapper').classList.remove("menu-active");
+      //  document.getElementById('gorilla-app-wrapper').classList.remove("menu-active");
+      document.getElementById('main-menu-bar').style.display = "none";
         MainMenuDriver.menuVisible = false;
         MainMenuDriver.showUserSelect(false);
 
     },
     showMenu: function () {
-        document.getElementById('gorilla-app-wrapper').classList.add("menu-active");
+        document.getElementById('main-menu-bar').style.display = "grid";
         MainMenuDriver.menuVisible = true;
         MainMenuDriver.showUserSelect(true);
     },
