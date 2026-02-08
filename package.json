@@ -1,0 +1,24 @@
+{
+  "name": "gorillapresenter",
+  "version": "1.0.0",
+  "description": "Gorilla Presenter is a complete presentation tool packed into **a single HTML file**. Everything lives there: the slides themselves, the editor, a media recorder (for desktop Chrome, Brave, and Firefox), and supporting resources. Basic use doesn't require installing any apps or that you even have an internet connection—just open the file in your regular web browser. The goal is to support all major modern desktop and mobile browsers (i.e., **not** Internet Explorer). Some plugins (for instance, Maps and Wikipedia) do require a network connection, but the basic system will work just fine without one.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tools/headless_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pulpgrinder/GorillaPresenter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pulpgrinder/GorillaPresenter/issues"
+  },
+  "homepage": "https://github.com/pulpgrinder/GorillaPresenter#readme",
+  "dependencies": {
+    "puppeteer": "^24.37.2"
+  }
+}
