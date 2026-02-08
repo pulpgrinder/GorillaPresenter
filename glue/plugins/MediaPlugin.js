@@ -2,12 +2,18 @@ MediaPlugin = {
 
     mediaSequenceNumber: 0,
     mediaData: [],
+    mediaPaths: [],
     reset: async function () {
         this.mediaSequenceNumber = 0;
         for (let url of this.mediaData) {
-            URL.revokeObjectURL(url);
+            try {
+                URL.revokeObjectURL(url);
+            } catch (e) {
+                // ignore
+            }
         }
         this.mediaData = [];
+        this.mediaPaths = [];
     },
 
     renderHTML: async function (mediaSpec) {
@@ -31,55 +37,134 @@ MediaPlugin = {
             }
         }
         if (mediaFile) {
-            let mediaData;
-            if (mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://")) {
-                //   MediaPlugin.mediaData.push(mediaFile);
-                mediaData = mediaFile;
+            // Don't load binary data now. Emit placeholders with data attributes
+            const seq = MediaPlugin.mediaSequenceNumber++;
+            const isExternal = mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://");
+            const dataAttr = isExternal ? `data-media-src="${mediaFile}"` : `data-media-path="${mediaFile}"`;
+
+            if (mediaFile.match(/\.(jpe?g|png|gif|webp|svg)$/i)) {
+                // image: set src for external, placeholder for local
+                if (isExternal) {
+                    return `<img id='gorilla-media-${seq}' data-sequence="${seq}" src="${mediaFile}" alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
+                }
+                MediaPlugin.mediaPaths[seq] = mediaFile;
+                return `<img id='gorilla-media-${seq}' data-sequence="${seq}" ${dataAttr} alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
+            } else if (mediaFile.match(/\.(mp4|mov|avi|webm)$/i)) {
+                if (isExternal) {
+                    return `<video id='gorilla-media-${seq}' data-sequence="${seq}" controls alt="${title}" title="${title}" class="gorilla-media gorilla-media-video"><source src="${mediaFile}">Your browser does not support the video tag.</video>`;
+                }
+                MediaPlugin.mediaPaths[seq] = mediaFile;
+                return `<video id='gorilla-media-${seq}' data-sequence="${seq}" ${dataAttr} controls alt="${title}" title="${title}" class="gorilla-media gorilla-media-video"><source></video>`;
+            } else if (mediaFile.match(/\.(mp3|wav|ogg)$/i)) {
+                if (isExternal) {
+                    return `<audio id='gorilla-media-${seq}' data-sequence="${seq}" controls alt="${title}" title="${title}" class="gorilla-media gorilla-media-audio"><source src="${mediaFile}">Your browser does not support the audio element.</audio>`;
+                }
+                MediaPlugin.mediaPaths[seq] = mediaFile;
+                return `<audio id='gorilla-media-${seq}' data-sequence="${seq}" ${dataAttr} controls alt="${title}" title="${title}" class="gorilla-media gorilla-media-audio"><source></audio>`;
             } else {
-                //MediaPlugin.mediaData.push(URL.createObjectURL(await fs.readBinaryFile(mediaFile)));
-                mediaData = URL.createObjectURL(await fs.readBinaryFile(mediaFile))
-            }
-            if (mediaFile.endsWith(".jpeg") || mediaFile.endsWith(".jpg") || mediaFile.endsWith(".png") || mediaFile.endsWith(".gif")) {
-                return `<img id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" src="${mediaData}" alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
-            } else if (mediaFile.endsWith(".mp4") || mediaFile.endsWith(".mov") || mediaFile.endsWith(".avi") || mediaFile.endsWith(".webm")) {
-                return `<video id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" controls  alt="${title}" title="${title}" class="gorilla-media gorilla-media-video"><source src="${mediaData}">Your browser does not support the video tag.</video>`;
-            } else if (mediaFile.endsWith(".mp3") || mediaFile.endsWith(".wav")) {
-                return `<audio id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" controls  alt="${title}" title="${title}" class="gorilla-media gorilla-media-audio"><source src="${mediaData}">Your browser does not support the audio element.</audio>`;
-            }
-            else {
-                // MediaPlugin.mediaData.pop();
-                MediaData = await GorillaUtility.readZipFileAsDataURI(mediaFile);
-                return "<a id='gorilla-media-" + (MediaPlugin.mediaSequenceNumber++) + "' sequence=\"" + (MediaPlugin.mediaSequenceNumber++) + "\" href='" + MediaData + "' download>" + GorillaMedia.GorillaMedia.getFileIcon(GorillaMedia.splitFilePath(mediaFile).extension) + " Download " + mediaSpec + "</a>";
+                // Generic file -- provide download placeholder; load data URI lazily in postprocess
+                MediaPlugin.mediaPaths[seq] = mediaFile;
+                return `<a id='gorilla-media-${seq}' data-sequence="${seq}" ${dataAttr} class="gorilla-media gorilla-media-download" download>${GorillaMedia.getFileIcon(GorillaMedia.splitFilePath(mediaFile).extension)} Download ${mediaSpec}</a>`;
             }
         } else {
             console.warn("Media file not found for directive: " + mediaSpec);
             return `<span class="gorilla-media-missing">[Missing media: ${mediaSpec}]</span>`;
         }
     },
-
-    postprocess: function () {
-        return;
+    postprocess: async function () {
         const mediaElements = document.querySelectorAll('.gorilla-media');
-        mediaElements.forEach((element) => {
-            const sequence = parseInt(element.getAttribute('sequence'));
-            const dataURI = MediaPlugin.mediaData[sequence];
-            if (element.tagName.toLowerCase() === 'img') {
-                element.setAttribute('src', dataURI);
+        for (const element of mediaElements) {
+            const seqAttr = element.getAttribute('data-sequence');
+            const dataPath = element.getAttribute('data-media-path');
+            const dataSrc = element.getAttribute('data-media-src');
 
-            } else if (element.tagName.toLowerCase() === 'video') {
-                const sourceElement = element.querySelector('source');
-                sourceElement.setAttribute('src', dataURI);
-                element.load();
+            const sequence = seqAttr ? parseInt(seqAttr, 10) : null;
 
-            } else if (element.tagName.toLowerCase() === 'audio') {
-                const sourceElement = element.querySelector('source');
-                sourceElement.setAttribute('src', dataURI);
-                element.load();
+            // If external src is provided, nothing to do
+            if (dataSrc) continue;
+
+            if (!dataPath) {
+                // No local data path — check for external sources and ensure media elements are loaded
+                const tagName = element.tagName.toLowerCase();
+                if (tagName === 'video' || tagName === 'audio') {
+                    const sourceElement = element.querySelector('source');
+                    if (sourceElement && sourceElement.getAttribute('src')) {
+                        try { element.load(); } catch (e) { /* ignore */ }
+                        continue;
+                    }
+                    if (element.getAttribute('src')) {
+                        try { element.load(); } catch (e) { /* ignore */ }
+                        continue;
+                    }
+                }
+                // nothing else to do for external anchors/images
+                // Try legacy sequence attribute mapping: fallback to mediaPaths if present
+                const seqLegacy = element.getAttribute('sequence');
+                if (seqLegacy) {
+                    const seqNum = parseInt(seqLegacy, 10);
+                    const mapped = MediaPlugin.mediaPaths[seqNum];
+                    if (mapped) {
+                        // treat this as a local path now
+                        try {
+                            const blob = await fs.readBinaryFile(mapped);
+                            const url = URL.createObjectURL(blob);
+                            MediaPlugin.mediaData[seqNum] = url;
+                            const tag = element.tagName.toLowerCase();
+                            if (tag === 'video' || tag === 'audio') {
+                                const sourceElement2 = element.querySelector('source');
+                                if (sourceElement2) sourceElement2.setAttribute('src', url);
+                                else element.setAttribute('src', url);
+                                try { element.load(); } catch (e) { /* ignore */ }
+                            } else if (tag === 'img') {
+                                element.setAttribute('src', url);
+                            } else if (tag === 'a') {
+                                element.setAttribute('href', url);
+                            }
+                            continue;
+                        } catch (e) {
+                            console.error('MediaPlugin failed to load legacy media for', mapped, e);
+                        }
+                    }
+                }
+                continue;
             }
 
-            else if (element.tagName.toLowerCase() === 'a') {
-                element.setAttribute('href', dataURI);
+            try {
+                // If element already has a blob: URL that may have been revoked, revoke it and recreate from known path
+                const sourceElement = element.querySelector('source');
+                let existingSrc = null;
+                if (sourceElement && sourceElement.getAttribute('src')) existingSrc = sourceElement.getAttribute('src');
+                if (!existingSrc && element.getAttribute('src')) existingSrc = element.getAttribute('src');
+                if (existingSrc && existingSrc.startsWith('blob:')) {
+                    try { URL.revokeObjectURL(existingSrc); } catch (e) { /* ignore */ }
+                }
+
+                const blob = await fs.readBinaryFile(dataPath);
+                const url = URL.createObjectURL(blob);
+                if (sequence !== null) {
+                    MediaPlugin.mediaData[sequence] = url;
+                } else {
+                    MediaPlugin.mediaData.push(url);
+                }
+
+                const tag = element.tagName.toLowerCase();
+                if (tag === 'img') {
+                    element.setAttribute('src', url);
+                } else if (tag === 'video' || tag === 'audio') {
+                    const sourceElement = element.querySelector('source');
+                    if (sourceElement) {
+                        sourceElement.setAttribute('src', url);
+                    } else {
+                        // fallback: set src directly
+                        element.setAttribute('src', url);
+                    }
+                    try { element.load(); } catch (e) { /* ignore */ }
+                } else if (tag === 'a') {
+                    element.setAttribute('href', url);
+                }
+            } catch (e) {
+                console.error('MediaPlugin failed to load media for', dataPath, e);
             }
-        });
+        }
     },
 };
