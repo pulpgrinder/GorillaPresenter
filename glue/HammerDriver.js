@@ -40,8 +40,9 @@ HammerDriver = {
             if (target.tagName === 'BUTTON' ||
                 target.tagName === 'VIDEO' ||
                 target.tagName === 'A' ||
+                target.tagName === 'AUDIO' ||
                 // target.tagName === 'CODE' ||
-                target.closest('.gorilla-choice-item, .gorilla-choice-multiple-choice, .gorilla-choice-navigate, .gorilla-choice-external, .gorilla-choice-notify,.gorilla-branch-item, .gorilla-branch-multiple-choice, .gorilla-branch-navigate, .gorilla-branch-external, .gorilla-branch-notify, button, video, a, input, select, textarea')) {
+                target.closest('.gorilla-choice-item, .gorilla-choice-multiple-choice, .gorilla-choice-navigate, .gorilla-choice-external, .gorilla-choice-notify,.gorilla-branch-item, .gorilla-branch-multiple-choice, .gorilla-branch-navigate, .gorilla-branch-external, .gorilla-branch-notify, button, video, a, audio, input, select, textarea')) {
                 // Tap was on an interactive element; ignore it.
                 return;
             }

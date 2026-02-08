@@ -150,6 +150,8 @@ MediaPlugin = {
                 const tag = element.tagName.toLowerCase();
                 if (tag === 'img') {
                     element.setAttribute('src', url);
+                    // prevent clicks on media controls from advancing slides
+                    element.addEventListener('click', (e) => e.stopPropagation());
                 } else if (tag === 'video' || tag === 'audio') {
                     const sourceElement = element.querySelector('source');
                     if (sourceElement) {
@@ -159,8 +161,11 @@ MediaPlugin = {
                         element.setAttribute('src', url);
                     }
                     try { element.load(); } catch (e) { /* ignore */ }
+                    // stop clicks on the media element from bubbling to slide handlers
+                    element.addEventListener('click', (e) => { e.stopPropagation(); });
                 } else if (tag === 'a') {
                     element.setAttribute('href', url);
+                    element.addEventListener('click', (e) => e.stopPropagation());
                 }
             } catch (e) {
                 console.error('MediaPlugin failed to load media for', dataPath, e);
