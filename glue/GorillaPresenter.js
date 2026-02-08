@@ -91,18 +91,39 @@ GorillaPresenter = {
             GorillaPresenter.notify(errormessage);
             return;
         }
-        const slidename = "#gorilla-slide-" + slideNumber;
-        document.querySelectorAll('.gorilla-slide-class').forEach((el) => {
-            el.style.display = "none";
+        const slideContainer = document.getElementById('gorilla-slide-show');
+
+        // Insert only the active slide HTML into the DOM (lazy rendering)
+        const slideHtml = GorillaSlideRenderer.slides[slideNumber]?.html || '';
+        slideContainer.innerHTML = slideHtml;
+
+        // Run any plugin postprocess side-effects (those that expect no args)
+        for (let plugin in GorillaSlideRenderer.plugins) {
+            const p = GorillaSlideRenderer.plugins[plugin];
+            if (p.postprocess !== undefined && p.postprocess.length === 0) {
+                try {
+                    await p.postprocess();
+                } catch (e) {
+                    console.error('Plugin postprocess (dom) failed for', plugin, e);
+                }
+            }
+        }
+
+        // Defer expensive work until after initial paint
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                try { Prism.highlightAllUnder(slideContainer); } catch (e) { console.error('Prism.highlightAllUnder failed', e); }
+                try { renderMathInElement(slideContainer); } catch (e) { console.error('renderMathInElement failed', e); }
+            });
         });
-        const activeSlide = document.querySelector(slidename);
-        activeSlide.style.display = "grid";
+
         GorillaPresenter.currentSlideNumber = slideNumber;
         slidechooser.value = slideNumber;
         // Update the URL hash with the current slide number
-        if (window.location.hash !== `#${slideNumber}`)
-            window.location.hash = slideNumber;
-        let timerspan = document.querySelector(slidename).querySelector('.gorilla-timer');
+        if (window.location.hash !== `#${slideNumber}`) window.location.hash = slideNumber;
+
+        // Timer handling within the currently rendered slide
+        let timerspan = slideContainer.querySelector('.gorilla-timer');
         if (timerspan) {
             let hadTimer = false;
             if (GorillaPresenter.timer) { // Clear any existing timer
@@ -131,7 +152,6 @@ GorillaPresenter = {
                     GorillaPresenter.nextSlide();
                 }, totalMilliseconds);
                 return;
-
             }
             let destinationSlideNumber = GorillaSlideRenderer.findSlideNumber(nextSlide);
             if (destinationSlideNumber !== GorillaPresenter.currentSlideNumber) {

@@ -10,14 +10,14 @@ window.fs = {
 
   async unpackZipData() {
     try {
-      // Find the ZIP data div in the DOM
-      const zipDataDiv = document.getElementById('gorilla-zip-data');
+      // Find the ZIP data element in the DOM (script or div)
+      const zipDataElement = document.getElementById('gorilla-zip-data');
 
-      if (!zipDataDiv) {
-        throw new Error('Could not find gorilla-zip-data div');
+      if (!zipDataElement) {
+        throw new Error('Could not find gorilla-zip-data element');
       }
 
-      const base64String = zipDataDiv.textContent.trim();
+      const base64String = (zipDataElement.textContent || '').trim();
 
       if (!base64String) {
         throw new Error('ZIP data div is empty');
@@ -64,13 +64,13 @@ window.fs = {
       }
       const base64String = btoa(binaryString);
 
-      // Update the ZIP data div in the DOM
-      const zipDataDiv = document.getElementById('gorilla-zip-data');
-      if (!zipDataDiv) {
-        throw new Error('Could not find gorilla-zip-data div');
+      // Update the ZIP data element in the DOM (prefer script element)
+      const zipDataElement = document.getElementById('gorilla-zip-data');
+      if (!zipDataElement) {
+        throw new Error('Could not find gorilla-zip-data element');
       }
 
-      zipDataDiv.textContent = base64String;
+      zipDataElement.textContent = base64String;
 
       // Now get the updated HTML
       const newHtml = document.documentElement.outerHTML;

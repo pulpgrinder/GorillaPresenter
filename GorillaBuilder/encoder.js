@@ -25,10 +25,10 @@ try {
   // Step 2: Read the HTML template
   let htmlContent = fs.readFileSync(bundleFile, 'utf8');
 
-  // Step 3: Check for the gorilla-zip-data div
-  const divPattern = /<div id="gorilla-zip-data"><\/div>/;
-  if (!divPattern.test(htmlContent)) {
-    console.error('Error: HTML template does not contain <div id="gorilla-zip-data"></div>');
+  // Step 3: Check for the gorilla-zip-data placeholder (div or script)
+  const placeholderPattern = /<(?:div|script) id="gorilla-zip-data"(?: type="[^"]+")?>\s*<\/(?:div|script)>/;
+  if (!placeholderPattern.test(htmlContent)) {
+    console.error('Error: HTML template does not contain a gorilla-zip-data placeholder (expected <div id="gorilla-zip-data"></div> or <script id="gorilla-zip-data" type="application/octet-stream"></script>)');
     process.exit(1);
   }
 
@@ -42,9 +42,10 @@ try {
   console.log(`Base64 encoded size: ${base64ZipData.length} characters`);
 
   // Step 6: Insert base64 data into the div
+  // Replace either an empty div or an empty script placeholder with a script containing the base64 data.
   const resultHtml = htmlContent.replace(
-    /<div id="gorilla-zip-data"><\/div>/,
-    `<div id="gorilla-zip-data">${base64ZipData}</div>`
+    /<(?:div|script) id="gorilla-zip-data"(?: type="[^"]+")?>\s*<\/(?:div|script)>/,
+    `<script id="gorilla-zip-data" type="application/octet-stream">${base64ZipData}</script>`
   );
 
   // Step 7: Create dist directory

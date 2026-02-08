@@ -316,13 +316,14 @@ GorillaFindReplace = {
             GorillaFindReplace.updateStatus();
             return;
         }
-z
+
         GorillaFindReplace.currentIndex = (GorillaFindReplace.currentIndex + 1) % GorillaFindReplace.currentMatches.length;
         GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
         GorillaFindReplace.updateStatus();
     },
 
     findPrevious() {
+        let searchText = document.getElementById('gorilla-find-input').value;
         if (searchText === "") {
             GorillaFindReplace.clearHighlights();
             GorillaFindReplace.currentMatches = [];

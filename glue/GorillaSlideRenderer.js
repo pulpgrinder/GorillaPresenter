@@ -30,26 +30,33 @@ GorillaSlideRenderer = {
             GorillaSlideRenderer.cursorStart = 0;
         }
         GorillaSlideRenderer.slides = GorillaScript.preprocess(input);
-        let rendered = GorillaSlideRenderer.render(GorillaSlideRenderer.slides);
-        GorillaSlideRenderer.slideData = await GorillaSlideRenderer.postprocess(rendered);
-        let html = GorillaSlideRenderer.slideData;
-        for (let plugin in GorillaSlideRenderer.plugins) {
-            if (plugin.postprocess !== undefined) {
-                html = await GorillaSlideRenderer.plugins[plugin].postprocess(html);
+        const renderedArray = GorillaSlideRenderer.render(GorillaSlideRenderer.slides);
+
+        // Run postprocess and plugin HTML-transforming postprocess (those that accept an argument)
+        for (let i = 0; i < renderedArray.length; i++) {
+            let html = await GorillaSlideRenderer.postprocess(renderedArray[i]);
+            for (let plugin in GorillaSlideRenderer.plugins) {
+                const p = GorillaSlideRenderer.plugins[plugin];
+                if (p.postprocess !== undefined && p.postprocess.length > 0) {
+                    try {
+                        const result = await p.postprocess(html);
+                        if (typeof result === 'string') html = result;
+                    } catch (e) {
+                        console.error('Plugin postprocess (html) failed for', plugin, e);
+                    }
+                }
             }
+            html = await StetPlugin.postprocess(html);
+            html = await LiteralPlugin.postprocess(html);
+            GorillaSlideRenderer.slides[i].html = html; // store processed HTML for lazy insertion
         }
-        html = await StetPlugin.postprocess(html);
-        html = await LiteralPlugin.postprocess(html);
-        document.getElementById('gorilla-slide-show').innerHTML = html;
-        Prism.highlightAll();// Re-highlight code blocks after markdown rendering
-        renderMathInElement(document.body);
 
     },
 
     render: function (slides) {
         GorillaSlideRenderer.slides = slides; // Store slides for later use
         let slideChooserContent = '';
-        let html = '';
+        const renderedSlides = [];
         for (let i = 0; i < slides.length; i++) {
             const slide = slides[i];
             GorillaMarkdown.currentClassString = "";
@@ -58,24 +65,24 @@ GorillaSlideRenderer = {
                 slide.title = '';
             }
             const parsedTitle = GorillaMarkdown.mdparse.render(slide.title);
-            slideChooserContent += `<option class = \'gorilla-slide-chooser-option\' value="${i}">` + parsedTitle + `</option>\n`;
+            slideChooserContent += `<option class = 'gorilla-slide-chooser-option' value="${i}">` + parsedTitle + `</option>\n`;
             const parsedBody = GorillaMarkdown.mdparse.render(slide.body);
 
-            // Build the HTML for this slide
-            html += `<div class="gorilla-slide-class" id="gorilla-slide-${i}">
+            // Build the HTML string for this slide (not inserted into DOM yet)
+            const slideHtml = `<div class="gorilla-slide-class" id="gorilla-slide-${i}">
     <div class="gorilla-slide-header-class" id="gorilla-slide-header-${i}">
         ${parsedTitle}
     </div>
     <div class="gorilla-slide-body-class" id="gorilla-slide-body-${i}">
         ${parsedBody}
     </div>
-</div>
-`;
+</div>`;
+            renderedSlides.push(slideHtml);
         }
         let slidechooser = document.getElementById("slidechooser");
         slidechooser.innerHTML = slideChooserContent;
 
-        return html;
+        return renderedSlides;
     },
 
 
