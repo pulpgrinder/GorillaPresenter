@@ -1,7 +1,7 @@
 let GorillaMarkdown = {
   currentClassString: "",
 
-  init: function() {
+  init: function () {
     this.mdparse = window.markdownit({
       html: true,
       linkify: true,
@@ -13,73 +13,73 @@ let GorillaMarkdown = {
     // ————————————————————
     // Escape directives in inline code
     // ————————————————————
-    this.mdparse.renderer.rules.code_inline = function(tokens, idx, options, env, slf) {
+    this.mdparse.renderer.rules.code_inline = function (tokens, idx, options, env, slf) {
       const token = tokens[idx];
       // First escape HTML, then replace braces with entities
       const escaped = self.mdparse.utils.escapeHtml(token.content)
-                          .replace(/{{{/g, '&#123;&#123;&#123;')
-                          .replace(/}}}/g, '&#125;&#125;&#125;');
+        .replace(/{{{/g, '&#123;&#123;&#123;')
+        .replace(/}}}/g, '&#125;&#125;&#125;');
       return '<code' + slf.renderAttrs(token) + '>' + escaped + '</code>';
     };
 
     // ————————————————————
     // Escape directives in fenced code blocks
     // ————————————————————
-    this.mdparse.renderer.rules.fence = function(tokens, idx, options, env, slf) {
+    this.mdparse.renderer.rules.fence = function (tokens, idx, options, env, slf) {
       const token = tokens[idx];
       const info = token.info ? self.mdparse.utils.unescapeAll(token.info).trim() : '';
       const langName = info ? info.split(/\s+/g)[0] : '';
       const langClass = langName ? ' class="language-' + self.mdparse.utils.escapeHtml(langName) + '"' : '';
-      
+
       // First escape HTML, then replace braces with entities
       const escaped = self.mdparse.utils.escapeHtml(token.content)
-                          .replace(/{{{/g, '&#123;&#123;&#123;')
-                          .replace(/}}}/g, '&#125;&#125;&#125;');
-      
+        .replace(/{{{/g, '&#123;&#123;&#123;')
+        .replace(/}}}/g, '&#125;&#125;&#125;');
+
       return '<pre><code' + langClass + '>' + escaped + '</code></pre>\n';
     };
 
     // ————————————————————
     // CORE RULER: Process inline classes BEFORE rendering
     // ————————————————————
-    this.mdparse.core.ruler.after('inline', 'apply_inline_classes', function(state) {
+    this.mdparse.core.ruler.after('inline', 'apply_inline_classes', function (state) {
       state.tokens.forEach(blockToken => {
         if (blockToken.type !== 'inline' || !blockToken.children) return;
-        
+
         const children = blockToken.children;
         let activeClasses = [];
-        
+
         for (let i = 0; i < children.length; i++) {
           const token = children[i];
-          
+
           // Skip if this is the first text token and starts with a directive
           // (let block-level rules handle it)
           if (i === 0 && token.type === 'text' && token.content.match(/^[\s\n]*{{{/)) {
             continue;
           }
-          
+
           // Process text tokens for directives
           if (token.type === 'text' && token.content.includes('{{{')) {
             const regex = /{{{([^}]*)}}}/g;
             let match;
-            
+
             regex.lastIndex = 0;
             while ((match = regex.exec(token.content)) !== null) {
               const directive = match[1].trim();
               const cmd = directive.split(/\s+/)[0]?.toLowerCase() || '';
-              
+
               // Check if it's a special directive - if so, keep it
               if (GorillaSlideRenderer.plugins[cmd] !== undefined) {
                 continue; // Don't process or remove special directives
               }
-              
+
               if (!directive || directive.toLowerCase() === 'clear') {
                 activeClasses = [];
               } else {
                 activeClasses = directive.split(/\s+/).filter(Boolean);
               }
             }
-            
+
             // Remove non-special directives from text
             token.content = token.content.replace(/{{{([^}]*)}}}/g, (match, content) => {
               const cmd = content.trim().split(/\s+/)[0]?.toLowerCase() || '';
@@ -89,7 +89,7 @@ let GorillaMarkdown = {
               return ''; // Remove class directives
             });
           }
-          
+
           // Apply active classes to opening tags
           if (token.type.endsWith('_open') && activeClasses.length > 0) {
             activeClasses.forEach(cls => {
@@ -113,7 +113,7 @@ let GorillaMarkdown = {
       const orig = this.mdparse.renderer.rules[type] ||
         ((t, i, o, e, s) => s.renderToken(t, i, o));
 
-      this.mdparse.renderer.rules[type] = function(tokens, idx, options, env, slf) {
+      this.mdparse.renderer.rules[type] = function (tokens, idx, options, env, slf) {
         const token = tokens[idx];
 
         // Check for directive at very start of block
@@ -129,7 +129,7 @@ let GorillaMarkdown = {
               if (self.currentClassString) {
                 token.attrPush(['class', self.currentClassString]);
               }
-              
+
               // Only remove non-special directives from content
               first.content = first.content.slice(match[0].length).trimStart();
               if (first.content === '') {
@@ -158,7 +158,7 @@ let GorillaMarkdown = {
     footnote_plugin(this.mdparse);
   },
 
-  render: function(text) {
+  render: function (text) {
     this.currentClassString = ""; // reset per render
     return this.mdparse.render(text);
   }

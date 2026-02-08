@@ -21,24 +21,24 @@ baseFontStacks = `
     `;
 baseFontStackOptions = {
     "Antique": "--antique-font-stack",
-        "Didone": "--didone-font-stack",
-        "Generic Cursive": "--cursive-font-stack",
-        "Generic Serif": "--serif-font-stack",
-        "Generic Sans Serif": "--sans-serif-font-stack",
-        "Generic Monospace": "--monospace-font-stack",
-        "Handwritten": "--handwritten-font-stack",
-        "Humanist": "--humanist-font-stack",
-        "Humanist (classical)": "--classical-humanist-font-stack",
-        "Humanist (geometric)": "--geometric-humanist-font-stack",
-        "Industrial": "--industrial-font-stack",
-        "Medieval Sharp":"--medieval-sharp-font-stack",
-        "Monospace Code": "--monospace-code-font-stack",
-        "Monospace Slab Serif": "--monospace-slab-serif-font-stack",
-        "Neo-Grotesque": "--neo-grotesque-font-stack",
-        "Old Style": "--old-style-font-stack",
-        "Rounded Sans": "--rounded-sans-font-stack",
-        "System UI": "--system-ui-font-stack",
-        "Transitional": "--transitional-font-stack",
+    "Didone": "--didone-font-stack",
+    "Generic Cursive": "--cursive-font-stack",
+    "Generic Serif": "--serif-font-stack",
+    "Generic Sans Serif": "--sans-serif-font-stack",
+    "Generic Monospace": "--monospace-font-stack",
+    "Handwritten": "--handwritten-font-stack",
+    "Humanist": "--humanist-font-stack",
+    "Humanist (classical)": "--classical-humanist-font-stack",
+    "Humanist (geometric)": "--geometric-humanist-font-stack",
+    "Industrial": "--industrial-font-stack",
+    "Medieval Sharp": "--medieval-sharp-font-stack",
+    "Monospace Code": "--monospace-code-font-stack",
+    "Monospace Slab Serif": "--monospace-slab-serif-font-stack",
+    "Neo-Grotesque": "--neo-grotesque-font-stack",
+    "Old Style": "--old-style-font-stack",
+    "Rounded Sans": "--rounded-sans-font-stack",
+    "System UI": "--system-ui-font-stack",
+    "Transitional": "--transitional-font-stack",
 };
 const fs = require('fs');
 const path = require('path');
@@ -49,30 +49,29 @@ const fontPath = path.join(cwd, 'fonts');
 const outputPath = path.join(cwd, 'glue', 'bundled-fonts.css');
 const fontStackCSSPath = path.join(cwd, '/glue/fontstacks.css');
 console.log('fontStackCSSPath', fontStackCSSPath);
-const fontStackJSPath = path.join(cwd,  '/glue/fontStackOptions.js');
+const fontStackJSPath = path.join(cwd, '/glue/fontStackOptions.js');
 console.log('fontStackJSPath', fontStackJSPath);
- const entries = fs.readdirSync(fontPath, { withFileTypes: true });
-    for (const entry of entries) {
-        console.log('Found font file:', entry.name);
-        baseFontStacks  += `--${path.parse(entry.name).name.toLowerCase().replace(/\s+/g, '-')}-font-stack: '${path.parse(entry.name).name}';\n`;
-        nameWithoutExtension = path.basename(entry.name, path.extname(entry.name));
-      console.log('nameWithoutExtension' +  nameWithoutExtension);
-        baseFontStackOptions[nameWithoutExtension] = `--${path.parse(entry.name).name.toLowerCase().replace(/\s+/g, '-')}-font-stack`;
-      const fullPath = path.join(cwd + "/fonts", entry.name);
-      console.log('Full path', fullPath);
-      const fileData = fs.readFileSync(fullPath, 'base64');
-const mimeType = 'font/ttf'; // Adjust based on file type
-const dataUri = `data:${mimeType};base64,${fileData}`;
-fontCss += `@font-face {
+const entries = fs.readdirSync(fontPath, { withFileTypes: true });
+for (const entry of entries) {
+    console.log('Found font file:', entry.name);
+    baseFontStacks += `--${path.parse(entry.name).name.toLowerCase().replace(/\s+/g, '-')}-font-stack: '${path.parse(entry.name).name}';\n`;
+    nameWithoutExtension = path.basename(entry.name, path.extname(entry.name));
+    console.log('nameWithoutExtension' + nameWithoutExtension);
+    baseFontStackOptions[nameWithoutExtension] = `--${path.parse(entry.name).name.toLowerCase().replace(/\s+/g, '-')}-font-stack`;
+    const fullPath = path.join(cwd + "/fonts", entry.name);
+    console.log('Full path', fullPath);
+    const fileData = fs.readFileSync(fullPath, 'base64');
+    const mimeType = 'font/ttf'; // Adjust based on file type
+    const dataUri = `data:${mimeType};base64,${fileData}`;
+    fontCss += `@font-face {
     font-family: '${path.parse(entry.name).name}';
     src: url('${dataUri}') format('truetype');
     font-weight: normal;
     font-style: normal;
 }\n`;
-    }
+}
 fs.writeFileSync(outputPath, fontCss);
 fs.writeFileSync(fontStackCSSPath, ":root{\n" + baseFontStacks + "\n}\n");
-fs.writeFileSync(fontStackJSPath, 'fontStackOptions = ' + JSON.stringify(baseFontStackOptions) + ';');   
+fs.writeFileSync(fontStackJSPath, 'fontStackOptions = ' + JSON.stringify(baseFontStackOptions) + ';');
 console.log('Bundled fonts written to', outputPath);
-    
-  
+

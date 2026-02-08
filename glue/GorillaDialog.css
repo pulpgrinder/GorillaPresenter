@@ -13,7 +13,7 @@
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 200000;
-  min-width:50px;
+  min-width: 50px;
   max-width: 350px;
 }
 
@@ -36,9 +36,9 @@
 }
 
 .toast-info {
-  background-color:var(--slide-body-color, #333);
+  background-color: var(--slide-body-color, #333);
 }
 
 .toast svg {
-  color:var(--slide-body-background-color);
+  color: var(--slide-body-background-color);
 }

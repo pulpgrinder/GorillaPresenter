@@ -12,14 +12,14 @@ GorillaSlideRenderer = {
         //MediaPlugin.reset();
         StetPlugin.reset();
         LiteralPlugin.reset()
-       input = await StetPlugin.preprocess(input);
-       input = await LiteralPlugin.preprocess(input);
-         for (let plugin in GorillaSlideRenderer.plugins) {
-            if(GorillaSlideRenderer.plugins[plugin].reset !== undefined) {
+        input = await StetPlugin.preprocess(input);
+        input = await LiteralPlugin.preprocess(input);
+        for (let plugin in GorillaSlideRenderer.plugins) {
+            if (GorillaSlideRenderer.plugins[plugin].reset !== undefined) {
                 await GorillaSlideRenderer.plugins[plugin].reset();
             }
             if (GorillaSlideRenderer.plugins[plugin].preprocess !== undefined) {
-                input= await GorillaSlideRenderer.plugins[plugin].preprocess(input);
+                input = await GorillaSlideRenderer.plugins[plugin].preprocess(input);
             }
         }
         GorillaSlideRenderer.cursorPosition = GorillaEditor.getCursorPosition();
@@ -40,10 +40,10 @@ GorillaSlideRenderer = {
         }
         html = await StetPlugin.postprocess(html);
         html = await LiteralPlugin.postprocess(html);
-        document.getElementById('gorilla-slide-show').innerHTML = html; 
+        document.getElementById('gorilla-slide-show').innerHTML = html;
         Prism.highlightAll();// Re-highlight code blocks after markdown rendering
         renderMathInElement(document.body);
-        
+
     },
 
     render: function (slides) {
@@ -126,8 +126,8 @@ GorillaSlideRenderer = {
             console.error(directiveError);
             return directiveError;
         }
-        if( GorillaSlideRenderer.plugins[command].renderHTML !== undefined) {
-        return await GorillaSlideRenderer.plugins[command].renderHTML(args);
+        if (GorillaSlideRenderer.plugins[command].renderHTML !== undefined) {
+            return await GorillaSlideRenderer.plugins[command].renderHTML(args);
         }
         else {
             return args;
@@ -140,8 +140,8 @@ GorillaSlideRenderer = {
                 return i;
             }
         }
-         GorillaAlert.show("Choice processor: Slide not found: " + target);
-    return 0;
+        GorillaAlert.show("Choice processor: Slide not found: " + target);
+        return 0;
     },
     registerPlugin: function (name, object) {
         GorillaSlideRenderer.plugins[name.toLowerCase()] = object;

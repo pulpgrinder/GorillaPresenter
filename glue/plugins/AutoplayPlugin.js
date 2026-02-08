@@ -6,9 +6,9 @@ AutoplayPlugin = {
         if (isNaN(delaySeconds) || delaySeconds < 0) {
             delaySeconds = 0;
         }
-        if(args.length > 1) {
+        if (args.length > 1) {
             nextSlide = args[1].trim();
         }
-        return   `<span class="gorilla-timer" data-next-slide="${nextSlide}" data-duration="${delaySeconds}"></span>`;
+        return `<span class="gorilla-timer" data-next-slide="${nextSlide}" data-duration="${delaySeconds}"></span>`;
     }
 };

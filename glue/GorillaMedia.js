@@ -4,7 +4,7 @@ GorillaMedia = {
     '.xml', '.svg', '.md', '.log', '.config', '.yml', '.yaml',
     '.license'],
   icons: {
-    css:"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M64,32,99,435.22,255.77,480,413,435.15,448,32ZM354.68,366.9,256.07,395l-98.46-28.24L150.86,289h48.26l3.43,39.56,53.59,15.16.13.28h0l53.47-14.85L315.38,265H203l-4-50H319.65L324,164H140l-4-49H376.58Z\"/></svg>",
+    css: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M64,32,99,435.22,255.77,480,413,435.15,448,32ZM354.68,366.9,256.07,395l-98.46-28.24L150.86,289h48.26l3.43,39.56,53.59,15.16.13.28h0l53.47-14.85L315.38,265H203l-4-50H319.65L324,164H140l-4-49H376.58Z\"/></svg>",
     image: "<svg xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0 0 512 512\"><rect x=\"48\" y=\"80\" width=\"416\" height=\"352\" rx=\"48\" ry=\"48\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><circle cx=\"336\" cy=\"176\" r=\"32\" style=\"fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px\"/><path d=\"M304,335.79,213.34,245.3A32,32,0,0,0,169.47,244L48,352\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><path d=\"M224,432,347.34,308.66a32,32,0,0,1,43.11-2L464,368\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/></svg>",
 
     video: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><rect x=\"48\" y=\"96\" width=\"416\" height=\"320\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"384\" y=\"336\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"384\" y=\"256\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"384\" y=\"176\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"384\" y=\"96\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"48\" y=\"336\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"48\" y=\"256\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"48\" y=\"176\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"48\" y=\"96\" width=\"80\" height=\"80\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"128\" y=\"96\" width=\"256\" height=\"160\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><rect x=\"128\" y=\"256\" width=\"256\" height=\"160\" rx=\"28\" ry=\"28\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/></svg>",
@@ -63,8 +63,8 @@ GorillaMedia = {
 
   loadMediaScreens: async function () {
     await GorillaMedia.loadMediaScreen("media", "gorilla-media-list");
-   // await GorillaMedia.loadMediaScreen("fonts", "gorilla-media-font-list");
-   // await GorillaMedia.loadMediaScreen("licenses", "gorilla-media-license-list");
+    // await GorillaMedia.loadMediaScreen("fonts", "gorilla-media-font-list");
+    // await GorillaMedia.loadMediaScreen("licenses", "gorilla-media-license-list");
     await GorillaMedia.loadMediaScreen("trash", "gorilla-media-trash-list");
     await GorillaFontLoader.loadFonts();
 
@@ -252,12 +252,12 @@ GorillaMedia = {
   getFolderLocation: function (filename) {
 
     if (filename.match(/\.ttf$/i) || filename.match(/\.otf$/i) || filename.match(/\.woff$/i) || filename.match(/\.woff2$/i)) {
-     // return "fonts/" + filename;
+      // return "fonts/" + filename;
       return "media/" + filename;
     }
-   /* else if (filename.match(/\.license$/i)) {
-      return "licenses/" + filename;
-    }*/
+    /* else if (filename.match(/\.license$/i)) {
+       return "licenses/" + filename;
+     }*/
     else {
       return "media/" + filename;
     }

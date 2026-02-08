@@ -1,5 +1,5 @@
 IconPlugin = {
-     renderHTML: async function (directive) {
+    renderHTML: async function (directive) {
         let iconBasename = directive.trim();
         let iconTitle = iconBasename.replace(/\-/g, ' ');
         const iconSpec = "ionicons/" + iconBasename + ".svg";

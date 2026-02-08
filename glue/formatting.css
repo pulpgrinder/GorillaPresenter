@@ -1,19 +1,22 @@
-
-.center{
-  text-align:center;
-}
-.right{
-  text-align:right;
-}
-.left{
-  text-align:left;
+.center {
+  text-align: center;
 }
 
-.justify{
-  text-align:justify;
+.right {
+  text-align: right;
 }
 
-.hang{
-  padding-left: 2em;      /* Indent size for subsequent lines */
-  text-indent: -2em;      /* Pull the first line back out */
+.left {
+  text-align: left;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.hang {
+  padding-left: 2em;
+  /* Indent size for subsequent lines */
+  text-indent: -2em;
+  /* Pull the first line back out */
 }

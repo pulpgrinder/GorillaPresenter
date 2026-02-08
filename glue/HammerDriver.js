@@ -2,23 +2,23 @@ HammerDriver = {
     hammer: null,
     slideshow: null,
     menuhammers: [],
-    checkTimerPause:function() {
-        if(GorillaPresenter.paused === true){
-             GorillaPresenter.nextSlide(); 
-             GorillaPresenter.timer = setInterval(() => {
-                GorillaPresenter.nextSlide(); 
+    checkTimerPause: function () {
+        if (GorillaPresenter.paused === true) {
+            GorillaPresenter.nextSlide();
+            GorillaPresenter.timer = setInterval(() => {
+                GorillaPresenter.nextSlide();
             }, GorillaPresenter.interval);
             GorillaPresenter.paused = false;
 
             return true;
         }
-        if(GorillaPresenter.timer) {
+        if (GorillaPresenter.timer) {
             clearInterval(GorillaPresenter.timer);
             GorillaPresenter.timer = null;
             GorillaPresenter.paused = true;
-             GorillaDialog.showToast('<div>Autoplay Paused</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="176" y="96" width="16" height="320" style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><rect x="320" y="96" width="16" height="320" style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>', 1500, 'info');
+            GorillaDialog.showToast('<div>Autoplay Paused</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="176" y="96" width="16" height="320" style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><rect x="320" y="96" width="16" height="320" style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>', 1500, 'info');
             return true;
-        }   
+        }
     },
 
     init: function () {
@@ -26,13 +26,13 @@ HammerDriver = {
         this.slideshow = document.querySelector("#gorilla-slide-show");
         this.hammer = new Hammer(this.slideshow);
         this.hammer.on("touch", async function (ev) {
-            if(HammerDriver.checkTimerPause()) {
+            if (HammerDriver.checkTimerPause()) {
                 return;
             }
             await GorillaPresenter.nextSlide();
         });
         this.hammer.on("tap", async function (ev) {
-               if(HammerDriver.checkTimerPause()) {
+            if (HammerDriver.checkTimerPause()) {
                 return;
             }
             const target = ev.target;
@@ -40,12 +40,12 @@ HammerDriver = {
             if (target.tagName === 'BUTTON' ||
                 target.tagName === 'VIDEO' ||
                 target.tagName === 'A' ||
-               // target.tagName === 'CODE' ||
-               target.closest('.gorilla-choice-item, .gorilla-choice-multiple-choice, .gorilla-choice-navigate, .gorilla-choice-external, .gorilla-choice-notify,.gorilla-branch-item, .gorilla-branch-multiple-choice, .gorilla-branch-navigate, .gorilla-branch-external, .gorilla-branch-notify, button, video, a, input, select, textarea')){
+                // target.tagName === 'CODE' ||
+                target.closest('.gorilla-choice-item, .gorilla-choice-multiple-choice, .gorilla-choice-navigate, .gorilla-choice-external, .gorilla-choice-notify,.gorilla-branch-item, .gorilla-branch-multiple-choice, .gorilla-branch-navigate, .gorilla-branch-external, .gorilla-branch-notify, button, video, a, input, select, textarea')) {
                 // Tap was on an interactive element; ignore it.
                 return;
-               }
-            
+            }
+
 
             const tapX = ev.center.x;
             const screenWidth = window.innerWidth;
@@ -64,7 +64,7 @@ HammerDriver = {
                 time: 500  // milliseconds
             });
             hammer.on("press", (ev) => {
-               MainMenuDriver.toggleMenu();
+                MainMenuDriver.toggleMenu();
             });
 
             this.menuhammers.push(hammer);
@@ -83,11 +83,11 @@ HammerDriver = {
                 case "PageUp":
                 case "ArrowUp":
                 case "Backspace":
-                   await GorillaPresenter.previousSlide();
+                    await GorillaPresenter.previousSlide();
                     evt.preventDefault();
                     break;
-               case "Home":
-                   await GorillaPresenter.showSlide(0, "swipeInFromRight");
+                case "Home":
+                    await GorillaPresenter.showSlide(0, "swipeInFromRight");
                     evt.preventDefault();
                     break;
                 case "End":
@@ -97,14 +97,14 @@ HammerDriver = {
             }
         });
         let editor = document.getElementById("gorilla-slide-editor");
-   /*     editor.addEventListener("keydown", function (evt) {
-            console.log("Keydown event in editor, key:", evt.key);
-                  if ((evt.ctrlKey || evt.metaKey) && evt.key === 's') {
-    evt.preventDefault(); // Prevent browser's default "Save Page" dialog
-                    GorillaPresenter.markDirty(true);
-                    GorillaPresenter.showSlideShow();
-    console.log('Save triggered!');
-            }
-        }); */
-    }, 
+        /*     editor.addEventListener("keydown", function (evt) {
+                 console.log("Keydown event in editor, key:", evt.key);
+                       if ((evt.ctrlKey || evt.metaKey) && evt.key === 's') {
+         evt.preventDefault(); // Prevent browser's default "Save Page" dialog
+                         GorillaPresenter.markDirty(true);
+                         GorillaPresenter.showSlideShow();
+         console.log('Save triggered!');
+                 }
+             }); */
+    },
 }

@@ -1,18 +1,18 @@
 .gorilla-book-header {
-    display: grid;
-    grid-template-rows: auto auto auto;
-    gap: 1em;
-    font-size: 100%;
-    justify-items: center;
-    align-items: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 1em;
+  font-size: 100%;
+  justify-items: center;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   /*  color: #ffffff;
     background-color: #4d5b8c; */
-    color:var(--menu-header-color);
-    background-color:var(--menu-header-background-color);
-    border: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: none;
+  color: var(--menu-header-color);
+  background-color: var(--menu-header-background-color);
+  border: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: none;
 }

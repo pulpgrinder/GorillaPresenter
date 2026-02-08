@@ -4,9 +4,9 @@ MediaPlugin = {
     mediaData: [],
     reset: async function () {
         this.mediaSequenceNumber = 0;
-        for(let url of this.mediaData) {
+        for (let url of this.mediaData) {
             URL.revokeObjectURL(url);
-        } 
+        }
         this.mediaData = [];
     },
 
@@ -14,31 +14,31 @@ MediaPlugin = {
         let specparts = mediaSpec.split("|").map(part => part.trim());
         mediaSpec = specparts[0];
         let title = "";
-        if(specparts.length > 1) {
-           title = specparts[1];
+        if (specparts.length > 1) {
+            title = specparts[1];
         }
-        
+
         let mediaFile
-        if(mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://") ) {
-            if(title === "") {
+        if (mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://")) {
+            if (title === "") {
                 title = mediaSpec;
             }
-            mediaFile= mediaSpec;
+            mediaFile = mediaSpec;
         } else {
-         mediaFile = await GorillaMedia.findMediaFile(mediaSpec);
-         if(title === "") {
-         title = GorillaMedia.splitFilePath(mediaFile).basePath.replace(/media\//, ""); // Strip "media/" from display title if present
-        }
+            mediaFile = await GorillaMedia.findMediaFile(mediaSpec);
+            if (title === "") {
+                title = GorillaMedia.splitFilePath(mediaFile).basePath.replace(/media\//, ""); // Strip "media/" from display title if present
             }
+        }
         if (mediaFile) {
             let mediaData;
-             if(mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://") ) {
-                 //   MediaPlugin.mediaData.push(mediaFile);
-                 mediaData = mediaFile;
-             } else {
+            if (mediaSpec.startsWith("http://") || mediaSpec.startsWith("https://")) {
+                //   MediaPlugin.mediaData.push(mediaFile);
+                mediaData = mediaFile;
+            } else {
                 //MediaPlugin.mediaData.push(URL.createObjectURL(await fs.readBinaryFile(mediaFile)));
                 mediaData = URL.createObjectURL(await fs.readBinaryFile(mediaFile))
-                }
+            }
             if (mediaFile.endsWith(".jpeg") || mediaFile.endsWith(".jpg") || mediaFile.endsWith(".png") || mediaFile.endsWith(".gif")) {
                 return `<img id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" src="${mediaData}" alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
             } else if (mediaFile.endsWith(".mp4") || mediaFile.endsWith(".mov") || mediaFile.endsWith(".avi") || mediaFile.endsWith(".webm")) {
@@ -47,7 +47,7 @@ MediaPlugin = {
                 return `<audio id='gorilla-media-${MediaPlugin.mediaSequenceNumber}' sequence="${MediaPlugin.mediaSequenceNumber++}" controls  alt="${title}" title="${title}" class="gorilla-media gorilla-media-audio"><source src="${mediaData}">Your browser does not support the audio element.</audio>`;
             }
             else {
-               // MediaPlugin.mediaData.pop();
+                // MediaPlugin.mediaData.pop();
                 MediaData = await GorillaUtility.readZipFileAsDataURI(mediaFile);
                 return "<a id='gorilla-media-" + (MediaPlugin.mediaSequenceNumber++) + "' sequence=\"" + (MediaPlugin.mediaSequenceNumber++) + "\" href='" + MediaData + "' download>" + GorillaMedia.GorillaMedia.getFileIcon(GorillaMedia.splitFilePath(mediaFile).extension) + " Download " + mediaSpec + "</a>";
             }

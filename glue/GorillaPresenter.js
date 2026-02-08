@@ -67,12 +67,12 @@ GorillaPresenter = {
             return GorillaSlideRenderer.slides.length - 1;
 
         }
-       
+
         return activeSlideNumber;
 
     },
     showSlide: async function (slideNumber, transitionName = "cutIn") {
-      
+
         let slidechooser = document.getElementById("slidechooser");
         if (slideNumber < 0) {
             let errormessage = "Already at first slide.";
@@ -145,7 +145,7 @@ GorillaPresenter = {
             }
         }
     },
- 
+
     nextSlide: async function () {
         await GorillaPresenter.showSlide(GorillaPresenter.currentSlideNumber + 1, "swipeInFromRight");
     },

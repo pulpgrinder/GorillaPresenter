@@ -1,5 +1,5 @@
 GorillaFontLoader = {
-    baseFontStacks : `
+    baseFontStacks: `
 -serif-font-stack: serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --sans-serif-font-stack: sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --monospace-font-stack: monospace, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -19,8 +19,8 @@ GorillaFontLoader = {
     --antique-font-stack: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --didone-font-stack: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --handwritten-font-stack: 'Segoe Print', Chilanka, TSCu_Comic, casual, cursive, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';`,
-    baseFontStackOptions :{
-    "Antique": "--antique-font-stack",
+    baseFontStackOptions: {
+        "Antique": "--antique-font-stack",
         "Didone": "--didone-font-stack",
         "Generic Cursive": "--cursive-font-stack",
         "Generic Serif": "--serif-font-stack",
@@ -31,7 +31,7 @@ GorillaFontLoader = {
         "Humanist (classical)": "--classical-humanist-font-stack",
         "Humanist (geometric)": "--geometric-humanist-font-stack",
         "Industrial": "--industrial-font-stack",
-        "Medieval Sharp":"--medieval-sharp-font-stack",
+        "Medieval Sharp": "--medieval-sharp-font-stack",
         "Monospace Code": "--monospace-code-font-stack",
         "Monospace Slab Serif": "--monospace-slab-serif-font-stack",
         "Neo-Grotesque": "--neo-grotesque-font-stack",
@@ -39,7 +39,7 @@ GorillaFontLoader = {
         "Rounded Sans": "--rounded-sans-font-stack",
         "System UI": "--system-ui-font-stack",
         "Transitional": "--transitional-font-stack",
-},
+    },
     loadFonts: async function () {
         fontStacks = GorillaFontLoader.baseFontStacks;
         fontStackOptions = GorillaFontLoader.baseFontStackOptions;
@@ -47,18 +47,18 @@ GorillaFontLoader = {
         thirdPartyFonts = await fs.readDirectory("media/");
         for (let i = 0; i < thirdPartyFonts.length; i++) {
             let fontFile = thirdPartyFonts[i];
-            if(fontFile.match(/\.ttf$/i) || fontFile.match(/\.otf$/i) || fontFile.match(/\.woff$/i) || fontFile.match(/\.woff2$/i)){
-               fontBaseName = fontFile.replace(/^media\//, ''); // Remove "fonts/" prefix if present
-            let nameWithoutExtension = fontBaseName.replace(/\.[^/.]+$/, ""); // Remove extension
-            fontStacks += `--${nameWithoutExtension.toLowerCase().replace(/\s+/g, '-')}-font-stack: '${nameWithoutExtension}';\n`;
-            fontStackOptions[nameWithoutExtension] = `--${nameWithoutExtension.toLowerCase().replace(/\s+/g, '-')}-font-stack`;
-            let dataURL = await GorillaUtility.readZipFileAsDataURI("media/" + fontBaseName);
-            fontFaces += `@font-face {font-family: '${nameWithoutExtension}';src: url('${dataURL}');}\n`;
+            if (fontFile.match(/\.ttf$/i) || fontFile.match(/\.otf$/i) || fontFile.match(/\.woff$/i) || fontFile.match(/\.woff2$/i)) {
+                fontBaseName = fontFile.replace(/^media\//, ''); // Remove "fonts/" prefix if present
+                let nameWithoutExtension = fontBaseName.replace(/\.[^/.]+$/, ""); // Remove extension
+                fontStacks += `--${nameWithoutExtension.toLowerCase().replace(/\s+/g, '-')}-font-stack: '${nameWithoutExtension}';\n`;
+                fontStackOptions[nameWithoutExtension] = `--${nameWithoutExtension.toLowerCase().replace(/\s+/g, '-')}-font-stack`;
+                let dataURL = await GorillaUtility.readZipFileAsDataURI("media/" + fontBaseName);
+                fontFaces += `@font-face {font-family: '${nameWithoutExtension}';src: url('${dataURL}');}\n`;
             }
         }
         let fontElement = document.getElementById("gorilla-loaded-fonts");
-        if(fontElement !== null) {
-          fontElement.remove();
+        if (fontElement !== null) {
+            fontElement.remove();
         }
         fontElement = document.createElement('style');
         fontElement.type = 'text/css';
@@ -67,12 +67,12 @@ GorillaFontLoader = {
         fontElement.appendChild(document.createTextNode(cssContent));
         document.head.appendChild(fontElement);
         fontStackOptions = Object.fromEntries(
-  Object.entries(fontStackOptions).sort(([a], [b]) => a.localeCompare(b))
-);
+            Object.entries(fontStackOptions).sort(([a], [b]) => a.localeCompare(b))
+        );
 
-        GorillaThemeHandler.fontStackOptions = fontStackOptions;  
-         GorillaThemeHandler.loadFontStackSelectors();
+        GorillaThemeHandler.fontStackOptions = fontStackOptions;
+        GorillaThemeHandler.loadFontStackSelectors();
 
-             },
- 
+    },
+
 }

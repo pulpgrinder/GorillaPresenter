@@ -15,15 +15,15 @@ MenuPlugin = {
         let choices = [];
         let choicePairs = [];
         for (let line of choiceLines) {
-          //  line = line.trim();
+            //  line = line.trim();
             if (line.length === 0) continue; // Skip empty lines
             choices.push(line);
         }
         let lineLevel = null;
         for (let choice of choices) {
-            if(isOutline){
-               lineLevel = MenuPlugin.parseLevel(choice);
-            }else{
+            if (isOutline) {
+                lineLevel = MenuPlugin.parseLevel(choice);
+            } else {
                 lineLevel = { level: -1, text: choice };
                 outlineClass = "";
             }
@@ -40,9 +40,9 @@ MenuPlugin = {
         while (choicePairs.length > 0) {
             let pair = choicePairs.shift();
             let displayString = pair.text.trim();
-            if(isOutline){
+            if (isOutline) {
                 outlineClass = "gorilla-outline-level-" + pair.outlineLevel;
-            displayString = MenuPlugin.mlaHeadingString(pair.outlineLevel) + " " + displayString;
+                displayString = MenuPlugin.mlaHeadingString(pair.outlineLevel) + " " + displayString;
             }
             if (pair.target === null) {
                 if (pair.text.startsWith("*")) {
@@ -81,17 +81,17 @@ MenuPlugin = {
         generatedHTML += '</ul>\n';
         return generatedHTML;
     },
- parseLevel: function (line) {
-    // Match leading bell characters
-    const match = line.match(/^=*/);
-    const equalsSigns = match ? match[0] : '';
-    const level = equalsSigns.length;
-    
-    // Remove leading tabs to get the text
-    const text = line.replace(/^=*/, '');
-    
-    return { level: level, text: text };
-},
+    parseLevel: function (line) {
+        // Match leading bell characters
+        const match = line.match(/^=*/);
+        const equalsSigns = match ? match[0] : '';
+        const level = equalsSigns.length;
+
+        // Remove leading tabs to get the text
+        const text = line.replace(/^=*/, '');
+
+        return { level: level, text: text };
+    },
     romanNumeralBands: [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1], // The bands of numbers that correspond to Roman numerals.
     romanNumeralStringsUpper: ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"], // The Roman numeral strings for each band.
     romanNumeralStringsLower: ["m", "cm", "d", "cd", "c", "xc", "l", "xl", "x", "ix", "v", "iv", "i"], // The Roman numeral strings for each band.

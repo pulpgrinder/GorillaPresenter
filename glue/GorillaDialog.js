@@ -1,30 +1,30 @@
 // Toast notification function
 GorillaDialog = {
-  
-  showToast:function(message, duration = 3000, type = 'info') {
-  // Create toast element
-  const toast = document.createElement('div');
-  toast.className = `toast toast-${type}`;
-  toast.innerHTML = message;
-  
-  // Add to document
-  document.body.appendChild(toast);
-  
-  // Trigger animation (slight delay for CSS transition)
-  setTimeout(() => {
-    toast.classList.add('show');
-  }, 10);
-  
-  // Remove after duration
-  setTimeout(() => {
-    toast.classList.remove('show');
-    
-    // Remove from DOM after fade out
+
+  showToast: function (message, duration = 3000, type = 'info') {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = message;
+
+    // Add to document
+    document.body.appendChild(toast);
+
+    // Trigger animation (slight delay for CSS transition)
     setTimeout(() => {
-      document.body.removeChild(toast);
-    }, 300);
-  }, duration);
-}
+      toast.classList.add('show');
+    }, 10);
+
+    // Remove after duration
+    setTimeout(() => {
+      toast.classList.remove('show');
+
+      // Remove from DOM after fade out
+      setTimeout(() => {
+        document.body.removeChild(toast);
+      }, 300);
+    }, duration);
+  }
 }
 
 // Usage examples:
@@ -84,14 +84,14 @@ class GorillaMediaFilePrompt {
     `;
 
     document.body.appendChild(dialog);
-    
+
     const input = dialog.querySelector('#gorilla-recorder-media-file-name');
     const checkbox = dialog.querySelector('#gorilla-recorder-add-to-slide');
 
     return new Promise(resolve => {
       dialog.onclose = () => {
         resolve(dialog.returnValue === 'ok' ? { value: input.value, addtoSlide: checkbox.checked } : null);
-         
+
         dialog.remove();
       };
       dialog.showModal();

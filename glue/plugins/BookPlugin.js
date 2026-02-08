@@ -16,7 +16,7 @@ BookPlugin = {
             metadata.by_statement = '';
             metadata.image = BookPlugin.notFoundImageURL;
             return metadata;
-       }
+        }
 
         let fetchedImage = await BookPlugin.fetchImage(isbn);
         if (fetchedImage) {

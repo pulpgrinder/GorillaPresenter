@@ -13,13 +13,13 @@ class ZipWriter {
     const content = fs.readFileSync(filePath);
     const stats = fs.statSync(filePath);
     const mtime = this.dosDateTime(stats.mtime);
-    
+
     // Calculate CRC32
     const crc32 = this.crc32(content);
-    
+
     // Compress with deflate
     const compressed = zlib.deflateRawSync(content);
-    
+
     // Local file header
     const localHeader = Buffer.concat([
       Buffer.from([0x50, 0x4b, 0x03, 0x04]), // Local file header signature
@@ -35,7 +35,7 @@ class ZipWriter {
       this.uint16(0), // Extra field length
       Buffer.from(zipPath, 'utf8') // File name
     ]);
-    
+
     this.files.push({
       header: localHeader,
       data: compressed,
@@ -46,7 +46,7 @@ class ZipWriter {
       mtime: mtime,
       offset: this.offset
     });
-    
+
     this.offset += localHeader.length + compressed.length;
   }
 
@@ -57,7 +57,7 @@ class ZipWriter {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const seconds = Math.floor(date.getSeconds() / 2);
-    
+
     return {
       date: ((year - 1980) << 9) | (month << 5) | day,
       time: (hours << 11) | (minutes << 5) | seconds
@@ -90,7 +90,7 @@ class ZipWriter {
   writeZip(outputPath) {
     const centralDirStart = this.offset;
     const centralDirBuffers = [];
-    
+
     // Build central directory
     for (const file of this.files) {
       const centralHeader = Buffer.concat([
@@ -115,10 +115,10 @@ class ZipWriter {
       ]);
       centralDirBuffers.push(centralHeader);
     }
-    
+
     const centralDir = Buffer.concat(centralDirBuffers);
     const centralDirSize = centralDir.length;
-    
+
     // End of central directory record
     const endOfCentralDir = Buffer.concat([
       Buffer.from([0x50, 0x4b, 0x05, 0x06]), // End of central dir signature
@@ -130,24 +130,24 @@ class ZipWriter {
       this.uint32(centralDirStart), // Offset of start of central directory
       this.uint16(0) // ZIP file comment length
     ]);
-    
+
     // Write everything to file
     const writeStream = fs.createWriteStream(outputPath);
-    
+
     // Write local file headers and data
     for (const file of this.files) {
       writeStream.write(file.header);
       writeStream.write(file.data);
     }
-    
+
     // Write central directory
     writeStream.write(centralDir);
-    
+
     // Write end of central directory
     writeStream.write(endOfCentralDir);
-    
+
     writeStream.end();
-    
+
     return new Promise((resolve, reject) => {
       writeStream.on('finish', resolve);
       writeStream.on('error', reject);
@@ -158,16 +158,16 @@ class ZipWriter {
 function getAllFiles(dir, baseDir = dir) {
   const files = [];
   const items = fs.readdirSync(dir);
-  
+
   for (const item of items) {
     // Skip .DS_Store files
     if (item === '.DS_Store') {
       continue;
     }
-    
+
     const fullPath = path.join(dir, item);
     const stats = fs.statSync(fullPath);
-    
+
     if (stats.isDirectory()) {
       files.push(...getAllFiles(fullPath, baseDir));
     } else {
@@ -175,7 +175,7 @@ function getAllFiles(dir, baseDir = dir) {
       files.push({ fullPath, relativePath });
     }
   }
-  
+
   return files;
 }
 
@@ -183,15 +183,15 @@ async function createZip() {
   try {
     // Define paths relative to current working directory
     const cwd = process.cwd();
-   //const templateFile = path.join(cwd, 'template', 'index.template.html');
+    //const templateFile = path.join(cwd, 'template', 'index.template.html');
     const filesystemDir = path.join(cwd, 'filesystem');
     const zippedDir = path.join(cwd, 'zipped');
     const outputZip = path.join(zippedDir, 'sourcezip.zip');
 
     // Check if template file exists
-  /*  if (!fs.existsSync(templateFile)) {
-      throw new Error(`Template file not found: ${templateFile}`);
-    }*/
+    /*  if (!fs.existsSync(templateFile)) {
+        throw new Error(`Template file not found: ${templateFile}`);
+      }*/
 
     // Check if filesystem directory exists
     if (!fs.existsSync(filesystemDir)) {
@@ -208,7 +208,7 @@ async function createZip() {
     const zip = new ZipWriter();
 
     // Add template file (with the 'template/' prefix)
-    
+
     //zip.addFile(templateFile, 'template/index.template.html');
     //console.log('Added: template/index.template.html');
 
@@ -223,7 +223,7 @@ async function createZip() {
 
     // Write the zip file
     await zip.writeZip(outputZip);
-    
+
     console.log(`✓ Zip file created successfully: ${outputZip}`);
 
   } catch (error) {

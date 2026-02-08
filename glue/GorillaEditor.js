@@ -144,9 +144,7 @@ let GorillaEditor = {
 
     wrapSelectedText: function (prefix, suffix) {
         const selectedText = GorillaEditor.getSelectedText();
-        console.log("Selected text to wrap:", selectedText);
         const newText = prefix + selectedText + suffix;
-        console.log("New text after wrapping:", newText);
         GorillaEditor.replaceSelectedText(newText);
     },
     fenceSelectedLines: function (prefix, suffix) {
@@ -175,8 +173,6 @@ let GorillaEditor = {
         GorillaEditor.wrapSelectedText('`', '`');
     },
     codeBlock: function () {
-
-        console.log("Inserting code block with language:", GorillaEditor.defaultLanguage);
         GorillaEditor.wrapSelectedText('```' + GorillaEditor.defaultLanguage + '\n', '\n```\n');
     },
     code: function () {
@@ -221,157 +217,155 @@ GorillaFindReplace = {
     lastSearchedCode: null, // NEW: Track the code we last searched
     lastFindCursorPosition: null,
 
-find(force = false) {
-    const findText = document.getElementById('gorilla-find-input').value;
-    if (!findText) return;
-    const cursorPos = GorillaEditor.getCursorPosition().start;
-    if(GorillaFindReplace.lastFindCursorPosition !== cursorPos) {
-        console.log("Cursor position changed since last find. Forcing new search.");
-        force = true;
-        GorillaFindReplace.lastFindCursorPosition = cursorPos;
-    }
-    console.log("Cursor position at start of find:", cursorPos);
-    const code = GorillaEditor.getCode();
-
-    if (force === false) {
-        if (findText === GorillaFindReplace.lastSearchText && 
-            code === GorillaFindReplace.lastSearchedCode) {
-            return;
+    find(force = false) {
+        const findText = document.getElementById('gorilla-find-input').value;
+        if (!findText) return;
+        const cursorPos = GorillaEditor.getCursorPosition().start;
+        if (GorillaFindReplace.lastFindCursorPosition !== cursorPos) {
+            force = true;
+            GorillaFindReplace.lastFindCursorPosition = cursorPos;
         }
-    }
-    GorillaFindReplace.lastSearchText = findText;
-    GorillaFindReplace.lastSearchedCode = code;
-    const caseSensitive = document.getElementById('gorilla-find-case-sensitive').checked;
+        const code = GorillaEditor.getCode();
 
-    GorillaFindReplace.currentMatches = [];
-
-    try {
-        const escaped = findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const pattern = new RegExp(escaped, caseSensitive ? 'g' : 'gi');
-
-        let match;
-        while ((match = pattern.exec(code)) !== null) {
-            GorillaFindReplace.currentMatches.push({
-                start: match.index,
-                end: match.index + match[0].length,
-                text: match[0]
-            });
-        }
-
-        if (GorillaFindReplace.currentMatches.length > 0) {
-           
-            let foundIndex = GorillaFindReplace.currentMatches.findIndex(match => match.start > cursorPos);
-            
-            if (foundIndex === -1) {
-                foundIndex = 0;
+        if (force === false) {
+            if (findText === GorillaFindReplace.lastSearchText &&
+                code === GorillaFindReplace.lastSearchedCode) {
+                return;
             }
-            
-            GorillaFindReplace.currentIndex = foundIndex;
-            GorillaFindReplace.highlightMatches(pattern);
-            GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
-            GorillaFindReplace.updateStatus();
-        } else {
-            GorillaFindReplace.updateStatus('No matches found');
         }
-    } catch (e) {
-        GorillaFindReplace.updateStatus('Invalid regex: ' + e.message);
-    }
-},
+        GorillaFindReplace.lastSearchText = findText;
+        GorillaFindReplace.lastSearchedCode = code;
+        const caseSensitive = document.getElementById('gorilla-find-case-sensitive').checked;
+
+        GorillaFindReplace.currentMatches = [];
+
+        try {
+            const escaped = findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const pattern = new RegExp(escaped, caseSensitive ? 'g' : 'gi');
+
+            let match;
+            while ((match = pattern.exec(code)) !== null) {
+                GorillaFindReplace.currentMatches.push({
+                    start: match.index,
+                    end: match.index + match[0].length,
+                    text: match[0]
+                });
+            }
+
+            if (GorillaFindReplace.currentMatches.length > 0) {
+
+                let foundIndex = GorillaFindReplace.currentMatches.findIndex(match => match.start > cursorPos);
+
+                if (foundIndex === -1) {
+                    foundIndex = 0;
+                }
+
+                GorillaFindReplace.currentIndex = foundIndex;
+                GorillaFindReplace.highlightMatches(pattern);
+                GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
+                GorillaFindReplace.updateStatus();
+            } else {
+                GorillaFindReplace.updateStatus('No matches found');
+            }
+        } catch (e) {
+            GorillaFindReplace.updateStatus('Invalid regex: ' + e.message);
+        }
+    },
     hasStateChanged() {
         if (!GorillaFindReplace.lastSearchedCode) return false;
-        if(GorillaEditor.getCode() !== GorillaFindReplace.lastSearchedCode)
+        if (GorillaEditor.getCode() !== GorillaFindReplace.lastSearchedCode)
             return true;
         cursorPos = GorillaEditor.getCursorPosition().start;
-        if(cursorPos !== GorillaFindReplace.lastFindCursorPosition)
+        if (cursorPos !== GorillaFindReplace.lastFindCursorPosition)
             return true;
         return false;
 
     },
-    
- findNext() {
-    let searchText = document.getElementById('gorilla-find-input').value;
-    if(searchText === ""){
-        GorillaFindReplace.clearHighlights();
-        GorillaFindReplace.currentMatches = [];
-        GorillaFindReplace.currentIndex = -1;
-        GorillaFindReplace.updateStatus();
-        return;
-    }
-    // Check if we need to re-run find due to code changes
-    if (GorillaFindReplace.currentMatches.length === 0 || 
-        searchText !== GorillaFindReplace.lastSearchText ||
-        GorillaFindReplace.hasStateChanged()) {
-        
-        // Get current cursor position before re-running find
-        const cursorPos = GorillaEditor.jar.save().start;
-        
-        GorillaFindReplace.find(true);
-        
-        if (GorillaFindReplace.currentMatches.length === 0) return;
-        
-        // Find first match AFTER current cursor position
-        let foundIndex = GorillaFindReplace.currentMatches.findIndex(match => match.start > cursorPos);
-        
-        if (foundIndex === -1) {
-            // No matches after cursor, wrap to beginning
-            foundIndex = 0;
+
+    findNext() {
+        let searchText = document.getElementById('gorilla-find-input').value;
+        if (searchText === "") {
+            GorillaFindReplace.clearHighlights();
+            GorillaFindReplace.currentMatches = [];
+            GorillaFindReplace.currentIndex = -1;
+            GorillaFindReplace.updateStatus();
+            return;
         }
-        
-        GorillaFindReplace.currentIndex = foundIndex;
-        GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
-        GorillaFindReplace.updateStatus();
-        return;
-    }
+        // Check if we need to re-run find due to code changes
+        if (GorillaFindReplace.currentMatches.length === 0 ||
+            searchText !== GorillaFindReplace.lastSearchText ||
+            GorillaFindReplace.hasStateChanged()) {
 
-    GorillaFindReplace.currentIndex = (GorillaFindReplace.currentIndex + 1) % GorillaFindReplace.currentMatches.length;
-    GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
-    GorillaFindReplace.updateStatus();
-},
+            // Get current cursor position before re-running find
+            const cursorPos = GorillaEditor.jar.save().start;
 
-findPrevious() {
-     if(searchText === ""){
-        GorillaFindReplace.clearHighlights();
-        GorillaFindReplace.currentMatches = [];
-        GorillaFindReplace.currentIndex = -1;
-        GorillaFindReplace.updateStatus();
-        return;
-    }
-    // Check if we need to re-run find due to code changes
-    if (GorillaFindReplace.currentMatches.length === 0 || 
-        GorillaFindReplace.hasStateChanged()) {
-        
-        // Get current cursor position before re-running find
-        const cursorPos = GorillaEditor.jar.save().start;
-        
-        GorillaFindReplace.find(true);
-        
-        if (GorillaFindReplace.currentMatches.length === 0) return;
-        
-        // Find last match BEFORE current cursor position
-        let foundIndex = -1;
-        for (let i = GorillaFindReplace.currentMatches.length - 1; i >= 0; i--) {
-            if (GorillaFindReplace.currentMatches[i].start < cursorPos) {
-                foundIndex = i;
-                break;
+            GorillaFindReplace.find(true);
+
+            if (GorillaFindReplace.currentMatches.length === 0) return;
+
+            // Find first match AFTER current cursor position
+            let foundIndex = GorillaFindReplace.currentMatches.findIndex(match => match.start > cursorPos);
+
+            if (foundIndex === -1) {
+                // No matches after cursor, wrap to beginning
+                foundIndex = 0;
             }
+
+            GorillaFindReplace.currentIndex = foundIndex;
+            GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
+            GorillaFindReplace.updateStatus();
+            return;
         }
-        
-        if (foundIndex === -1) {
-            // No matches before cursor, wrap to end
-            foundIndex = GorillaFindReplace.currentMatches.length - 1;
-        }
-        
-        GorillaFindReplace.currentIndex = foundIndex;
+z
+        GorillaFindReplace.currentIndex = (GorillaFindReplace.currentIndex + 1) % GorillaFindReplace.currentMatches.length;
         GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
         GorillaFindReplace.updateStatus();
-        return;
-    }
+    },
 
-    GorillaFindReplace.currentIndex = (GorillaFindReplace.currentIndex - 1 + GorillaFindReplace.currentMatches.length) % GorillaFindReplace.currentMatches.length;
-    GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
-    GorillaFindReplace.updateStatus();
-},
-    
+    findPrevious() {
+        if (searchText === "") {
+            GorillaFindReplace.clearHighlights();
+            GorillaFindReplace.currentMatches = [];
+            GorillaFindReplace.currentIndex = -1;
+            GorillaFindReplace.updateStatus();
+            return;
+        }
+        // Check if we need to re-run find due to code changes
+        if (GorillaFindReplace.currentMatches.length === 0 ||
+            GorillaFindReplace.hasStateChanged()) {
+
+            // Get current cursor position before re-running find
+            const cursorPos = GorillaEditor.jar.save().start;
+
+            GorillaFindReplace.find(true);
+
+            if (GorillaFindReplace.currentMatches.length === 0) return;
+
+            // Find last match BEFORE current cursor position
+            let foundIndex = -1;
+            for (let i = GorillaFindReplace.currentMatches.length - 1; i >= 0; i--) {
+                if (GorillaFindReplace.currentMatches[i].start < cursorPos) {
+                    foundIndex = i;
+                    break;
+                }
+            }
+
+            if (foundIndex === -1) {
+                // No matches before cursor, wrap to end
+                foundIndex = GorillaFindReplace.currentMatches.length - 1;
+            }
+
+            GorillaFindReplace.currentIndex = foundIndex;
+            GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
+            GorillaFindReplace.updateStatus();
+            return;
+        }
+
+        GorillaFindReplace.currentIndex = (GorillaFindReplace.currentIndex - 1 + GorillaFindReplace.currentMatches.length) % GorillaFindReplace.currentMatches.length;
+        GorillaFindReplace.scrollToMatch(GorillaFindReplace.currentIndex);
+        GorillaFindReplace.updateStatus();
+    },
+
     replaceCurrent() {
         if (GorillaFindReplace.currentMatches.length === 0 || GorillaFindReplace.currentIndex === -1) return;
 
@@ -436,22 +430,22 @@ findPrevious() {
         GorillaFindReplace.currentMatches = [];
         GorillaFindReplace.updateStatus(`Replaced ${count} occurrence(s)`);
     },
-    
-    highlightMatches(pattern) {
-    // Get a clean copy of the language without highlight
-    const { highlight, ...cleanMarkdown } = Prism.languages.markdown;
-    
-    // Rebuild with new highlight first
-    Prism.languages.markdown = {
-        'highlight': {
-            pattern: pattern,
-            greedy: true
-        },
-        ...cleanMarkdown
-    };
 
-    GorillaEditor.highlightElement(GorillaEditor.editor); 
-},
+    highlightMatches(pattern) {
+        // Get a clean copy of the language without highlight
+        const { highlight, ...cleanMarkdown } = Prism.languages.markdown;
+
+        // Rebuild with new highlight first
+        Prism.languages.markdown = {
+            'highlight': {
+                pattern: pattern,
+                greedy: true
+            },
+            ...cleanMarkdown
+        };
+
+        GorillaEditor.highlightElement(GorillaEditor.editor);
+    },
     clearHighlights() {
         const { highlight, ...cleanMarkdown } = Prism.languages.markdown;
         Prism.languages.markdown = cleanMarkdown;
@@ -479,54 +473,54 @@ findPrevious() {
             e.preventDefault();
             setTimeout(() => {
 
-            GorillaEditor.editor.focus();
-            GorillaFindReplace.findNext();
-            },25);
+                GorillaEditor.editor.focus();
+                GorillaFindReplace.findNext();
+            }, 25);
         };
 
         document.getElementById('gorilla-find-previous').onclick = (e) => {
             setTimeout(() => {
-            e.preventDefault();
+                e.preventDefault();
 
-     GorillaEditor.editor.focus();
-            GorillaFindReplace.findPrevious();
-            },25);
+                GorillaEditor.editor.focus();
+                GorillaFindReplace.findPrevious();
+            }, 25);
         };
 
         document.getElementById('gorilla-replace-current').onclick = (e) => {
             setTimeout(() => {
-            e.preventDefault();
+                e.preventDefault();
 
-     GorillaEditor.editor.focus();
-            GorillaFindReplace.replaceCurrent();
+                GorillaEditor.editor.focus();
+                GorillaFindReplace.replaceCurrent();
             }
-            ,25);
+                , 25);
         };
 
         document.getElementById('gorilla-replace-all').onclick = (e) => {
             setTimeout(() => {
-            e.preventDefault();
-        GorillaEditor.editor.focus();
-            GorillaFindReplace.replaceAll();
-            },25);
+                e.preventDefault();
+                GorillaEditor.editor.focus();
+                GorillaFindReplace.replaceAll();
+            }, 25);
         };
-         
-    // Enter key in find field triggers search
-    document.getElementById('gorilla-find-input').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
+
+        // Enter key in find field triggers search
+        document.getElementById('gorilla-find-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
                 setTimeout(() => {
-            GorillaEditor.editor.focus();
-            GorillaFindReplace.find(true);
-            },25);
-        }
-    });
+                    GorillaEditor.editor.focus();
+                    GorillaFindReplace.find(true);
+                }, 25);
+            }
+        });
         // Checkboxes trigger new search
-        document.getElementById('gorilla-find-case-sensitive').onchange = () => 
+        document.getElementById('gorilla-find-case-sensitive').onchange = () =>
             setTimeout(() => {
-            GorillaEditor.editor.focus();
-            GorillaFindReplace.find(true);
-            },25);
+                GorillaEditor.editor.focus();
+                GorillaFindReplace.find(true);
+            }, 25);
 
         // Took out regex option for now to simplify - can add back later if needed
         /*    document.getElementById('gorilla-find-regex').onchange = () => GorillaFindReplace.find(true); */

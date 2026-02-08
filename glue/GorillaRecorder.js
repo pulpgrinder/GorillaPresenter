@@ -182,128 +182,128 @@ class GorillaMediaRecorder {
 
         return this;
     }
-setupEventListeners() {
-    // Video events
-    GorillaRecorder.video.addEventListener('timeupdate', () => {
-        if (!GorillaRecorder.isDraggingPlayhead) {
-            GorillaRecorder.updatePlayhead();
-        }
+    setupEventListeners() {
+        // Video events
+        GorillaRecorder.video.addEventListener('timeupdate', () => {
+            if (!GorillaRecorder.isDraggingPlayhead) {
+                GorillaRecorder.updatePlayhead();
+            }
 
-        if (GorillaRecorder.selectionStart !== null && GorillaRecorder.selectionEnd !== null && !GorillaRecorder.video.paused) {
-            if (GorillaRecorder.video.currentTime >= GorillaRecorder.selectionEnd) {
-                GorillaRecorder.video.pause();
-                GorillaRecorder.stateTransition('IDLE');
-                GorillaRecorder.video.currentTime = GorillaRecorder.selectionStart;
+            if (GorillaRecorder.selectionStart !== null && GorillaRecorder.selectionEnd !== null && !GorillaRecorder.video.paused) {
+                if (GorillaRecorder.video.currentTime >= GorillaRecorder.selectionEnd) {
+                    GorillaRecorder.video.pause();
+                    GorillaRecorder.stateTransition('IDLE');
+                    GorillaRecorder.video.currentTime = GorillaRecorder.selectionStart;
+                }
+            }
+        });
+        GorillaRecorder.video.addEventListener('ended', () => {
+            GorillaRecorder.stateTransition('IDLE');
+        });
+        GorillaRecorder.video.onloadedmetadata = () => {
+            GorillaRecorder.updatePlayhead();
+            if (GorillaRecorder.video.duration && GorillaRecorder.video.duration !== Infinity && !isNaN(GorillaRecorder.video.duration)) {
+                GorillaRecorder.setStatus('Media loaded. Duration: ' + GorillaRecorder.video.duration.toFixed(1) + 's');
+            } else {
+                GorillaRecorder.setStatus('Media loaded');
+            }
+        };
+
+        GorillaRecorder.video.onerror = (e) => {
+            console.error('Media error:', GorillaRecorder.video.error);
+            GorillaRecorder.setStatus('Error loading media');
+        };
+
+        // Timeline events
+        GorillaRecorder.timeline.onmousedown = (e) => GorillaRecorder.handleTimelineMouseDown(e);
+
+        // Playhead drag events
+        GorillaRecorder.playhead.onmousedown = (e) => {
+            e.stopPropagation();
+            GorillaRecorder.handlePlayheadMouseDown(e);
+        };
+
+        document.onmousemove = (e) => {
+            GorillaRecorder.handleDocumentMouseMove(e);
+            GorillaRecorder.handlePlayheadMouseMove(e);
+        };
+        document.onmouseup = () => {
+            GorillaRecorder.handleDocumentMouseUp();
+            GorillaRecorder.handlePlayheadMouseUp();
+        };
+
+        // Window resize
+        window.addEventListener('resize', () => GorillaRecorder.resizeCanvas());
+        GorillaRecorder.video.muted = false;
+        const volumeSlider = document.getElementById('gorilla-media-recorder-volume-slider');
+
+        volumeSlider.addEventListener('input', (e) => {
+            GorillaRecorder.video.volume = e.target.value / 100;
+        });
+    }
+
+    handlePlayheadMouseDown(e) {
+        if (!GorillaRecorder.currentBlob || !GorillaRecorder.video.duration || GorillaRecorder.video.duration === Infinity) return;
+        GorillaRecorder.isDraggingPlayhead = true;
+        GorillaRecorder.playhead.style.cursor = 'grabbing';
+    }
+
+    handlePlayheadMouseMove(e) {
+        if (!GorillaRecorder.isDraggingPlayhead || !GorillaRecorder.currentBlob) return;
+
+        const rect = GorillaRecorder.timeline.getBoundingClientRect();
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        const newTime = pos * GorillaRecorder.video.duration;
+
+        GorillaRecorder.video.currentTime = newTime;
+        GorillaRecorder.updatePlayhead();
+        GorillaRecorder.setStatus(`Seek: ${newTime.toFixed(2)}s`);
+    }
+
+    handlePlayheadMouseUp() {
+        if (GorillaRecorder.isDraggingPlayhead) {
+            GorillaRecorder.isDraggingPlayhead = false;
+            GorillaRecorder.playhead.style.cursor = 'grab';
+            if (GorillaRecorder.video.currentTime !== null) {
+                GorillaRecorder.setStatus(`Position: ${GorillaRecorder.video.currentTime.toFixed(2)}s`);
             }
         }
-    });
-    GorillaRecorder.video.addEventListener('ended', () => {
-        GorillaRecorder.stateTransition('IDLE');
-    });
-    GorillaRecorder.video.onloadedmetadata = () => {
-        GorillaRecorder.updatePlayhead();
-        if (GorillaRecorder.video.duration && GorillaRecorder.video.duration !== Infinity && !isNaN(GorillaRecorder.video.duration)) {
-            GorillaRecorder.setStatus('Media loaded. Duration: ' + GorillaRecorder.video.duration.toFixed(1) + 's');
-        } else {
-            GorillaRecorder.setStatus('Media loaded');
+    }
+    handleTimelineMouseDown(e) {
+        if (!GorillaRecorder.currentBlob || !GorillaRecorder.video.duration || GorillaRecorder.video.duration === Infinity) return;
+
+        // Check if click is on playhead
+        const playheadRect = GorillaRecorder.playhead.getBoundingClientRect();
+        const clickX = e.clientX;
+
+        // Give playhead a 10px tolerance on each side
+        if (clickX >= playheadRect.left - 10 && clickX <= playheadRect.right + 10 &&
+            GorillaRecorder.playhead.style.display !== 'none') {
+            GorillaRecorder.handlePlayheadMouseDown(e);
+            return;
         }
-    };
 
-    GorillaRecorder.video.onerror = (e) => {
-        console.error('Media error:', GorillaRecorder.video.error);
-        GorillaRecorder.setStatus('Error loading media');
-    };
+        // Otherwise, start region selection
+        GorillaRecorder.isDragging = true;
+        const rect = GorillaRecorder.timeline.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        GorillaRecorder.selectionStart = pos * GorillaRecorder.video.duration;
+        GorillaRecorder.selectionEnd = GorillaRecorder.selectionStart;
+        GorillaRecorder.updateSelection();
+    }
 
-    // Timeline events
-    GorillaRecorder.timeline.onmousedown = (e) => GorillaRecorder.handleTimelineMouseDown(e);
-    
-    // Playhead drag events
-    GorillaRecorder.playhead.onmousedown = (e) => {
-        e.stopPropagation();
-        GorillaRecorder.handlePlayheadMouseDown(e);
-    };
-    
-    document.onmousemove = (e) => {
-        GorillaRecorder.handleDocumentMouseMove(e);
-        GorillaRecorder.handlePlayheadMouseMove(e);
-    };
-    document.onmouseup = () => {
-        GorillaRecorder.handleDocumentMouseUp();
-        GorillaRecorder.handlePlayheadMouseUp();
-    };
-
-    // Window resize
-    window.addEventListener('resize', () => GorillaRecorder.resizeCanvas());
-    GorillaRecorder.video.muted = false;
-    const volumeSlider = document.getElementById('gorilla-media-recorder-volume-slider');
-
-    volumeSlider.addEventListener('input', (e) => {
-        GorillaRecorder.video.volume = e.target.value / 100;
-    });
-}
-
-handlePlayheadMouseDown(e) {
-    if (!GorillaRecorder.currentBlob || !GorillaRecorder.video.duration || GorillaRecorder.video.duration === Infinity) return;
-    GorillaRecorder.isDraggingPlayhead = true;
-    GorillaRecorder.playhead.style.cursor = 'grabbing';
-}
-
-handlePlayheadMouseMove(e) {
-    if (!GorillaRecorder.isDraggingPlayhead || !GorillaRecorder.currentBlob) return;
-    
-    const rect = GorillaRecorder.timeline.getBoundingClientRect();
-    const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    const newTime = pos * GorillaRecorder.video.duration;
-    
-    GorillaRecorder.video.currentTime = newTime;
-    GorillaRecorder.updatePlayhead();
-    GorillaRecorder.setStatus(`Seek: ${newTime.toFixed(2)}s`);
-}
-
-handlePlayheadMouseUp() {
-    if (GorillaRecorder.isDraggingPlayhead) {
-        GorillaRecorder.isDraggingPlayhead = false;
-        GorillaRecorder.playhead.style.cursor = 'grab';
-        if (GorillaRecorder.video.currentTime !== null) {
-            GorillaRecorder.setStatus(`Position: ${GorillaRecorder.video.currentTime.toFixed(2)}s`);
+    handleDocumentMouseMove(e) {
+        if (GorillaRecorder.isDraggingPlayhead) {
+            GorillaRecorder.handlePlayheadMouseMove(e);
+            return;
         }
-    }
-}
-  handleTimelineMouseDown(e) {
-    if (!GorillaRecorder.currentBlob || !GorillaRecorder.video.duration || GorillaRecorder.video.duration === Infinity) return;
-    
-    // Check if click is on playhead
-    const playheadRect = GorillaRecorder.playhead.getBoundingClientRect();
-    const clickX = e.clientX;
-    
-    // Give playhead a 10px tolerance on each side
-    if (clickX >= playheadRect.left - 10 && clickX <= playheadRect.right + 10 && 
-        GorillaRecorder.playhead.style.display !== 'none') {
-        GorillaRecorder.handlePlayheadMouseDown(e);
-        return;
-    }
-    
-    // Otherwise, start region selection
-    GorillaRecorder.isDragging = true;
-    const rect = GorillaRecorder.timeline.getBoundingClientRect();
-    const pos = (e.clientX - rect.left) / rect.width;
-    GorillaRecorder.selectionStart = pos * GorillaRecorder.video.duration;
-    GorillaRecorder.selectionEnd = GorillaRecorder.selectionStart;
-    GorillaRecorder.updateSelection();
-}
 
-   handleDocumentMouseMove(e) {
-    if (GorillaRecorder.isDraggingPlayhead) {
-        GorillaRecorder.handlePlayheadMouseMove(e);
-        return;
+        if (!GorillaRecorder.isDragging || !GorillaRecorder.currentBlob) return;
+        const rect = GorillaRecorder.timeline.getBoundingClientRect();
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        GorillaRecorder.selectionEnd = pos * GorillaRecorder.video.duration;
+        GorillaRecorder.updateSelection();
     }
-    
-    if (!GorillaRecorder.isDragging || !GorillaRecorder.currentBlob) return;
-    const rect = GorillaRecorder.timeline.getBoundingClientRect();
-    const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    GorillaRecorder.selectionEnd = pos * GorillaRecorder.video.duration;
-    GorillaRecorder.updateSelection();
-}
 
     handleDocumentMouseUp() {
         if (GorillaRecorder.isDragging) {
@@ -366,8 +366,8 @@ handlePlayheadMouseUp() {
         }
         let title = (GorillaPresenter.currentSlideNumber + 1) + ") " + document.getElementById("gorilla-slide-header-" + GorillaPresenter.currentSlideNumber).innerText.trim();
         let saveNameInfo = await GorillaMediaFilePrompt.prompt('Enter title for the recording:', title, true);
-    
-       
+
+
         if (!saveNameInfo) {
             return;
         }
@@ -382,13 +382,13 @@ handlePlayheadMouseUp() {
             }
         } else if (GorillaRecorder.currentBlob.type.startsWith('audio/')) {
             rawName += ' (audio recording)';
-           /* if (!saveName.toLowerCase().endsWith('.mp3')) {
-                saveName += ' (audio recording).mp3';
-                finalBlob = await GorillaRecorder.convertToMp3(GorillaRecorder.currentBlob);
-            }*/
+            /* if (!saveName.toLowerCase().endsWith('.mp3')) {
+                 saveName += ' (audio recording).mp3';
+                 finalBlob = await GorillaRecorder.convertToMp3(GorillaRecorder.currentBlob);
+             }*/
             if (!saveName.toLowerCase().endsWith('.webm')) {
                 saveName += ' (audio recording).webm';
-               // finalBlob = GorillaRecorder.currentBlob;
+                // finalBlob = GorillaRecorder.currentBlob;
             }
         } else {
             GorillaAlert.show('Unsupported media type for saving.');
@@ -407,9 +407,9 @@ handlePlayheadMouseUp() {
                 rawslides[GorillaPresenter.currentSlideNumber + 1] = currentLines.join('\n');
             }
             code = rawslides.join("# ");
-          
+
             GorillaEditor.updateCode(code);
-            
+
             GorillaEditor.setCursorPosition(currentPosition.start + mediaString.length, currentPosition.start + mediaString.length);
         }
         await fs.writeBinaryFile(saveName, finalBlob);
@@ -552,7 +552,7 @@ handlePlayheadMouseUp() {
                 ? { video: { width: 1280, height: 720 }, audio: true }
                 : { audio: true };
             GorillaRecorder.recordingStream = await navigator.mediaDevices.getUserMedia(constraints);
-        
+
             GorillaRecorder.recordedChunks = [];
             GorillaRecorder.recordingStartTime = Date.now();
 
@@ -636,12 +636,12 @@ handlePlayheadMouseUp() {
             GorillaRecorder.setStatus(`Recording ${GorillaRecorder.recordingMode}...`);
             return true;
         } catch (error) {
-            console.error('Error accessing media:', error);{
-            GorillaAlert.show("This browser does not support recording from a file:// URL, or there was another permission issue. At the present time, only desktop Chrome, Brave, and Firefox browsers support recording from a file:// URL.");
-            GorillaRecorder.stateTransition('IDLE')
-            return false;
+            console.error('Error accessing media:', error); {
+                GorillaAlert.show("This browser does not support recording from a file:// URL, or there was another permission issue. At the present time, only desktop Chrome, Brave, and Firefox browsers support recording from a file:// URL.");
+                GorillaRecorder.stateTransition('IDLE')
+                return false;
 
-        }
+            }
         }
     }
 
