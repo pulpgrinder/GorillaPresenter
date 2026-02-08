@@ -15,7 +15,7 @@
 
 {{{outline
 Overview
-=Sounds Great! How do I Get It?|> How Do I Get Gorilla Presente
+=Sounds Great! How do I Get It?|> How Do I Get Gorilla Presenter
 =How do I Navigate the Slide Show?|> Navigation
 Editing
 =How do I Edit the Presentation?|> Editing Slides

@@ -1,9 +1,15 @@
 .highlight {
-    background-color: yellow;
+    background-color: orange;
     color: black;
     border: 2px solid blue;
 }
 
+
+#gorilla-editor-screen::selection {
+      background-color: yellow;
+    color: black;
+    border: 2px solid blue;
+} 
 
 #gorilla-editor-screen {
     padding: 0;
