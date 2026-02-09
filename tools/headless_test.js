@@ -10,7 +10,7 @@ const fs = require('fs');
     if (resp.status() >= 400) console.log('RESP ERROR', resp.status(), resp.url());
   });
 
-  const url = 'http://localhost:8000/dist/index.html';
+  const url = 'http://localhost:8001/dist/index.html';
   const start = Date.now();
   try {
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });

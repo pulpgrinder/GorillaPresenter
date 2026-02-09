@@ -76,7 +76,9 @@ let GorillaMarkdown = {
               if (!directive || directive.toLowerCase() === 'clear') {
                 activeClasses = [];
               } else {
-                activeClasses = directive.split(/\s+/).filter(Boolean);
+                const parts = directive.split(/\s+/).filter(Boolean);
+                // Accumulate stacked class directives rather than replace
+                activeClasses = activeClasses.concat(parts);
               }
             }
 
@@ -92,9 +94,7 @@ let GorillaMarkdown = {
 
           // Apply active classes to opening tags
           if (token.type.endsWith('_open') && activeClasses.length > 0) {
-            activeClasses.forEach(cls => {
-              token.attrPush(['class', cls]);
-            });
+            token.attrPush(['class', activeClasses.join(' ')]);
           }
         }
       });
@@ -116,28 +116,43 @@ let GorillaMarkdown = {
       this.mdparse.renderer.rules[type] = function (tokens, idx, options, env, slf) {
         const token = tokens[idx];
 
-        // Check for directive at very start of block
+        // Check for directive(s) at very start of block — allow multiple stacked directives
         const content = tokens[idx + 1];
         if (content && content.children && content.children[0]?.type === 'text') {
           const first = content.children[0];
-          const match = first.content.match(/^[\s\n]*{{{\s*(.*?)\s*}}}/);
-          if (match) {
-            const cmd = match[1].trim().split(/\s+/)[0]?.toLowerCase() || '';
+          // We'll consume any number of leading non-plugin directives
+          let remaining = first.content;
+          const startRegex = /^[\s\n]*{{{\s*(.*?)\s*}}}/;
+          let classes = [];
+          let m;
+          while ((m = remaining.match(startRegex))) {
+            const directiveText = m[1].trim();
+            const cmd = directiveText.split(/\s+/)[0]?.toLowerCase() || '';
             if (GorillaSlideRenderer.plugins[cmd] === undefined) {
-              // Set persistent class AND apply to current block
-              self.currentClassString = cmd || "";
-              if (self.currentClassString) {
-                token.attrPush(['class', self.currentClassString]);
-              }
-
-              // Only remove non-special directives from content
-              first.content = first.content.slice(match[0].length).trimStart();
-              if (first.content === '') {
-                content.children.shift();
-              }
+              const parts = directiveText ? directiveText.split(/\s+/).filter(Boolean) : [];
+              classes = classes.concat(parts);
+              // remove the consumed prefix and continue
+              remaining = remaining.slice(m[0].length).trimStart();
+              continue;
             }
+            // plugin directive encountered — stop consuming here
+            break;
+          }
+
+          if (classes.length > 0) {
+            // If a clear directive was consumed, reset persistent class string
+            if (classes.length === 1 && classes[0].toLowerCase() === 'clear') {
+              self.currentClassString = '';
+            } else {
+              self.currentClassString = classes.join(' ');
+              // Push a single class attribute containing all classes
+              token.attrPush(['class', self.currentClassString]);
+            }
+            // Replace the first token's content with what's left after consuming directives
+            first.content = remaining;
+            if (first.content === '') content.children.shift();
           } else {
-            // No directive at start - apply persistent class if set
+            // No consumed directives — apply persistent class if set
             if (self.currentClassString) {
               token.attrPush(['class', self.currentClassString]);
             }

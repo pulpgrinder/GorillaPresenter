@@ -37,10 +37,11 @@ Plugins
 =LaTeX Math|> LaTeX Math
 =Stet|> Stet
 =Literal|> Literal
-Advanced Formatting
+Advanced Formatting|>Advanced Formatting
 =Built-in CSS Classes |> Built-in CSS Classes
 =Custom CSS Classes|> Custom CSS Classes
-Using Gorilla Presenter with iOS|>iOS
+Mobile Platform Notes
+=Using Gorilla Presenter with iOS|>iOS
 }}}
 
 # How Do I Get Gorilla Presenter?
@@ -561,8 +562,28 @@ produces:
 
 Settings information goes here, TBW
 
+# Advanced Formatting
+You can apply CSS classes of your choice to block-level items in Gorilla Presenter (paragraphs, lists, etc.). Several useful classes are built-in, and you can also define your own. These are invoked the same way as plugin specifications. For instance, {{{stet {{{center}}}}}} will cause every following block to have the .center CSS class, until a {{{stet {{{clear}}}}}} directive is encountered.
+
+These can be stacked:
+
+```
+{{{red}}}{{{center}}}Here's some red, centered text
+
+{{{clear}}}
+This text is back to normal.
+```
+
+will produce:
+
+{{{red}}}{{{center}}}Here's some red, centered text
+
+{{{clear}}}
+This text is back to normal.
+
 # Built-in CSS Classes
 
+In much the same way that directives such as {{{stet {{{media }}}}}} and {{{stet {{{icon }}}}}} are used, Gorilla Presenter lets you apply CSS classes of your choice to text blocks.  For example, if you use the construct {{{stet {{{center}}}}}} in your slide, any 
 
 # Custom CSS Classes
 

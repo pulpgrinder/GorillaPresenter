@@ -128,7 +128,17 @@ GorillaSlideRenderer = {
 
         let args = directive.substring(command.length).trim();
         if (GorillaSlideRenderer.plugins[command] === undefined) {
-            // Shouldn't happen due to prior checks, but just in case
+            // If directive looks like a simple class directive (e.g. "red" or "center"),
+            // treat it as a class marker and remove it quietly rather than erroring.
+            // Allow letters, numbers, hyphen, underscore and spaces (multiple classes).
+            if (/^[A-Za-z0-9_\- ]+$/.test(directive) && args === '') {
+                // Special-case `clear`: ensure persistent class state is reset
+                if (command === 'clear' && typeof GorillaMarkdown !== 'undefined') {
+                    GorillaMarkdown.currentClassString = '';
+                }
+                return '';
+            }
+            // Otherwise, log an error for truly unknown special directives.
             let directiveError = `Unknown directive encountered: ${command}`;
             console.error(directiveError);
             return directiveError;

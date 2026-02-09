@@ -15,7 +15,8 @@ GorillaCSSLoader = {
                         content = content.toString();
                     }
                     if (typeof content === "string") {
-                        customCSS += "\n/* " + content + "\n";
+                        // Add a small header comment with the CSS filename, then the file contents.
+                        customCSS += "\n/* " + cssBaseName + " */\n" + content + "\n";
                     }
                 } catch (err) {
                     console.error("Failed to read CSS file:", mediaFile, err);

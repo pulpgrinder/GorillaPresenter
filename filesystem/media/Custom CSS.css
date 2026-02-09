@@ -1,3 +1,27 @@
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.hang {
+  padding-left: 2em;
+  /* Indent size for subsequent lines */
+  text-indent: -2em;
+  /* Pull the first line back out */
+}
+
+
 .red {
     color: red;
 }
@@ -7,7 +31,7 @@
 
 }
 
-green {
+.green {
     color: green;
 
 }
