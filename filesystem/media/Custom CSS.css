@@ -15,6 +15,7 @@
 }
 
 .hang {
+  /* Hanging indent: first line flush left, subsequent lines indented */  
   padding-left: 2em;
   /* Indent size for subsequent lines */
   text-indent: -2em;

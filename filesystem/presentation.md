@@ -104,7 +104,7 @@ produces:
 This text has only one paragraph. 
 Even though there's a line break, there is no blank line.
 
-If you want a line break without starting a new paragraph, you can end the previous line with a backslash character (\\) (this is not standard Markdwown)
+If you want a line break without starting a new paragraph, you can end the previous line with a backslash character (\\) (this is not standard Markdown)
 
 ```
 This text will have a single line break, \
@@ -372,7 +372,7 @@ Any font files or CSS files uploaded here will be loaded when the presentation s
 
 It doesn't make much difference what you name your font files or CSS files, but you should try to give your audio, video, and image files meaningful names. Gorilla Presenter uses its own file system which allows you to use just about any character you can type. For example, prefer "Theda Bara With A Skeleton" to some atrocity like "thdabrskl352". You can rename any file on the media management screen just by clicking on the name and typing the new text. 
 
-There is an integrated trash bin that lets you temporarily mark files as delete, then emptied later to make the deletion permanent.
+There is an integrated trash bin that lets you temporarily mark files as deleted, then emptied later to make the deletion permanent.
 
 
 # Using Media
@@ -583,9 +583,84 @@ This text is back to normal.
 
 # Built-in CSS Classes
 
-In much the same way that directives such as {{{stet {{{media }}}}}} and {{{stet {{{icon }}}}}} are used, Gorilla Presenter lets you apply CSS classes of your choice to text blocks.  For example, if you use the construct {{{stet {{{center}}}}}} in your slide, any 
+The media folder contains a file named `Custom CSS.css` that contains some useful CSS formatting classes.
+
+``` css
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.hang {
+  /* Hanging indent: first line flush left, subsequent lines indented */  
+  padding-left: 2em;
+  /* Indent size for subsequent lines */
+  text-indent: -2em;
+  /* Pull the first line back out */
+}
+
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+
+}
+
+.green {
+    color: green;
+
+}
+
+.purple {
+    color: rebeccapurple;
+}
+.orange {
+    color: orange;
+}
+
+```
 
 # Custom CSS Classes
+
+You can add your own CSS classes by adding them to the `Custom CSS.css` file, or uploading your own CSS file to the media folder (as always, you'll need to save the presentation if you want uploaded files to be present on future loads). If you want to use your own separate CSS files, keep in mind that order matters.
+
+First the system's built-in CSS is loaded, then any custom CSS files in the media folder (just `Custom CSS.css` by default). Since the media folder CSS comes later, it's possible to override pretty much any of the built-in CSS.
+
+If there's more than one CSS file in the media folder, they are loaded in English lexical ("alphabetical" or "dictionary") order. If you want to make sure your CSS file is loaded first, you could name it something like `0000LoadMeFirst.css`. If you want to make sure your CSS is loaded last, you could name it something like `zzzLoadMeLast.css`.
+
+You can even override the built-in theme variables to create your own theme.
+
+```css
+:root {
+  --slide-body-color: yellow;
+  --slide-body-background-color: pink;
+  --slide-title-color: green;
+  --slide-title-background-color: magenta;
+  --slide-title-bottom-border: 1px solid #C0C0C0;
+  --menu-body-color:cyan;
+  --menu-background-color: red;
+  --menu-header-color: orange;
+  --menu-header-background-color: blue;
+}
+```
+
+(example only -- don't actually use these colors -- they're hideous {{{icon skull-outline}}})
+
+This theme would only remain in effect until the user changed it to something else (probably pretty quickly if you actually use those colors {{{icon happy-outline}}}).
 
 # Using Gorilla Presenter with iOS
 

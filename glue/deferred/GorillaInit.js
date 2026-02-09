@@ -25,7 +25,7 @@ await GorillaIconLoader.loadIcons();
 await GorillaSettings.loadSettings();
 await GorillaLicenseHandler.loadLicenseInfo();
 await GorillaFontLoader.loadFonts();
-await GorillaCSSLoader.loadCustomCSS();
+
 HammerDriver.init();
 await GorillaMedia.loadMediaScreens();
 await GorillaThemeHandler.init();
@@ -83,7 +83,7 @@ if (hashNumber !== GorillaPresenter.currentSlideNumber) {
 }
 
 GorillaPresenter.markDirty(false);
-
+await GorillaCSSLoader.loadCustomCSS();
 
 /* Rethink this... as written it causes too much distraction
 const overlay = document.getElementById('nav-overlay');

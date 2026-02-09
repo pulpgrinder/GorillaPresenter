@@ -1,8 +1,8 @@
 GorillaCSSLoader = {
     loadCustomCSS: async function () {
         let customCSS = "";
-        let mediaFiles = await fs.readDirectory("media/");
-        for (let i = 0; i < mediaFiles.length; i++) {
+        let mediaFiles = (await fs.readDirectory("media/")).sort();
+       for (let i = 0; i < mediaFiles.length; i++) {
             let mediaFile = mediaFiles[i];
             if (mediaFile.match(/\.css$/i)) {
                 let cssBaseName = mediaFile.replace(/^media\//, ''); // Remove "media/" prefix if present

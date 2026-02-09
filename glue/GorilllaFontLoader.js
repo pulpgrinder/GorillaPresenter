@@ -44,7 +44,8 @@ GorillaFontLoader = {
         fontStacks = GorillaFontLoader.baseFontStacks;
         fontStackOptions = GorillaFontLoader.baseFontStackOptions;
         fontFaces = '';
-        thirdPartyFonts = await fs.readDirectory("media/");
+        // We don't really need to sort these, but keep things consistent with the way we load CSS files and media files, which are sorted alphabetically.
+        thirdPartyFonts = (await fs.readDirectory("media/")).sort();
         for (let i = 0; i < thirdPartyFonts.length; i++) {
             let fontFile = thirdPartyFonts[i];
             if (fontFile.match(/\.ttf$/i) || fontFile.match(/\.otf$/i) || fontFile.match(/\.woff$/i) || fontFile.match(/\.woff2$/i)) {
