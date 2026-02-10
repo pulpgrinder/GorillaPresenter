@@ -3,9 +3,10 @@ MediaPlugin = {
     mediaSequenceNumber: 0,
     mediaData: [],
     mediaPaths: [],
+    mediaDimensions: [],  // Cache dimensions for each media item
     
-    // Get image dimensions to prevent layout shift
-    getImageDimensions: async function (filePath) {
+    // Get image dimensions and cache the blob URL to prevent double-loading
+    getImageDimensionsAndCache: async function (filePath, seq) {
         try {
             const blob = await fs.readBinaryFile(filePath);
             const url = URL.createObjectURL(blob);
@@ -13,8 +14,9 @@ MediaPlugin = {
             
             return new Promise((resolve, reject) => {
                 img.onload = () => {
-                    URL.revokeObjectURL(url);
-                    resolve({ width: img.width, height: img.height });
+                    // Cache the URL for later use in postprocess
+                    MediaPlugin.mediaData[seq] = url;
+                    resolve({ width: img.width, height: img.height, url: url });
                 };
                 img.onerror = () => {
                     URL.revokeObjectURL(url);
@@ -39,6 +41,7 @@ MediaPlugin = {
         }
         this.mediaData = [];
         this.mediaPaths = [];
+        this.mediaDimensions = [];
     },
 
     renderHTML: async function (mediaSpec) {
@@ -73,10 +76,16 @@ MediaPlugin = {
                     return `<img id='gorilla-media-${seq}' data-sequence="${seq}" src="${mediaFile}" alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
                 }
                 MediaPlugin.mediaPaths[seq] = mediaFile;
-                // Get dimensions to prevent layout shift
-                const dims = await MediaPlugin.getImageDimensions(mediaFile);
-                const dimAttrs = dims ? `width="${dims.width}" height="${dims.height}"` : '';
-                return `<img id='gorilla-media-${seq}' data-sequence="${seq}" ${dimAttrs} ${dataAttr} alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
+                // Get dimensions and cache blob URL to prevent layout shift and double-loading
+                const dims = await MediaPlugin.getImageDimensionsAndCache(mediaFile, seq);
+                if (dims) {
+                    MediaPlugin.mediaDimensions[seq] = dims;
+                    // Set src immediately with cached URL to prevent flickering - no data attributes needed
+                    return `<img id='gorilla-media-${seq}' data-sequence="${seq}" width="${dims.width}" height="${dims.height}" src="${dims.url}" alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" data-loaded="true" />`;
+                } else {
+                    // Fallback if dimension loading failed - will be loaded in postprocess
+                    return `<img id='gorilla-media-${seq}' data-sequence="${seq}" ${dataAttr} alt="${title}" title="${title}" class="gorilla-media gorilla-media-image" />`;
+                }
             } else if (mediaFile.match(/\.(mp4|mov|avi|webm)$/i)) {
                 if (isExternal) {
                     return `<video id='gorilla-media-${seq}' data-sequence="${seq}" controls alt="${title}" title="${title}" class="gorilla-media gorilla-media-video"><source src="${mediaFile}">Your browser does not support the video tag.</video>`;
@@ -105,13 +114,23 @@ MediaPlugin = {
             const seqAttr = element.getAttribute('data-sequence');
             const dataPath = element.getAttribute('data-media-path');
             const dataSrc = element.getAttribute('data-media-src');
+            const dataLoaded = element.getAttribute('data-loaded');
 
             const sequence = seqAttr ? parseInt(seqAttr, 10) : null;
 
-            
-
             // If external src is provided, nothing to do
             if (dataSrc) continue;
+            
+            // If this element was already loaded in renderHTML (has cached blob URL), just add event listener
+            const tag = element.tagName.toLowerCase();
+            if (dataLoaded === 'true') {
+                if (tag === 'img' || tag === 'a') {
+                    element.addEventListener('click', (e) => e.stopPropagation());
+                } else if (tag === 'video' || tag === 'audio') {
+                    element.addEventListener('click', (e) => { e.stopPropagation(); });
+                }
+                continue;
+            }
 
             if (!dataPath) {
                 // No local data path — check for external sources and ensure media elements are loaded
