@@ -9,6 +9,8 @@ GorillaPresenter = {
     paused: false,
     dirty: false,
     lastCode: "",
+    slideScrollPositions: {},  // Track scroll position for each slide
+    viewedSlides: new Set(),   // Track which slides have been viewed
     init: async function () {
         await GorillaPresenter.updateSlideData();
     },
@@ -22,6 +24,10 @@ GorillaPresenter = {
         // Now calculate active slide with fresh offsets
         let calculatedNumber = GorillaPresenter.calculateActiveSlideNumber();
         GorillaPresenter.currentSlideNumber = calculatedNumber >= 0 ? calculatedNumber : 0;
+
+        // Reset scroll tracking when content changes
+        GorillaPresenter.slideScrollPositions = {};
+        GorillaPresenter.viewedSlides = new Set();
 
         for (let plugin in GorillaSlideRenderer.plugins) {
             if (GorillaSlideRenderer.plugins[plugin].postprocess !== undefined) {
@@ -97,6 +103,11 @@ GorillaPresenter = {
             return;
         }
         const slideContainer = document.getElementById('gorilla-slide-show');
+        
+        // Save scroll position of current slide before switching
+        if (GorillaPresenter.currentSlideNumber !== slideNumber) {
+            GorillaPresenter.slideScrollPositions[GorillaPresenter.currentSlideNumber] = slideContainer.scrollTop;
+        }
 
         // Insert only the active slide HTML into the DOM (lazy rendering)
         const slideHtml = GorillaSlideRenderer.slides[slideNumber]?.html || '';
@@ -121,6 +132,17 @@ GorillaPresenter = {
                 try { renderMathInElement(slideContainer); } catch (e) { console.error('renderMathInElement failed', e); }
             });
         });
+        
+        // Restore scroll position or scroll to top
+        if (GorillaPresenter.viewedSlides.has(slideNumber)) {
+            // Restore previous scroll position
+            const savedPosition = GorillaPresenter.slideScrollPositions[slideNumber] || 0;
+            slideContainer.scrollTop = savedPosition;
+        } else {
+            // First time viewing this slide - scroll to top
+            slideContainer.scrollTop = 0;
+            GorillaPresenter.viewedSlides.add(slideNumber);
+        }
 
         GorillaPresenter.currentSlideNumber = slideNumber;
         slidechooser.value = slideNumber;

@@ -56,7 +56,8 @@
 .gorilla-choice-navigate,
 .gorilla-choice-multiple-choice,
 .gorilla-choice-notify,
-.gorilla-choice-external {
+.gorilla-choice-external,
+.gorilla-choice-plain {
     position: relative;
     /* color: #4d5b8c;
     background-color: #fff6e4; */

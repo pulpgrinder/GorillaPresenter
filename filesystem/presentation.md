@@ -1,34 +1,40 @@
 # Gorilla Presenter
 
 {{{media Our Founder}}}
-* Free software (MIT license)
-* Completely self-contained in a **single** HTML file
-* No apps. No servers. Just a browser.
-* Presentations can be:
-    * Emailed
-    * Put on a thumb drive
-    * I dunno, put them on a Babylonian cuneiform tablet if that floats your boat.
-* Built-in editor
-* Built-in media recorder (desktop Chrome, Brave, and Firefox)
-* Slides are written in Markdown, fast and easy. Get your deck finished and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
 
+This is an example of the Outline plugin (described in detail later)
 
 {{{outline
 Overview
-=Sounds Great! How do I Get It?|> How Do I Get Gorilla Presenter
+=Free software (MIT license)
+=Completely self-contained in a **single** HTML file
+Easy Distribution
+=No apps. No servers. Just a browser.
+=Presentations can be:
+==Emailed
+==Put on a thumb drive
+==I dunno, put them on a Babylonian cuneiform tablet if that floats your boat.
+Rapid Creation
+=Slides are written in Markdown, fast and easy. 
+=Built-in editor
+=Built-in media recorder (desktop Chrome, Brave, and Firefox)
+=Get your deck finished and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
+Tell Me More
+=How do I Get It?|> How Do I Get Gorilla Presenter
 =How do I Navigate the Slide Show?|> Navigation
-Editing
 =How do I Edit the Presentation?|> Editing Slides
-==Markdown Basics |> Markdown Basics
-Plugins
+=What is this "Markdown" Jazz? |> Markdown Basics
+Media Plugins
 = Media |> Media Management
 == Media Recorder|> Media Recorder
 == Using Media |> Using Media
+Flow Control Plugins
 = Advanced Flow Control |> Advanced Flow Control
 ==Branches|> Branches
 ==Menus|> Menus
 ==Outlines|>  Outlines
 =Autoplay |> Autoplay
+Other Plugins
 =Poetry|> Poetry
 =Book|> Book
 =Wikipedia |> Wikipedia
@@ -37,7 +43,8 @@ Plugins
 =LaTeX Math|> LaTeX Math
 =Stet|> Stet
 =Literal|> Literal
-Advanced Formatting|>Advanced Formatting
+Advanced Formatting
+=Controlling Appearance with CSS|> Controlling Appearance with CSS
 =Built-in CSS Classes |> Built-in CSS Classes
 =Custom CSS Classes|> Custom CSS Classes
 Mobile Platform Notes
@@ -51,6 +58,7 @@ You're soaking in it! Press/click and hold ("long press") anywhere in the slide 
 
 {{{media Download Presentation}}}
 
+
 # Navigation
 
 There are several ways to move around in the slide show. Clicking/tapping on the right side of the screen advances to the next slide (if there is one), and clicking/tapping on the left side of the screen returns to the previous slide (again, if there is one). You can also move forward and back using space/backspace, page up/page down, right arrow/left arrow, or up arrow/down arrow. It's not picky.
@@ -59,7 +67,15 @@ You can choose a specific slide by pressing/clicking and holding anywhere on the
 
 {{{media Slide Chooser}}}
 
-The menu, outline, branch, and autoplay directives give you advanced control over the flow of your presentation. Those are discussed later.
+The menu, outline, branch, and autoplay plugins give you advanced control over the flow of your presentation. Those are discussed in detail later. In the meantime you can see a demo of the outline plugin on the next slide.
+
+# Table of Contents
+
+This Table of Contents gives you quick access to any part of the presentation.
+
+{{{outline
+
+}}}
 
 
 # Editing Slides
@@ -562,7 +578,8 @@ produces:
 
 Settings information goes here, TBW
 
-# Advanced Formatting
+# Controlling Appearance with CSS
+
 You can apply CSS classes of your choice to block-level items in Gorilla Presenter (paragraphs, lists, etc.). Several useful classes are built-in, and you can also define your own. These are invoked the same way as plugin specifications. For instance, {{{stet {{{center}}}}}} will cause every following block to have the .center CSS class, until a {{{stet {{{clear}}}}}} directive is encountered.
 
 These can be stacked:

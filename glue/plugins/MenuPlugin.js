@@ -59,7 +59,9 @@ MenuPlugin = {
                     continue;
                 }
                 else {
-                    generatedHTML += `<li class="gorilla-choice-item gorilla-choice-header ${outlineClass}">${displayString}</li>\n`;
+                    let displayClass = pair.outlineLevel === 0 ? "gorilla-choice-header" : "gorilla-choice-plain";
+                    displayString = outlinePrefix + displayString.trim();
+                    generatedHTML += `<li class="gorilla-choice-item ${displayClass} ${outlineClass}">${displayString}</li>\n`;
                     continue;
 
                 }
@@ -86,7 +88,7 @@ MenuPlugin = {
         return generatedHTML;
     },
     parseLevel: function (line) {
-        // Match leading bell characters
+        // Match leading equals characters
         const match = line.match(/^=*/);
         const equalsSigns = match ? match[0] : '';
         const level = equalsSigns.length;
