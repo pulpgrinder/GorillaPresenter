@@ -688,3 +688,30 @@ There is a workaround which requires installing the Microsoft Edge Browser.
 {{{branch
 Get the Microsoft Edge Browser for iOS|~https://apps.apple.com/us/app/microsoft-edge-ai-browser/id1288723196
 }}}
+
+
+Once you have Edge installed, open the Files app.
+
+{{{media Files App}}}
+
+Browse the file system until you find your Gorilla Presenter index.html file (if you've got it from the web it's probably in the Downloads folder, if you've copied it through iCloud, saved it as an email attachment,  or something, only you know where it is, mang).
+
+{{{media Find Your HTML File}}}
+
+Tap the file and click Share
+
+{{{media Click Share}}}
+
+Choose Microsoft Edge (if you've got a bunch of apps installed, you may need to scroll horizontally to find it)
+
+{{{media Choose Microsoft Edge}}}
+
+Finally, choose Open in Microsoft Edge.
+
+{{{media Open in Microsoft Edge}}}
+
+I apologize for this convoluted process. Apple seems determined to make it as hard as possible to run HTML/web apps.
+
+
+
+
