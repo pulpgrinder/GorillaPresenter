@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Trigger on pushes to main (or master)
+  push:
+    branches: ["main"]
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+
+# Important permissions for the modern GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Prevent multiple deploys running at once
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ────────────────────────────────────────────────
+      #   Put YOUR build commands here
+      # ────────────────────────────────────────────────
+      - name: Setup Node.js   # example — change to Python, Go, etc. if needed
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci          # or yarn install, pnpm install, etc.
+
+      - name: Build
+        run: npm run build   # ← this should create your static files
+
+      # ────────────────────────────────────────────────
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Most important line — point to your built folder
+          path: ./dist         # change to ./build, ./_site, ./public, etc.
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
