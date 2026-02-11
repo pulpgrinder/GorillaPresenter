@@ -1,1581 +1,1220 @@
 %%% Default
-
---slide-body-color: #ffffff;
---slide-body-background-color: #013220;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #2E8B57;
---slide-title-bottom-border: 1px solid #fffdfbff;
---menu-body-color: #FFFFFF;
---menu-background-color: #2E8B57;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #014d30;
-
-
+--slide-body-color: #f0f0f0;
+--slide-body-background-color: #001a33;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #006633;
+--slide-title-bottom-border: 1px solid #00cc99;
+--menu-body-color: #ffffff;
+--menu-background-color: #006633;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #004d26;
 %%% Damaged Robot
-
---slide-body-color: #C0C0C0;
---slide-body-background-color: #4B4B4B;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #6E260E;
---slide-title-bottom-border: 1px solid #C0C0C0;
---menu-body-color: #C0C0C0;
---menu-background-color: #6E260E;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #2C2C2C;
-
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #1a1a1a;
+--slide-title-color: #ffcc99;
+--slide-title-background-color: #8b4513;
+--slide-title-bottom-border: 1px solid #b8860b;
+--menu-body-color: #e0e0e0;
+--menu-background-color: #8b4513;
+--menu-header-color: #f3f3f3;
+--menu-header-background-color: #4d2600;
 %%% Bucky Fuller
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #2C3E50;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #34495E;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #34495E;
---menu-header-color: #34495E;
---menu-header-background-color: #ECF0F1;
-
-
+--slide-body-color: #e8ecef;
+--slide-body-background-color: #1c2833;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #34495e;
+--slide-title-bottom-border: 1px solid #bdc3c7;
+--menu-body-color: #ffffff;
+--menu-background-color: #34495e;
+--menu-header-color: #34495e;
+--menu-header-background-color: #ecf0f1;
 %%% Modern & Clean
-
---slide-body-color: #333333;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #3498DB;
---slide-title-bottom-border: 1px solid #333333;
---menu-body-color: #FFFFFF;
---menu-background-color: #3498DB;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #2C3E50;
-
+--slide-body-color: #2c3e50;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2980b9;
+--slide-title-bottom-border: 1px solid #2c3e50;
+--menu-body-color: #ffffff;
+--menu-background-color: #2980b9;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #1f618d;
 %%% Professional & Sophisticated
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #2C3E50;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #34495E;
---slide-title-bottom-border: 1px solid #D4AF37;
---menu-body-color: #FFFFFF;
---menu-background-color: #34495E;
---menu-header-color: #2C3E50;
---menu-header-background-color: #D4AF37;
-
-
+--slide-body-color: #f4f6f6;
+--slide-body-background-color: #2c3e50;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #34495e;
+--slide-title-bottom-border: 1px solid #d4af37;
+--menu-body-color: #ffffff;
+--menu-background-color: #34495e;
+--menu-header-color: #2c3e50;
+--menu-header-background-color: #d4af37;
 %%% Greeting
-
---slide-body-color: #000000;
---slide-body-background-color: #FFFACD;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FFA07A;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #FFA07A;
---menu-header-color: #FFFACD;
---menu-header-background-color: #FF7F50;
-
-
+--slide-body-color: #333333;
+--slide-body-background-color: #fffacd;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #ff8c69;
+--slide-title-bottom-border: 1px solid #ff6347;
+--menu-body-color: #ffffff;
+--menu-background-color: #ff8c69;
+--menu-header-color: #fffacd;
+--menu-header-background-color: #ff6347;
 %%% Refreshing
-
---slide-body-color: #2E8B57;
---slide-body-background-color: #E0FFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #20B2AA;
---slide-title-bottom-border: 1px solid #2E8B57;
---menu-body-color: #FFFFFF;
---menu-background-color: #20B2AA;
---menu-header-color: #E0FFFF;
---menu-header-background-color: #008B8B;
-
-
+--slide-body-color: #004d40;
+--slide-body-background-color: #e0f7fa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #009688;
+--slide-title-bottom-border: 1px solid #004d40;
+--menu-body-color: #ffffff;
+--menu-background-color: #009688;
+--menu-header-color: #e0f7fa;
+--menu-header-background-color: #00695c;
 %%% Bold & Dynamic
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #FF4136;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #0074D9;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #0074D9;
---menu-header-color: #FF4136;
---menu-header-background-color: #001F3F;
-
-
+--slide-body-color: #ffffff;
+--slide-body-background-color: #c0392b;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2980b9;
+--slide-title-bottom-border: 1px solid #ecf0f1;
+--menu-body-color: #ffffff;
+--menu-background-color: #2980b9;
+--menu-header-color: #c0392b;
+--menu-header-background-color: #1f618d;
 %%% Serene & Peaceful
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F0F8FF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #87CEFA;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #87CEFA;
---menu-header-color: #F0F8FF;
---menu-header-background-color: #4682B4;
-
-
+--slide-body-color: #34495e;
+--slide-body-background-color: #f0f8ff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #81d4fa;
+--slide-title-bottom-border: 1px solid #34495e;
+--menu-body-color: #ffffff;
+--menu-background-color: #81d4fa;
+--menu-header-color: #f0f8ff;
+--menu-header-background-color: #3498db;
 %%% Mauve Decade
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #7E5E9B;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #6A5ACD;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #6A5ACD;
---menu-header-color: #E6E6FA;
---menu-header-background-color: #483D8B;
-
-
+--slide-body-color: #f5f5f5;
+--slide-body-background-color: #6a1b9a;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7e57c2;
+--slide-title-bottom-border: 1px solid #d1c4e9;
+--menu-body-color: #ffffff;
+--menu-background-color: #7e57c2;
+--menu-header-color: #f3e5f5;
+--menu-header-background-color: #512da8;
 %%% Minimalist
-
---slide-body-color: #000000;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #000000;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #000000;
---menu-header-color: #000000;
---menu-header-background-color: #808080;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #212121;
+--slide-title-bottom-border: 2px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #212121;
+--menu-header-color: #212121;
+--menu-header-background-color: #757575;
 %%% Warm & Loving
-
---slide-body-color: #800000;
---slide-body-background-color: #FFE4E1;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF69B4;
---slide-title-bottom-border: 1px solid #800000;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF69B4;
---menu-header-color: #FFE4E1;
---menu-header-background-color: #DC143C;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #ffebee;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #e91e63;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #e91e63;
+--menu-header-color: #ffebee;
+--menu-header-background-color: #c2185b;
 %%% Clinical Data
-
---slide-body-color: #000000;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #4682B4;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #4682B4;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #1C4966;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #455a64;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #455a64;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #263238;
 %%% Informal Party
-
---slide-body-color: #000080;
---slide-body-background-color: #FFFFE0;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF69B4;
---slide-title-bottom-border: 1px solid #000080;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF69B4;
---menu-header-color: #FFFFE0;
---menu-header-background-color: #FF1493;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #fffde7;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #e91e63;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #e91e63;
+--menu-header-color: #fffde7;
+--menu-header-background-color: #c2185b;
 %%% Calm
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #E6E6FA;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #6A5ACD;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #6A5ACD;
---menu-header-color: #E6E6FA;
---menu-header-background-color: #483D8B;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #e8eaf6;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7986cb;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #7986cb;
+--menu-header-color: #e8eaf6;
+--menu-header-background-color: #3f51b5;
 %%% Industrial
-
---slide-body-color: #E0E0E0;
---slide-body-background-color: #2C2C2C;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #4F4F4F;
---slide-title-bottom-border: 1px solid #E0E0E0;
---menu-body-color: #E0E0E0;
---menu-background-color: #4F4F4F;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #1A1A1A;
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #212121;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #424242;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #e0e0e0;
+--menu-background-color: #424242;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #212121;
 %%% Northern Lights
-
---slide-body-color: #A5F3E9;
---slide-body-background-color: #1B1B2F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #3A506B;
---slide-title-bottom-border: 1px solid #A5F3E9;
---menu-body-color: #A5F3E9;
---menu-background-color: #3A506B;
---menu-header-color: #1B1B2F;
---menu-header-background-color: #5BC0BE;
-
-
+--slide-body-color: #e0f7fa;
+--slide-body-background-color: #0d1b2a;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #5c6bc0;
+--slide-title-bottom-border: 1px solid #80deea;
+--menu-body-color: #e0f7fa;
+--menu-background-color: #5c6bc0;
+--menu-header-color: #0d1b2a;
+--menu-header-background-color: #7986cb;
 %%% Tropical Beach
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F0E68C;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #1E90FF;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #1E90FF;
---menu-header-color: #F0E68C;
---menu-header-background-color: #0047AB;
-
-
+--slide-body-color: #2c3e50;
+--slide-body-background-color: #fffacd;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #1e88e5;
+--slide-title-bottom-border: 1px solid #2c3e50;
+--menu-body-color: #ffffff;
+--menu-background-color: #1e88e5;
+--menu-header-color: #fffacd;
+--menu-header-background-color: #1565c0;
 %%% Las Vegas
-
---slide-body-color: #FFD700;
---slide-body-background-color: #000000;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF0000;
---slide-title-bottom-border: 1px solid #FFD700;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF0000;
---menu-header-color: #000000;
---menu-header-background-color: #FFD700;
-
-
+--slide-body-color: #fffde7;
+--slide-body-background-color: #0d1117;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d32f2f;
+--slide-title-bottom-border: 1px solid #ffeb3b;
+--menu-body-color: #ffffff;
+--menu-background-color: #d32f2f;
+--menu-header-color: #0d1117;
+--menu-header-background-color: #ffeb3b;
 %%% Paris
-
---slide-body-color: #2C3E50;
---slide-body-background-color: #F5F5DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #E74C3C;
---slide-title-bottom-border: 1px solid #2C3E50;
---menu-body-color: #FFFFFF;
---menu-background-color: #E74C3C;
---menu-header-color: #F5F5DC;
---menu-header-background-color: #C0392B;
-
-
+--slide-body-color: #3e2723;
+--slide-body-background-color: #f5f5dc;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #c62828;
+--slide-title-bottom-border: 1px solid #3e2723;
+--menu-body-color: #ffffff;
+--menu-background-color: #c62828;
+--menu-header-color: #f5f5dc;
+--menu-header-background-color: #b71c1c;
 %%% Manhattan
-
---slide-body-color: #E0E0E0;
---slide-body-background-color: #2C3E50;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #34495E;
---slide-title-bottom-border: 1px solid #E0E0E0;
---menu-body-color: #E0E0E0;
---menu-background-color: #34495E;
---menu-header-color: #34495E;
---menu-header-background-color: #95A5A6;
-
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #263238;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #37474f;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #e0e0e0;
+--menu-background-color: #37474f;
+--menu-header-color: #37474f;
+--menu-header-background-color: #90a4ae;
 %%% Bangkok
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #8B0000;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FFD700;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #FFD700;
---menu-header-color: #8B0000;
---menu-header-background-color: #FFA500;
-
-
+--slide-body-color: #fffde7;
+--slide-body-background-color: #8b0000;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #ffb300;
+--slide-title-bottom-border: 1px solid #fffde7;
+--menu-body-color: #ffffff;
+--menu-background-color: #ffb300;
+--menu-header-color: #8b0000;
+--menu-header-background-color: #ff8f00;
 %%% Mumbai
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #FF9933;
---slide-title-color: #FFFFFF;
+--slide-body-color: #fffde7;
+--slide-body-background-color: #ff9933;
+--slide-title-color: #ffffff;
 --slide-title-background-color: #138808;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
+--slide-title-bottom-border: 1px solid #fffde7;
+--menu-body-color: #ffffff;
 --menu-background-color: #138808;
---menu-header-color: #FF9933;
---menu-header-background-color: #000080;
-
-
+--menu-header-color: #ff9933;
+--menu-header-background-color: #006400;
 %%% Vitruvius
-
---slide-body-color: #4B3621;
---slide-body-background-color: #FAF0E6;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B4513;
---slide-title-bottom-border: 1px solid #4B3621;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B4513;
---menu-header-color: #FAF0E6;
+--slide-body-color: #4b3621;
+--slide-body-background-color: #faf0e6;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8b4513;
+--slide-title-bottom-border: 1px solid #4b3621;
+--menu-body-color: #ffffff;
+--menu-background-color: #8b4513;
+--menu-header-color: #faf0e6;
 --menu-header-background-color: #654321;
-
-
 %%% Crayon
-
---slide-body-color: #0000FF;
---slide-body-background-color: #FFFF00;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF0000;
---slide-title-bottom-border: 1px solid #0000FF;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF0000;
---menu-header-color: #FFFF00;
---menu-header-background-color: #00FF00;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #fff9c4;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #f44336;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #f44336;
+--menu-header-color: #212121;
+--menu-header-background-color: #d32f2f;
 %%% Paint It Black
-
---slide-body-color: #FFFFFF;
+--slide-body-color: #e0e0e0;
 --slide-body-background-color: #000000;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #000000;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #000000;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #212121;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #e0e0e0;
+--menu-background-color: #212121;
 --menu-header-color: #000000;
---menu-header-background-color: #404040;
-
-
+--menu-header-background-color: #424242;
 %%% Typographical Error
-
---slide-body-color: #000000;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FF0000;
---slide-title-background-color: #FFFFFF;
---slide-title-bottom-border: 1px solid #FF0000;
---menu-body-color: #FF0000;
---menu-background-color: #FFFFFF;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #8B0000;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #d32f2f;
+--slide-title-background-color: #ffffff;
+--slide-title-bottom-border: 2px solid #d32f2f;
+--menu-body-color: #d32f2f;
+--menu-background-color: #ffffff;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #b71c1c;
 %%% Ocean Dive
-
---slide-body-color: #E0FFFF;
---slide-body-background-color: #001F3F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #0074D9;
---slide-title-bottom-border: 1px solid #E0FFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #0074D9;
---menu-header-color: #E0FFFF;
---menu-header-background-color: #003366;
-
-
+--slide-body-color: #e3f2fd;
+--slide-body-background-color: #0d47a1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #1976d2;
+--slide-title-bottom-border: 1px solid #e3f2fd;
+--menu-body-color: #ffffff;
+--menu-background-color: #1976d2;
+--menu-header-color: #e3f2fd;
+--menu-header-background-color: #0d47a1;
 %%% Sunset Glow
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #FF4500;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #800080;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #800080;
---menu-header-color: #FF4500;
---menu-header-background-color: #4B0082;
-
-
+--slide-body-color: #fffde7;
+--slide-body-background-color: #ef6c00;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7b1fa2;
+--slide-title-bottom-border: 1px solid #fffde7;
+--menu-body-color: #ffffff;
+--menu-background-color: #7b1fa2;
+--menu-header-color: #ef6c00;
+--menu-header-background-color: #4a148c;
 %%% Forest Whisper
-
---slide-body-color: #F5F5DC;
---slide-body-background-color: #013220;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #228B22;
---slide-title-bottom-border: 1px solid #F5F5DC;
---menu-body-color: #FFFFFF;
---menu-background-color: #228B22;
---menu-header-color: #F5F5DC;
---menu-header-background-color: #006400;
-
-
+--slide-body-color: #f5f5dc;
+--slide-body-background-color: #1b5e20;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #f5f5dc;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #f5f5dc;
+--menu-header-background-color: #1b5e20;
 %%% Desert Mirage
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #D2B48C;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #D2B48C;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #A0522D;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d7ccc8;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #d7ccc8;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #8d6e63;
 %%% Fancy Invitation
-
---slide-body-color: #4B0082;
---slide-body-background-color: #FFF8DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #4B0082;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #FFF8DC;
---menu-header-background-color: #6B0082;
-
-
+--slide-body-color: #4a148c;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #4a148c;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #7f0000;
 %%% Mechanical Marvel
-
---slide-body-color: #D3D3D3;
---slide-body-background-color: #2F4F4F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #708090;
---slide-title-bottom-border: 1px solid #D3D3D3;
---menu-body-color: #D3D3D3;
---menu-background-color: #708090;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #36454F;
-
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #263238;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #607d8b;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #e0e0e0;
+--menu-background-color: #607d8b;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #37474f;
 %%% Blueprint
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #000080;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #00008B;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #00008B;
---menu-header-color: #87CEEB;
---menu-header-background-color: #191970;
-
-
+--slide-body-color: #e3f2fd;
+--slide-body-background-color: #0d1b2a;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #1565c0;
+--slide-title-bottom-border: 1px solid #e3f2fd;
+--menu-body-color: #ffffff;
+--menu-background-color: #1565c0;
+--menu-header-color: #bbdefb;
+--menu-header-background-color: #0d47a1;
 %%% Naval Briefing
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #000080;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #00008B;
---slide-title-bottom-border: 1px solid #FFD700;
---menu-body-color: #FFFFFF;
---menu-background-color: #00008B;
---menu-header-color: #000080;
---menu-header-background-color: #FFD700;
-
-
+--slide-body-color: #e3f2fd;
+--slide-body-background-color: #0d1b2a;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #0d47a1;
+--slide-title-bottom-border: 1px solid #ffeb3b;
+--menu-body-color: #ffffff;
+--menu-background-color: #0d47a1;
+--menu-header-color: #0d1b2a;
+--menu-header-background-color: #ffeb3b;
 %%% Steampunk
-
---slide-body-color: #D2B48C;
---slide-body-background-color: #3B2F2F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B4513;
---slide-title-bottom-border: 1px solid #D2B48C;
---menu-body-color: #D2B48C;
---menu-background-color: #8B4513;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #654321;
-
-
+--slide-body-color: #d7ccc8;
+--slide-body-background-color: #3e2723;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #d7ccc8;
+--menu-body-color: #d7ccc8;
+--menu-background-color: #8d6e63;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #5d4037;
 %%% Cantata
-
---slide-body-color: #000000;
---slide-body-background-color: #FFF8DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #FFF8DC;
---menu-header-background-color: #A52A2A;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #7f0000;
 %%% Deep Woods
-
---slide-body-color: #ef9177;
---slide-body-background-color: #013220;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #2E8B57;
---slide-title-bottom-border: 1px solid #A0522D;
---menu-body-color: #FFFFFF;
---menu-background-color: #2E8B57;
---menu-header-color: #F0FFF0;
---menu-header-background-color: #006400;
-
-
+--slide-body-color: #f1f8e9;
+--slide-body-background-color: #1b5e20;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #a1887f;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #f1f8e9;
+--menu-header-background-color: #1b5e20;
 %%% Scholium
-
---slide-body-color: #000000;
---slide-body-background-color: #FAF0E6;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #708090;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #708090;
---menu-header-color: #FAF0E6;
---menu-header-background-color: #2F4F4F;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #faf0e6;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #607d8b;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #607d8b;
+--menu-header-color: #faf0e6;
+--menu-header-background-color: #37474f;
 %%% Neverland
-
---slide-body-color: #4B0082;
---slide-body-background-color: #E6E6FA;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8A2BE2;
---slide-title-bottom-border: 1px solid #4B0082;
---menu-body-color: #FFFFFF;
---menu-background-color: #8A2BE2;
---menu-header-color: #E6E6FA;
---menu-header-background-color: #6A0DAD;
-
-
+--slide-body-color: #e3f2fd;
+--slide-body-background-color: #4a148c;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7e57c2;
+--slide-title-bottom-border: 1px solid #4a148c;
+--menu-body-color: #ffffff;
+--menu-background-color: #7e57c2;
+--menu-header-color: #e3f2fd;
+--menu-header-background-color: #512da8;
 %%% Hammurabi
-
---slide-body-color: #4B3621;
---slide-body-background-color: #DEB887;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B4513;
---slide-title-bottom-border: 1px solid #4B3621;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B4513;
---menu-header-color: #DEB887;
+--slide-body-color: #4b3621;
+--slide-body-background-color: #deb887;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8b4513;
+--slide-title-bottom-border: 1px solid #4b3621;
+--menu-body-color: #ffffff;
+--menu-background-color: #8b4513;
+--menu-header-color: #deb887;
 --menu-header-background-color: #654321;
-
-
 %%% Bali
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #E0FFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #20B2AA;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #20B2AA;
---menu-header-color: #E0FFFF;
---menu-header-background-color: #008B8B;
-
-
+--slide-body-color: #004d40;
+--slide-body-background-color: #e0f7fa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #009688;
+--slide-title-bottom-border: 1px solid #004d40;
+--menu-body-color: #ffffff;
+--menu-background-color: #009688;
+--menu-header-color: #e0f7fa;
+--menu-header-background-color: #00695c;
 %%% Prairie
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #87CEEB;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #87CEEB;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #4682B4;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #81d4fa;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #81d4fa;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #42a5f5;
 %%% Ancient Rome
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #DCDCDC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #800000;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #800000;
---menu-header-color: #DCDCDC;
---menu-header-background-color: #8B0000;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #eceff1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #eceff1;
+--menu-header-background-color: #7f0000;
 %%% Tropical Fish
-
---slide-body-color: #FF4500;
---slide-body-background-color: #40E0D0;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF69B4;
---slide-title-bottom-border: 1px solid #FF4500;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF69B4;
---menu-header-color: #40E0D0;
---menu-header-background-color: #FF1493;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #4dd0e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #ec407a;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #ec407a;
+--menu-header-color: #4dd0e1;
+--menu-header-background-color: #c2185b;
 %%% Spacecraft
-
---slide-body-color: #C0C0C0;
+--slide-body-color: #e0e0e0;
 --slide-body-background-color: #000000;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #1E90FF;
---slide-title-bottom-border: 1px solid #C0C0C0;
---menu-body-color: #FFFFFF;
---menu-background-color: #1E90FF;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #1976d2;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #ffffff;
+--menu-background-color: #1976d2;
 --menu-header-color: #000000;
---menu-header-background-color: #4169E1;
-
-
+--menu-header-background-color: #1565c0;
 %%% Cobblestone
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #D3D3D3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #696969;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #696969;
---menu-header-color: #D3D3D3;
---menu-header-background-color: #36454F;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #cfd8dc;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #616161;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #616161;
+--menu-header-color: #cfd8dc;
+--menu-header-background-color: #424242;
 %%% Stained Glass
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #8B008B;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF4500;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF4500;
---menu-header-color: #8B008B;
---menu-header-background-color: #FFD700;
-
-
+--slide-body-color: #f5f5f5;
+--slide-body-background-color: #4a148c;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #f57c00;
+--slide-title-bottom-border: 1px solid #f5f5f5;
+--menu-body-color: #ffffff;
+--menu-background-color: #f57c00;
+--menu-header-color: #4a148c;
+--menu-header-background-color: #ffeb3b;
 %%% Fresco
-
---slide-body-color: #556B2F;
---slide-body-background-color: #FAFAD2;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #CD5C5C;
---slide-title-bottom-border: 1px solid #556B2F;
---menu-body-color: #FFFFFF;
---menu-background-color: #CD5C5C;
---menu-header-color: #FAFAD2;
---menu-header-background-color: #8B4513;
-
-
+--slide-body-color: #3e2723;
+--slide-body-background-color: #fffde7;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #c62828;
+--slide-title-bottom-border: 1px solid #3e2723;
+--menu-body-color: #ffffff;
+--menu-background-color: #c62828;
+--menu-header-color: #fffde7;
+--menu-header-background-color: #8d6e63;
 %%% Rager
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #FF00FF;
+--slide-body-color: #212121;
+--slide-body-background-color: #f50057;
 --slide-title-color: #000000;
---slide-title-background-color: #FFD700;
---slide-title-bottom-border: 1px solid #FFFFFF;
+--slide-title-background-color: #ffeb3b;
+--slide-title-bottom-border: 1px solid #212121;
 --menu-body-color: #000000;
---menu-background-color: #FFD700;
---menu-header-color: #FF00FF;
---menu-header-background-color: #00FF00;
-
-
+--menu-background-color: #ffeb3b;
+--menu-header-color: #f50057;
+--menu-header-background-color: #00e676;
 %%% New York
-
---slide-body-color: #E0E0E0;
---slide-body-background-color: #2C3E50;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #34495E;
---slide-title-bottom-border: 1px solid #E0E0E0;
---menu-body-color: #E0E0E0;
---menu-background-color: #34495E;
---menu-header-color: #34495E;
---menu-header-background-color: #95A5A6;
-
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #263238;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #37474f;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #e0e0e0;
+--menu-background-color: #37474f;
+--menu-header-color: #37474f;
+--menu-header-background-color: #90a4ae;
 %%% Marrakech
-
---slide-body-color: #8B0000;
---slide-body-background-color: #FFE4B5;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #CD853F;
---slide-title-bottom-border: 1px solid #8B0000;
---menu-body-color: #FFFFFF;
---menu-background-color: #CD853F;
---menu-header-color: #FFE4B5;
---menu-header-background-color: #8B4513;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff3e0;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d81b60;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #d81b60;
+--menu-header-color: #fff3e0;
+--menu-header-background-color: #ad1457;
 %%% Siberia
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F0F8FF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #4682B4;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #4682B4;
---menu-header-color: #F0F8FF;
---menu-header-background-color: #1C4966;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #e3f2fd;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #42a5f5;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #42a5f5;
+--menu-header-color: #e3f2fd;
+--menu-header-background-color: #1976d2;
 %%% Badlands
-
---slide-body-color: #8B4513;
---slide-body-background-color: #DEB887;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #A0522D;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #A0522D;
---menu-header-color: #DEB887;
---menu-header-background-color: #654321;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #8d6e63;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #5d4037;
 %%% Arctic
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F0FFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #5F9EA0;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #5F9EA0;
---menu-header-color: #F0FFFF;
---menu-header-background-color: #2F5F5F;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #e0f7fa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #4fc3f7;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #4fc3f7;
+--menu-header-color: #e0f7fa;
+--menu-header-background-color: #0288d1;
 %%% Amazon
-
---slide-body-color: #013220;
---slide-body-background-color: #98FB98;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #228B22;
---slide-title-bottom-border: 1px solid #013220;
---menu-body-color: #FFFFFF;
---menu-background-color: #228B22;
---menu-header-color: #98FB98;
---menu-header-background-color: #006400;
-
-
+--slide-body-color: #1b5e20;
+--slide-body-background-color: #a5d6a7;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #1b5e20;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #a5d6a7;
+--menu-header-background-color: #1b5e20;
 %%% Serengeti
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #DAA520;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #DAA520;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #B8860B;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #f9a825;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #f9a825;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #ef6c00;
 %%% Great Barrier Reef
-
---slide-body-color: #1E90FF;
---slide-body-background-color: #E0FFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #00CED1;
---slide-title-bottom-border: 1px solid #1E90FF;
---menu-body-color: #FFFFFF;
---menu-background-color: #00CED1;
---menu-header-color: #E0FFFF;
---menu-header-background-color: #008B8B;
-
-
+--slide-body-color: #e3f2fd;
+--slide-body-background-color: #e0f7fa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #00acc1;
+--slide-title-bottom-border: 1px solid #e3f2fd;
+--menu-body-color: #ffffff;
+--menu-background-color: #00acc1;
+--menu-header-color: #e0f7fa;
+--menu-header-background-color: #00838f;
 %%% Rockies
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #D3D3D3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #696969;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #696969;
---menu-header-color: #D3D3D3;
---menu-header-background-color: #36454F;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #cfd8dc;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #616161;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #616161;
+--menu-header-color: #cfd8dc;
+--menu-header-background-color: #424242;
 %%% Pampas
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #D2B48C;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #D2B48C;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #A0522D;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d7ccc8;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #d7ccc8;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #8d6e63;
 %%% Gobi
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #CD853F;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #CD853F;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #A0522D;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d81b60;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #d81b60;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #ad1457;
 %%% Grand Canyon
-
---slide-body-color: #8B0000;
---slide-body-background-color: #DEB887;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #A0522D;
---slide-title-bottom-border: 1px solid #8B0000;
---menu-body-color: #FFFFFF;
---menu-background-color: #A0522D;
---menu-header-color: #DEB887;
---menu-header-background-color: #8B4513;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #8d6e63;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #5d4037;
 %%% Great Plains
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5F5DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #BDB76B;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #BDB76B;
---menu-header-color: #F5F5DC;
---menu-header-background-color: #8B7355;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5f5dc;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #c0ca33;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #c0ca33;
+--menu-header-color: #f5f5dc;
+--menu-header-background-color: #827717;
 %%% Bora Bora
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #E0FFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #1E90FF;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #1E90FF;
---menu-header-color: #E0FFFF;
---menu-header-background-color: #0047AB;
-
-
+--slide-body-color: #004d40;
+--slide-body-background-color: #e0f7fa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #1e88e5;
+--slide-title-bottom-border: 1px solid #004d40;
+--menu-body-color: #ffffff;
+--menu-background-color: #1e88e5;
+--menu-header-color: #e0f7fa;
+--menu-header-background-color: #1565c0;
 %%% Mongolian Steppe
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5F5DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #A0522D;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #A0522D;
---menu-header-color: #F5F5DC;
---menu-header-background-color: #654321;
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5f5dc;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #8d6e63;
+--menu-header-color: #f5f5dc;
+--menu-header-background-color: #5d4037;
 %%% Mauna Loa
-
---slide-body-color: #FF4500;
---slide-body-background-color: #2F4F4F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #FF4500;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #2F4F4F;
---menu-header-background-color: #FF6347;
-
-
+--slide-body-color: #f6e8e2;
+--slide-body-background-color: #37474f;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #37474f;
+--menu-header-background-color: #ff7043;
 %%% Van Gogh
-
---slide-body-color: #1B2631;
---slide-body-background-color: #F7DC6F;
---slide-title-color: #F7DC6F;
---slide-title-background-color: #154360;
---slide-title-bottom-border: 1px solid #F7DC6F;
---menu-body-color: #F7DC6F;
---menu-background-color: #154360;
---menu-header-color: #154360;
---menu-header-background-color: #F39C12;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #fff59d;
+--slide-title-color: #fff59d;
+--slide-title-background-color: #1e88e5;
+--slide-title-bottom-border: 1px solid #fff59d;
+--menu-body-color: #fff59d;
+--menu-background-color: #1e88e5;
+--menu-header-color: #1e88e5;
+--menu-header-background-color: #f57c00;
 %%% Picasso
-
---slide-body-color: #000000;
---slide-body-background-color: #F5F5F5;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #F5F5F5;
---menu-header-background-color: #A52A2A;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #fafafa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #fafafa;
+--menu-header-background-color: #7f0000;
 %%% Monet
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #E0FFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #6B8E23;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #6B8E23;
---menu-header-color: #E0FFFF;
---menu-header-background-color: #556B2F;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #e0f7fa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7cb342;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #7cb342;
+--menu-header-color: #e0f7fa;
+--menu-header-background-color: #558b2f;
 %%% Dali
-
---slide-body-color: #4B0082;
---slide-body-background-color: #F0E68C;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #4B0082;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #F0E68C;
---menu-header-background-color: #6B0082;
-
-
+--slide-body-color: #4a148c;
+--slide-body-background-color: #fff59d;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #4a148c;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #fff59d;
+--menu-header-background-color: #7f0000;
 %%% Warhol
-
---slide-body-color: #000000;
---slide-body-background-color: #FFFF00;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF1493;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF1493;
---menu-header-color: #FFFF00;
---menu-header-background-color: #00BFFF;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #fff176;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #e91e63;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #e91e63;
+--menu-header-color: #fff176;
+--menu-header-background-color: #00b0ff;
 %%% Kahlo
-
---slide-body-color: #006400;
---slide-body-background-color: #FFDAB9;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #006400;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #FFDAB9;
---menu-header-background-color: #FF6347;
-
-
+--slide-body-color: #1b5e20;
+--slide-body-background-color: #ffccbc;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #1b5e20;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #ffccbc;
+--menu-header-background-color: #7f0000;
 %%% Matisse
-
---slide-body-color: #000080;
---slide-body-background-color: #F0F8FF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #0000CD;
---slide-title-bottom-border: 1px solid #000080;
---menu-body-color: #FFFFFF;
---menu-background-color: #0000CD;
---menu-header-color: #F0F8FF;
---menu-header-background-color: #191970;
-
-
+--slide-body-color: #0d47a1;
+--slide-body-background-color: #e3f2fd;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #1976d2;
+--slide-title-bottom-border: 1px solid #0d47a1;
+--menu-body-color: #ffffff;
+--menu-background-color: #1976d2;
+--menu-header-color: #e3f2fd;
+--menu-header-background-color: #0d47a1;
 %%% Hokusai
-
---slide-body-color: #1B2631;
---slide-body-background-color: #E0FFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #000080;
---slide-title-bottom-border: 1px solid #1B2631;
---menu-body-color: #FFFFFF;
---menu-background-color: #000080;
---menu-header-color: #E0FFFF;
---menu-header-background-color: #191970;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #e0f7fa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #0d47a1;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #0d47a1;
+--menu-header-color: #e0f7fa;
+--menu-header-background-color: #01579b;
 %%% Michelangelo
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F5F5F5;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #696969;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #696969;
---menu-header-color: #F5F5F5;
---menu-header-background-color: #36454F;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #fafafa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #616161;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #616161;
+--menu-header-color: #fafafa;
+--menu-header-background-color: #424242;
 %%% Seurat
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #FFFACD;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #6A5ACD;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #6A5ACD;
---menu-header-color: #FFFACD;
---menu-header-background-color: #483D8B;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #fffde7;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7e57c2;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #7e57c2;
+--menu-header-color: #fffde7;
+--menu-header-background-color: #512da8;
 %%% Klimt
-
---slide-body-color: #4B0082;
---slide-body-background-color: #FFD700;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #DAA520;
---slide-title-bottom-border: 1px solid #4B0082;
---menu-body-color: #FFFFFF;
---menu-background-color: #DAA520;
---menu-header-color: #FFD700;
---menu-header-background-color: #8B4513;
-
-
+--slide-body-color: #4a148c;
+--slide-body-background-color: #ffeb3b;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #f9a825;
+--slide-title-bottom-border: 1px solid #4a148c;
+--menu-body-color: #ffffff;
+--menu-background-color: #f9a825;
+--menu-header-color: #ffeb3b;
+--menu-header-background-color: #ef6c00;
 %%% Pollock
-
---slide-body-color: #000000;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #000000;
---slide-title-bottom-border: 1px solid #FF0000;
---menu-body-color: #FFFFFF;
---menu-background-color: #000000;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #FF0000;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d32f2f;
+--slide-title-bottom-border: 2px solid #d32f2f;
+--menu-body-color: #ffffff;
+--menu-background-color: #d32f2f;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #b71c1c;
 %%% Magritte
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F5F5F5;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #708090;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #708090;
---menu-header-color: #F5F5F5;
---menu-header-background-color: #36454F;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #fafafa;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #607d8b;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #607d8b;
+--menu-header-color: #fafafa;
+--menu-header-background-color: #37474f;
 %%% Mondrian
-
---slide-body-color: #000000;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF0000;
---slide-title-bottom-border: 1px solid #000000;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF0000;
---menu-header-color: #FFFFFF;
---menu-header-background-color: #0000CD;
-
-
+--slide-body-color: #212121;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d32f2f;
+--slide-title-bottom-border: 1px solid #212121;
+--menu-body-color: #ffffff;
+--menu-background-color: #d32f2f;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #1976d2;
 %%% Cezanne
-
---slide-body-color: #4B3621;
---slide-body-background-color: #FAF0E6;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B4513;
---slide-title-bottom-border: 1px solid #4B3621;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B4513;
---menu-header-color: #FAF0E6;
+--slide-body-color: #4b3621;
+--slide-body-background-color: #faf0e6;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8b4513;
+--slide-title-bottom-border: 1px solid #4b3621;
+--menu-body-color: #ffffff;
+--menu-background-color: #8b4513;
+--menu-header-color: #faf0e6;
 --menu-header-background-color: #654321;
-
-
 %%% Renoir
-
---slide-body-color: #800000;
---slide-body-background-color: #FFE4E1;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FA8072;
---slide-title-bottom-border: 1px solid #800000;
---menu-body-color: #FFFFFF;
---menu-background-color: #FA8072;
---menu-header-color: #FFE4E1;
---menu-header-background-color: #CD5C5C;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #ffebee;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #f06292;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #f06292;
+--menu-header-color: #ffebee;
+--menu-header-background-color: #c2185b;
 %%% Degas
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #FFF0F5;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #6A5ACD;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #6A5ACD;
---menu-header-color: #FFF0F5;
---menu-header-background-color: #483D8B;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #fce4ec;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7e57c2;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #7e57c2;
+--menu-header-color: #fce4ec;
+--menu-header-background-color: #512da8;
 %%% Bosch
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #2F4F4F;
---slide-title-color: #FFFFFF;
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #212121;
+--slide-title-color: #ffffff;
 --slide-title-background-color: #000000;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #e0e0e0;
 --menu-background-color: #000000;
 --menu-header-color: #000000;
---menu-header-background-color: #696969;
-
-
+--menu-header-background-color: #424242;
 %%% Airstrip One
-
---slide-body-color: #FFFFFF;
+--slide-body-color: #e0e0e0;
 --slide-body-background-color: #000000;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
 --menu-header-color: #000000;
---menu-header-background-color: #A52A2A;
-
-
+--menu-header-background-color: #7f0000;
 %%% Arrakis
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #CD853F;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #CD853F;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #8B4513;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d81b60;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #d81b60;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #ad1457;
 %%% Narnia
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F0F8FF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #4682B4;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #4682B4;
---menu-header-color: #F0F8FF;
---menu-header-background-color: #1C4966;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #e3f2fd;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #42a5f5;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #42a5f5;
+--menu-header-color: #e3f2fd;
+--menu-header-background-color: #1976d2;
 %%% Oz
-
---slide-body-color: #006400;
---slide-body-background-color: #FFFFE0;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #228B22;
---slide-title-bottom-border: 1px solid #006400;
---menu-body-color: #FFFFFF;
---menu-background-color: #228B22;
---menu-header-color: #FFFFE0;
---menu-header-background-color: #32CD32;
-
-
+--slide-body-color: #1b5e20;
+--slide-body-background-color: #fffde7;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #1b5e20;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #fffde7;
+--menu-header-background-color: #1b5e20;
 %%% Graustark
-
---slide-body-color: #4B0082;
---slide-body-background-color: #F8F8FF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #800080;
---slide-title-bottom-border: 1px solid #4B0082;
---menu-body-color: #FFFFFF;
---menu-background-color: #800080;
---menu-header-color: #F8F8FF;
---menu-header-background-color: #6A0DAD;
-
-
+--slide-body-color: #4a148c;
+--slide-body-background-color: #f3e5f5;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7b1fa2;
+--slide-title-bottom-border: 1px solid #4a148c;
+--menu-body-color: #ffffff;
+--menu-background-color: #7b1fa2;
+--menu-header-color: #f3e5f5;
+--menu-header-background-color: #4a148c;
 %%% Barsoom
-
---slide-body-color: #8B0000;
---slide-body-background-color: #FFE4C4;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #A52A2A;
---slide-title-bottom-border: 1px solid #8B0000;
---menu-body-color: #FFFFFF;
---menu-background-color: #A52A2A;
---menu-header-color: #FFE4C4;
---menu-header-background-color: #8B4513;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #ffe0b2;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #c62828;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #c62828;
+--menu-header-color: #ffe0b2;
+--menu-header-background-color: #8d0000;
 %%% The Shire
-
---slide-body-color: #013220;
---slide-body-background-color: #F0FFF0;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #006400;
---slide-title-bottom-border: 1px solid #013220;
---menu-body-color: #FFFFFF;
---menu-background-color: #006400;
---menu-header-color: #F0FFF0;
---menu-header-background-color: #228B22;
-
-
+--slide-body-color: #1b5e20;
+--slide-body-background-color: #e8f5e9;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #1b5e20;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #e8f5e9;
+--menu-header-background-color: #1b5e20;
 %%% Rohan
-
---slide-body-color: #013220;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #228B22;
---slide-title-bottom-border: 1px solid #013220;
---menu-body-color: #FFFFFF;
---menu-background-color: #228B22;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #8B4513;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #8d6e63;
 %%% Mordor
-
---slide-body-color: #FF4500;
---slide-body-background-color: #0f1222;
---slide-title-color: #ffe349;
---slide-title-background-color:  #8B0000;
---slide-title-bottom-border: 1px solid #FF4500;
---menu-body-color: #FFFFFF;
+--slide-body-color: #ffe0b2;
+--slide-body-background-color: #1a1a2e;
+--slide-title-color: #ffeb3b;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #ffe0b2;
+--menu-body-color: #ffffff;
 --menu-background-color: #000000;
---menu-header-color: #ffe349;
---menu-header-background-color: #8B0000;
-
-
+--menu-header-color: #ffeb3b;
+--menu-header-background-color: #7f0000;
 %%% Gondor
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #FFFFFF;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #708090;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #708090;
---menu-header-color: #E0E0E0;
---menu-header-background-color: #36454F;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #ffffff;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #607d8b;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #607d8b;
+--menu-header-color: #cfd8dc;
+--menu-header-background-color: #37474f;
 %%% Ruby
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #8B0000;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #B22222;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #B22222;
---menu-header-color: #8B0000;
---menu-header-background-color: #DC143C;
-
-
+--slide-body-color: #ffffff;
+--slide-body-background-color: #b71c1c;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #c62828;
+--slide-title-bottom-border: 1px solid #ffffff;
+--menu-body-color: #ffffff;
+--menu-background-color: #c62828;
+--menu-header-color: ##ffffff;
+--menu-header-background-color: #7f0000;
 %%% Pearl
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #F0EAD6;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #B0C4DE;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #B0C4DE;
---menu-header-color: #F0EAD6;
---menu-header-background-color: #6495ED;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #f5f5f5;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #90a4ae;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #90a4ae;
+--menu-header-color: #f5f5f5;
+--menu-header-background-color: #546e7a;
 %%% Emerald
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #006400;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #008000;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #008000;
---menu-header-color: #006400;
---menu-header-background-color: #32CD32;
-
-
+--slide-body-color: #e8f5e9;
+--slide-body-background-color: #1b5e20;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #e8f5e9;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #f3f3f3;
+--menu-header-background-color: #1b5e20;
 %%% Turquoise
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #AFEEEE;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #40E0D0;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #40E0D0;
---menu-header-color: #AFEEEE;
---menu-header-background-color: #008B8B;
-
-
+--slide-body-color: #004d40;
+--slide-body-background-color: #e0f2f1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #009688;
+--slide-title-bottom-border: 1px solid #004d40;
+--menu-body-color: #ffffff;
+--menu-background-color: #009688;
+--menu-header-color: #e0f2f1;
+--menu-header-background-color: #00695c;
 %%% Amber
-
---slide-body-color: #8B4513;
---slide-body-background-color: #FFBF00;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF8C00;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF8C00;
---menu-header-color: #FFBF00;
---menu-header-background-color: #B8860B;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #ff8f00;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #ff8f00;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #ef6c00;
 %%% Sapphire
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #0F52BA;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #1E90FF;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #1E90FF;
---menu-header-color: #0F52BA;
---menu-header-background-color: #4169E1;
-
-
+--slide-body-color: #e3f2fd;
+--slide-body-background-color: #0d47a1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #1976d2;
+--slide-title-bottom-border: 1px solid #e3f2fd;
+--menu-body-color: #ffffff;
+--menu-background-color: #1976d2;
+--menu-header-color: #ffffff;
+--menu-header-background-color: #1565c0;
 %%% Orchid
-
---slide-body-color: #4B0082;
---slide-body-background-color: #DA70D6;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #BA55D3;
---slide-title-bottom-border: 1px solid #4B0082;
---menu-body-color: #FFFFFF;
---menu-background-color: #BA55D3;
---menu-header-color: #DA70D6;
---menu-header-background-color: #8B008B;
-
-
+--slide-body-color: #4a148c;
+--slide-body-background-color: #f3e5f5;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #ab47bc;
+--slide-title-bottom-border: 1px solid #4a148c;
+--menu-body-color: #ffffff;
+--menu-background-color: #ab47bc;
+--menu-header-color: #f3e5f5;
+--menu-header-background-color: #7b1fa2;
 %%% Rose
-
---slide-body-color: #800000;
---slide-body-background-color: #FFC0CB;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF69B4;
---slide-title-bottom-border: 1px solid #800000;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF69B4;
---menu-header-color: #FFC0CB;
---menu-header-background-color: #DC143C;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fce4ec;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #e91e63;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #e91e63;
+--menu-header-color: #fce4ec;
+--menu-header-background-color: #c2185b;
 %%% Daisy
-
---slide-body-color: #2F4F4F;
---slide-body-background-color: #FFFFF0;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FFD700;
---slide-title-bottom-border: 1px solid #2F4F4F;
---menu-body-color: #FFFFFF;
---menu-background-color: #FFD700;
---menu-header-color: #FFFFF0;
---menu-header-background-color: #FFA500;
-
-
+--slide-body-color: #37474f;
+--slide-body-background-color: #fffde7;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #ffb300;
+--slide-title-bottom-border: 1px solid #37474f;
+--menu-body-color: #ffffff;
+--menu-background-color: #ffb300;
+--menu-header-color: #fffde7;
+--menu-header-background-color: #ff8f00;
 %%% Petunia
-
---slide-body-color: #4B0082;
---slide-body-background-color: #E6E6FA;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #9370DB;
---slide-title-bottom-border: 1px solid #4B0082;
---menu-body-color: #FFFFFF;
---menu-background-color: #9370DB;
---menu-header-color: #E6E6FA;
---menu-header-background-color: #6A0DAD;
-
-
+--slide-body-color: #4a148c;
+--slide-body-background-color: #e3f2fd;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #7e57c2;
+--slide-title-bottom-border: 1px solid #4a148c;
+--menu-body-color: #ffffff;
+--menu-background-color: #7e57c2;
+--menu-header-color: #e3f2fd;
+--menu-header-background-color: #512da8;
 %%% Marigold
-
---slide-body-color: #8B4513;
---slide-body-background-color: #FFD700;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF8C00;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF8C00;
---menu-header-color: #FFD700;
---menu-header-background-color: #B8860B;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #ff8f00;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #ff8f00;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #ef6c00;
 %%% Bluebells
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #6A5ACD;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #483D8B;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #483D8B;
---menu-header-color: #6A5ACD;
---menu-header-background-color: #191970;
-
-
+--slide-body-color: #e3f2fd;
+--slide-body-background-color: #512da8;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #4527a0;
+--slide-title-bottom-border: 1px solid #e3f2fd;
+--menu-body-color: #ffffff;
+--menu-background-color: #4527a0;
+--menu-header-color: #f6f6f6;
+--menu-header-background-color: #311b92;
 %%% Pizza
-
---slide-body-color: #8B4513;
---slide-body-background-color: #FFE5B4;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #FF4500;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #FF4500;
---menu-header-color: #FFE5B4;
---menu-header-background-color: #B22222;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff3e0;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #f4511e;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #f4511e;
+--menu-header-color: #fff3e0;
+--menu-header-background-color: #bf360c;
 %%% Fresh Salad
-
---slide-body-color: #006400;
---slide-body-background-color: #F0FFF0;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #32CD32;
---slide-title-bottom-border: 1px solid #006400;
---menu-body-color: #FFFFFF;
---menu-background-color: #32CD32;
---menu-header-color: #F0FFF0;
---menu-header-background-color: #228B22;
-
-
+--slide-body-color: #1b5e20;
+--slide-body-background-color: #e8f5e9;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #43a047;
+--slide-title-bottom-border: 1px solid #1b5e20;
+--menu-body-color: #ffffff;
+--menu-background-color: #43a047;
+--menu-header-color: #e8f5e9;
+--menu-header-background-color: #2e7d32;
 %%% Bakery
-
---slide-body-color: #8B4513;
---slide-body-background-color: #FFF8DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #D2691E;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #D2691E;
---menu-header-color: #FFF8DC;
---menu-header-background-color: #A0522D;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #e64a19;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #e64a19;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #bf360c;
 %%% Pancake House
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #CD853F;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #CD853F;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #A0522D;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #d81b60;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #d81b60;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #ad1457;
 %%% Barbecue
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #2F4F4F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #2F4F4F;
---menu-header-background-color: #A52A2A;
-
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #212121;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #212121;
+--menu-header-background-color: #7f0000;
 %%% Toad in the Hole
-
---slide-body-color: #8B4513;
---slide-body-background-color: #FFF8DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #A0522D;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #A0522D;
---menu-header-color: #FFF8DC;
---menu-header-background-color: #654321;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #8d6e63;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #5d4037;
 %%% Lobscouse
-
---slide-body-color: #8B4513;
---slide-body-background-color: #DEB887;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #A0522D;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #A0522D;
---menu-header-color: #DEB887;
---menu-header-background-color: #654321;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #8d6e63;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #5d4037;
 %%% Rocky Road
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #3D2B1F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B4513;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B4513;
---menu-header-color: #3D2B1F;
---menu-header-background-color: #654321;
-
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #3e2723;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #ffffff;
+--menu-background-color: #8d6e63;
+--menu-header-color: #3e2723;
+--menu-header-background-color: #5d4037;
 %%% Phở
-
---slide-body-color: #006400;
---slide-body-background-color: #F5FFFA;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #228B22;
---slide-title-bottom-border: 1px solid #006400;
---menu-body-color: #FFFFFF;
---menu-background-color: #228B22;
---menu-header-color: #F5FFFA;
---menu-header-background-color: #32CD32;
-
-
+--slide-body-color: #1b5e20;
+--slide-body-background-color: #e8f5e9;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #2e7d32;
+--slide-title-bottom-border: 1px solid #1b5e20;
+--menu-body-color: #ffffff;
+--menu-background-color: #2e7d32;
+--menu-header-color: #e8f5e9;
+--menu-header-background-color: #1b5e20;
 %%% Couscous
-
---slide-body-color: #8B4513;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #DAA520;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #DAA520;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #B8860B;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #f9a825;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #f9a825;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #ef6c00;
 %%% Red Beans and Rice
-
---slide-body-color: #8B0000;
---slide-body-background-color: #FFFFF0;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #B22222;
---slide-title-bottom-border: 1px solid #8B0000;
---menu-body-color: #FFFFFF;
---menu-background-color: #B22222;
---menu-header-color: #FFFFF0;
---menu-header-background-color: #A52A2A;
-
-
+--slide-body-color: #b71c1c;
+--slide-body-background-color: #fffde7;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #c62828;
+--slide-title-bottom-border: 1px solid #b71c1c;
+--menu-body-color: #ffffff;
+--menu-background-color: #c62828;
+--menu-header-color: #fffde7;
+--menu-header-background-color: #7f0000;
 %%% Poutine
-
---slide-body-color: #8B4513;
---slide-body-background-color: #FFF8DC;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #D2691E;
---slide-title-bottom-border: 1px solid #8B4513;
---menu-body-color: #FFFFFF;
---menu-background-color: #D2691E;
---menu-header-color: #FFF8DC;
---menu-header-background-color: #A0522D;
-
-
+--slide-body-color: #5d4037;
+--slide-body-background-color: #fff8e1;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #e64a19;
+--slide-title-bottom-border: 1px solid #5d4037;
+--menu-body-color: #ffffff;
+--menu-background-color: #e64a19;
+--menu-header-color: #fff8e1;
+--menu-header-background-color: #bf360c;
 %%% Tandoori Chicken
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #FF6347;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #CD5C5C;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #CD5C5C;
---menu-header-color: #FF6347;
---menu-header-background-color: #8B0000;
-
-
+--slide-body-color: #ffffff;
+--slide-body-background-color: #ef6c00;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #c62828;
+--slide-title-bottom-border: 1px solid #ffffff;
+--menu-body-color: #ffffff;
+--menu-background-color: #c62828;
+--menu-header-color: #ef6c00;
+--menu-header-background-color: #7f0000;
 %%% Goulash
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #8B0000;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #A0522D;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #A0522D;
---menu-header-color: #8B0000;
---menu-header-background-color: #e7ca14;
-
-
+--slide-body-color: #ffffff;
+--slide-body-background-color: #b71c1c;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #8d6e63;
+--slide-title-bottom-border: 1px solid #ffffff;
+--menu-body-color: #ffffff;
+--menu-background-color: #8d6e63;
+--menu-header-color: #b71c1c;
+--menu-header-background-color: #d4a017;
 %%% Pepperpot
-
---slide-body-color: #FFFFFF;
---slide-body-background-color: #2F4F4F;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #8B0000;
---slide-title-bottom-border: 1px solid #FFFFFF;
---menu-body-color: #FFFFFF;
---menu-background-color: #8B0000;
---menu-header-color: #2F4F4F;
---menu-header-background-color: #A52A2A;
-
-
+--slide-body-color: #e0e0e0;
+--slide-body-background-color: #212121;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #b71c1c;
+--slide-title-bottom-border: 1px solid #e0e0e0;
+--menu-body-color: #ffffff;
+--menu-background-color: #b71c1c;
+--menu-header-color: #212121;
+--menu-header-background-color: #7f0000;
 %%% Chocolate Chip
-
---slide-body-color: #2B1B17;
---slide-body-background-color: #F5DEB3;
---slide-title-color: #FFFFFF;
---slide-title-background-color: #4B2E2E;
---slide-title-bottom-border: 1px solid #2B1B17;
---menu-body-color: #FFFFFF;
---menu-background-color: #4B2E2E;
---menu-header-color: #F5DEB3;
---menu-header-background-color: #8B4513;
+--slide-body-color: #3e2723;
+--slide-body-background-color: #f5deb3;
+--slide-title-color: #ffffff;
+--slide-title-background-color: #5d4037;
+--slide-title-bottom-border: 1px solid #3e2723;
+--menu-body-color: #ffffff;
+--menu-background-color: #5d4037;
+--menu-header-color: #f5deb3;
+--menu-header-background-color: #8d6e63;

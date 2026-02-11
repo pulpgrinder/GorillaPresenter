@@ -12,9 +12,8 @@
     "url": "git+https://github.com/pulpgrinder/GorillaPresenter.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "author": "Anthony Hursh",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/pulpgrinder/GorillaPresenter/issues"
   },

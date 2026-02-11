@@ -1,24 +1,27 @@
-# Gorilla Presenter Another test
+# Gorilla Presenter
 
 {{{media Our Founder}}}
 
-This is an example of the Outline plugin (described in detail later)
+## *Overview*
+* Free software (MIT license)
+* Completely self-contained in a **single** HTML file
+## *Easy Distribution*
+* No apps. No servers. Just a browser.
+* Presentations can be:
+    * Emailed
+    * Put on a thumb drive
+    * I dunno, put them on a Babylonian cuneiform tablet if that floats your boat.
+## *Rapid Creation*
+* Slides are written in Markdown, fast and easy. 
+* Built-in editor
+* Built-in media recorder (desktop Chrome, Brave, and Firefox)
+* Get your deck finished and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
+## *Create Self-directed Tutorials/Programmed Learning Artifacts*
+Gorilla Presenter has a number of ways of controlling the path through a presentation, such as branches, menus, outlines, and autoplay. These give you advanced control over the flow of your presentation. They're discussed in detail later. On the next slide, you'll see an example of Gorilla Presenter's own documentation organized using the Outline plugin. 
+
+# Table of Contents
 
 {{{outline
-Overview
-=Free software (MIT license)
-=Completely self-contained in a **single** HTML file
-Easy Distribution
-=No apps. No servers. Just a browser.
-=Presentations can be:
-==Emailed
-==Put on a thumb drive
-==I dunno, put them on a Babylonian cuneiform tablet if that floats your boat.
-Rapid Creation
-=Slides are written in Markdown, fast and easy. 
-=Built-in editor
-=Built-in media recorder (desktop Chrome, Brave, and Firefox)
-=Get your deck finished and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
 Tell Me More
 =How do I Get It?|> How Do I Get Gorilla Presenter
 =How do I Navigate the Slide Show?|> Navigation
@@ -53,7 +56,7 @@ Mobile Platform Notes
 
 # How Do I Get Gorilla Presenter?
 
-You're soaking in it! Press/click and hold ("long press") anywhere in the slide body to bring up main menu, then click the the download button. You'll have your own fully self-contained copy... presentation, editor, media recorder, the whole bit.
+You're soaking in it! Press/click and hold ("long press") anywhere in the slide body to bring up main menu, then click the the download button. You'll have your own fully self-contained copy... presentation, editor, media recorder, the whole bit. If you've made any edits, there will also be a download button in the upper right corner of the screen.
 
 
 {{{media Download Presentation}}}
@@ -61,21 +64,12 @@ You're soaking in it! Press/click and hold ("long press") anywhere in the slide 
 
 # Navigation
 
-There are several ways to move around in the slide show. Clicking/tapping on the right side of the screen advances to the next slide (if there is one), and clicking/tapping on the left side of the screen returns to the previous slide (again, if there is one). You can also move forward and back using space/backspace, page up/page down, right arrow/left arrow, or up arrow/down arrow. It's not picky.
+There are several ways to move around in the slide show. Clicking/tapping on the right side of the screen advances to the next slide (if there is one), and clicking/tapping on the left side of the screen returns to the previous slide (again, if there is one). You can also move forward and back using space/backspace, page up/page down, right arrow/left arrow, or up arrow/down arrow. It's not picky. Your browser's forward and back buttons are also functional.
 
 You can choose a specific slide by pressing/clicking and holding anywhere on the slide until the main menu appears, then picking the slide you want from the slide chooser.
 
 {{{media Slide Chooser}}}
 
-The menu, outline, branch, and autoplay plugins give you advanced control over the flow of your presentation. Those are discussed in detail later. In the meantime you can see a demo of the outline plugin on the next slide.
-
-# Table of Contents
-
-This Table of Contents gives you quick access to any part of the presentation.
-
-{{{outline
-
-}}}
 
 
 # Editing Slides
@@ -113,23 +107,24 @@ Here's the second one.
 
 ```
 This text has only one paragraph. 
-Even though there's a line break, there is no blank line.
+Even though there's a line break, there is no blank line, so the line break will be eaten.
 ```
 produces:
 
 This text has only one paragraph. 
-Even though there's a line break, there is no blank line.
+Even though there's a line break, there is no blank line, so the line break will be eaten.
 
-If you want a line break without starting a new paragraph, you can end the previous line with a backslash character (\\) (this is not standard Markdown)
+If you want a line break without starting a new paragraph, you can end the previous line with a backslash character (\\)^[not standard Markdown].
 
-```
+{{{literal
 This text will have a single line break, \
-rather than a paragraph.
-```
+rather than a paragraph break.
+}}}
+
 produces:
 
 This text will have a single line break, \
-rather than a paragraph.
+rather than a paragraph break.
 
 ## *Headings*
 
@@ -185,7 +180,7 @@ will produce:
 0. It has three items in it.
 95. This is the third one.
 
-Note that only thing that matters is that the lines begin with a number -- they can be arbitrary numbers and Markdown will automatically create a sequentially numbered list.
+Note that only thing that matters is that the lines begin with a number -- they can be arbitrary numbers and Markdown will automatically create a sequentially numbered list. This avoids tedious manual renumbering for material that gets reorganized a lot.
 
 
 ## *Unordered (bulleted) Lists*
