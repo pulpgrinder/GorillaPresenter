@@ -10,5 +10,5 @@ You create slides using ordinary Markdown, plus a handful of presentation-friend
 
 You can use branches, outlines, and menus to create self-directed tutorials.
 
-The easiest way to understand what Gorilla Presenter can do is to head to the home page. There you'll find a working example you can view right away—and you can download your own copy to open, edit, and adapt as you see fit. You can also find a copy here, in the dist directory. Depending on how fast development is occurring, that copy may be slightly fresher than the one on the home page.
+The easiest way to understand what Gorilla Presenter can do is to head to the [home page](https://gorillapresenter.com). There you'll find a working example you can view right away—and you can download your own copy to open, edit, and adapt as you see fit. You can also find a copy here in the dist directory. Depending on how fast development is occurring, that copy may be slightly fresher than the one on the home page.
 
