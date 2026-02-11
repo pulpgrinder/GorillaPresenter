@@ -4,7 +4,8 @@
   "description": "Gorilla Presenter is a complete presentation tool packed into **a single HTML file**. Everything lives there: the slides themselves, the editor, a media recorder (for desktop Chrome, Brave, and Firefox), and supporting resources. Basic use doesn't require installing any apps or that you even have an internet connection—just open the file in your regular web browser. The goal is to support all major modern desktop and mobile browsers (i.e., **not** Internet Explorer). Some plugins (for instance, Maps and Wikipedia) do require a network connection, but the basic system will work just fine without one.",
   "main": "index.js",
   "scripts": {
-    "test": "node tools/headless_test.js"
+    "test": "node tools/headless_test.js",
+    "build": "node GorillaBuilder/bundler.js && node GorillaBuilder/zipper.js && node GorillaBuilder/encoder.js"
   },
   "repository": {
     "type": "git",

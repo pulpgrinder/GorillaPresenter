@@ -1,4 +1,0 @@
-#!/bin/bash
-node GorillaBuilder/bundler.js
-node GorillaBuilder/zipper.js
-node GorillaBuilder/encoder.js
