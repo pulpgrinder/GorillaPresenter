@@ -1,22 +1,18 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger on pushes to main (or master)
   push:
-    branches: ["main"]
-  # Allow manual trigger from Actions tab
-  workflow_dispatch:
+    branches: ["main"]          # or master, or whatever your default branch is
+  workflow_dispatch:            # allows manual trigger from GitHub UI
 
-# Important permissions for the modern GitHub Pages deployment
 permissions:
   contents: read
   pages: write
-  id-token: write
+  id-token: write               # required for deploy-pages
 
-# Prevent multiple deploys running at once
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: false     # optional: prevents parallel deploys overwriting
 
 jobs:
   build:
@@ -25,28 +21,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ────────────────────────────────────────────────
-      #   Put YOUR build commands here
-      # ────────────────────────────────────────────────
-     
-      # ────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'      # or 18, 22, lts, whatever your scripts need
+
+      - name: Run build scripts
+        run: |
+          node GorillaBuilder/bundler.js
+          node GorillaBuilder/zipper.js
+          node GorillaBuilder/encoder.js
+          # Add any npm install / npm ci here if your scripts need dependencies
+          # e.g.:
+          # npm ci
+          # npm run prepare    # if you have package.json scripts
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4   # ← updated to v4
         with:
-          # Most important line — point to your built folder
-          path: ./dist         # change to ./build, ./_site, ./public, etc.
+          path: ./dist                            # ← must match where your files actually end up
 
   deploy:
+    needs: build                                  # ← waits for build to finish
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4             # ← this actually publishes!

@@ -1,4 +1,4 @@
-# Gorilla Presenter Test
+# Gorilla Presenter -- Test of GitHub pages
 
 {{{media Our Founder}}}
 
