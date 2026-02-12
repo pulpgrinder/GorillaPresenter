@@ -45,6 +45,9 @@ MenuPlugin = {
                 outlineClass = "gorilla-outline-level-" + pair.outlineLevel;
                 outlinePrefix = MenuPlugin.mlaHeadingString(pair.outlineLevel);
             }
+            else {
+                pair.outlineLevel = 0;
+            }
             if (pair.target === null) {
                 if (pair.text.startsWith("*")) {
                     displayString = outlinePrefix + displayString.substring(1).trim();
@@ -135,7 +138,7 @@ MenuPlugin = {
                 case 2:
                     return headingCount + ". ";
                 case 3:
-                    return MenuPlugin.lowerCaseLetterEquivalent(headingCount - 1) + ".";
+                    return MenuPlugin.lowerCaseLetterEquivalent(headingCount - 1) + ". ";
                 case 4:
                     return MenuPlugin.convertRoman(headingCount, false) + ". ";
                 case 5:

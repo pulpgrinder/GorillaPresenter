@@ -1,26 +1,18 @@
 # Gorilla Presenter
-
+; Any line beginning with a semicolon (like this one) is taken to be a comment. It's only visible in the editor, not in the slide as displayed.
 {{{media Our Founder}}}
 
-## *Overview*
 * Free software (MIT license)
 * Completely self-contained in a **single** HTML file
-## *Easy Distribution*
-* No apps. No servers. Just a browser.
-* Presentations can be:
-    * Emailed
-    * Put on a thumb drive
-    * I dunno, put them on a Babylonian cuneiform tablet if that floats your boat.
-## *Rapid Creation*
+* No apps. No servers. Just a browser. Distribute by thumb drive, email, Babylonian cuneiform tablet ^[available in participating locations, with purchase of second cuneiform tablet of equal or greater value]. You can even put it on the web. It's all good, mang.
 * Slides are written in Markdown, fast and easy. 
-* Built-in editor
-* Built-in media recorder (desktop Chrome, Brave, and Firefox)
+* Built-in editor and media recorder ^[recorder only available on desktop Chrome, Brave, and Firefox]
+* Programmed Learning Artifacts
 * Get your deck finished and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
-## *Create Self-directed Tutorials/Programmed Learning Artifacts*
-Gorilla Presenter has a number of ways of controlling the path through a presentation, such as branches, menus, outlines, and autoplay. These give you advanced control over the flow of your presentation. They're discussed in detail later. On the next slide, you'll see an example of Gorilla Presenter's own documentation organized using the Outline plugin. 
 
 # Table of Contents
 
+; If you're looking at this in the editor, fear not. Making branches, outlines, and menus will be explained in detail later in the presentation.
 {{{outline
 Tell Me More
 =How do I Get It?|> How Do I Get Gorilla Presenter
@@ -60,6 +52,8 @@ You're soaking in it! Press/click and hold ("long press") anywhere in the slide 
 
 
 {{{media Download Presentation}}}
+
+If you want to get the source code, you can find it on {{{branch GitHub|~https://github.com/pulpgrinder/GorillaPresenter}}}
 
 
 # Navigation
@@ -261,7 +255,7 @@ There are numerous other Markdown features, but these are the ones most generall
 
 # Advanced Flow Control
 
-Most presentations are intended for viewing in a linear fashion, from the first slide to the last one.
+Traditional presentations are intended for viewing in a linear fashion, from the first slide to the last one.
 
 Gorilla Presenter lets you do that, of course, but it also lets you create branches, menus, outlines, and automatic transitions that let you control the viewer's path through the presentation, based on choices the viewer makes while watching the presentation. You can use these features to create a classic "programmed learning" experience, or create whatever organization matches your own vision.
 
@@ -331,16 +325,16 @@ Outlines are exactly like menus, except they appear in MLA outline format. Outli
 ```
 {{{outline
 Search Engines
-=Google|~https://www.google.com
-=Duck Duck Go|~https://duckduckgo.com/
-=Worldcat|~https://search.worldcat.org/
+= Google|~https://www.google.com
+= Duck Duck Go|~https://duckduckgo.com/
+= Worldcat|~https://search.worldcat.org/
 Level Demonstration
-=Here's some text
-==With many different levels of indentation
-===Third level.
-===Another third level
-====Fourth level
-====Another fourth level
+= Here's some text
+== With many different levels of indentation
+=== Third level.
+=== Another third level
+==== Fourth level
+==== Another fourth level
 == Back up to second level
 Back up to top level
 }}}
@@ -350,17 +344,18 @@ will produce:
 
 {{{outline
 Search Engines
-=Google|~https://www.google.com
-=Duck Duck Go|~https://duckduckgo.com/
-=Worldcat|~https://search.worldcat.org/
+= Google|~https://www.google.com
+= Duck Duck Go|~https://duckduckgo.com/
+= Worldcat|~https://search.worldcat.org/
 Level Demonstration
-=Here's some text
-==With many different levels of indentation
-===Third level.
-===Another third level
-====Fourth level
-====Another fourth level
+= Here's some text
+== With many different levels of indentation
+=== Third level.
+=== Another third level
+==== Fourth level
+==== Another fourth level
 == Back up to second level
+Back up to top level
 }}}
 
 # Media Management
@@ -375,7 +370,7 @@ The media management screen lets you upload and manage resource files, such as i
 
 {{{media Media Management Screen}}}
 
-You can add or delete standard image files (png,jpeg,gif,bmp,svg,and webp), several types of video file (mp4, mov, avi, webm), audio files (mp3 or webm), font files (ttf,otf,woff,woff2), and css files. Several other file types can be uploaded, but Gorilla Presenter doesn't do anything with them for now. It's expected that other file types will be handled in the future.
+You can add or delete standard image files (png,jpeg,gif,bmp,svg,and webp), several types of video file (mp4, mov, avi, webm), audio files (mp3 or webm), font files (ttf,otf,woff,woff2), and css files. Other file types can be uploaded, but Gorilla Presenter doesn't do anything with them for now. It's expected that other file types will be handled in the future.
 
 For maximum compatibility, it's recommended that you use png, jpeg, gif, svg, or webp images, mp4 or webm videos, and mp3 or webm audio.
 
@@ -426,6 +421,21 @@ The advantage of this is that you don't bloat the size of your presentation file
 You should consider this option if you're going to be using large video files and you know you're going to have an Internet connection available.
 
 # Media Recorder
+
+The Media Recorder lets you create audio or video recordings inside Gorilla Presenter and save them as media files for your slides.
+
+**Browser Compatibility:** Works only on desktop Chrome, Brave, and Firefox when opened from a file:// URL. It does not work in Safari or on mobile devices.
+
+## Quick Guide
+
+1. Open the main menu (long press) and choose the recorder.
+2. Pick Video or Audio mode.
+3. Click Record, grant permissions, then click again to stop.
+4. Use Play to review and drag on the timeline to select a region.
+5. Use Trim to keep a selection or Cut to remove it. Undo restores the previous version.
+6. Click Save, name the recording, and optionally add it to the current slide.
+
+Recordings are saved to the media/ folder as WebM files and can be inserted with `{{{media}}}` like any other media asset. Remember to download the changed presentation to keep your recordings.
 
 # Autoplay
 
@@ -488,15 +498,15 @@ Maybe it's ho-hum.
 
 # Stet
 
-The stet plugin is sort of like an "anti-plugin". Anything contained in a stet directive will appear in the output without any processing by Gorilla Presenter. This is useful in special circumstances (this tutorial uses stet extensively for examples, for instance). Note that this won't keep the web browser from doing web-browsery things (e.g., eating extra whitespace, interpreting any angle brackets as possible HTML code, etc.). It just makes Gorilla Presenter leave the text alone.
+The stet plugin is sort of like an "anti-plugin". Anything contained in a stet directive will appear in the output without any processing by Gorilla Presenter. This is useful in special circumstances (this tutorial uses stet extensively for examples, for instance). Note that this won't keep your web browser from doing web-browsery things (e.g., eating extra whitespace, interpreting any angle brackets as possible HTML code, etc.). It just makes Gorilla Presenter per se leave the text alone.
 
-Example: this media directive would normally be processed by the media plugin, but because it is wrapped in a stet directive Gorilla Presenter won't touch it.
+Example: this media directive would normally be processed by the media plugin, but because it is wrapped in a stet directive (look at it in the editor) Gorilla Presenter won't touch it.
 
 {{{stet {{{media bazmataz}}}}}}
 
 # Literal
 
-The literal plugin is similar to stet, but it makes some substitutions to make the result render as expected in a browser. Problematic characters, such as space, ampersand, angle brackets, and newlines are replaced so the browser doesn't eat them or confuse them with HTML tags.
+The literal plugin is similar to stet, but it makes some substitutions to make the result render as expected in a browser. Problematic characters, such as space, ampersand, angle brackets, and newlines are replaced so the browser doesn't eat them or confuse them with HTML tags. Look at this slide in the editor to see how it works.
 
 {{{literalThis text has    embedded spaces
 newlines, 
@@ -536,7 +546,7 @@ As with the Book plugin, this obviously requires an active internet connection.
 
 # Map
 
-The Map plugin embeds a Google Map for your chosen search term (if it exists, of course). Google Maps is pretty flexible... you can enter your searches by city name, latitude and longitude, and even major landmarks. Once again, this obviously requires an internet connection to work.
+The Map plugin embeds a Google Map for your chosen search term (if it exists, of course). Google Maps is pretty flexible... you can enter your searches by city name, latitude and longitude, and even major landmarks. Check the Google Maps documentation for more info. Once again, this obviously requires an internet connection to work.
 
 {{{stet{{{map Washington Monument}}}}}}
 
@@ -551,7 +561,7 @@ Gorilla Presenter uses the KaTeX plugin to render LaTeX mathematics.
 
 Display (large) math uses {{{stet$$LaTeX code$$}}}
 
-Here's some display LaTeX: $$x^n + y^n = z^n$$
+Here's some display LaTeX:  $$x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}$$
 
 Inline (small) math uses {{{stet\\(LaTeX code\\)}}}
 
@@ -571,7 +581,11 @@ produces:
 
 # Settings
 
-Settings information goes here, TBW
+The Settings screen lets you customize the look and feel of your presentation and editor. Open the main menu (long press) and choose the gear icon.
+
+You can pick a theme, heading font, and body font, with a live sample slide preview. You can also choose the code font, editor theme, and editor font size with a live code preview. Finally, you can set the default correct and incorrect responses used by branches and quizzes.
+
+Settings are saved into settings.json inside the presentation, so remember to download the presentation after changes to keep them.
 
 # Controlling Appearance with CSS
 
@@ -707,6 +721,6 @@ Finally, choose Open in Microsoft Edge.
 
 I apologize for this convoluted process. Apple seems determined to make it as hard as possible to run HTML/web apps.
 
-
+In Android, by comparison, you just...open the file.
 
 
