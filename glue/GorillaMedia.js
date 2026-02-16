@@ -4,6 +4,7 @@ GorillaMedia = {
     '.xml', '.svg', '.md', '.log', '.config', '.yml', '.yaml',
     '.license'],
   icons: {
+    download: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M336,176h40a40,40,0,0,1,40,40V424a40,40,0,0,1-40,40H136a40,40,0,0,1-40-40V216a40,40,0,0,1,40-40h40\" style=\"fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><polyline points=\"176 272 256 352 336 272\" style=\"fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><line x1=\"256\" y1=\"48\" x2=\"256\" y2=\"336\" style=\"fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/></svg>",
     css: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M64,32,99,435.22,255.77,480,413,435.15,448,32ZM354.68,366.9,256.07,395l-98.46-28.24L150.86,289h48.26l3.43,39.56,53.59,15.16.13.28h0l53.47-14.85L315.38,265H203l-4-50H319.65L324,164H140l-4-49H376.58Z\"/></svg>",
     image: "<svg xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0 0 512 512\"><rect x=\"48\" y=\"80\" width=\"416\" height=\"352\" rx=\"48\" ry=\"48\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/><circle cx=\"336\" cy=\"176\" r=\"32\" style=\"fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px\"/><path d=\"M304,335.79,213.34,245.3A32,32,0,0,0,169.47,244L48,352\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><path d=\"M224,432,347.34,308.66a32,32,0,0,1,43.11-2L464,368\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/></svg>",
 
@@ -92,8 +93,10 @@ GorillaMedia = {
 
       li.innerHTML = GorillaMedia.getFileIcon(pathinfo.extension) + " " + "<span class=\"gorilla-media-file-name\" contenteditable=\"plaintext-only\">" + basefilename + "</span>"
 
-      if (folder !== "trash")
+      if (folder !== "trash") {
+        li.innerHTML += "<span class='gorilla-media-download-icon' filename='" + file + "' title='Download file'>" + GorillaMedia.icons.download + "</span>";
         li.innerHTML += "<span class='gorilla-media-trash-icon' filename='" + file + "' title='Move to Trash'>" + GorillaMedia.icons.trash + "</span>";
+      }
       else li.innerHTML += "<span class='gorilla-media-undo-icon' filename='" + file + "' title='Restore from Trash'>" + GorillaMedia.icons.undo + "</span>";
 
       medialist.appendChild(li);
@@ -105,6 +108,10 @@ GorillaMedia = {
       span.parentNode.replaceChild(newSpan, span);
     });
     document.querySelectorAll('.gorilla-media-trash-icon').forEach(span => {
+      const newSpan = span.cloneNode(true);
+      span.parentNode.replaceChild(newSpan, span);
+    });
+    document.querySelectorAll('.gorilla-media-download-icon').forEach(span => {
       const newSpan = span.cloneNode(true);
       span.parentNode.replaceChild(newSpan, span);
     });
@@ -122,6 +129,14 @@ GorillaMedia = {
         const trashPath = "trash/" + filename.split('/').pop();
         await fs.renameFile(filename, trashPath);
         setTimeout(() => { GorillaMedia.loadMediaScreens(); }, 100);
+        event.stopPropagation();
+        event.preventDefault();
+      });
+    });
+    document.querySelectorAll('.gorilla-media-download-icon').forEach(icon => {
+      icon.addEventListener('click', async (event) => {
+        const filename = event.currentTarget.getAttribute('filename');
+        await GorillaMedia.downloadFile(filename);
         event.stopPropagation();
         event.preventDefault();
       });
@@ -172,6 +187,25 @@ GorillaMedia = {
     fs.zipModified = true;
     await fs.renameFile(oldFilename, newFilename);
     setTimeout(() => { GorillaMedia.loadMediaScreens(); }, 100);
+  },
+
+  downloadFile: async function (filepath) {
+    try {
+      const blob = await fs.readBinaryFile(filepath);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filepath.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+      }, 100);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      GorillaPresenter.notify('Unable to download file');
+    }
   },
 
   showMediaScreen: async function () {

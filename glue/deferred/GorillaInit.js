@@ -33,6 +33,7 @@ await GorillaThemeHandler.init();
 // Apply the saved theme
 GorillaThemeHandler.setTheme();
 await GorillaPresenter.init();
+GorillaPresenter.markDirty(false);
 // Set up event listeners for theme and font stack selectors
 
 GorillaThemeHandler.codeFontStack = GorillaSettings.settings["code-font-stack-selector"] || "--monospace-code-font-stack";
@@ -82,7 +83,6 @@ if (hashNumber !== GorillaPresenter.currentSlideNumber + 1) {
 
 }
 
-GorillaPresenter.markDirty(false);
 await GorillaCSSLoader.loadCustomCSS();
 
 /* Rethink this... as written it causes too much distraction

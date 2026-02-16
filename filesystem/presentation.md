@@ -7,7 +7,7 @@
 * No apps. No servers. Just a browser. Distribute by thumb drive, email, Babylonian cuneiform tablet ^[available in participating locations, with purchase of second cuneiform tablet of equal or greater value]. You can even put it on the web. It's all good, mang.
 * Slides are written in Markdown, fast and easy. 
 * Built-in editor and media recorder ^[recorder only available on desktop Chrome, Brave, and Firefox]
-* Programmed Learning Artifacts
+* Create programmed learning artifacts
 * Get your deck finished and be off enjoying a tasty beverage while your rivals are still playing pointy-clicky.
 
 # Table of Contents
@@ -155,11 +155,11 @@ If you really need a first-level heading in the middle of a slide, you can prefi
 
 ## *Bold and Italic*
 
- `**this will be bold**` -> **this will be bold**
+ `**this will be bold**` -> **this will be bold**^[Technically these produce 'strong' and 'emphasized' text rather than bold and italic per se. However, by default those are visually the same (you could use CSS to change that).]
  
  `*this will be italic*` -> *this will be italic*
  
- Technically these produce 'strong' and 'emphasized' text rather than bold and italic per se. However, by default those are visually the same (you could use CSS to change that).
+ 
 
 ## *Ordered (numbered) Lists*
 
@@ -257,7 +257,7 @@ There are numerous other Markdown features, but these are the ones most generall
 
 Traditional presentations are intended for viewing in a linear fashion, from the first slide to the last one.
 
-Gorilla Presenter lets you do that, of course, but it also lets you create branches, menus, outlines, and automatic transitions that let you control the viewer's path through the presentation, based on choices the viewer makes while watching the presentation. You can use these features to create a classic "programmed learning" experience, or create whatever organization matches your own vision.
+Gorilla Presenter lets you do that, of course, but it also lets you create branches, menus, outlines, and automatic transitions that guide the viewer's path through the presentation. You can use these features to create a classic "programmed learning" experience, or create whatever organization matches your own vision.
 
 # Branches
 
@@ -360,30 +360,26 @@ Back up to top level
 
 # Media Management
 
-**VERY IMPORTANT** Any changes you make on the media management screen will Go Away unless you download the altered presentation for later reloading. Simply clicking refresh or opening the original file again will result in all your changes being lost (this holds for slides you've edited or changes you've made to the settings, too, of course). Gorilla Presenter does its best to keep track of changes, and displays a notice in the upper right-hand corner of the screen if something has changed. 
-
 To reach the media management screen, click/press and hold on any other screen until the menu appears, then select the media button.
 
 {{{media Media Tab}}}
 
-The media management screen lets you upload and manage resource files, such as images, audio files, video files, and custom fonts and CSS.
-
 {{{media Media Management Screen}}}
 
-You can add or delete standard image files (png,jpeg,gif,bmp,svg,and webp), several types of video file (mp4, mov, avi, webm), audio files (mp3 or webm), font files (ttf,otf,woff,woff2), and css files. Other file types can be uploaded, but Gorilla Presenter doesn't do anything with them for now. It's expected that other file types will be handled in the future.
+Here you can add or delete images, audio, video, fonts, and CSS. Other file types can be uploaded, but Gorilla Presenter doesn't do anything with them for now. It's expected that other file types will be handled in the future.
 
 For maximum compatibility, it's recommended that you use png, jpeg, gif, svg, or webp images, mp4 or webm videos, and mp3 or webm audio.
 
-Any font files or CSS files uploaded here will be loaded when the presentation starts up, or when the media management screen is exited. The CSS here will be loaded **after** all the built-in CSS is loaded, making it possible to override just about every part of Gorilla Presenter's appearance. Note that this could render the presentation competely unviewable if you don't know what you're doing. 😱 Great power, great responsibility, yadda-yadda-yadda.
+Any font files or CSS files uploaded here will be loaded when the presentation starts up, or when the media management screen is exited. CSS files will load **after** all the built-in CSS is loaded, making it possible to override just about every part of Gorilla Presenter's appearance. See {{{Controlling Appearance with CSS|>Controlling Appearance with CSS}}} for more details.
 
-It doesn't make much difference what you name your font files or CSS files, but you should try to give your audio, video, and image files meaningful names. Gorilla Presenter uses its own file system which allows you to use just about any character you can type. For example, prefer "Theda Bara With A Skeleton" to some atrocity like "thdabrskl352". You can rename any file on the media management screen just by clicking on the name and typing the new text. 
+You should give your files meaningful names. Gorilla Presenter uses its own file system which allows you to use just about any character you can type. For example, prefer "Theda Bara With A Skeleton" to some atrocity like "thdabrskl352". You can rename any file on the media management screen by clicking on the name and typing the new text. 
 
 There is an integrated trash bin that lets you temporarily mark files as deleted, then emptied later to make the deletion permanent.
 
 
 # Using Media
 
-This is pretty easy. Just insert a media directive along with the name (or a partial name) of the media file you want to use. As with other parts of Gorilla Presenter, you only need to give enough of the name to distinguish it from other files.
+This is pretty easy. Just insert a media directive along with the name (or a partial name) of the media file you want to use. As with other parts of Gorilla Presenter, you only need to give enough of the name to distinguish it from other files.Optionally, you can set the title/alt tag (the information that appears when you hover your mouse over the media player) by adding a | character followed by the title you want. Otherwise the file name will be used. 
 
 
 You don't need to tell Gorilla Presenter whether it's an audio, video, or still image file, nor do you need to worry about file extensions. Gorilla Presenter figures all that stuff out for you. However, you should probably avoid having (e.g.) both a "This is a cool" image file and a "This is cool" video file, or you may get unexpected behavior (Gorilla Presenter uses the first matching file it finds, which may not be the one you want if you have duplicate names).
@@ -395,7 +391,7 @@ You don't need to tell Gorilla Presenter whether it's an audio, video, or still 
 The actual media file is named "Theda Bara With A Skeleton.jpg", but "theda" is enough to eliminate ambiguity.
 
 
-{{{stet {{{media 1812}}}}}} will play an excerpt from Tchaikovsky's 1812 Overture (from a public domain performance courtesy of the Skidmore College Orchestra).
+{{{stet {{{media 1812}}}}}} will play an excerpt from Tchaikovsky's 1812 Overture (from a public domain performance by the Skidmore College Orchestra, courtesy {{{branch musopen.org|~https://musopen.org/}}}).
 
 
 {{{media 1812}}}
@@ -408,13 +404,11 @@ The actual media file is named "Theda Bara With A Skeleton.jpg", but "theda" is 
 
 You can also use media files from anywhere on the web. Just use the URL in a media directive.
 
-{{{stet{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm|Some views of the Moon from Apollo 13}}}}}
+{{{stet{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm|Some views of the Moon from Apollo 13}}}}}(video courtesy Nasa)
 
-(video courtesy Nasa)
+{{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm|Some views of the Moon from Apollo 13}}}(video courtesy Nasa)
 
-Here we're using an explicit title (the part following the |) because the file is on an external site and the file name is ugly. For local files, you should use descriptive file names, as discussed in the {{{branch Media Management|>Media Management}}} section though you can add an explicit title even for a local file if you wish.
-
-{{{media https://upload.wikimedia.org/wikipedia/commons/1/13/NASA-Apollo13-ViewsOfMoon-20200224.webm|Some views of the Moon from Apollo 13}}}
+Here's we're giving it an explicit title (following the |) because the file name is kinda ugly.
 
 The advantage of this is that you don't bloat the size of your presentation file. The disadvantage is that you're loading the media file over the web, and thus must have an active Internet connection.
 
@@ -424,7 +418,7 @@ You should consider this option if you're going to be using large video files an
 
 The Media Recorder lets you create audio or video recordings inside Gorilla Presenter and save them as media files for your slides.
 
-**Browser Compatibility:** Works only on desktop Chrome, Brave, and Firefox when opened from a file:// URL. It does not work in Safari or on mobile devices.
+**Browser Compatibility:** Works only on desktop Chrome, Brave, and Firefox when opened from a file:// URL. It does not work in Safari or on mobile devices. It is to be hoped that other browser vendors decide to support this in the future.
 
 ## Quick Guide
 
@@ -572,11 +566,11 @@ Here's some inline LaTeX:  \\(z^n\\).
 
 Gorilla Presenter contains the full set of {{{branch Ionicons|~https://ionic.io/ionicons}}}. You can use these for decorative purposes, custom menus, or the like.
 
-{{{stet {{icon american-football-outline}}}}}
+{{{stet {{icon heart-outline}}}}}
 
 produces:
 
-{{{icon american-football-outline}}}
+{{{icon heart-outline}}}
 
 
 # Settings
@@ -643,12 +637,10 @@ The media folder contains a file named `Custom CSS.css` that contains some usefu
 
 .blue {
     color: blue;
-
 }
 
 .green {
     color: green;
-
 }
 
 .purple {
@@ -663,6 +655,8 @@ The media folder contains a file named `Custom CSS.css` that contains some usefu
 # Custom CSS Classes
 
 You can add your own CSS classes by adding them to the `Custom CSS.css` file, or uploading your own CSS file to the media folder (as always, you'll need to save the presentation if you want uploaded files to be present on future loads). If you want to use your own separate CSS files, keep in mind that order matters.
+
+Note that this could render the presentation competely unviewable if you don't know what you're doing. 😱 Great power, great responsibility, yadda-yadda-yadda.
 
 First the system's built-in CSS is loaded, then any custom CSS files in the media folder (just `Custom CSS.css` by default). Since the media folder CSS comes later, it's possible to override pretty much any of the built-in CSS.
 
@@ -686,18 +680,17 @@ You can even override the built-in theme variables to create your own theme.
 
 (example only -- don't actually use these colors -- they're hideous {{{icon skull-outline}}})
 
-This theme would only remain in effect until the user changed it to something else (probably pretty quickly if you actually use those colors {{{icon happy-outline}}}).
+This "pseudo-theme" would only remain in effect until the user changed it to something else (probably pretty quickly if you actually use those colors {{{icon happy-outline}}}).
 
 # Using Gorilla Presenter with iOS
 
-Unfortunately, most web browsers for iPhoneOS and/or iPadOS do not allow you to open HTML files (like a GorillaPresenter presentation) from the local file system. It is widely believed that Apple does this to prevent web applications (again, like GorillaPresenter) from competing with the App Store. 
+Unfortunately, most web browsers for the iOS ecosystem do not allow you to open HTML files (like a GorillaPresenter presentation) from the local file system. It is widely believed that Apple does this to prevent web applications (again, like GorillaPresenter) from competing with the App Store. 
 
 There is a workaround which requires installing the Microsoft Edge Browser.
 
 {{{branch
 Get the Microsoft Edge Browser for iOS|~https://apps.apple.com/us/app/microsoft-edge-ai-browser/id1288723196
 }}}
-
 
 Once you have Edge installed, open the Files app.
 
@@ -723,4 +716,6 @@ I apologize for this convoluted process. Apple seems determined to make it as ha
 
 In Android, by comparison, you just...open the file.
 
+# Credits
 
+Made with {{{icon heart-outline}}} by Tony Hursh. Full credits can be found by clicking the {{{icon information-circle-outline}}} button in the main menu.

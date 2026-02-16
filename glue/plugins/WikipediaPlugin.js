@@ -26,6 +26,4 @@ WikipediaPlugin = {
             return `<div class="wikipedia-quote">Error fetching Wikipedia summary: ${e.toString()}</div>`;
         }
     }
-}
-
-
+};
