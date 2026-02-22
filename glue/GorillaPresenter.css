@@ -561,3 +561,50 @@ button:disabled {
 @media (max-width: 700px) {
   .mobile-menu-toggle { display: block; }
 }
+
+/* Dialog styling for the native menu dialog */
+.gorilla-menu-dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+.gorilla-menu-dialog::backdrop {
+  background: rgba(0,0,0,0.6);
+}
+
+/* Make the dialog large enough to contain the menu and slide chooser */
+.gorilla-menu-dialog {
+  width: 92vw;
+  max-width: 720px;
+  max-height: 88vh;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.gorilla-menu-dialog .gorilla-menu-bar {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  width: 100%;
+  max-height: 84vh;
+  overflow: auto;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--slide-body-background-color, #111);
+  color: var(--slide-body-color, white);
+}
+
+.gorilla-menu-dialog .gorilla-menu-bar .gorilla-menu-button-wrapper {
+  width: 100%;
+}
+
+.gorilla-menu-dialog select.gorilla-navigation,
+.gorilla-menu-dialog .gorilla-menu-bar select {
+  width: 100%;
+}

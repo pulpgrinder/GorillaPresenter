@@ -1,30 +1,12 @@
 MainMenuDriver = {
     pressHandlers: [],
     init: async function () {
-        MainMenuDriver.menubar = document.getElementById('gorilla-menu-bar');
-        // Ensure a dismiss overlay exists to allow tapping background to close the menu
-        MainMenuDriver.menuOverlay = document.getElementById('main-menu-overlay');
-        if (!MainMenuDriver.menuOverlay) {
-            const overlay = document.createElement('div');
-            overlay.id = 'main-menu-overlay';
-            overlay.style.display = 'none';
-            document.body.appendChild(overlay);
-            overlay.addEventListener('click', function (e) {
-                // clicking the background should close the menu
-                if (e.target === overlay) {
-                    MainMenuDriver.hideMenu();
-                }
-            });
-            MainMenuDriver.menuOverlay = overlay;
-        }
-
-        // Close button inside menu (for mobile)
-        const closeBtn = document.getElementById('main-menu-close');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                MainMenuDriver.hideMenu();
-            });
+        MainMenuDriver.menubar = document.getElementById('main-menu-bar') || document.getElementById('gorilla-menu-bar');
+        // remember original location so we can restore after using a dialog
+        if (MainMenuDriver.menubar) {
+            MainMenuDriver._originalParent = MainMenuDriver.menubar.parentNode;
+            MainMenuDriver._originalNext = MainMenuDriver.menubar.nextSibling;
+            MainMenuDriver.menubar.style.display = 'none';
         }
 
         // Mobile toggle button
@@ -32,7 +14,7 @@ MainMenuDriver = {
         if (toggle) {
             toggle.addEventListener('click', function (e) {
                 e.stopPropagation();
-                MainMenuDriver.showMenu();
+                MainMenuDriver.toggleMenu();
             });
         }
         window.addEventListener('hashchange', async function () {
@@ -186,33 +168,23 @@ MainMenuDriver = {
     },
     hideMenu: function () {
         console.log('MainMenuDriver.hideMenu called');
-        // Allow closing animation to run; don't hide immediately.
-        // document.getElementById('gorilla-app-wrapper').classList.remove("menu-active");
+        // If the menu is shown in a dialog, close it (dialog 'close' will restore and cleanup)
+        if (MainMenuDriver.menuDialog) {
+            try { MainMenuDriver.menuDialog.close(); } catch (e) { /* ignore */ }
+            return;
+        }
+        // Fallback: animate/hide inline menu element
         document.body.classList.remove('menu-visible');
         const menuEl = document.getElementById('main-menu-bar');
         if (menuEl) {
-            // start closing animation
             menuEl.classList.remove('open');
             menuEl.classList.add('closing');
             const onAnimEnd = function () {
-                console.log('MainMenuDriver.hideMenu - animation end');
                 menuEl.removeEventListener('animationend', onAnimEnd);
                 menuEl.classList.remove('closing');
                 menuEl.style.display = 'none';
             };
             menuEl.addEventListener('animationend', onAnimEnd);
-        }
-        if (MainMenuDriver.menuOverlay) {
-            // start overlay fade-out then remove from flow after transition ends
-            MainMenuDriver.menuOverlay.classList.remove('visible');
-            const overlay = MainMenuDriver.menuOverlay;
-            const onEnd = function (ev) {
-                if (ev.propertyName === 'opacity') {
-                    overlay.removeEventListener('transitionend', onEnd);
-                    overlay.style.display = 'none';
-                }
-            };
-            overlay.addEventListener('transitionend', onEnd);
         }
         MainMenuDriver.menuVisible = false;
         MainMenuDriver.showUserSelect(false);
@@ -220,21 +192,39 @@ MainMenuDriver = {
     },
     showMenu: function () {
         console.log('MainMenuDriver.showMenu called');
+        // Use a native <dialog> so behavior mirrors GorillaDialog/GorillaAlert
+        if (MainMenuDriver.menuDialog) return;
         const menuEl = document.getElementById('main-menu-bar');
         if (!menuEl) return;
-        // If a previous closing animation was running, clear it so open can proceed.
-        menuEl.classList.remove('closing');
+        // create dialog and transfer the menu element into it (preserves event handlers)
+        const dialog = document.createElement('dialog');
+        dialog.className = 'gorilla-menu-dialog';
+        // ensure menu is visible inside dialog
         menuEl.style.display = 'grid';
-        // ensure overlay exists and is visible
-        if (MainMenuDriver.menuOverlay) {
-            MainMenuDriver.menuOverlay.style.display = 'block';
-            console.log('MainMenuDriver.showMenu - overlay set block');
-            // use a small timeout to allow CSS transition
-            requestAnimationFrame(() => MainMenuDriver.menuOverlay.classList.add('visible'));
-        }
-        // trigger open animation
-        requestAnimationFrame(() => menuEl.classList.add('open'));
-        document.body.classList.add('menu-visible');
+        dialog.appendChild(menuEl);
+        // wire close button inside moved menu
+        const closeBtn = dialog.querySelector('#main-menu-close');
+        if (closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); dialog.close(); });
+        dialog.addEventListener('close', function () {
+            // restore menu element to original parent
+            try {
+                if (MainMenuDriver._originalParent) {
+                    if (MainMenuDriver._originalNext && MainMenuDriver._originalNext.parentNode === MainMenuDriver._originalParent) {
+                        MainMenuDriver._originalParent.insertBefore(menuEl, MainMenuDriver._originalNext);
+                    } else {
+                        MainMenuDriver._originalParent.appendChild(menuEl);
+                    }
+                }
+            } catch (e) { /* ignore */ }
+            menuEl.style.display = 'none';
+            dialog.remove();
+            MainMenuDriver.menuDialog = null;
+            MainMenuDriver.menuVisible = false;
+            MainMenuDriver.showUserSelect(false);
+        });
+        document.body.appendChild(dialog);
+        MainMenuDriver.menuDialog = dialog;
+        dialog.showModal();
         MainMenuDriver.menuVisible = true;
         MainMenuDriver.showUserSelect(true);
     },

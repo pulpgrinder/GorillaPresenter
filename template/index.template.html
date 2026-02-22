@@ -42,27 +42,29 @@
 <body>
   <button id="mobile-menu-toggle" class="mobile-menu-toggle ionicon" title="Menu">menu-outline</button>
   <div id="gorilla-app-wrapper">
-    <div id="main-menu-bar" class="gorilla-menu-bar">
-      <button id="main-menu-close" class="main-menu-close ionicon" title="Close Menu">close-outline</button>
-      <span id="main-menu-wrapper" class="gorilla-menu-button-wrapper">
-        <button class="main-menu-item ionicon" nav-value="slideshow" title="Slideshow">albums-outline
-        </button>
-        <button class="main-menu-item ionicon" nav-value="save" title="Download Presentation">download-outline</button>
-        <button class="main-menu-item ionicon" nav-value="edit" title="Edit Presentation">create-outline</button>
-        <button class="main-menu-item ionicon" nav-value="media" title="Media">film-outline</button>
-        <button class="main-menu-item ionicon" nav-value="settings" title="Settings">cog-outline</button>
-        <button class="main-menu-item ionicon" nav-value="recorder"
-          title="Audio/Video Recorder">videocam-outline</button>
-        <button class="main-menu-item ionicon" nav-value="about"
-          title="About GorillaPresenter">information-circle-outline</button>
-        <button class="main-menu-item ionicon" nav-value="fullscreen" title="Full Screen">expand-outline</button>
-      </span><span>
-        <select title="slidechooser" id="slidechooser" class="gorilla-navigation">
-        </select>
-      </span>
-    </div>
     <div id="gorilla-presenter-screens-wrapper">
-    
+      <div id="main-menu-screen" class="gorilla-presenter-screen" style="display:none; z-index:200001;">
+        <div id="main-menu-bar" class="gorilla-menu-bar">
+          <button id="main-menu-close" class="main-menu-close ionicon" title="Close Menu">close-outline</button>
+          <span id="main-menu-wrapper" class="gorilla-menu-button-wrapper">
+            <button class="main-menu-item ionicon" nav-value="slideshow" title="Slideshow">albums-outline
+            </button>
+            <button class="main-menu-item ionicon" nav-value="save" title="Download Presentation">download-outline</button>
+            <button class="main-menu-item ionicon" nav-value="edit" title="Edit Presentation">create-outline</button>
+            <button class="main-menu-item ionicon" nav-value="media" title="Media">film-outline</button>
+            <button class="main-menu-item ionicon" nav-value="settings" title="Settings">cog-outline</button>
+            <button class="main-menu-item ionicon" nav-value="recorder"
+              title="Audio/Video Recorder">videocam-outline</button>
+            <button class="main-menu-item ionicon" nav-value="about"
+              title="About GorillaPresenter">information-circle-outline</button>
+            <button class="main-menu-item ionicon" nav-value="fullscreen" title="Full Screen">expand-outline</button>
+          </span><span>
+            <select title="slidechooser" id="slidechooser" class="gorilla-navigation">
+            </select>
+          </span>
+        </div>
+      </div>
+
       <div id="gorilla-media-screen" class="gorilla-presenter-screen">
         <!--uploader-->
         <div id="dropZone" class="drop-zone">
