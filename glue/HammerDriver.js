@@ -65,6 +65,7 @@ HammerDriver = {
                 time: 500  // milliseconds
             });
             hammer.on("press", (ev) => {
+                console.log('Hammer press:', ev && ev.type, 'target:', ev && ev.target && ev.target.tagName);
                 MainMenuDriver.toggleMenu();
             });
 

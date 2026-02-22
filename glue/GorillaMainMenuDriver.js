@@ -2,6 +2,39 @@ MainMenuDriver = {
     pressHandlers: [],
     init: async function () {
         MainMenuDriver.menubar = document.getElementById('gorilla-menu-bar');
+        // Ensure a dismiss overlay exists to allow tapping background to close the menu
+        MainMenuDriver.menuOverlay = document.getElementById('main-menu-overlay');
+        if (!MainMenuDriver.menuOverlay) {
+            const overlay = document.createElement('div');
+            overlay.id = 'main-menu-overlay';
+            overlay.style.display = 'none';
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', function (e) {
+                // clicking the background should close the menu
+                if (e.target === overlay) {
+                    MainMenuDriver.hideMenu();
+                }
+            });
+            MainMenuDriver.menuOverlay = overlay;
+        }
+
+        // Close button inside menu (for mobile)
+        const closeBtn = document.getElementById('main-menu-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                MainMenuDriver.hideMenu();
+            });
+        }
+
+        // Mobile toggle button
+        const toggle = document.getElementById('mobile-menu-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                MainMenuDriver.showMenu();
+            });
+        }
         window.addEventListener('hashchange', async function () {
             const hashNumber = parseInt(window.location.hash.substring(1));
             console.log("Hash changed to:", hashNumber);
@@ -122,6 +155,7 @@ MainMenuDriver = {
         });
     },
     toggleMenu: function () {
+        console.log('MainMenuDriver.toggleMenu - menuVisible=', MainMenuDriver.menuVisible);
         if (MainMenuDriver.menuVisible === true) {
             MainMenuDriver.hideMenu();
         } else {
@@ -151,15 +185,55 @@ MainMenuDriver = {
 
     },
     hideMenu: function () {
-        //  document.getElementById('gorilla-app-wrapper').classList.remove("menu-active");
-        document.getElementById('main-menu-bar').style.display = "none";
+        console.log('MainMenuDriver.hideMenu called');
+        // Allow closing animation to run; don't hide immediately.
+        // document.getElementById('gorilla-app-wrapper').classList.remove("menu-active");
         document.body.classList.remove('menu-visible');
+        const menuEl = document.getElementById('main-menu-bar');
+        if (menuEl) {
+            // start closing animation
+            menuEl.classList.remove('open');
+            menuEl.classList.add('closing');
+            const onAnimEnd = function () {
+                console.log('MainMenuDriver.hideMenu - animation end');
+                menuEl.removeEventListener('animationend', onAnimEnd);
+                menuEl.classList.remove('closing');
+                menuEl.style.display = 'none';
+            };
+            menuEl.addEventListener('animationend', onAnimEnd);
+        }
+        if (MainMenuDriver.menuOverlay) {
+            // start overlay fade-out then remove from flow after transition ends
+            MainMenuDriver.menuOverlay.classList.remove('visible');
+            const overlay = MainMenuDriver.menuOverlay;
+            const onEnd = function (ev) {
+                if (ev.propertyName === 'opacity') {
+                    overlay.removeEventListener('transitionend', onEnd);
+                    overlay.style.display = 'none';
+                }
+            };
+            overlay.addEventListener('transitionend', onEnd);
+        }
         MainMenuDriver.menuVisible = false;
         MainMenuDriver.showUserSelect(false);
 
     },
     showMenu: function () {
-        document.getElementById('main-menu-bar').style.display = "grid";
+        console.log('MainMenuDriver.showMenu called');
+        const menuEl = document.getElementById('main-menu-bar');
+        if (!menuEl) return;
+        // If a previous closing animation was running, clear it so open can proceed.
+        menuEl.classList.remove('closing');
+        menuEl.style.display = 'grid';
+        // ensure overlay exists and is visible
+        if (MainMenuDriver.menuOverlay) {
+            MainMenuDriver.menuOverlay.style.display = 'block';
+            console.log('MainMenuDriver.showMenu - overlay set block');
+            // use a small timeout to allow CSS transition
+            requestAnimationFrame(() => MainMenuDriver.menuOverlay.classList.add('visible'));
+        }
+        // trigger open animation
+        requestAnimationFrame(() => menuEl.classList.add('open'));
         document.body.classList.add('menu-visible');
         MainMenuDriver.menuVisible = true;
         MainMenuDriver.showUserSelect(true);

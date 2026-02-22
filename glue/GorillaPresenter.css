@@ -430,3 +430,131 @@ button:disabled {
 .codejar {
   font-size: 2em;
 }
+
+/* Mobile: show the menu as a centered panel with a dim background; tapping background closes menu */
+@media (max-width: 700px) {
+  #main-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    z-index: 200000;
+  }
+
+  .gorilla-menu-bar {
+    position: fixed;
+    left: 50%;
+    top: 6vh;
+    transform: translateX(-50%);
+    width: 92vw;
+    max-width: 480px;
+    max-height: 84vh;
+    overflow: auto;
+    display: grid !important;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    background: var(--slide-body-background-color, #111);
+    color: var(--slide-body-color, white);
+    padding: 1rem;
+    gap: 0.75rem;
+    align-items: start;
+    z-index: 200001;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+
+  .gorilla-menu-bar .gorilla-menu-button-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .gorilla-menu-bar .main-menu-item {
+    font-size: 1.1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.03);
+    color: inherit;
+    width: 100%;
+    text-align: left;
+  }
+
+  .gorilla-menu-bar .main-menu-item:hover {
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* Close button */
+  .main-menu-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.25rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Show overlay when menu is visible via inline JS */
+  /* Keep slide area visible under overlay */
+  .menu-visible .gorilla-presenter-screen {
+    top: 0;
+    height: 100vh;
+  }
+}
+
+/* Animations for menu open/close */
+@keyframes menuIn {
+  from { transform: translateY(-8px) scale(0.99); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes menuOut {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to   { transform: translateY(-8px) scale(0.99); opacity: 0; }
+}
+
+.gorilla-menu-bar.open {
+  animation: menuIn 220ms cubic-bezier(.2,.9,.2,1) both;
+}
+.gorilla-menu-bar.closing {
+  animation: menuOut 160ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+/* Overlay visible state */
+#main-menu-overlay {
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+  display: none;
+}
+#main-menu-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+  display: block;
+}
+
+/* Mobile menu toggle button (visible on small screens) */
+.mobile-menu-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 200002;
+  background: var(--slide-title-background-color, #2E8B57);
+  color: var(--slide-title-color, #fff);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  font-size: 1.25rem;
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .mobile-menu-toggle { display: block; }
+}

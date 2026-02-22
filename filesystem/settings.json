@@ -1,7 +1,7 @@
 {
     "defaultIncorrectResponse": "I'm sorry, that's not correct.",
     "defaultCorrectResponse": "Correct!",
-    "theme": "Lobscouse",
+    "theme": "Greeting",
     "editorTheme": "prism-editor-themes/Tomorrow.css",
     "editorFontSize": 16,
     "headingFontStack": "--didone-font-stack",
