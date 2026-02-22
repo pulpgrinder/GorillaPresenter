@@ -542,21 +542,28 @@ button:disabled {
 
   .gorilla-menu-bar .gorilla-menu-button-wrapper {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    width: 100%;
-    margin-top: 0.5rem;
+    /* keep the 3x3 icon grid on mobile as well */
+    grid-template-columns: repeat(3, 2.25em);
+    grid-template-rows: repeat(3, 2.25em);
+    gap: 0; /* buttons should touch */
+    width: auto;
+    justify-content: center;
+    margin: 0.5rem auto 0;
   }
 
   .gorilla-menu-bar .main-menu-item {
+    /* use the neutral, square icon button appearance on mobile too */
     font-size: 1.1rem;
-    padding: 0.6rem 0.8rem;
-    border-radius: 10px;
-    border: 1px solid #333;
-    background: transparent;
-    color: inherit;
-    width: auto;
-    text-align: left;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    background: #f0f0f0;
+    color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .gorilla-menu-bar .main-menu-item:hover {
@@ -566,16 +573,18 @@ button:disabled {
   /* Close button: behave like a regular menu item inside the mobile menu grid
      so it appears as the same size as other buttons when placed in the grid */
   .gorilla-menu-bar .main-menu-close {
-    /* match the other items */
-    background: transparent;
-    border: 1px solid #333;
-    color: inherit;
+    /* match desktop-style square buttons on mobile */
+    background: #f0f0f0;
+    border: none;
+    color: black;
     font-size: 1.1rem;
-    padding: 0.6rem 0.8rem;
-    border-radius: 10px;
-    width: auto;
-    display: inline-block;
-    text-align: left;
+    padding: 0;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Show overlay when menu is visible via inline JS */
