@@ -132,9 +132,19 @@ MainMenuDriver = {
                         break;
                 }
                 // MainMenuDriver.hideMenu();
+                // Close the menu/dialog after handling the command (if open)
+                try { MainMenuDriver.hideMenu(); } catch (e) { /* ignore */ }
                 return false;
             });
         });
+        // Close dialog when a slide is selected from the chooser
+        const slideChooser = document.getElementById('slidechooser');
+        if (slideChooser) {
+            slideChooser.addEventListener('change', function (e) {
+                // allow normal navigation handling elsewhere, then close the menu
+                try { MainMenuDriver.hideMenu(); } catch (err) { /* ignore */ }
+            });
+        }
     },
     toggleMenu: function () {
         console.log('MainMenuDriver.toggleMenu - menuVisible=', MainMenuDriver.menuVisible);

@@ -335,31 +335,93 @@ span[contenteditable]:focus {
 .gorilla-menu-bar {
   position: relative;
   padding: 0;
-  height: 3em;
+  /* Reserve space: 6em for the 3x3 buttons (3 rows x 2em) and 1.5em for slide chooser */
+  grid-template-rows: 6em 1.5em;
+  grid-template-columns: 1fr;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  align-items: center;
   margin: 0;
   box-sizing: content-box;
   -webkit-user-select: none;
   user-select: none;
   display: none;
-  grid-template-columns: auto 1fr;
   color: black;
   z-index: 100001;
   background-color: lightgray;
 }
 
 .gorilla-menu-button-wrapper {
-  display: flex;
-  gap: 0;
+  display: grid;
+  gap: 0; /* buttons should touch */
+  /* Make each button a fixed square so they only take as much space as needed */
+  grid-template-columns: repeat(3, 2.25em);
+  grid-template-rows: repeat(3, 2.25em);
+  align-items: stretch;
+  justify-items: stretch;
+  width: auto;
+  padding: 0;
+  box-sizing: border-box;
+  grid-row: 1 / 2;
+  background: transparent;
+  /* outer frame for the grid */
+  border: 1px solid #999;
 }
 
 .main-menu-item {
-  border: 1px solid #333;
   cursor: pointer;
   margin: 0;
+  border-radius: 0; /* square grid look */
+  display: flex; /* fill grid cell and center content */
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  background: #f0f0f0;
+  color: black;
+  border: none; /* internal borders added selectively below */
+}
+
+/* Make the close button match the other buttons on desktop */
+.main-menu-close {
+  /* Close button should be visually identical to other menu items */
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
   border-radius: 0;
+  background: #f0f0f0;
+  color: black;
+  cursor: pointer;
+  border: none;
+}
+
+/* Grid-style borders: only rightmost of each row has a vertical divider,
+   and only the bottom row has a bottom border (overall grid bottom) */
+.gorilla-menu-button-wrapper .main-menu-item:not(:nth-child(3n)) {
+  /* add right border to all but the rightmost column */
+  border-right: 1px solid #999;
+}
+.gorilla-menu-button-wrapper .main-menu-item:nth-child(-n+6) {
+  /* add bottom border to first two rows (items 1-6) */
+  border-bottom: 1px solid #999;
+}
+
+/* Desktop: make menu buttons sit on a neutral background (not the slide's) */
+.gorilla-menu-bar .main-menu-item {
+  background: #f0f0f0;
+  color: black;
+  border-color: #999;
+}
+.gorilla-menu-bar .main-menu-item:hover {
+  background: #e6e6e6;
+}
+.gorilla-menu-bar .main-menu-close {
+  background: #f0f0f0;
+  color: black;
+  border-color: #999;
 }
 
 #gorilla-app-wrapper {
@@ -417,6 +479,17 @@ span[contenteditable]:focus {
   background-color: white;
   color: black;
   border: 1px solid #ccc;
+  height: 1.5em;
+  align-self: center;
+  justify-self: start;
+}
+
+/* Ensure the span that contains the slide chooser sits in the second grid row */
+.gorilla-menu-bar > span:last-child {
+  grid-row: 2 / 3;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
 }
 
 
@@ -477,12 +550,12 @@ button:disabled {
 
   .gorilla-menu-bar .main-menu-item {
     font-size: 1.1rem;
-    padding: 0.9rem 1rem;
+    padding: 0.6rem 0.8rem;
     border-radius: 10px;
-    border: none;
-    background: rgba(255,255,255,0.03);
+    border: 1px solid #333;
+    background: transparent;
     color: inherit;
-    width: 100%;
+    width: auto;
     text-align: left;
   }
 
@@ -490,16 +563,19 @@ button:disabled {
     background: rgba(255,255,255,0.06);
   }
 
-  /* Close button */
-  .main-menu-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+  /* Close button: behave like a regular menu item inside the mobile menu grid
+     so it appears as the same size as other buttons when placed in the grid */
+  .gorilla-menu-bar .main-menu-close {
+    /* match the other items */
     background: transparent;
-    border: none;
+    border: 1px solid #333;
     color: inherit;
-    font-size: 1.25rem;
-    padding: 0.25rem 0.5rem;
+    font-size: 1.1rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    width: auto;
+    display: inline-block;
+    text-align: left;
   }
 
   /* Show overlay when menu is visible via inline JS */
@@ -574,13 +650,16 @@ button:disabled {
 
 /* Make the dialog large enough to contain the menu and slide chooser */
 .gorilla-menu-dialog {
-  width: 92vw;
-  max-width: 720px;
+  /* Fit dialog to its content (the button grid) with a small padding */
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: calc(3 * 2.5em + 2 * 0.125rem + 2rem); /* rough cap */
   max-height: 88vh;
   padding: 0.5rem;
   box-sizing: border-box;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
@@ -589,19 +668,22 @@ button:disabled {
   left: auto;
   top: auto;
   transform: none;
-  width: 100%;
+  width: auto;
   max-height: 84vh;
-  overflow: auto;
+  overflow: visible;
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 12px;
   background: var(--slide-body-background-color, #111);
   color: var(--slide-body-color, white);
+  justify-items: center; /* center children (button grid and chooser) */
+  align-items: start;
 }
 
 .gorilla-menu-dialog .gorilla-menu-bar .gorilla-menu-button-wrapper {
-  width: 100%;
+  width: auto;
+  margin: 0; /* ensure no extra offset inside dialog */
 }
 
 .gorilla-menu-dialog select.gorilla-navigation,
