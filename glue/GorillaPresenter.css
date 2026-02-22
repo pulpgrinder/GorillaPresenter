@@ -453,7 +453,8 @@ button:disabled {
     max-width: 480px;
     max-height: 84vh;
     overflow: auto;
-    display: grid !important;
+    /* Hidden by default; shown when `.open` or `.closing` is applied */
+    display: none;
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr;
     background: var(--slide-body-background-color, #111);
@@ -520,9 +521,11 @@ button:disabled {
 }
 
 .gorilla-menu-bar.open {
+  display: grid;
   animation: menuIn 220ms cubic-bezier(.2,.9,.2,1) both;
 }
 .gorilla-menu-bar.closing {
+  display: grid;
   animation: menuOut 160ms cubic-bezier(.2,.9,.2,1) both;
 }
 
