@@ -1,4 +1,5 @@
 # Gorilla Presenter
+
 ; Any line beginning with a semicolon (like this one) is taken to be a comment. It's only visible in the editor, not in the slide as displayed.
 {{{media Our Founder}}}
 
@@ -33,11 +34,14 @@ Other Plugins
 =Poetry|> Poetry
 =Book|> Book
 =Wikipedia |> Wikipedia
+=YouTube |> YouTube
 =Map |> Map
 =Icon |> Icon
 =LaTeX Math|> LaTeX Math
 =Stet|> Stet
 =Literal|> Literal
+=Quiz |> Quiz
+=Matching |> Matching
 Advanced Formatting
 =Controlling Appearance with CSS|> Controlling Appearance with CSS
 =Built-in CSS Classes |> Built-in CSS Classes
@@ -511,6 +515,72 @@ A line with a                    whole bunch of embedded spaces,
 some < > angle brackets, and an & ampersand.}}}
 
 
+# Quiz
+
+The Quiz plugin lets you create multiple-choice quizzes. Questions and answers are separated by blank lines. Mark the correct answer with an asterisk (*).
+
+Both the question order and answer order are shuffled each time the slide is rendered, so the quiz is different every time.
+
+{{{literal{{{quiz
+What is 2+2?
+5
+9
+*4
+27
+
+What is it called when liquid water falls out of the sky?
+Fire
+Earth
+*Rain
+Peanut butter
+}}}}}}
+
+produces:
+
+{{{quiz
+What is 2+2?
+5
+9
+*4
+27
+
+What is it called when liquid water falls out of the sky?
+Fire
+Earth
+*Rain
+Peanut butter
+}}}
+
+# Matching
+
+The Matching plugin lets you create drag-and-drop matching exercises. Pairs are separated by blank lines; the first line of each pair goes in the left column and the second line goes in the right column.
+
+Both columns are shuffled independently each time the slide is rendered. The user drags left-column items to line them up with their corresponding right-column entries, then clicks "Check Answers" to see which are correct.
+
+{{{literal{{{matching
+1066
+Battle of Hastings
+
+1969
+First manned Moon landing
+
+1776
+U.S. Declaration of Independence
+}}}}}}  
+
+produces:
+
+{{{matching
+1066
+Battle of Hastings
+
+1969
+First manned Moon landing
+
+1776
+U.S. Declaration of Independence
+}}}
+
 # Book
 
 The books plugin lets you create links to sources for any book for which you have the ISBN. Both ISBN-10 and ISBN-13 are supported. If you have both, you should probably prefer ISBN-13.
@@ -536,6 +606,19 @@ As with the Book plugin, this obviously requires an active internet connection.
 {{{stet{{{wikipedia black sabbath}}}}}} will produce:
 
 {{{wikipedia black sabbath}}}
+
+
+# YouTube
+
+The YouTube plugin displays a thumbnail of a YouTube video with a play button overlay. Clicking it opens the video on YouTube in a new browser tab.
+
+As with the Book and Wikipedia plugins, this requires an active internet connection.
+
+{{{stet{{{youtube https://www.youtube.com/watch?v=dQw4w9WgXcQ}}}}}} will produce:
+
+{{{youtube https://www.youtube.com/watch?v=dQw4w9WgXcQ}}}
+
+You can use any standard YouTube URL format (watch, embed, youtu.be short links, or even a bare 11-character video ID).
 
 
 # Map

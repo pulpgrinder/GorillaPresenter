@@ -1,0 +1,112 @@
+.gorilla-matching-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 80vw;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gorilla-matching-left,
+.gorilla-matching-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.gorilla-matching-item,
+.gorilla-matching-clue {
+    padding: 20px 25px;
+    font-size: 1.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    min-height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.gorilla-matching-clue {
+    background-color: var(--menu-header-background-color);
+    color: var(--menu-header-color);
+    font-weight: bold;
+    font-family: var(--heading-font-stack);
+    border-right: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+.gorilla-matching-item {
+    background-color: var(--menu-body-color);
+    color: var(--menu-body-background-color);
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-color 0.2s;
+}
+
+.gorilla-matching-item::before {
+    content: '⠿';
+    margin-right: 0.75em;
+    opacity: 0.4;
+    font-size: 1.1em;
+}
+
+.gorilla-matching-item:active {
+    cursor: grabbing;
+}
+
+/* Last items: no bottom border */
+.gorilla-matching-left .gorilla-matching-clue:last-child,
+.gorilla-matching-right .gorilla-matching-item:last-child {
+    border-bottom: none;
+}
+
+/* Dragging state (HTML5 DnD) */
+.gorilla-matching-dragging {
+    opacity: 0.4;
+}
+
+/* Touch dragging state */
+.gorilla-matching-touch-dragging {
+    opacity: 0.85;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+}
+
+/* Drop placeholder for touch */
+.gorilla-matching-placeholder {
+    background: rgba(0, 0, 0, 0.08);
+    border: 2px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* Check result highlights */
+.gorilla-matching-correct {
+    background-color: #2e7d32 !important;
+    color: #fff !important;
+}
+
+.gorilla-matching-incorrect {
+    background-color: #c62828 !important;
+    color: #fff !important;
+}
+
+/* Check button */
+.gorilla-matching-button-row {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.gorilla-matching-check {
+    padding: 0.6em 2em;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--menu-body-color);
+    color: var(--menu-body-background-color);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.gorilla-matching-check:hover {
+    opacity: 0.85;
+}

@@ -12,7 +12,9 @@ GorillaSlideRenderer.registerPlugin('wikipedia', WikipediaPlugin);
 GorillaSlideRenderer.registerPlugin('map', MapPlugin);
 GorillaSlideRenderer.registerPlugin('branch', BranchPlugin);
 GorillaSlideRenderer.registerPlugin('poetry', PoetryPlugin);
-
+GorillaSlideRenderer.registerPlugin('youtube', YouTubePlugin);
+GorillaSlideRenderer.registerPlugin('quiz', QuizPlugin);
+GorillaSlideRenderer.registerPlugin('matching', MatchingPlugin);
 await window.fs.unpackZipData();
 //let cursorData = await fs.readBinaryFile("GorillaCursor.png");
 //let url = URL.createObjectURL(cursorData);
