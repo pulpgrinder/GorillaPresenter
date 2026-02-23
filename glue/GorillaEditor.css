@@ -35,7 +35,7 @@
     margin: 0;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 3em 3em auto;
+    grid-template-rows: 1fr;
     z-index: 100000;
     background-color: var(--slide-body-background-color);
     overflow: hidden;
@@ -76,6 +76,93 @@
     background-color: lightgray;
     height: 3em;
     border-top: 1px solid black;
+}
+
+/* Dialog context - when find toolbar is in the editor find dialog */
+.gorilla-find-dialog #gorilla-editor-find-toolbar {
+    width: min(90vw, 900px);
+    max-width: 90vw;
+    height: auto;
+    padding: 0.5rem;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    color: var(--slide-body-color, white);
+    padding: 0.5rem 0;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel .gorilla-find-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 6.5rem 7.5rem;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel .gorilla-find-row:nth-child(3) {
+    grid-template-columns: auto 1fr;
+    min-width: 0;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel input[type="text"] {
+    padding: 0.25rem 0.4rem;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 0.9em;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel button {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    background: #f0f0f0;
+    color: #000000;
+    border: 1px solid #999999;
+    font-size: 0.85em;
+    min-width: 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0;
+    color: var(--slide-body-color, white);
+    min-width: 0;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel #gorilla-find-status {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel button:hover {
+    background: #e6e6e6;
+}
+
+.gorilla-find-dialog #gorilla-editor-find-toolbar #gorilla-editor-find-control-panel button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 #gorilla-editor-editor-panel {
     padding: 0;

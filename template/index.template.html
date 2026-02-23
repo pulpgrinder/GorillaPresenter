@@ -90,41 +90,28 @@
 
       </div>
       <div id="gorilla-editor-screen" class="gorilla-presenter-screen">
+        <div id="gorilla-editor-find-toolbar" class="gorilla-menu-bar" style="display:none;">
+          <div id="gorilla-editor-find-control-panel">
+                <div class="gorilla-find-row">
+                  <input type="text" id="gorilla-find-input" placeholder="Find...">
+                  <button id="gorilla-find-next">Find</button>
+                  <button id="gorilla-find-previous">Previous</button>
+                </div>
+                <div class="gorilla-find-row">
+                  <input type="text" id="gorilla-replace-input" placeholder="Replace with...">
+                  <button id="gorilla-replace-current">Replace</button>
+                  <button id="gorilla-replace-all">Replace All</button>
+                </div>
+                <div class="gorilla-find-row">
+                  <label>
+                      <input type="checkbox" id="gorilla-find-case-sensitive"> Case sensitive
+                  </label>
+                  <span id="gorilla-find-status"></span>
+                </div>
+          </div>
+        </div>
         <div id="gorilla-editor-wrapper">
-        <div id="gorilla-editor-main-control-panel" class="gorilla-menu-button-wrapper"><button class="main-menu-item ionicon" nav-value="bold" title="Bold">fontawesome/bold</button><button class="main-menu-item ionicon" nav-value="italic" title="Italic">fontawesome/italic</button>
-        <button class="main-menu-item ionicon" nav-value="blockquote" title="Blockquote">fontawesome/leftquote</button>
-      <button class="main-menu-item ionicon" nav-value="ul" title="Bullet List">fontawesome/list-ul</button>
-        <button class="main-menu-item ionicon" nav-value="ol" title="Numbered List">fontawesome/list-ol</button>
-       <button class="main-menu-item ionicon" nav-value="superscript" title="Superscript">fontawesome/superscript</button>
-        <button class="main-menu-item ionicon" nav-value="subscript" title="Subscript">fontawesome/subscript</button>
-          <button class="main-menu-item ionicon" nav-value="strikethrough" title="Strikethrough">fontawesome/strike</button>
-        <button class="main-menu-item ionicon" nav-value="code" title="Code">fontawesome/code</button>
-        <button class="main-menu-item ionicon" nav-value="comment" title="Comment">fontawesome/comment</button>
-         <button class="main-menu-item ionicon" nav-value="insertmedia" title="Insert Media">fontawesome/media</button>
-         <button class="main-menu-item ionicon" nav-value="latex" title="LaTeX Math">fontawesome/infinity</button>
-
-         <button class="main-menu-item ionicon" nav-value="footnote" title="Insert footnote">fontawesome/note-sticky</button>
-         </div>
-         <div id="gorilla-editor-find-control-panel">
-          
-                <input type="text" id="gorilla-find-input" placeholder="Find..."> <button id="gorilla-find-next">Find</button><button id="gorilla-find-previous">Previous</button>
-                 <input type="text" id="gorilla-replace-input" placeholder="Replace with..."><button id="gorilla-replace-current">Replace</button>
-                <button id="gorilla-replace-all">Replace All</button>
-                <label>
-                    <input type="checkbox" id="gorilla-find-case-sensitive"> Case sensitive
-                </label>
-               <!--- Decided regex was overkill for this application, just adds UI complexity. Kept code here and in GorillaEditor.js in case we decide to add it back later.
-
-               <label>
-                    <input type="checkbox" id="gorilla-find-regex"> Regex
-                </label> --->
-           
-            
-               
-                
-            &nbsp;&nbsp;<span id="gorilla-find-status"></span>
-            </div>
-              <div id="gorilla-editor-editor-panel">
+         <div id="gorilla-editor-editor-panel">
           <pre id="gorilla-slide-editor" class="language-markdown codejar"></pre>
         </div>
       </div>

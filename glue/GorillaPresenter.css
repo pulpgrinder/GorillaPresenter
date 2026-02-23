@@ -657,6 +657,46 @@ button:disabled {
   background: rgba(0,0,0,0.6);
 }
 
+/* Find dialog: no dimming, wider content to avoid horizontal scroll */
+.gorilla-find-dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+  width: min(95vw, 1100px);
+  max-width: 95vw;
+  box-sizing: border-box;
+}
+
+.gorilla-find-dialog::backdrop {
+  background: transparent;
+}
+
+.gorilla-find-dialog .gorilla-menu-bar {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 0 0 10px 10px;
+    background: var(--slide-body-background-color, #111);
+    color: var(--slide-body-color, white);
+    box-sizing: border-box;
+}
+
+.gorilla-find-dialog .gorilla-find-dialog-handle {
+    width: 90vw;
+    max-width: 90vw;
+    padding: 0.4rem 0.75rem;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+    background: #f0f0f0;
+    color: #000000;
+    font-weight: 600;
+    cursor: move;
+    user-select: none;
+    border: 1px solid #999999;
+    box-sizing: border-box;
+}
 /* Make the dialog large enough to contain the menu and slide chooser */
 .gorilla-menu-dialog {
   /* Fit dialog to its content (the button grid) with a small padding */
@@ -671,6 +711,7 @@ button:disabled {
   align-items: center;
   justify-content: center;
 }
+
 
 .gorilla-menu-dialog .gorilla-menu-bar {
   position: relative;
