@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node tools/headless_test.js",
-    "build": "node GorillaBuilder/bundler.js && node GorillaBuilder/zipper.js && node GorillaBuilder/encoder.js"
+    "build": "node GorillaBuilder/bundler.js && node GorillaBuilder/zipper.js && node GorillaBuilder/encoder.js",
+    "server": "python3 serve.py"
   },
   "repository": {
     "type": "git",
