@@ -60,22 +60,27 @@
     border-top: 1px solid black;
 }
 
+/* Fixed bottom find/replace toolbar */
+#gorilla-editor-find-toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 300000;
+    background-color: #e8e8e8;
+    border-top: 2px solid #999;
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+}
+
 #gorilla-editor-find-control-panel {
-    padding: 0;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    width: 100%;
-    align-items: center;
-    margin: 0;
-    box-sizing: content-box;
-    z-index: 100001;
-    -webkit-user-select: none;
-    user-select: none;
     display: flex;
-    color: black;
-    background-color: lightgray;
-    height: 3em;
-    border-top: 1px solid black;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 /* Dialog context - when find toolbar is in the editor find dialog */
@@ -233,9 +238,54 @@
 }
 
 #gorilla-find-status {
-    margin-top: 10px;
     color: #666;
     font-size: 12px;
+}
+
+/* Find toolbar row layout */
+#gorilla-editor-find-control-panel .gorilla-find-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+#gorilla-editor-find-control-panel .gorilla-find-row:nth-child(3) {
+    grid-template-columns: auto 1fr;
+}
+
+#gorilla-editor-find-control-panel input[type="text"] {
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #aaa;
+    font-size: 0.95rem;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+#gorilla-editor-find-control-panel button {
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    background: #f0f0f0;
+    color: #000;
+    border: 1px solid #999;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#gorilla-editor-find-control-panel button:hover {
+    background: #ddd;
+}
+
+#gorilla-editor-find-control-panel label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #333;
+    font-size: 0.9rem;
 }
 
 .gorilla-find-highlight {
