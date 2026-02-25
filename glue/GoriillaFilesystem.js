@@ -240,6 +240,11 @@ window.fs = {
     return filenames;
   },
   async savePresentation() {
+    document.body.style.cursor = "wait";
+
+    // Yield to the browser so the wait cursor renders before heavy work
+    await new Promise(resolve => setTimeout(resolve, 0));
+
     // Try modern API first (Chrome/Edge)
     if ('showSaveFilePicker' in window) {
       try {
@@ -251,15 +256,22 @@ window.fs = {
           }],
         });
 
+        if (this.zipModified) {
+          await this.packZipData();
+        }
+
         const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
         const writable = await handle.createWritable();
         await writable.write(html);
         await writable.close();
 
+        document.body.style.cursor = "default";
         GorillaAlert.show('File saved successfully!');
+        GorillaPresenter.markDirty(false);
         return;
       } catch (err) {
         if (err.name === 'AbortError') {
+          document.body.style.cursor = "default";
           GorillaAlert.show('Save canceled');
           return;
         }
@@ -267,8 +279,6 @@ window.fs = {
     }
 
     // Fallback for Safari and other browsers
-    document.body.style.cursor = "wait";
-
     if (this.zipModified) {
       await this.packZipData();
     }

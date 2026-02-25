@@ -108,6 +108,7 @@ HammerDriver = {
                     break;
             }
         });
+
         let editor = document.getElementById("gorilla-slide-editor");
         /*     editor.addEventListener("keydown", function (evt) {
                  console.log("Keydown event in editor, key:", evt.key);
