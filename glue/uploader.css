@@ -3,8 +3,8 @@
   border-radius: 10px;
   padding: 60px;
   text-align: center;
-  background: var(--slide-body-color);
-  color: var(--slide-body-background-color);
+  background: #f0f0f0;
+  color: black
   background: #f9f9f9;
   transition: all 0.3s;
   height: 2em;
