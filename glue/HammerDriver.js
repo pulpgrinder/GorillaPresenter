@@ -66,6 +66,16 @@ HammerDriver = {
             });
             hammer.on("press", (ev) => {
                 console.log('Hammer press:', ev && ev.type, 'target:', ev && ev.target && ev.target.tagName);
+                // Prevent the following click/release event from firing
+                // which would otherwise be interpreted as an outside click
+                // and immediately close the menu we open here.
+                try {
+                    const src = ev && ev.srcEvent;
+                    if (src) {
+                        if (typeof src.preventDefault === 'function') src.preventDefault();
+                        if (typeof src.stopPropagation === 'function') src.stopPropagation();
+                    }
+                } catch (e) { /* ignore */ }
                 MainMenuDriver.toggleMenu();
             });
 

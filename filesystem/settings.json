@@ -1,10 +1,10 @@
 {
     "defaultIncorrectResponse": "I'm sorry, that's not correct.",
     "defaultCorrectResponse": "Correct!",
-    "theme": "Greeting",
+    "theme": "Tropical Beach",
     "editorTheme": "prism-editor-themes/Tomorrow.css",
     "editorFontSize": 16,
     "headingFontStack": "--didone-font-stack",
-    "bodyFontStack": "--serif-font-stack",
+    "bodyFontStack": "--classical-humanist-font-stack",
     "codeFontStack": "--monospace-code-font-stack"
 }
