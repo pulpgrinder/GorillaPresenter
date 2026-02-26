@@ -31,6 +31,8 @@ Flow Control Plugins
 ==Outlines|>  Outlines
 =Autoplay |> Autoplay
 Other Plugins
+=Quiz |> Quiz
+=Matching |> Matching
 =Poetry|> Poetry
 =Book|> Book
 =Wikipedia |> Wikipedia
@@ -40,8 +42,6 @@ Other Plugins
 =LaTeX Math|> LaTeX Math
 =Stet|> Stet
 =Literal|> Literal
-=Quiz |> Quiz
-=Matching |> Matching
 Advanced Formatting
 =Controlling Appearance with CSS|> Controlling Appearance with CSS
 =Built-in CSS Classes |> Built-in CSS Classes
@@ -75,8 +75,6 @@ You can choose a specific slide by pressing/clicking and holding anywhere on the
 To edit your presentation, click/tap and hold ("long press") on a slide, then choose the editor. 
 
 {{{media Open Editor}}}
-
-You can type your Markdown code as you wish, or if you select some text and click one of the buttons (e.g., the B for bold button), that text will be formatted accordingly. 
 
 When you're done, click the slideshow button on the main menu (you may need to long-press again if the menu has been closed).
 
@@ -287,15 +285,15 @@ If you have just a | as the separator, Gorilla Presenter will display a message 
 
 {{{stet{{{branch this branch displays a message|Hi, there!}}}}}} -> {{{branch this branch displays a message|Hi, there!}}}
 
-If you don't have an | at all, the branch won't do anything (other than being displayed with a different color)
+If you don't have an | at all, the branch has no effect, other than being displayed with a different color.
 
 {{{stet {{{branch The goggles do nothing!}}}}}} -> {{{branch The goggles do nothing!}}}
 
-This doesn't accomplish much for a single branch, but is used as a section separator in Menus and Outlines (read on).
+Why would you want that? It's used as a section separator in menus and outlines (described below).
 
 # Menus
 
-Menus are basically a collection of branches packed into a list. The link format is exactly the same as for branches (see previous slide). Here a blank argument (which was of no use in a plain branch) is used as a menu separator.
+Menus are basically a collection of branches packed into a list. The link format is exactly the same as for branches (see previous slide). Here "Menu Section 1" doesn't have an | followed by an argument, which makes it display as a section separator.
 
 ```
 {{{menu
@@ -324,7 +322,7 @@ Display a message|Hi there!
 
 # Outlines
 
-Outlines are exactly like menus, except they appear in MLA outline format. Outline indentation levels are specified by preceding the line with an equals sign for each desired indentation level.
+Outlines are like menus, except they appear in MLA outline format. Outline indentation levels are specified by preceding the line with an equals sign for each desired indentation level.
 
 ```
 {{{outline
@@ -383,7 +381,7 @@ There is an integrated trash bin that lets you temporarily mark files as deleted
 
 # Using Media
 
-This is pretty easy. Just insert a media directive along with the name (or a partial name) of the media file you want to use. As with other parts of Gorilla Presenter, you only need to give enough of the name to distinguish it from other files.Optionally, you can set the title/alt tag (the information that appears when you hover your mouse over the media player) by adding a | character followed by the title you want. Otherwise the file name will be used. 
+This is pretty easy. Just insert a media directive along with the name (or a partial name) of the media file you want to use. As with other parts of Gorilla Presenter, you only need to give enough of the name to distinguish it from other files. Optionally, you can set the title/alt tag (the information that appears when you hover your mouse over the media player) by adding a | character followed by the title you want. Otherwise the file name will be used. 
 
 
 You don't need to tell Gorilla Presenter whether it's an audio, video, or still image file, nor do you need to worry about file extensions. Gorilla Presenter figures all that stuff out for you. However, you should probably avoid having (e.g.) both a "This is a cool" image file and a "This is cool" video file, or you may get unexpected behavior (Gorilla Presenter uses the first matching file it finds, which may not be the one you want if you have duplicate names).
@@ -435,6 +433,72 @@ The Media Recorder lets you create audio or video recordings inside Gorilla Pres
 
 Recordings are saved to the media/ folder as WebM files and can be inserted with `{{{media}}}` like any other media asset. Remember to download the changed presentation to keep your recordings.
 
+# Quiz
+
+The Quiz plugin lets you create multiple-choice quizzes. Questions and answers are separated by blank lines. Mark the correct answer with an asterisk (*).
+
+Both the question order and answer order are shuffled each time the slide is rendered, so the quiz is different every time.
+
+{{{literal{{{quiz
+What is 2+2?
+5
+9
+*4
+27
+
+What is it called when liquid water falls out of the sky?
+Fire
+Earth
+*Rain
+Peanut butter
+}}}}}}
+
+produces:
+
+{{{quiz
+What is 2+2?
+5
+9
+*4
+27
+
+What is it called when liquid water falls out of the sky?
+Fire
+Earth
+*Rain
+Peanut butter
+}}}
+
+# Matching
+
+The Matching plugin lets you create drag-and-drop matching exercises. Pairs are separated by blank lines; the first line of each pair goes in the left column and the second line goes in the right column.
+
+Both columns are shuffled independently each time the slide is rendered. The user drags left-column items to line them up with their corresponding right-column entries, then clicks "Check Answers" to see which are correct.
+
+{{{literal{{{matching
+1066
+Battle of Hastings
+
+1969
+First manned Moon landing
+
+1776
+U.S. Declaration of Independence
+}}}}}}  
+
+produces:
+
+{{{matching
+1066
+Battle of Hastings
+
+1969
+First manned Moon landing
+
+1776
+U.S. Declaration of Independence
+}}}
+
 # Autoplay
 
 The autoplay plugin is for unattended presentations.
@@ -443,7 +507,7 @@ There are three basic forms:
 
 `{{{autoplay 15}}}` will advance through the slides one-by-one, starting at the current slide, changing to the next slide after 15 seconds. This continues until another autoplay directive is encountered or the end of the presentation is reached.
 
-`{{{autoplay 10 foobar}}}` This would delay 10 seconds, then advance to the first slide whose title matches "foobar". Unlike the previous form, this is a one-shot. After the foobar slide is visible, the autoplay stops (it wouldn't make any sense to go to the foobar slide when you were already on foobar) You'd need to put another autoplay directive on that slide if you wanted to keep things moving.
+`{{{autoplay 10 foobar}}}` This would delay 10 seconds, then advance to the first slide whose title matches "foobar". Unlike the previous form, this is a one-shot. After the foobar slide is visible, the autoplay stops (it wouldn't make any sense to go to the foobar slide again when you were already on foobar) You'd need to put another autoplay directive on that slide if you wanted to keep things moving.
 
 `{{{autoplay 0}}}` or just `{{{autoplay}}}` This stops any autoplay that is currently in progress.
 
@@ -512,74 +576,8 @@ newlines,
 
 more newlines,
 A line with a                    whole bunch of embedded spaces,
-some < > angle brackets, and an & ampersand.}}}
+some < > angle brackets, and an & (ampersand).}}}
 
-
-# Quiz
-
-The Quiz plugin lets you create multiple-choice quizzes. Questions and answers are separated by blank lines. Mark the correct answer with an asterisk (*).
-
-Both the question order and answer order are shuffled each time the slide is rendered, so the quiz is different every time.
-
-{{{literal{{{quiz
-What is 2+2?
-5
-9
-*4
-27
-
-What is it called when liquid water falls out of the sky?
-Fire
-Earth
-*Rain
-Peanut butter
-}}}}}}
-
-produces:
-
-{{{quiz
-What is 2+2?
-5
-9
-*4
-27
-
-What is it called when liquid water falls out of the sky?
-Fire
-Earth
-*Rain
-Peanut butter
-}}}
-
-# Matching
-
-The Matching plugin lets you create drag-and-drop matching exercises. Pairs are separated by blank lines; the first line of each pair goes in the left column and the second line goes in the right column.
-
-Both columns are shuffled independently each time the slide is rendered. The user drags left-column items to line them up with their corresponding right-column entries, then clicks "Check Answers" to see which are correct.
-
-{{{literal{{{matching
-1066
-Battle of Hastings
-
-1969
-First manned Moon landing
-
-1776
-U.S. Declaration of Independence
-}}}}}}  
-
-produces:
-
-{{{matching
-1066
-Battle of Hastings
-
-1969
-First manned Moon landing
-
-1776
-U.S. Declaration of Independence
-}}}
 
 # Book
 
@@ -743,7 +741,7 @@ Note that this could render the presentation competely unviewable if you don't k
 
 First the system's built-in CSS is loaded, then any custom CSS files in the media folder (just `Custom CSS.css` by default). Since the media folder CSS comes later, it's possible to override pretty much any of the built-in CSS.
 
-If there's more than one CSS file in the media folder, they are loaded in English lexical ("alphabetical" or "dictionary") order. If you want to make sure your CSS file is loaded first, you could name it something like `0000LoadMeFirst.css`. If you want to make sure your CSS is loaded last, you could name it something like `zzzLoadMeLast.css`.
+If there's more than one CSS file in the media folder, they are loaded in English lexical ("alphabetical" or "dictionary") order. If you want to make sure your CSS file is loaded first, you could name it something like `0000LoadMeFirst.css`. If you want to make sure your CSS is loaded last, you could name it something like `zzzzLoadMeLast.css`.
 
 You can even override the built-in theme variables to create your own theme.
 
