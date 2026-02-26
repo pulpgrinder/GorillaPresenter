@@ -29,6 +29,7 @@ class GorillaMediaRecorder {
                     "cutBtn": true,
                     "clearSelectionBtn": true,
                     "saveBtn": true,
+                    "loadBtn": true,
                 },
                 images: {
                     "playBtn": this.recorderIcons.play,
@@ -45,6 +46,7 @@ class GorillaMediaRecorder {
                     "cutBtn": false,
                     "clearSelectionBtn": false,
                     "saveBtn": false,
+                    "loadBtn": false,
                 },
                 images: {
                     "recordBtn": this.recorderIcons.recordstop,
@@ -59,6 +61,7 @@ class GorillaMediaRecorder {
                     "cutBtn": false,
                     "clearSelectionBtn": false,
                     "saveBtn": false,
+                    "loadBtn": false,
                 },
                 images: {
                     "playBtn": this.recorderIcons.pause,
@@ -74,6 +77,7 @@ class GorillaMediaRecorder {
                     "cutBtn": false,
                     "clearSelectionBtn": false,
                     "saveBtn": false,
+                    "loadBtn": false,
                 },
                 images: {
                 }
@@ -87,6 +91,7 @@ class GorillaMediaRecorder {
                     "cutBtn": false,
                     "clearSelectionBtn": false,
                     "saveBtn": false,
+                    "loadBtn": false,
                 },
                 images: {
                 }
@@ -413,14 +418,90 @@ class GorillaMediaRecorder {
 
             GorillaEditor.updateCode(code);
 
-            GorillaEditor.setCursorPosition(currentPosition.start + mediaString.length, currentPosition.start + mediaString.length);
+            GorillaEditor.setCursorPosition(0, 0);
         }
         await fs.writeBinaryFile(saveName, finalBlob);
-        GorillaPresenter.updateSlideData();
+        await GorillaPresenter.updateSlideData();
         fs.zipModified = true;
         GorillaPresenter.markDirty(true);
         GorillaRecorder.setStatus('Recording saved as ' + saveName);
 
+    }
+
+    async loadFromLibrary() {
+        try {
+            const files = await fs.readDirectory("media/");
+            const mediaFiles = files.filter(f => {
+                const lower = f.toLowerCase();
+                return lower.endsWith('.webm') || lower.endsWith('.mp4') ||
+                       lower.endsWith('.mp3') || lower.endsWith('.ogg') ||
+                       lower.endsWith('.wav');
+            });
+            if (mediaFiles.length === 0) {
+                GorillaAlert.show('No media files found in the media library.');
+                return;
+            }
+            // Build a file chooser dialog
+            const result = await new Promise(resolve => {
+                const dialog = document.createElement('dialog');
+                const listItems = mediaFiles.map(f => {
+                    const displayName = f.replace(/^media\//, '');
+                    return `<li class="gorilla-file-chooser-item" data-path="${f}" style="cursor:pointer; padding:0.4em 0.6em; border-bottom:1px solid rgba(128,128,128,0.3);">${displayName}</li>`;
+                }).join('');
+                dialog.innerHTML = `
+                    <form method="dialog">
+                        <div><label>Select a media file to load:</label></div>
+                        <div style="max-height:60vh; overflow-y:auto; margin:0.5em 0;">
+                            <ul style="list-style:none; padding:0; margin:0;">${listItems}</ul>
+                        </div>
+                        <div><button type="submit" value="cancel">Cancel</button></div>
+                    </form>
+                `;
+                document.body.appendChild(dialog);
+                dialog.querySelectorAll('.gorilla-file-chooser-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        dialog.close(item.getAttribute('data-path'));
+                    });
+                });
+                dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close('cancel'); });
+                dialog.onclose = () => {
+                    const val = dialog.returnValue;
+                    dialog.remove();
+                    resolve(val && val !== 'cancel' ? val : null);
+                };
+                dialog.showModal();
+            });
+            if (!result) return;
+
+            const data = await fs.readBinaryFile(result);
+            let mimeType = 'video/webm';
+            const lower = result.toLowerCase();
+            if (lower.endsWith('.mp4')) mimeType = 'video/mp4';
+            else if (lower.endsWith('.mp3')) mimeType = 'audio/mpeg';
+            else if (lower.endsWith('.ogg')) mimeType = 'audio/ogg';
+            else if (lower.endsWith('.wav')) mimeType = 'audio/wav';
+            else if (lower.endsWith('.webm')) {
+                mimeType = lower.includes('audio') ? 'audio/webm' : 'video/webm';
+            }
+
+            const blob = new Blob([data], { type: mimeType });
+            GorillaRecorder.currentBlob = blob;
+            const url = URL.createObjectURL(blob);
+            GorillaRecorder.video.src = url;
+            GorillaRecorder.video.onloadedmetadata = async () => {
+                GorillaRecorder.duration = GorillaRecorder.video.duration;
+                GorillaRecorder.clearSelection();
+                GorillaRecorder.resizeCanvas();
+                GorillaRecorder.drawWaveform();
+                GorillaRecorder.updatePlayhead();
+                GorillaRecorder.stateTransition('IDLE');
+                GorillaRecorder.setStatus('Loaded: ' + result);
+            };
+            GorillaRecorder.video.load();
+        } catch (e) {
+            console.error('Error loading from library:', e);
+            GorillaAlert.show('Error loading file: ' + e.message);
+        }
     }
 
     resizeCanvas() {
@@ -429,6 +510,29 @@ class GorillaMediaRecorder {
         if (GorillaRecorder.currentBlob) {
             GorillaRecorder.drawWaveform();
         }
+    }
+
+    drawNoAudioFlatline() {
+        const width = GorillaRecorder.waveformCanvas.width;
+        const height = GorillaRecorder.waveformCanvas.height;
+        const ctx = GorillaRecorder.waveformCtx;
+
+        ctx.fillStyle = '#090000ff';
+        ctx.fillRect(0, 0, width, height);
+
+        // Draw center flatline
+        ctx.strokeStyle = '#2ab02eff';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, height / 2);
+        ctx.lineTo(width, height / 2);
+        ctx.stroke();
+
+        // Label
+        ctx.fillStyle = '#888888';
+        ctx.font = '12px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('No audio track', width / 2, height / 2 - 10);
     }
 
     async drawWaveform() {
@@ -440,6 +544,13 @@ class GorillaMediaRecorder {
             const audioContext = new AudioContext();
             const arrayBuffer = await GorillaRecorder.currentBlob.arrayBuffer();
             const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            // Check for no audio channels or silent audio
+            if (audioBuffer.numberOfChannels === 0) {
+                audioContext.close();
+                GorillaRecorder.drawNoAudioFlatline();
+                return;
+            }
 
             const width = GorillaRecorder.waveformCanvas.width;
             const height = GorillaRecorder.waveformCanvas.height;
@@ -453,7 +564,14 @@ class GorillaMediaRecorder {
                 if (absValue > maxAbs) maxAbs = absValue;
             }
 
-            const scale = maxAbs > 0 ? 1 / maxAbs : 1;
+            // If audio is completely silent, show flatline
+            if (maxAbs < 0.0001) {
+                audioContext.close();
+                GorillaRecorder.drawNoAudioFlatline();
+                return;
+            }
+
+            const scale = 1 / maxAbs;
 
             GorillaRecorder.waveformCtx.fillStyle = '#090000ff';
             GorillaRecorder.waveformCtx.fillRect(0, 0, width, height);
@@ -482,7 +600,8 @@ class GorillaMediaRecorder {
 
             audioContext.close();
         } catch (error) {
-            console.error('Error drawing waveform:', error);
+            console.warn('No audio track found, drawing flatline:', error.message);
+            GorillaRecorder.drawNoAudioFlatline();
         }
     }
 
@@ -1077,6 +1196,8 @@ const clearSelectionBtn = document.getElementById('gorilla-media-recorder-clear-
 GorillaRecorder.controlButtons['clearSelectionBtn'] = clearSelectionBtn;
 const saveBtn = document.getElementById('gorilla-media-recorder-save-recording');
 GorillaRecorder.controlButtons['saveBtn'] = saveBtn;
+const loadBtn = document.getElementById('gorilla-media-recorder-load');
+GorillaRecorder.controlButtons['loadBtn'] = loadBtn;
 const modeRadios = document.querySelectorAll('input[name="gorilla-media-recorder-mode"]');
 const browserWarning = document.getElementById('gorilla-media-recorder-browser-warning');
 
