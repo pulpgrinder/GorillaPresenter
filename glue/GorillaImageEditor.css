@@ -1,0 +1,244 @@
+#gorilla-image-editor-screen {
+  margin: 0 auto;
+  margin-top: 0;
+  padding: 1em;
+  padding-bottom: 7em;
+  display: none;
+  overflow: auto;
+  z-index: 100000;
+  font-family: var(--slide-body-font-stack);
+  color: var(--slide-body-color);
+  background-color: var(--slide-body-background-color);
+}
+
+#gorilla-image-editor-status {
+  padding: 0.6em 1em;
+  margin: 0.5em auto;
+  width: 90vw;
+  background-color: #2ab02e;
+  color: #0b1116;
+  border: 2px solid #0b1116;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.2;
+  min-height: 1em;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+#gorilla-image-editor-workspace {
+  width: 90vw;
+  margin: 0.5em auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: #333;
+  border: 2px solid #999;
+  overflow: auto;
+  max-height: 60vh;
+  min-height: 200px;
+}
+
+#gorilla-image-editor-canvas-container {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  margin: auto;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc),
+    linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+#gorilla-image-editor-canvas {
+  image-rendering: auto;
+  cursor: crosshair;
+  display: block;
+}
+
+#gorilla-image-editor-shape-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#gorilla-image-editor-text-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.gorilla-image-editor-text-element {
+  position: absolute;
+  pointer-events: auto;
+  cursor: move;
+  min-width: 30px;
+  min-height: 1em;
+  padding: 4px 8px;
+  border: 2px dashed rgba(0, 123, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  white-space: pre-wrap;
+  line-height: 1.2;
+  user-select: text;
+}
+
+.gorilla-image-editor-text-element:focus {
+  border-color: #007bff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.gorilla-image-editor-text-element.gorilla-image-editor-text-editing {
+  cursor: text;
+  border-style: solid;
+  border-color: #007bff;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.gorilla-image-editor-text-resize-handle {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  background: #007bff;
+  cursor: nwse-resize;
+  border-radius: 2px;
+  pointer-events: auto;
+}
+
+.gorilla-image-editor-text-delete {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  width: 16px;
+  height: 16px;
+  background: #dc3545;
+  color: white;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  pointer-events: auto;
+}
+
+.gorilla-image-editor-text-delete:hover {
+  background: #ff0000;
+}
+
+.gorilla-image-editor-menu-bar {
+  display: none;
+}
+
+#gorilla-image-editor-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 300000;
+  background-color: #e8e8e8;
+  border-top: 2px solid #999;
+  box-sizing: border-box;
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: #333;
+  font-size: 0.85em;
+}
+
+#gorilla-image-editor-toolbar-row1,
+#gorilla-image-editor-toolbar-row2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8em;
+  align-items: center;
+}
+
+#gorilla-image-editor-button-group {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.gorilla-image-editor-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.15em 0.25em;
+  font-size: 1.3em;
+  line-height: 1;
+  color: #333;
+  border-radius: 4px;
+}
+
+.gorilla-image-editor-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#gorilla-image-editor-toolbar label {
+  font-weight: 600;
+  margin-right: 0.2em;
+}
+
+#gorilla-image-editor-toolbar select,
+#gorilla-image-editor-toolbar input[type="number"] {
+  padding: 2px 4px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: white;
+  font-size: 0.95em;
+}
+
+#gorilla-image-editor-toolbar input[type="color"] {
+  width: 2em;
+  height: 1.8em;
+  padding: 0;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+#gorilla-image-editor-toolbar input[type="range"] {
+  width: 80px;
+  vertical-align: middle;
+}
+
+#gorilla-image-editor-toolbar input[type="checkbox"] {
+  vertical-align: middle;
+  margin-right: 0.2em;
+}
+
+#gorilla-image-editor-toolbar input[type="number"] {
+  width: 3.5em;
+}
+
+#gorilla-image-editor-tool-group,
+#gorilla-image-editor-color-group,
+#gorilla-image-editor-fill-group,
+#gorilla-image-editor-size-group,
+#gorilla-image-editor-adjust-group,
+#gorilla-image-editor-text-group,
+#gorilla-image-editor-zoom-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  flex-wrap: nowrap;
+}
+
+#gorilla-image-editor-color-group,
+#gorilla-image-editor-fill-group {
+  margin-right: 1em;
+}

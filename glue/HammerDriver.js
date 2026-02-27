@@ -66,6 +66,18 @@ HammerDriver = {
             });
             hammer.on("press", (ev) => {
                 console.log('Hammer press:', ev && ev.type, 'target:', ev && ev.target && ev.target.tagName);
+                // Don't open menu when interacting with scrollable editor areas
+                const src = ev && ev.srcEvent;
+                const target = src && src.target;
+                if (target && (
+                    target.closest('#gorilla-image-editor-workspace') ||
+                    target.closest('#gorilla-image-editor-toolbar') ||
+                    target.closest('#gorilla-recorder-controls') ||
+                    target.closest('#gorilla-media-recorder-timeline') ||
+                    target.closest('#gorilla-editor-wrapper')
+                )) {
+                    return;
+                }
                 // Prevent the following click/release event from firing
                 // which would otherwise be interpreted as an outside click
                 // and immediately close the menu we open here.

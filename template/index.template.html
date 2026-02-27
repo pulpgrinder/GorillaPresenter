@@ -54,6 +54,8 @@
             <button class="main-menu-item ionicon" nav-value="settings" title="Settings">cog-outline</button>
             <button class="main-menu-item ionicon" nav-value="recorder"
               title="Audio/Video Recorder">videocam-outline</button>
+            <button class="main-menu-item ionicon" nav-value="imageeditor"
+              title="Image Editor">brush-outline</button>
             <button class="main-menu-item ionicon" nav-value="about"
               title="About GorillaPresenter">information-circle-outline</button>
             <button class="main-menu-item ionicon" nav-value="fullscreen" title="Full Screen">expand-outline</button>
@@ -145,6 +147,88 @@
 
   </div>
 
+
+  <div id="gorilla-image-editor-screen" class="gorilla-presenter-screen">
+    <div>
+      <h1>Image Editor</h1>
+    </div>
+    <div id="gorilla-image-editor-status">Ready</div>
+    <div id="gorilla-image-editor-workspace">
+      <div id="gorilla-image-editor-canvas-container">
+        <canvas id="gorilla-image-editor-canvas"></canvas>
+        <div id="gorilla-image-editor-text-layer"></div>
+      </div>
+    </div>
+    <div id="gorilla-image-editor-toolbar">
+      <div id="gorilla-image-editor-toolbar-row1">
+        <div id="gorilla-image-editor-button-group">
+          <button class="main-menu-item ionicon gorilla-image-editor-btn" id="gorilla-image-editor-new" nav-value="imageeditor-new" title="New Blank Canvas">document-outline</button>
+          <button class="main-menu-item ionicon gorilla-image-editor-btn" id="gorilla-image-editor-load" nav-value="imageeditor-load" title="Load from Media Library">folder-open-outline</button>
+          <button class="main-menu-item ionicon gorilla-image-editor-btn" id="gorilla-image-editor-upload" nav-value="imageeditor-upload" title="Upload Image from Disk">cloud-upload-outline</button>
+          <button class="main-menu-item ionicon gorilla-image-editor-btn" id="gorilla-image-editor-save" nav-value="imageeditor-save" title="Save Image">checkmark-outline</button>
+          <button class="main-menu-item ionicon gorilla-image-editor-btn" id="gorilla-image-editor-undo" nav-value="imageeditor-undo" title="Undo">arrow-undo-outline</button>
+          <button class="main-menu-item ionicon gorilla-image-editor-btn" id="gorilla-image-editor-redo" nav-value="imageeditor-redo" title="Redo">arrow-redo-outline</button>
+        </div>
+        <div id="gorilla-image-editor-tool-group">
+          <label>Tool:</label>
+          <select id="gorilla-image-editor-tool-select">
+            <option value="draw">Draw</option>
+            <option value="line">Line</option>
+            <option value="rect">Rectangle</option>
+            <option value="ellipse">Ellipse</option>
+            <option value="eraser">Eraser</option>
+            <option value="text">Add Text</option>
+            <option value="crop">Crop</option>
+          </select>
+        </div>
+        <div id="gorilla-image-editor-size-group">
+          <label>Size:</label>
+          <input type="range" id="gorilla-image-editor-brush-size" min="1" max="50" value="3">
+          <span id="gorilla-image-editor-brush-size-label">3</span>
+        </div>
+        <div id="gorilla-image-editor-zoom-group">
+          <label>Zoom:</label>
+          <input type="range" id="gorilla-image-editor-zoom" min="10" max="400" value="100">
+          <span id="gorilla-image-editor-zoom-label">100%</span>
+        </div>
+      </div>
+      <div id="gorilla-image-editor-toolbar-row2">
+        <div id="gorilla-image-editor-color-group">
+          <label>Color:</label>
+          <input type="color" id="gorilla-image-editor-color" value="#000000">
+          <label>α</label>
+          <input type="range" id="gorilla-image-editor-stroke-alpha" min="0" max="100" value="100" style="width:3em">
+          <span id="gorilla-image-editor-stroke-alpha-label" style="min-width:2.5em">100%</span>
+        </div>
+        <div id="gorilla-image-editor-fill-group">
+          <label>Fill:</label>
+          <input type="color" id="gorilla-image-editor-fill-color" value="#ffffff">
+          <label>α</label>
+          <input type="range" id="gorilla-image-editor-fill-alpha" min="0" max="100" value="100" style="width:3em">
+          <span id="gorilla-image-editor-fill-alpha-label" style="min-width:2.5em">100%</span>
+          <label><input type="checkbox" id="gorilla-image-editor-fill-enabled"> Fill</label>
+        </div>
+        <div id="gorilla-image-editor-adjust-group">
+          <label>Brightness:</label>
+          <input type="range" id="gorilla-image-editor-brightness" min="-100" max="100" value="0">
+          <label>Contrast:</label>
+          <input type="range" id="gorilla-image-editor-contrast" min="-100" max="100" value="0">
+        </div>
+        <div id="gorilla-image-editor-text-group" style="display:none;">
+          <label>Font Size:</label>
+          <input type="number" id="gorilla-image-editor-font-size" min="8" max="200" value="24">
+          <label>Font:</label>
+          <select id="gorilla-image-editor-font-family">
+            <option value="sans-serif">Sans-serif</option>
+            <option value="serif">Serif</option>
+            <option value="monospace">Monospace</option>
+          </select>
+          <label><input type="checkbox" id="gorilla-image-editor-font-bold"> Bold</label>
+          <label><input type="checkbox" id="gorilla-image-editor-font-italic"> Italic</label>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
  

@@ -101,6 +101,7 @@ class GorillaMediaRecorder {
         this.mediaRecorder = null;
         this.recordedChunks = [];
         this.currentBlob = null;
+        this.loadedFileName = null;
         this.undoStack = [];
         this.isRecording = false;
         this.recordingMode = 'video';
@@ -372,7 +373,15 @@ class GorillaMediaRecorder {
             GorillaAlert.show('No recording to save.');
             return;
         }
-        let title = (GorillaPresenter.currentSlideNumber + 1) + ") " + document.getElementById("gorilla-slide-header-" + GorillaPresenter.currentSlideNumber).innerText.trim();
+        // If loaded from library, default to the original filename; otherwise use slide title
+        let title;
+        let isFromLibrary = !!GorillaRecorder.loadedFileName;
+        if (isFromLibrary) {
+            title = GorillaRecorder.loadedFileName;
+        } else {
+            let headerEl = document.getElementById("gorilla-slide-header-" + GorillaPresenter.currentSlideNumber);
+            title = (GorillaPresenter.currentSlideNumber + 1) + ") " + (headerEl ? headerEl.innerText.trim() : "Recording");
+        }
         let saveNameInfo = await GorillaMediaFilePrompt.prompt('Enter title for the recording:', title, true);
 
 
@@ -382,21 +391,18 @@ class GorillaMediaRecorder {
         let rawName = saveNameInfo.value.trim();
         let saveName = "media/" + rawName;
         const finalBlob = GorillaRecorder.currentBlob;
-        if (GorillaRecorder.currentBlob.type.startsWith('video/')) {
+        if (isFromLibrary && /\.(webm|mp4|mp3|ogg|wav)$/i.test(saveName)) {
+            // File loaded from library already has an extension; use as-is
+            rawName = rawName.replace(/\.(webm|mp4|mp3|ogg|wav)$/i, '');
+        } else if (GorillaRecorder.currentBlob.type.startsWith('video/')) {
             rawName += ' (video recording)';
             if (!saveName.toLowerCase().endsWith('.webm')) {
                 saveName += ' (video recording).webm';
-                //finalBlob = GorillaRecorder.currentBlob;
             }
         } else if (GorillaRecorder.currentBlob.type.startsWith('audio/')) {
             rawName += ' (audio recording)';
-            /* if (!saveName.toLowerCase().endsWith('.mp3')) {
-                 saveName += ' (audio recording).mp3';
-                 finalBlob = await GorillaRecorder.convertToMp3(GorillaRecorder.currentBlob);
-             }*/
             if (!saveName.toLowerCase().endsWith('.webm')) {
                 saveName += ' (audio recording).webm';
-                // finalBlob = GorillaRecorder.currentBlob;
             }
         } else {
             GorillaAlert.show('Unsupported media type for saving.');
@@ -472,10 +478,18 @@ class GorillaMediaRecorder {
                 dialog.showModal();
             });
             if (!result) return;
+            await GorillaRecorder.loadFileByPath(result);
+        } catch (e) {
+            console.error('Error loading from library:', e);
+            GorillaAlert.show('Error loading file: ' + e.message);
+        }
+    }
 
-            const data = await fs.readBinaryFile(result);
+    async loadFileByPath(filePath) {
+        try {
+            const data = await fs.readBinaryFile(filePath);
             let mimeType = 'video/webm';
-            const lower = result.toLowerCase();
+            const lower = filePath.toLowerCase();
             if (lower.endsWith('.mp4')) mimeType = 'video/mp4';
             else if (lower.endsWith('.mp3')) mimeType = 'audio/mpeg';
             else if (lower.endsWith('.ogg')) mimeType = 'audio/ogg';
@@ -486,6 +500,8 @@ class GorillaMediaRecorder {
 
             const blob = new Blob([data], { type: mimeType });
             GorillaRecorder.currentBlob = blob;
+            // Remember the loaded filename so save can default to it
+            GorillaRecorder.loadedFileName = filePath.replace(/^media\//, '');
             const url = URL.createObjectURL(blob);
             GorillaRecorder.video.src = url;
             GorillaRecorder.video.onloadedmetadata = async () => {
@@ -495,11 +511,11 @@ class GorillaMediaRecorder {
                 GorillaRecorder.drawWaveform();
                 GorillaRecorder.updatePlayhead();
                 GorillaRecorder.stateTransition('IDLE');
-                GorillaRecorder.setStatus('Loaded: ' + result);
+                GorillaRecorder.setStatus('Loaded: ' + filePath);
             };
             GorillaRecorder.video.load();
         } catch (e) {
-            console.error('Error loading from library:', e);
+            console.error('Error loading file:', e);
             GorillaAlert.show('Error loading file: ' + e.message);
         }
     }
@@ -737,6 +753,9 @@ class GorillaMediaRecorder {
 
                 GorillaRecorder.undoStack = [];
                 GorillaRecorder.updateUndoState();
+
+                // Clear loaded filename since this is a fresh recording
+                GorillaRecorder.loadedFileName = null;
 
                 await GorillaRecorder.loadNewBlob(fixedBlob, false);
 

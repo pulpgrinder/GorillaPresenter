@@ -61,6 +61,9 @@ MainMenuDriver = {
                     case "recorder":
                         GorillaPresenter.showRecordScreen();
                         break;
+                    case "imageeditor":
+                        GorillaPresenter.showImageEditor();
+                        break;
                     case "fullscreen":
                         document.documentElement.requestFullscreen().catch((err) => {
                             console.warn("Failed to enter fullscreen mode:", err);
@@ -89,6 +92,24 @@ MainMenuDriver = {
                         break;
                     case "loadrecording":
                         GorillaRecorder.loadFromLibrary();
+                        break;
+                    case "imageeditor-new":
+                        GorillaImageEditor.newCanvasPrompt();
+                        break;
+                    case "imageeditor-load":
+                        GorillaImageEditor.loadFromLibrary();
+                        break;
+                    case "imageeditor-upload":
+                        GorillaImageEditor.uploadAndLoad();
+                        break;
+                    case "imageeditor-save":
+                        GorillaImageEditor.saveImage();
+                        break;
+                    case "imageeditor-undo":
+                        GorillaImageEditor.undo();
+                        break;
+                    case "imageeditor-redo":
+                        GorillaImageEditor.redo();
                         break;
                     // Text editing commands
                     case "bold":
