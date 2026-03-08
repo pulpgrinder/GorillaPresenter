@@ -74,7 +74,8 @@ HammerDriver = {
                     target.closest('#gorilla-image-editor-toolbar') ||
                     target.closest('#gorilla-recorder-controls') ||
                     target.closest('#gorilla-media-recorder-timeline') ||
-                    target.closest('#gorilla-editor-wrapper')
+                    target.closest('#gorilla-editor-wrapper') ||
+                    target.closest('[draggable="true"]')
                 )) {
                     return;
                 }
