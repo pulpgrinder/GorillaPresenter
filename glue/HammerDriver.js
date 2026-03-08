@@ -67,16 +67,21 @@ HammerDriver = {
             hammer.on("press", (ev) => {
                 console.log('Hammer press:', ev && ev.type, 'target:', ev && ev.target && ev.target.tagName);
                 // Don't open menu when interacting with scrollable editor areas
+                // or draggable elements (e.g. Matching plugin items).
+                // Use ev.target (Hammer's original input target) as primary;
+                // ev.srcEvent.target can differ on some browsers (e.g. Brave/Linux)
+                // because the srcEvent may be a later pointermove.
                 const src = ev && ev.srcEvent;
-                const target = src && src.target;
-                if (target && (
-                    target.closest('#gorilla-image-editor-workspace') ||
-                    target.closest('#gorilla-image-editor-toolbar') ||
-                    target.closest('#gorilla-recorder-controls') ||
-                    target.closest('#gorilla-media-recorder-timeline') ||
-                    target.closest('#gorilla-editor-wrapper') ||
-                    target.closest('[draggable="true"]')
-                )) {
+                const target = ev.target || (src && src.target);
+                const isExcluded = (el) => el && (
+                    el.closest('#gorilla-image-editor-workspace') ||
+                    el.closest('#gorilla-image-editor-toolbar') ||
+                    el.closest('#gorilla-recorder-controls') ||
+                    el.closest('#gorilla-media-recorder-timeline') ||
+                    el.closest('#gorilla-editor-wrapper') ||
+                    el.closest('[draggable="true"]')
+                );
+                if (isExcluded(target) || isExcluded(src && src.target)) {
                     return;
                 }
                 // Prevent the following click/release event from firing
