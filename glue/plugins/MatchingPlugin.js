@@ -1,5 +1,7 @@
 MatchingPlugin = {
 
+    _dragging: false,
+
     renderHTML: async function (directive) {
         // Parse pairs separated by blank lines.
         // Each pair: first line = left item, second line = right item.
@@ -61,6 +63,13 @@ MatchingPlugin = {
         // Equalise row heights so left and right entries line up.
         document.querySelectorAll('.gorilla-matching-container').forEach(container => {
             MatchingPlugin._equalizeRowHeights(container);
+        });
+
+        // Prevent pointer events on matching containers from bubbling up
+        // to the Hammer press recognizer on .gorilla-presenter-screen,
+        // which would otherwise open the main menu during a long-press/drag.
+        document.querySelectorAll('.gorilla-matching-container').forEach(container => {
+            container.addEventListener('pointerdown', e => e.stopPropagation());
         });
 
         // Set up drag-and-drop on the RIGHT column (the draggable side).
@@ -126,6 +135,7 @@ MatchingPlugin = {
         container.addEventListener('dragstart', e => {
             if (!e.target.classList.contains('gorilla-matching-item')) return;
             draggedEl = e.target;
+            MatchingPlugin._dragging = true;
             e.dataTransfer.effectAllowed = 'move';
             requestAnimationFrame(() => draggedEl.classList.add('gorilla-matching-dragging'));
         });
@@ -145,6 +155,7 @@ MatchingPlugin = {
         });
 
         container.addEventListener('dragend', () => {
+            MatchingPlugin._dragging = false;
             if (draggedEl) {
                 draggedEl.classList.remove('gorilla-matching-dragging');
                 draggedEl = null;
@@ -167,6 +178,7 @@ MatchingPlugin = {
         container.addEventListener('touchstart', e => {
             const item = e.target.closest('.gorilla-matching-item');
             if (!item) return;
+            MatchingPlugin._dragging = true;
             touchEl = item;
             const rect = item.getBoundingClientRect();
             offsetY = e.touches[0].clientY - rect.top;
@@ -207,6 +219,7 @@ MatchingPlugin = {
         }, { passive: false });
 
         container.addEventListener('touchend', () => {
+            MatchingPlugin._dragging = false;
             if (!touchEl) return;
             touchEl.classList.remove('gorilla-matching-touch-dragging');
             touchEl.style.position = '';
