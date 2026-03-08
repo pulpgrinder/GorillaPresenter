@@ -103,6 +103,24 @@ video.gorilla-media-video {
   float: right;
 }
 
+.gorilla-media-edit-icon {
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.4em;
+}
+
+.gorilla-media-download-icon {
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.4em;
+}
+
 .gorilla-media-undo-icon {
   width: 1.5em;
   height: 1.5em;

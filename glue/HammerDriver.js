@@ -66,6 +66,25 @@ HammerDriver = {
             });
             hammer.on("press", (ev) => {
                 console.log('Hammer press:', ev && ev.type, 'target:', ev && ev.target && ev.target.tagName);
+                // Don't open menu when a plugin drag is in progress.
+                if (typeof MatchingPlugin !== 'undefined' && MatchingPlugin._dragging) {
+                    return;
+                }
+                // Don't open menu when interacting with scrollable editor areas
+                // or draggable elements.
+                const src = ev && ev.srcEvent;
+                const target = ev.target || (src && src.target);
+                const isExcluded = (el) => el && el.closest && (
+                    el.closest('#gorilla-image-editor-workspace') ||
+                    el.closest('#gorilla-image-editor-toolbar') ||
+                    el.closest('#gorilla-recorder-controls') ||
+                    el.closest('#gorilla-media-recorder-timeline') ||
+                    el.closest('#gorilla-editor-wrapper') ||
+                    el.closest('[draggable="true"]')
+                );
+                if (isExcluded(target) || isExcluded(src && src.target)) {
+                    return;
+                }
                 // Prevent the following click/release event from firing
                 // which would otherwise be interpreted as an outside click
                 // and immediately close the menu we open here.

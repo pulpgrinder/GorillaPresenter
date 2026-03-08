@@ -23,7 +23,7 @@ GorillaMedia = {
     trash: "<svg xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0 0 512 512\"><path d=\"M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><line x1=\"80\" y1=\"112\" x2=\"432\" y2=\"112\" style=\"stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px\"/><path d=\"M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><line x1=\"256\" y1=\"176\" x2=\"256\" y2=\"400\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><line x1=\"184\" y1=\"176\" x2=\"192\" y2=\"400\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><line x1=\"328\" y1=\"176\" x2=\"320\" y2=\"400\" style=\"fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/></svg>",
     undo: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M240,424V328c116.4,0,159.39,33.76,208,96,0-119.23-39.57-240-208-240V88L64,256Z\" style=\"fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px\"/></svg>",
 
-
+    edit: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M384,224V408a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V168a40,40,0,0,1,40-40H271.48\" style=\"fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px\"/><path d=\"M459.94,53.25a16.06,16.06,0,0,0-23.22-.56L224.71,264.69a4,4,0,0,0-1,1.59L206.22,322a4,4,0,0,0,5,5.14l55.56-17.41a4,4,0,0,0,1.65-1L479.19,96.69A16,16,0,0,0,459.94,53.25Z\"/></svg>",
 
 
   },
@@ -94,7 +94,17 @@ GorillaMedia = {
       li.innerHTML = GorillaMedia.getFileIcon(pathinfo.extension) + " " + "<span class=\"gorilla-media-file-name\" contenteditable=\"plaintext-only\">" + basefilename + "</span>"
 
       if (folder !== "trash") {
+        // Edit icon inline after filename for audio/video/image files
+        const mediaEditExtensions = ['.webm', '.mp4', '.mp3', '.ogg', '.wav'];
+        const imageEditExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp', '.svg'];
+        const ext = pathinfo.extension ? '.' + pathinfo.extension.toLowerCase() : '';
+        if (mediaEditExtensions.includes(ext)) {
+          li.innerHTML += "<span class='gorilla-media-edit-icon' data-editor='recorder' filename='" + file + "' title='Edit in Media Editor'>" + GorillaMedia.icons.edit + "</span>";
+        } else if (imageEditExtensions.includes(ext)) {
+          li.innerHTML += "<span class='gorilla-media-edit-icon' data-editor='image' filename='" + file + "' title='Edit in Image Editor'>" + GorillaMedia.icons.edit + "</span>";
+        }
         li.innerHTML += "<span class='gorilla-media-download-icon' filename='" + file + "' title='Download file'>" + GorillaMedia.icons.download + "</span>";
+        // Trash icon floats right (far right side)
         li.innerHTML += "<span class='gorilla-media-trash-icon' filename='" + file + "' title='Move to Trash'>" + GorillaMedia.icons.trash + "</span>";
       }
       else li.innerHTML += "<span class='gorilla-media-undo-icon' filename='" + file + "' title='Restore from Trash'>" + GorillaMedia.icons.undo + "</span>";
@@ -116,6 +126,10 @@ GorillaMedia = {
       span.parentNode.replaceChild(newSpan, span);
     });
     document.querySelectorAll('.gorilla-media-undo-icon').forEach(span => {
+      const newSpan = span.cloneNode(true);
+      span.parentNode.replaceChild(newSpan, span);
+    });
+    document.querySelectorAll('.gorilla-media-edit-icon').forEach(span => {
       const newSpan = span.cloneNode(true);
       span.parentNode.replaceChild(newSpan, span);
     });
@@ -151,6 +165,21 @@ GorillaMedia = {
         event.stopPropagation();
         event.preventDefault();
 
+      });
+    });
+    document.querySelectorAll('.gorilla-media-edit-icon').forEach(icon => {
+      icon.addEventListener('click', async (event) => {
+        const filename = event.currentTarget.getAttribute('filename');
+        const editorType = event.currentTarget.getAttribute('data-editor');
+        event.stopPropagation();
+        event.preventDefault();
+        if (editorType === 'image') {
+          GorillaPresenter.showImageEditor();
+          await GorillaImageEditor.loadFileByPath(filename);
+        } else {
+          GorillaPresenter.showRecordScreen();
+          await GorillaRecorder.loadFileByPath(filename);
+        }
       });
     });
   },

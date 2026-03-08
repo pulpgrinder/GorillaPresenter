@@ -61,6 +61,9 @@ MainMenuDriver = {
                     case "recorder":
                         GorillaPresenter.showRecordScreen();
                         break;
+                    case "imageeditor":
+                        GorillaPresenter.showImageEditor();
+                        break;
                     case "fullscreen":
                         document.documentElement.requestFullscreen().catch((err) => {
                             console.warn("Failed to enter fullscreen mode:", err);
@@ -86,6 +89,27 @@ MainMenuDriver = {
                         break;
                     case "saverecording":
                         GorillaRecorder.saveRecording();
+                        break;
+                    case "loadrecording":
+                        GorillaRecorder.loadFromLibrary();
+                        break;
+                    case "imageeditor-new":
+                        GorillaImageEditor.newCanvasPrompt();
+                        break;
+                    case "imageeditor-load":
+                        GorillaImageEditor.loadFromLibrary();
+                        break;
+                    case "imageeditor-upload":
+                        GorillaImageEditor.uploadAndLoad();
+                        break;
+                    case "imageeditor-save":
+                        GorillaImageEditor.saveImage();
+                        break;
+                    case "imageeditor-undo":
+                        GorillaImageEditor.undo();
+                        break;
+                    case "imageeditor-redo":
+                        GorillaImageEditor.redo();
                         break;
                     // Text editing commands
                     case "bold":
@@ -188,6 +212,8 @@ MainMenuDriver = {
     },
     hideMenu: function () {
         console.log('MainMenuDriver.hideMenu called');
+        // Nothing to do if the menu isn't currently visible
+        if (!MainMenuDriver.menuVisible && !MainMenuDriver.menuDialog) return;
         // If the menu is shown in a dialog, close it (dialog 'close' will restore and cleanup)
         if (MainMenuDriver.menuDialog) {
             try { MainMenuDriver.menuDialog.close(); } catch (e) { /* ignore */ }
@@ -219,7 +245,8 @@ MainMenuDriver = {
         // create dialog and transfer the menu element into it (preserves event handlers)
         const dialog = document.createElement('dialog');
         dialog.className = 'gorilla-menu-dialog';
-        // ensure menu is visible inside dialog
+        // ensure menu is visible inside dialog – clear any stale animation class
+        menuEl.classList.remove('closing');
         menuEl.style.display = 'grid';
         dialog.appendChild(menuEl);
         // wire close button inside moved menu

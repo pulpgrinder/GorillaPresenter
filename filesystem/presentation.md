@@ -59,6 +59,13 @@ You're soaking in it! Press/click and hold ("long press") anywhere in the slide 
 
 If you want to get the source code, you can find it on {{{branch GitHub|~https://github.com/pulpgrinder/GorillaPresenter}}}
 
+Other Points of Contact: 
+
+{{{branch X|~https://x.com/GorillaPre10831}}}
+{{{branch Facebook|~https://www.facebook.com/groups/1434594561639801}}}
+{{{branch Discourse|~https://gorillapresenter.discourse.group/}}}
+{{{branch Email|~mailto:support@gorillapresenter.com}}}
+
 
 # Navigation
 

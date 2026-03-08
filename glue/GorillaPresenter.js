@@ -235,6 +235,9 @@ GorillaPresenter = {
         GorillaPresenter.show_screen("gorilla-recorder-screen");
         GorillaRecorder.resizeCanvas();
     },
+    showImageEditor: function () {
+        GorillaPresenter.show_screen("gorilla-image-editor-screen");
+    },
     showSlideShow: function () {
         GorillaPresenter.show_screen("gorilla-slide-show");
     },
